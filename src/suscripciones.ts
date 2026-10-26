@@ -131,6 +131,8 @@ export async function createSubscription(req: Request, env: MpEnv) {
       ? "Este es un entorno de prueba: usá el email de un usuario de prueba de Mercado Pago."
       : /payer and collector cannot be the same/i.test(detalle)
         ? "No podés suscribirte con el mismo email de la cuenta que cobra. Usá otro email."
+        : /user bad request|payer_email|invalid users?/i.test(detalle)
+          ? "Mercado Pago no reconoce ese email. Revisá que esté bien escrito."
         : res.status === 400 || res.status === 422
           ? "Mercado Pago rechazó la tarjeta. Probá con otra tarjeta o revisá los datos."
           : "No se pudo crear la suscripción. Intentá nuevamente en unos minutos.";
