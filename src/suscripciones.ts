@@ -175,8 +175,13 @@ export async function changeSubscription(req: Request, env: MpEnv, id: string, a
 
 /* POST /api/admin/planes: crea los planes una sola vez. Solo con la clave de administración. */
 export async function provisionPlans(req: Request, env: MpEnv) {
-  const key = req.headers.get("x-admin-key") || "";
-  if (!env.ADMIN_KEY || env.ADMIN_KEY.length < 12 || key !== env.ADMIN_KEY) return fail("forbidden", "Clave de administración incorrecta.", 403);
+  const key = (req.headers.get("x-admin-key") || "").trim();
+  const admin = (env.ADMIN_KEY || "").trim();
+  if (!admin) return fail("admin_not_configured", "El sitio no tiene cargada la variable ADMIN_KEY (en Settings → Variables and Secrets del Worker, no en Build).", 503);
+  if (admin.length < 12) return fail("admin_too_short", "ADMIN_KEY es muy corta: usá al menos 12 caracteres.", 503);
+  if (key !== admin) return fail("forbidden", "Clave de administración incorrecta. Revisá mayúsculas y que no haya espacios.", 403);
+  const faltan = ["MP_ACCESS_TOKEN", "MP_PUBLIC_KEY"].filter((k) => !(env as any)[k]);
+  if (faltan.length) return fail("mp_not_configured", `Falta cargar en Cloudflare: ${faltan.join(", ")}.`, 503);
   if (!env.MP_ACCESS_TOKEN || !env.SUSCRIPCIONES) return fail("mp_not_configured", "Faltan MP_ACCESS_TOKEN o el almacenamiento.", 503);
   const backUrl = `${appUrl(env, req)}/inscripcion.html?estado=volver`;
   const result: Record<string, unknown> = {};
