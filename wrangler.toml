@@ -26,3 +26,7 @@ APP_URL = "https://bocetoo-app.bnvds-nico.workers.dev"
 # Crea los planes de suscripción en cuanto está cargada la credencial de Mercado Pago
 [triggers]
 crons = ["*/15 * * * *"]
+
+# Registros del Worker visibles en Cloudflare (Observability)
+[observability]
+enabled = true

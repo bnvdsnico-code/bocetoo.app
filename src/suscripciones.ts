@@ -189,6 +189,8 @@ export async function ensurePlans(env: MpEnv) {
     const data: any = res ? await res.json().catch(() => ({})) : {};
     if (!res || !res.ok || !data?.id) {
       console.error("suscripciones: no se pudo crear el plan", k, res?.status ?? 0, String(data?.message ?? "").slice(0, 160));
+      const detalle = { status: res?.status ?? 0, message: String(data?.message ?? "").slice(0, 200), cause: JSON.stringify(data?.cause ?? data?.error ?? "").slice(0, 300), fecha: new Date().toISOString() };
+      await env.SUSCRIPCIONES.put(`${offer.kvKey}:error`, JSON.stringify(detalle));
       result[k] = "error";
       continue;
     }
@@ -201,8 +203,13 @@ export async function ensurePlans(env: MpEnv) {
 /* GET /api/estado-pagos: qué falta configurar (sin mostrar ningún dato secreto) */
 export async function paymentsStatus(env: MpEnv) {
   const planes: Record<string, boolean> = {};
+  const errores: Record<string, unknown> = {};
   for (const [k, offer] of Object.entries(SUBSCRIPTION_OFFERS)) {
     planes[k] = !!(env[offer.planEnv] || (env.SUSCRIPCIONES ? await env.SUSCRIPCIONES.get(offer.kvKey) : null));
+    if (!planes[k] && env.SUSCRIPCIONES) {
+      const e = await env.SUSCRIPCIONES.get(`${offer.kvKey}:error`);
+      if (e) errores[k] = JSON.parse(e);
+    }
   }
-  return json({ accessToken: !!env.MP_ACCESS_TOKEN, publicKey: !!env.MP_PUBLIC_KEY, almacenamiento: !!env.SUSCRIPCIONES, planes });
+  return json({ accessToken: !!env.MP_ACCESS_TOKEN, publicKey: !!env.MP_PUBLIC_KEY, almacenamiento: !!env.SUSCRIPCIONES, planes, ...(Object.keys(errores).length ? { errores } : {}) });
 }
