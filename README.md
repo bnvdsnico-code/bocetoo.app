@@ -61,3 +61,9 @@ y vuelve a Workers AI si Claude no está disponible.
 - Servidor: `src/suscripciones.ts` (rutas `/api/mp-config`, `/api/subscriptions`, `/api/subscriptions/:id`, `/api/subscriptions/:id/{pause|reactivate|cancel}`).
 - Planes: los crea el Worker solo (tarea programada cada 15 minutos) en cuanto está cargada la credencial; sus IDs quedan en el KV `SUSCRIPCIONES`. `/api/estado-pagos` muestra qué falta.
 - Secretos en Cloudflare (Worker → Settings → Variables and Secrets): `MP_ACCESS_TOKEN`, `MP_PUBLIC_KEY` y, después, `MP_WEBHOOK_SECRET`. Plantilla en `.env.example`.
+
+### Webhook de Mercado Pago
+
+- Receptor: `POST /api/mp/webhook` (`src/webhook.ts`). Valida la firma `x-signature` con el secreto de webhooks, responde 200 y procesa después.
+- Temas: `subscription_preapproval` (estado de la suscripción), `subscription_authorized_payment` (cobro de cada cuota) y `payment`.
+- En Mercado Pago: Tus integraciones → bocetoo app → Webhooks → URL `https://bocetoo-app.bnvds-nico.workers.dev/api/mp/webhook`.

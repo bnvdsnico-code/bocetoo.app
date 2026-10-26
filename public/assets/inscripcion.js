@@ -41,7 +41,9 @@
     const [tono, texto] = ESTADOS[s.status] || ESTADOS.pending;
     const quien = s.plan === "todas" ? "Todas las diplomaturas" : `Diplomatura en ${NOMBRES[s.carrera] || s.carrera}`;
     const prox = s.proximoCobro ? ` Próximo cobro: ${new Date(s.proximoCobro).toLocaleDateString("es-AR")}.` : "";
-    const el = $("estadoSub"); el.className = `i-alert ${tono}`; el.textContent = `${quien}. ${texto}${prox}`;
+    const deuda = s.status === "authorized" && s.alDia === false
+      ? " ⚠ El último cobro no pasó: Mercado Pago lo reintenta. Revisá que tu tarjeta tenga saldo o actualizala en tu cuenta de Mercado Pago." : "";
+    const el = $("estadoSub"); el.className = `i-alert ${deuda ? "warn" : tono}`; el.textContent = `${quien}. ${texto}${prox}${deuda}`;
     box.querySelector('[data-accion="pause"]').hidden = s.status !== "authorized";
     box.querySelector('[data-accion="reactivate"]').hidden = s.status !== "paused";
     box.querySelector('[data-accion="cancel"]').hidden = s.status === "canceled";
