@@ -18,16 +18,24 @@ function safeEqual(a: string, b: string) {
   return diff === 0;
 }
 
-async function validSignature(req: Request, secret: string, dataId: string) {
+// Valida la firma. Prueba el data.id tal como llega (URL o cuerpo) y en minúsculas, como indica Mercado Pago.
+async function validSignature(req: Request, secret: string, ids: string[]) {
   const signature = req.headers.get("x-signature") || "";
   const requestId = req.headers.get("x-request-id") || "";
   const parts = Object.fromEntries(signature.split(",").map((p) => p.split("=").map((s) => s.trim())));
-  const ts = parts.ts, v1 = parts.v1;
-  if (!ts || !v1 || !requestId || !dataId) return false;
-  const canonical = `id:${dataId};request-id:${requestId};ts:${ts};`;
-  const key = await crypto.subtle.importKey("raw", new TextEncoder().encode(secret), { name: "HMAC", hash: "SHA-256" }, false, ["sign"]);
-  const expected = hex(await crypto.subtle.sign("HMAC", key, new TextEncoder().encode(canonical)));
-  return safeEqual(expected, v1.toLowerCase());
+  const ts = parts.ts, v1 = (parts.v1 || "").toLowerCase();
+  if (!ts || !v1) { console.error("webhook: falta x-signature", { conFirma: !!signature, conRequestId: !!requestId }); return false; }
+  const key = await crypto.subtle.importKey("raw", new TextEncoder().encode(secret.trim()), { name: "HMAC", hash: "SHA-256" }, false, ["sign"]);
+  const candidates = new Set<string>();
+  for (const id of ids) if (id) { candidates.add(id); candidates.add(id.toLowerCase()); }
+  for (const id of candidates) {
+    // Mercado Pago omite del texto firmado las partes que no vienen en la notificación.
+    const canonical = `id:${id};` + (requestId ? `request-id:${requestId};` : "") + `ts:${ts};`;
+    const expected = hex(await crypto.subtle.sign("HMAC", key, new TextEncoder().encode(canonical)));
+    if (safeEqual(expected, v1)) return true;
+  }
+  console.error("webhook: firma no coincide", { ids: [...candidates], conRequestId: !!requestId, ts });
+  return false;
 }
 
 const mpGet = (env: WebhookEnv, path: string) =>
@@ -75,10 +83,12 @@ export async function mpWebhook(req: Request, env: WebhookEnv, ctx: { waitUntil:
   let body: any = {};
   try { body = await req.json(); } catch { /* algunos avisos llegan sin cuerpo */ }
   // Mercado Pago firma con el data.id de la URL (en minúsculas si es alfanumérico).
-  const rawId = url.searchParams.get("data.id") || String(body?.data?.id ?? "");
-  const dataId = /^[a-z0-9]+$/i.test(rawId) ? rawId.toLowerCase() : rawId;
-  const type = String(url.searchParams.get("type") || body?.type || body?.topic || "");
-  if (!(await validSignature(req, env.MP_WEBHOOK_SECRET, dataId))) return new Response("invalid signature", { status: 401 });
+  const queryId = url.searchParams.get("data.id") || url.searchParams.get("id") || "";
+  const bodyId = String(body?.data?.id ?? "");
+  const rawId = queryId || bodyId;
+  const type = String(url.searchParams.get("type") || url.searchParams.get("topic") || body?.type || body?.topic || "");
+  if (!rawId) return new Response("missing id", { status: 400 });
+  if (!(await validSignature(req, env.MP_WEBHOOK_SECRET, [queryId, bodyId]))) return new Response("invalid signature", { status: 401 });
 
   ctx.waitUntil(processEvent(env, type, rawId).catch((e) => console.error("webhook: error al procesar", type, String(e).slice(0, 160))));
   return new Response("ok", { status: 200 });
