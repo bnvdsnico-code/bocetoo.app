@@ -22,3 +22,7 @@ id = "c9298ba458d14debbf1dcf923f528247"
 
 [vars]
 APP_URL = "https://bocetoo-app.bnvds-nico.workers.dev"
+
+# Crea los planes de suscripción en cuanto está cargada la credencial de Mercado Pago
+[triggers]
+crons = ["*/15 * * * *"]

@@ -12,7 +12,6 @@ export interface MpEnv {
   MP_ACCESS_TOKEN?: string;
   MP_PUBLIC_KEY?: string;
   APP_URL?: string;
-  ADMIN_KEY?: string;
   MP_SUBSCRIPTION_PLAN_ID?: string;       // plan "Tu diplomatura" (si se carga a mano)
   MP_SUBSCRIPTION_PLAN_ID_TODAS?: string; // plan "Todas las diplomaturas" (si se carga a mano)
   SUSCRIPCIONES?: KV;
@@ -86,7 +85,7 @@ export async function createSubscription(req: Request, env: MpEnv) {
 
   const trustedOffer = await resolveOffer(env, input?.plan, input?.carrera);
   if (!trustedOffer) return fail("bad_offer", "Elegí una diplomatura válida antes de suscribirte.", 400);
-  if (!trustedOffer.planId) return fail("plan_missing", "El plan todavía no está creado. Avisanos y lo resolvemos.", 503);
+  if (!trustedOffer.planId) return fail("plan_missing", "Estamos terminando de preparar los pagos. Probá de nuevo en unos minutos.", 503);
 
   const email = typeof input?.email === "string" ? input.email.trim().toLowerCase() : "";
   const cardToken = typeof input?.cardToken === "string" ? input.cardToken : "";
@@ -173,33 +172,37 @@ export async function changeSubscription(req: Request, env: MpEnv, id: string, a
   return json({ id, status: rec.status });
 }
 
-/* POST /api/admin/planes: crea los planes una sola vez. Solo con la clave de administración. */
-export async function provisionPlans(req: Request, env: MpEnv) {
-  const key = (req.headers.get("x-admin-key") || "").trim();
-  const admin = (env.ADMIN_KEY || "").trim();
-  if (!admin) return fail("admin_not_configured", "El sitio no tiene cargada la variable ADMIN_KEY (en Settings → Variables and Secrets del Worker, no en Build).", 503);
-  if (admin.length < 12) return fail("admin_too_short", "ADMIN_KEY es muy corta: usá al menos 12 caracteres.", 503);
-  if (key !== admin) return fail("forbidden", "Clave de administración incorrecta. Revisá mayúsculas y que no haya espacios.", 403);
-  const faltan = ["MP_ACCESS_TOKEN", "MP_PUBLIC_KEY"].filter((k) => !(env as any)[k]);
-  if (faltan.length) return fail("mp_not_configured", `Falta cargar en Cloudflare: ${faltan.join(", ")}.`, 503);
-  if (!env.MP_ACCESS_TOKEN || !env.SUSCRIPCIONES) return fail("mp_not_configured", "Faltan MP_ACCESS_TOKEN o el almacenamiento.", 503);
-  const backUrl = `${appUrl(env, req)}/inscripcion.html?estado=volver`;
-  const result: Record<string, unknown> = {};
+/* Planes: los crea el propio servidor con una tarea programada (sin ruta pública ni clave de administración).
+   Si el plan ya existe en KV o en variables, no hace nada; así nunca se duplican. */
+export async function ensurePlans(env: MpEnv) {
+  const result: Record<string, string> = {};
+  if (!env.MP_ACCESS_TOKEN || !env.SUSCRIPCIONES) return { listo: false, motivo: "falta la credencial de Mercado Pago" };
+  const backUrl = `${(env.APP_URL || "").replace(/\/+$/, "")}/inscripcion.html?estado=volver`;
   for (const [k, offer] of Object.entries(SUBSCRIPTION_OFFERS)) {
     const existing = env[offer.planEnv] || await env.SUSCRIPCIONES.get(offer.kvKey);
-    if (existing) {
-      const check = await fetch(`${MP_API}/preapproval_plan/${encodeURIComponent(existing)}`, { headers: mpHeaders(env) }).catch(() => null);
-      if (check && check.ok) { result[k] = { id: existing, creado: false }; continue; }
-    }
+    if (existing) { result[k] = "existente"; continue; }
     const auto_recurring: Record<string, unknown> = { frequency: 1, frequency_type: "months", transaction_amount: offer.amount, currency_id: "ARS" };
     if (offer.repetitions) auto_recurring.repetitions = offer.repetitions;
     const res = await fetch(`${MP_API}/preapproval_plan`, {
       method: "POST", headers: mpHeaders(env), body: JSON.stringify({ reason: offer.reason, auto_recurring, back_url: backUrl })
     }).catch(() => null);
     const data: any = res ? await res.json().catch(() => ({})) : {};
-    if (!res || !res.ok || !data?.id) { result[k] = { error: res?.status ?? 0, message: String(data?.message ?? "sin respuesta").slice(0, 200) }; continue; }
+    if (!res || !res.ok || !data?.id) {
+      console.error("suscripciones: no se pudo crear el plan", k, res?.status ?? 0, String(data?.message ?? "").slice(0, 160));
+      result[k] = "error";
+      continue;
+    }
     await env.SUSCRIPCIONES.put(offer.kvKey, String(data.id));
-    result[k] = { id: data.id, creado: true };
+    result[k] = "creado";
   }
-  return json({ planes: result });
+  return { listo: Object.values(result).every((v) => v !== "error"), planes: result };
+}
+
+/* GET /api/estado-pagos: qué falta configurar (sin mostrar ningún dato secreto) */
+export async function paymentsStatus(env: MpEnv) {
+  const planes: Record<string, boolean> = {};
+  for (const [k, offer] of Object.entries(SUBSCRIPTION_OFFERS)) {
+    planes[k] = !!(env[offer.planEnv] || (env.SUSCRIPCIONES ? await env.SUSCRIPCIONES.get(offer.kvKey) : null));
+  }
+  return json({ accessToken: !!env.MP_ACCESS_TOKEN, publicKey: !!env.MP_PUBLIC_KEY, almacenamiento: !!env.SUSCRIPCIONES, planes });
 }

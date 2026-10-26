@@ -1,6 +1,6 @@
 // Entrada para Cloudflare Workers: el asistente, las suscripciones de Mercado Pago y el resto del sitio como archivos estáticos (carpeta public).
 import { onRequestPost } from "../functions/api/asistente";
-import { mpConfig, ofertas, createSubscription, getSubscription, changeSubscription, provisionPlans, type MpEnv } from "./suscripciones";
+import { mpConfig, ofertas, createSubscription, getSubscription, changeSubscription, ensurePlans, paymentsStatus, type MpEnv } from "./suscripciones";
 
 interface Env extends MpEnv { ASSETS: { fetch: (req: Request) => Promise<Response> }; [k: string]: any }
 
@@ -17,7 +17,7 @@ export default {
     }
     if (pathname === "/api/mp-config") return method === "GET" ? mpConfig(env) : notAllowed();
     if (pathname === "/api/ofertas") return method === "GET" ? ofertas() : notAllowed();
-    if (pathname === "/api/admin/planes") return method === "POST" ? provisionPlans(request, env) : notAllowed();
+    if (pathname === "/api/estado-pagos") return method === "GET" ? paymentsStatus(env) : notAllowed();
     if (pathname === "/api/subscriptions") return method === "POST" ? createSubscription(request, env) : notAllowed();
 
     // GET /api/subscriptions/:id  → estado
@@ -30,5 +30,10 @@ export default {
     if (pathname.startsWith("/api/")) return Response.json({ error: "not_found" }, { status: 404 });
 
     return env.ASSETS.fetch(request);
+  },
+
+  // Tarea programada (cada 15 minutos): crea los planes de Mercado Pago si todavía no existen.
+  async scheduled(_event: unknown, env: Env, ctx: any): Promise<void> {
+    ctx.waitUntil(ensurePlans(env).then((r) => console.log("planes", JSON.stringify(r))));
   }
 };

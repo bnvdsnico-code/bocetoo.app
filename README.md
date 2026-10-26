@@ -59,5 +59,5 @@ y vuelve a Workers AI si Claude no está disponible.
 
 - Página de inscripción: `/inscripcion.html` (los botones "Inscribirme" de las fichas y los planes del inicio llevan ahí).
 - Servidor: `src/suscripciones.ts` (rutas `/api/mp-config`, `/api/subscriptions`, `/api/subscriptions/:id`, `/api/subscriptions/:id/{pause|reactivate|cancel}`).
-- Planes: se crean una sola vez desde `/admin/planes.html` con la clave `ADMIN_KEY`; sus IDs quedan en el KV `SUSCRIPCIONES`.
-- Secretos en Cloudflare (Worker → Settings → Variables and Secrets): `MP_ACCESS_TOKEN`, `MP_PUBLIC_KEY`, `ADMIN_KEY` y, después, `MP_WEBHOOK_SECRET`. Plantilla en `.env.example`.
+- Planes: los crea el Worker solo (tarea programada cada 15 minutos) en cuanto está cargada la credencial; sus IDs quedan en el KV `SUSCRIPCIONES`. `/api/estado-pagos` muestra qué falta.
+- Secretos en Cloudflare (Worker → Settings → Variables and Secrets): `MP_ACCESS_TOKEN`, `MP_PUBLIC_KEY` y, después, `MP_WEBHOOK_SECRET`. Plantilla en `.env.example`.
