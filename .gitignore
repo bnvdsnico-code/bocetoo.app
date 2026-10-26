@@ -1,0 +1,6 @@
+.netlify
+shots/
+__pycache__/
+node_modules/
+.wrangler/
+.DS_Store

@@ -1,0 +1,121 @@
+// Asistente de IA de boceto en Cloudflare Pages: POST /api/asistente
+// Recibe la conversación (y una imagen opcional del Bocetador) y responde en texto.
+// Con la variable ANTHROPIC_API_KEY usa Claude; si no está, usa Workers AI (gratis, sin tarjeta).
+
+interface Env {
+  AI?: { run: (model: string, input: unknown) => Promise<any> };
+  ANTHROPIC_API_KEY?: string;
+  ASISTENTE_MODEL?: string;    // modelo de Claude preferido
+  WORKERS_AI_MODEL?: string;   // modelo de Workers AI preferido
+}
+
+const SYSTEM = `Sos el asistente de aprendizaje de boceto, una escuela online de diseño sin profesores con cuatro carreras: Diseño de Interiores y Mobiliario, Diseño Industrial, Diseño Gráfico y Diseño de Indumentaria.
+Respondés en español rioplatense, con voseo, en tono cálido, claro y concreto, como un buen docente de taller.
+Ayudás con dudas de las diplomaturas, ejercicios, correcciones de bocetos y planificación del estudio. Si te piden algo que no tiene que ver con diseño o con la escuela, lo decís con amabilidad y volvés al tema.
+Si no estás seguro de un dato técnico, lo aclarás. Nunca inventes precios, fechas ni políticas de la escuela.`;
+
+const CLAUDE_MODELS = ["claude-sonnet-4-5", "claude-haiku-4-5"];
+const WORKERS_MODELS = ["@cf/meta/llama-4-scout-17b-16e-instruct", "@cf/meta/llama-3.2-11b-vision-instruct"];
+const MAX_CHARS = 24000;
+const MAX_IMAGE_B64 = 5_000_000; // ~3,7 MB de imagen
+const IMAGE_TYPES = ["image/jpeg", "image/png", "image/webp"];
+
+type Turn = { role: "user" | "assistant"; content: string };
+type Image = { data: string; mediaType: string } | undefined;
+
+const fail = (error: string, status: number) => Response.json({ error }, { status });
+
+// Límite simple por visitante: 20 consultas por minuto (por instancia del servidor).
+const hits = new Map<string, number[]>();
+function limited(ip: string) {
+  const now = Date.now(), win = hits.get(ip)?.filter((t) => now - t < 60_000) ?? [];
+  win.push(now); hits.set(ip, win);
+  if (hits.size > 5000) hits.clear();
+  return win.length > 20;
+}
+
+async function claude(env: Env, turns: Turn[], image: Image, maxTokens: number): Promise<Response | null> {
+  const messages = turns.map((t, i) => i === turns.length - 1 && image
+    ? { role: "user", content: [{ type: "image", source: { type: "base64", media_type: image.mediaType, data: image.data } }, { type: "text", text: t.content }] }
+    : { role: t.role, content: t.content });
+  const models = env.ASISTENTE_MODEL ? [env.ASISTENTE_MODEL, ...CLAUDE_MODELS] : CLAUDE_MODELS;
+  for (const model of models) {
+    let res: Response;
+    try {
+      res = await fetch("https://api.anthropic.com/v1/messages", {
+        method: "POST",
+        headers: { "content-type": "application/json", "x-api-key": env.ANTHROPIC_API_KEY!, "anthropic-version": "2023-06-01" },
+        body: JSON.stringify({ model, max_tokens: maxTokens, system: SYSTEM, messages })
+      });
+    } catch (e) { console.error("asistente: sin conexión con Claude", e); return null; }
+    if (res.ok) {
+      const data: any = await res.json();
+      const text = (data.content || []).filter((b: any) => b.type === "text").map((b: any) => b.text).join("").trim();
+      if (!text) return fail("empty_completion", 502);
+      return Response.json({ text, truncated: data.stop_reason === "max_tokens", model });
+    }
+    const detail = await res.text().catch(() => "");
+    console.error(`asistente: ${model} respondió ${res.status}`, detail.slice(0, 400));
+    if (res.status === 429) return fail("rate_limited", 429);
+    if (res.status === 404 || (res.status === 400 && /model/i.test(detail))) continue;
+    return null; // clave inválida, sin saldo, etc.: probamos con Workers AI
+  }
+  return null;
+}
+
+async function workersAI(env: Env, turns: Turn[], image: Image, maxTokens: number): Promise<Response> {
+  if (!env.AI) return fail("ai_unavailable", 503);
+  const messages: any[] = [{ role: "system", content: SYSTEM }];
+  turns.forEach((t, i) => {
+    if (i === turns.length - 1 && image) {
+      messages.push({ role: "user", content: [
+        { type: "text", text: t.content },
+        { type: "image_url", image_url: { url: `data:${image.mediaType};base64,${image.data}` } }
+      ] });
+    } else messages.push({ role: t.role, content: t.content });
+  });
+  const models = env.WORKERS_AI_MODEL ? [env.WORKERS_AI_MODEL, ...WORKERS_MODELS] : WORKERS_MODELS;
+  for (const model of models) {
+    try {
+      const out = await env.AI.run(model, { messages, max_tokens: maxTokens });
+      const text = String(out?.response ?? out?.result?.response ?? "").trim();
+      if (text) return Response.json({ text, truncated: false, model });
+    } catch (e: any) {
+      const msg = String(e?.message || e);
+      console.error(`asistente: ${model} falló`, msg.slice(0, 400));
+      if (/limit|quota|neuron/i.test(msg)) return fail("rate_limited", 429);
+    }
+  }
+  return fail("ai_unavailable", 503);
+}
+
+export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
+  if (limited(request.headers.get("cf-connecting-ip") || "anon")) return fail("rate_limited", 429);
+
+  let body: any;
+  try { body = await request.json(); } catch { return fail("bad_request", 400); }
+
+  const turns: Turn[] = Array.isArray(body?.messages) ? body.messages : [];
+  if (!turns.length || turns.length > 24) return fail("bad_request", 400);
+  let chars = 0;
+  for (const t of turns) {
+    if ((t?.role !== "user" && t?.role !== "assistant") || typeof t?.content !== "string" || !t.content.trim()) return fail("bad_request", 400);
+    chars += t.content.length;
+  }
+  if (turns[0].role !== "user" || turns[turns.length - 1].role !== "user") return fail("bad_request", 400);
+  if (chars > MAX_CHARS) return fail("too_large", 413);
+
+  const image: Image = body?.image;
+  if (image && (typeof image.data !== "string" || !IMAGE_TYPES.includes(image.mediaType) || image.data.length > MAX_IMAGE_B64)) {
+    return fail("too_large", 413);
+  }
+  const maxTokens = Math.max(100, Math.min(1200, Number(body?.maxTokens) || 800));
+
+  if (env.ANTHROPIC_API_KEY) {
+    const r = await claude(env, turns, image, maxTokens);
+    if (r) return r;
+  }
+  return workersAI(env, turns, image, maxTokens);
+};
+
+export const onRequest: PagesFunction<Env> = async () => fail("method_not_allowed", 405);

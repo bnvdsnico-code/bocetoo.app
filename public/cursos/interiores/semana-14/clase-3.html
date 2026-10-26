@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Render realista: D5 Render y render con IA · Semana 14 · boceto</title>
+<meta name="description" content="Producir imágenes realistas del proyecto con un motor de render y con herramientas de render por IA, y conocer sus diferencias.">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="stylesheet" href="/assets/curso.css">
+</head>
+<body data-curso="interiores" data-total="80" data-clase="s14d3">
+<header class="c-header">
+<div class="left">
+<a class="c-brand" href="/" aria-label="boceto, inicio"><span class="marks" aria-hidden="true"><i></i><i></i><i></i><i></i></span><b>boceto</b></a>
+<a class="back" href="/cursos/interiores/programa.html">← Interiores y Mobiliario</a>
+</div>
+<div class="right">
+<span class="c-progress">Tu progreso <span class="bar" aria-hidden="true"><span data-progress-bar></span></span><b data-progress-text>0%</b></span>
+<a class="panel-link" href="/panel.html">Mi panel</a>
+</div>
+</header>
+<div class="c-layout">
+<aside class="c-side" aria-label="Contenido de la diplomatura">
+<h2>Contenido de la diplomatura</h2>
+<div class="c-unit"><a href="/cursos/interiores/programa.html#unidad-1">1 · Representación: el lenguaje del interiorista</a></div>
+<div class="c-unit"><a href="/cursos/interiores/programa.html#unidad-2">2 · El cuerpo y el espacio</a></div>
+<div class="c-unit"><a href="/cursos/interiores/programa.html#unidad-3">3 · Los ambientes de la vivienda</a></div>
+<div class="c-unit"><a href="/cursos/interiores/programa.html#unidad-4">4 · Color, luz natural y materiales</a></div>
+<div class="c-unit"><a href="/cursos/interiores/programa.html#unidad-5">5 · Iluminación e instalaciones</a></div>
+<div class="c-unit"><a href="/cursos/interiores/programa.html#unidad-6">6 · Diseño de mobiliario</a></div>
+<div class="c-unit current"><span>7 · Presentación y herramientas digitales</span>
+<div class="c-week"><p>Semana 13 · Dibujar y presentar</p>
+<a href="/cursos/interiores/semana-13/clase-1.html" data-cid="s13d1"><span class="dot" aria-hidden="true"></span>1. Axonometría e isometría</a>
+<a href="/cursos/interiores/semana-13/clase-2.html" data-cid="s13d2"><span class="dot" aria-hidden="true"></span>2. Perspectiva interior con un punto de fuga</a>
+<a href="/cursos/interiores/semana-13/clase-3.html" data-cid="s13d3"><span class="dot" aria-hidden="true"></span>3. Perspectiva con dos puntos de fuga</a>
+<a href="/cursos/interiores/semana-13/clase-4.html" data-cid="s13d4"><span class="dot" aria-hidden="true"></span>4. La lámina de presentación</a>
+<a href="/cursos/interiores/semana-13/clase-5.html" data-cid="s13d5"><span class="dot" aria-hidden="true"></span>5. Taller: perspectiva y lámina de tu living</a>
+</div>
+<div class="c-week"><p>Semana 14 · Herramientas digitales e IA</p>
+<a href="/cursos/interiores/semana-14/clase-1.html" data-cid="s14d1"><span class="dot" aria-hidden="true"></span>1. Del papel al modelo 3D: SketchUp y alternativas</a>
+<a href="/cursos/interiores/semana-14/clase-2.html" data-cid="s14d2"><span class="dot" aria-hidden="true"></span>2. Distribuir con IA: Planner 5D</a>
+<a href="/cursos/interiores/semana-14/clase-3.html" data-cid="s14d3" aria-current="page"><span class="dot" aria-hidden="true"></span>3. Render realista: D5 Render y render con IA</a>
+<a href="/cursos/interiores/semana-14/clase-4.html" data-cid="s14d4"><span class="dot" aria-hidden="true"></span>4. IA para conceptos y moodboards: usos y límites</a>
+<a href="/cursos/interiores/semana-14/clase-5.html" data-cid="s14d5"><span class="dot" aria-hidden="true"></span>5. Taller: tu living en 3D y con IA</a>
+</div>
+</div>
+<div class="c-unit"><a href="/cursos/interiores/programa.html#unidad-8">8 · Proyecto integrador</a></div>
+<h2 style="margin-top:10px">Recursos</h2><div class="c-week">
+<a href="/cursos/interiores/herramientas.html"><span aria-hidden="true">→</span>Caja de herramientas digitales</a>
+<a href="/cursos/interiores/proveedores.html"><span aria-hidden="true">→</span>Directorio de proveedores</a>
+</div>
+</aside>
+<main class="c-main" id="clase">
+<article class="c-article">
+<p class="eyebrow">Unidad 7 · Semana 14 · Clase 3 de 5</p>
+<h1>Render realista: D5 Render y render con IA</h1>
+<p class="objetivo">Producir imágenes realistas del proyecto con un motor de render y con herramientas de render por IA, y conocer sus diferencias.</p>
+<ul class="tiempos" aria-label="Tiempos de la clase"><li>Lectura <b>15 min</b></li><li>Práctica <b>35 min</b></li><li>Repaso <b>10 min</b></li></ul>
+<section class="lectura" aria-label="Lectura">
+<h2>Dos caminos para una imagen realista</h2>
+<div class="tabla"><table>
+<thead>
+<tr>
+<th></th>
+<th>Render a partir del modelo 3D</th>
+<th>Render con IA desde una imagen</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ejemplos</td>
+<td><strong>D5 Render</strong> (con versión gratuita), V-Ray, Enscape</td>
+<td>Herramientas que transforman una foto, un boceto o una captura del modelo</td>
+</tr>
+<tr>
+<td>Cómo funciona</td>
+<td>Calcula la luz sobre tu modelo con sus materiales y medidas reales</td>
+<td>Genera una imagen nueva a partir de la tuya y de una descripción</td>
+</tr>
+<tr>
+<td>Fidelidad</td>
+<td><strong>Alta:</strong> lo que ves es tu proyecto</td>
+<td><strong>Variable:</strong> puede cambiar muebles, medidas o aberturas</td>
+</tr>
+<tr>
+<td>Velocidad</td>
+<td>Requiere preparar materiales y luces</td>
+<td>Segundos</td>
+</tr>
+<tr>
+<td>Requisitos</td>
+<td>Una computadora con placa de video dedicada, en el caso de D5</td>
+<td>Conexión a internet; muchas son pagas por imagen o por mes</td>
+</tr>
+</tbody>
+</table></div>
+<h2>Render con D5</h2>
+<p>D5 Render se conecta con SketchUp y otros programas: llevás tu modelo, ajustás <strong>materiales</strong> (tienen bibliotecas de madera, piedra, tela), <strong>luz natural</strong> (orientación y hora del día) y <strong>luces artificiales</strong> (las de tu plano de iluminación), y ubicás la <strong>cámara</strong>. La versión Community es gratuita y alcanza para aprender.</p>
+<p>Claves para un buen render:</p>
+<ul>
+<li><strong>Cámara a la altura de los ojos</strong> (1,50 a 1,60 m) y lente no muy angular, para que el espacio no se deforme.</li>
+<li><strong>Luz natural creíble:</strong> una orientación y una hora reales.</li>
+<li><strong>Materiales con textura</strong> y algo de imperfección. Todo perfecto se ve falso.</li>
+<li><strong>Pocos objetos bien elegidos.</strong> Un render vacío se ve frío; uno lleno, desordenado.</li>
+</ul>
+<h2>Render con IA</h2>
+<p>Las herramientas de IA (como RoomGPT o Interior AI, entre muchas otras) pueden tomar una <strong>foto de tu ambiente</strong>, un <strong>boceto</strong> o una <strong>captura del modelo 3D</strong> y devolver una imagen realista en el estilo que pidas.</p>
+<p>Son muy útiles para <strong>explorar estilos</strong> y para mostrar un clima. Pero tené en cuenta:</p>
+<ul>
+<li><strong>No respetan medidas.</strong> El sillón puede salir más grande, la ventana puede cambiar de lugar.</li>
+<li><strong>Pueden inventar</strong> muebles y materiales que no existen.</li>
+<li>Para presentar a un cliente, <strong>aclarale que es una imagen de referencia</strong>, no el proyecto exacto.</li>
+</ul>
+<blockquote>
+<p><strong>Regla de la diplomatura:</strong> la imagen con IA muestra un clima; el render del modelo muestra el proyecto. Si una imagen de IA te gusta, llevá lo que tiene de bueno a tu modelo y renderizalo.</p>
+</blockquote>
+<figure>
+<svg viewBox="0 0 640 240" role="img" aria-label="Materiales: Con textura y escala real; Luz natural: Hora y orientación creíbles; Luces artificiales: Las del plano; Cámara: A la altura de los ojos"><rect x="20.0" y="16" width="293.0" height="96" rx="14" fill="#FFFFFF" stroke="#FDBA8C" stroke-width="1.5"/><rect x="20.0" y="16" width="6" height="96" rx="3" fill="#C2410C"/><text font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="700" fill="#7C2D12" text-anchor="start"><tspan x="38.0" y="42.0">Materiales</tspan></text><text font-family="Inter, system-ui, sans-serif" font-size="12.5" font-weight="400" fill="#3A2A22" text-anchor="start"><tspan x="38.0" y="66.0">Con textura y escala real</tspan></text><rect x="327.0" y="16" width="293.0" height="96" rx="14" fill="#FFFFFF" stroke="#FDBA8C" stroke-width="1.5"/><rect x="327.0" y="16" width="6" height="96" rx="3" fill="#C2410C"/><text font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="700" fill="#7C2D12" text-anchor="start"><tspan x="345.0" y="42.0">Luz natural</tspan></text><text font-family="Inter, system-ui, sans-serif" font-size="12.5" font-weight="400" fill="#3A2A22" text-anchor="start"><tspan x="345.0" y="66.0">Hora y orientación creíbles</tspan></text><rect x="20.0" y="126" width="293.0" height="96" rx="14" fill="#FFFFFF" stroke="#FDBA8C" stroke-width="1.5"/><rect x="20.0" y="126" width="6" height="96" rx="3" fill="#C2410C"/><text font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="700" fill="#7C2D12" text-anchor="start"><tspan x="38.0" y="152.0">Luces artificiales</tspan></text><text font-family="Inter, system-ui, sans-serif" font-size="12.5" font-weight="400" fill="#3A2A22" text-anchor="start"><tspan x="38.0" y="176.0">Las del plano</tspan></text><rect x="327.0" y="126" width="293.0" height="96" rx="14" fill="#FFFFFF" stroke="#FDBA8C" stroke-width="1.5"/><rect x="327.0" y="126" width="6" height="96" rx="3" fill="#C2410C"/><text font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="700" fill="#7C2D12" text-anchor="start"><tspan x="345.0" y="152.0">Cámara</tspan></text><text font-family="Inter, system-ui, sans-serif" font-size="12.5" font-weight="400" fill="#3A2A22" text-anchor="start"><tspan x="345.0" y="176.0">A la altura de los ojos</tspan></text></svg>
+<figcaption>Los cuatro ajustes de un render creíble.</figcaption>
+</figure>
+</section>
+<section class="bloque practica" aria-labelledby="practica-t">
+<h2 id="practica-t">Práctica · 35 min</h2>
+<div class="lectura"><p>Producí dos imágenes de tu ambiente.</p>
+<ol>
+<li>Desde tu modelo de SketchUp o Sweet Home 3D, ubicá una cámara a 1,60 m y exportá una captura.</li>
+<li>Si tu computadora lo permite, abrí el modelo en D5 Render (Community), aplicá materiales y luz natural, y hacé un render. Si no, usá el render que trae tu programa de modelado.</li>
+<li>Subí la captura o una foto de tu ambiente a una herramienta de render con IA (en su versión gratuita) y pedí el estilo de tu moodboard.</li>
+<li>Compará las dos imágenes: anotá todo lo que la IA cambió respecto de tu proyecto real.</li>
+</ol></div>
+<a class="cta-suave" href="/bocetador/?carrera=interiores&amp;clase=s14d3">Hacer la práctica en el Bocetador →</a><p class="entregado" data-entrega="s14d3" hidden></p>
+</section>
+
+<section class="repaso" aria-labelledby="repaso-t">
+<h2 id="repaso-t">Repaso · 10 min</h2>
+<div class="quiz" data-quiz>
+<p class="q">1. ¿Qué diferencia principal hay entre el render del modelo 3D y el render con IA?</p>
+<div class="opts" role="group" aria-label="Opciones de la pregunta 1">
+<button type="button" class="opt" data-ok="1">El render del modelo respeta medidas y materiales reales; el de IA puede cambiarlos.</button>
+<button type="button" class="opt" data-ok="0">No hay diferencias.</button>
+<button type="button" class="opt" data-ok="0">El de IA siempre es más fiel.</button>
+</div>
+<p class="fb ok" role="status" hidden><strong>¡Bien!</strong> El motor de render calcula sobre tu modelo; la IA genera una imagen nueva que puede alterar el proyecto.</p>
+<p class="fb no" role="status" hidden><strong>Todavía no.</strong> Probá otra opción.</p>
+</div>
+<div class="quiz" data-quiz>
+<p class="q">2. ¿A qué altura conviene ubicar la cámara para un render interior?</p>
+<div class="opts" role="group" aria-label="Opciones de la pregunta 2">
+<button type="button" class="opt" data-ok="0">En el techo.</button>
+<button type="button" class="opt" data-ok="1">A la altura de los ojos, 1,50 a 1,60 m.</button>
+<button type="button" class="opt" data-ok="0">En el piso.</button>
+</div>
+<p class="fb ok" role="status" hidden><strong>¡Bien!</strong> A la altura de los ojos la imagen se parece a lo que verá una persona en el ambiente.</p>
+<p class="fb no" role="status" hidden><strong>Todavía no.</strong> Probá otra opción.</p>
+</div>
+<div class="quiz" data-quiz>
+<p class="q">3. ¿Cómo conviene presentar a un cliente una imagen hecha con IA?</p>
+<div class="opts" role="group" aria-label="Opciones de la pregunta 3">
+<button type="button" class="opt" data-ok="1">Aclarando que es una referencia de clima, no el proyecto exacto.</button>
+<button type="button" class="opt" data-ok="0">Como el render final del proyecto.</button>
+<button type="button" class="opt" data-ok="0">No mostrarla nunca.</button>
+</div>
+<p class="fb ok" role="status" hidden><strong>¡Bien!</strong> Así el cliente no espera medidas o muebles que la imagen inventó.</p>
+<p class="fb no" role="status" hidden><strong>Todavía no.</strong> Probá otra opción.</p>
+</div>
+</section>
+<section class="asistente" aria-labelledby="asistente-titulo">
+<div class="head"><span class="ico" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FDBA8C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg></span><div><h2 id="asistente-titulo">Preguntale al asistente</h2><p class="sub">Conoce esta clase y toda la diplomatura. Responde a cualquier hora.</p></div></div>
+<div id="chat" style="display:flex;flex-direction:column;gap:10px;font-size:15px;line-height:1.55"></div>
+<div class="chips"><button type="button">Explicámelo con otro ejemplo</button><button type="button">Haceme una pregunta de práctica</button><button type="button">¿Cómo aplico esto en mi living?</button></div>
+<form data-chat="form"><label class="sr" for="pregunta">Tu pregunta</label><button type="button" aria-label="Adjuntar imagen" style="width:48px;height:48px;flex:none;border-radius:14px;border:1.5px solid #CFCFCF;background:#FFF;display:grid;place-items:center;cursor:pointer;padding:0"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M21 16l-5-5-9 8"/></svg></button><input id="pregunta" type="text" placeholder="Escribí tu duda sobre esta clase…" autocomplete="off"><button type="submit">Enviar</button></form>
+<p class="nota">El asistente puede equivocarse. Ante una duda importante, contrastá con la lectura.</p>
+</section>
+<div class="cierre">
+<button type="button" class="completar" data-complete="s14d3" aria-pressed="false">Marcar clase como completada</button>
+<nav class="pager" aria-label="Clases"><a href="/cursos/interiores/semana-14/clase-2.html"><span>← Anterior</span><b>Distribuir con IA: Planner 5D</b></a><a class="next" href="/cursos/interiores/semana-14/clase-4.html"><span>Siguiente →</span><b>IA para conceptos y moodboards: usos y límites</b></a></nav>
+</div>
+</article>
+</main>
+</div>
+<script src="/assets/site.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,259 @@
+{
+  "slug": "interiores",
+  "titulo": "Interiores y Mobiliario: del plano al proyecto",
+  "carrera": "Interiores y Mobiliario",
+  "bajada": "Un cuatrimestre para aprender a relevar, distribuir, iluminar, amueblar y presentar el proyecto completo de una vivienda.",
+  "duracion": "16 semanas · 80 clases de 1 hora · 5 días por semana",
+  "unidades": [
+    {
+      "n": 1,
+      "titulo": "Representación: el lenguaje del interiorista",
+      "semanas": [
+        {
+          "n": 1,
+          "titulo": "Herramientas, líneas y escalas",
+          "entrega": "Lámina de líneas y escalas",
+          "clases": [
+            "Bienvenida: cómo trabaja un interiorista",
+            "Herramientas de dibujo y tipos de línea",
+            "Escalas: leer y medir con escalímetro",
+            "Croquis a mano alzada",
+            "Taller: lámina de líneas y escalas"
+          ]
+        },
+        {
+          "n": 2,
+          "titulo": "Planta, corte y vista",
+          "entrega": "Relevamiento y planta de tu living",
+          "clases": [
+            "Planta, corte y vista",
+            "Simbología: muros, aberturas y mobiliario",
+            "Cómo acotar un plano",
+            "Relevamiento de un ambiente real",
+            "Taller: relevamiento y planta de tu living"
+          ]
+        }
+      ]
+    },
+    {
+      "n": 2,
+      "titulo": "El cuerpo y el espacio",
+      "semanas": [
+        {
+          "n": 3,
+          "titulo": "Antropometría y circulación",
+          "entrega": "Diagrama de zonas",
+          "clases": [
+            "Medidas del cuerpo y percentiles",
+            "Alcances y posturas",
+            "Recorridos y pasos libres",
+            "Zonificación: social, privado y servicio",
+            "Taller: diagrama de zonas"
+          ]
+        },
+        {
+          "n": 4,
+          "titulo": "Organizar el espacio",
+          "entrega": "Tres distribuciones de un mismo ambiente",
+          "clases": [
+            "Diagramas de relaciones",
+            "Proporción y escala humana",
+            "Composición: equilibrio, foco y ritmo",
+            "Alternativas de distribución",
+            "Taller: tres distribuciones de un mismo ambiente"
+          ]
+        }
+      ]
+    },
+    {
+      "n": 3,
+      "titulo": "Los ambientes de la vivienda",
+      "semanas": [
+        {
+          "n": 5,
+          "titulo": "Estar, comer y descansar",
+          "entrega": "Living-comedor amueblado",
+          "clases": [
+            "El living: tipologías y medidas",
+            "El comedor: mesa, sillas y circulación",
+            "Dormitorios",
+            "Guardado: placares y vestidores",
+            "Taller: living-comedor amueblado"
+          ]
+        },
+        {
+          "n": 6,
+          "titulo": "Cocina, baño y servicio",
+          "entrega": "Planta de cocina y baño",
+          "clases": [
+            "La cocina: triángulo de trabajo y tipologías",
+            "La cocina: mesadas, alacenas y equipamiento",
+            "El baño: artefactos y medidas",
+            "Lavadero y espacios de servicio",
+            "Taller: planta de cocina y baño"
+          ]
+        }
+      ]
+    },
+    {
+      "n": 4,
+      "titulo": "Color, luz natural y materiales",
+      "semanas": [
+        {
+          "n": 7,
+          "titulo": "El color en el espacio",
+          "entrega": "Paleta de color de un ambiente",
+          "clases": [
+            "Teoría del color",
+            "Armonías cromáticas",
+            "Percepción del color en el espacio",
+            "Luz natural y orientación",
+            "Taller: paleta de color de un ambiente"
+          ]
+        },
+        {
+          "n": 8,
+          "titulo": "Materiales y terminaciones",
+          "entrega": "Moodboard y muestrario",
+          "clases": [
+            "Pisos",
+            "Revestimientos de muros y cielorrasos",
+            "Textiles",
+            "Moodboard y muestrario",
+            "Taller: moodboard y muestrario"
+          ]
+        }
+      ]
+    },
+    {
+      "n": 5,
+      "titulo": "Iluminación e instalaciones",
+      "semanas": [
+        {
+          "n": 9,
+          "titulo": "Iluminación artificial",
+          "entrega": "Plano de iluminación",
+          "clases": [
+            "Lúmenes, lux y temperatura de color",
+            "Capas de luz: general, puntual y ambiental",
+            "Fuentes y artefactos",
+            "Iluminación por ambiente",
+            "Taller: plano de iluminación"
+          ]
+        },
+        {
+          "n": 10,
+          "titulo": "Instalaciones para interioristas",
+          "entrega": "Plano de bocas y tomas",
+          "clases": [
+            "Instalación eléctrica: conceptos básicos",
+            "Simbología eléctrica en planos",
+            "Instalación sanitaria: qué se puede mover",
+            "Ventilación y climatización",
+            "Taller: plano de bocas y tomas"
+          ]
+        }
+      ]
+    },
+    {
+      "n": 6,
+      "titulo": "Diseño de mobiliario",
+      "semanas": [
+        {
+          "n": 11,
+          "titulo": "El mueble y sus materiales",
+          "entrega": "Diseño de un mueble a medida",
+          "clases": [
+            "Del boceto al mueble",
+            "Ergonomía del mueble",
+            "Materiales: macizo, placas y enchapados",
+            "Uniones y herrajes",
+            "Taller: diseño de un mueble a medida"
+          ]
+        },
+        {
+          "n": 12,
+          "titulo": "Documentar el mueble",
+          "entrega": "Plano de taller y despiece",
+          "clases": [
+            "Vistas y cortes del mueble",
+            "Despiece y lista de corte",
+            "Optimización de placas",
+            "El plano para el carpintero",
+            "Taller: plano de taller y despiece"
+          ]
+        }
+      ]
+    },
+    {
+      "n": 7,
+      "titulo": "Presentación y herramientas digitales",
+      "semanas": [
+        {
+          "n": 13,
+          "titulo": "Dibujar y presentar",
+          "entrega": "Perspectiva y lámina de tu living",
+          "clases": [
+            "Axonometría e isometría",
+            "Perspectiva interior con un punto de fuga",
+            "Perspectiva con dos puntos de fuga",
+            "La lámina de presentación",
+            "Taller: perspectiva y lámina de tu living"
+          ]
+        },
+        {
+          "n": 14,
+          "titulo": "Herramientas digitales e IA",
+          "entrega": "Tu living en 3D y con IA",
+          "clases": [
+            "Del papel al modelo 3D: SketchUp y alternativas",
+            "Distribuir con IA: Planner 5D",
+            "Render realista: D5 Render y render con IA",
+            "IA para conceptos y moodboards: usos y límites",
+            "Taller: tu living en 3D y con IA"
+          ]
+        }
+      ]
+    },
+    {
+      "n": 8,
+      "titulo": "Proyecto integrador",
+      "semanas": [
+        {
+          "n": 15,
+          "titulo": "Anteproyecto de un departamento",
+          "entrega": "Anteproyecto",
+          "clases": [
+            "El brief del cliente",
+            "Zonificación y distribución",
+            "Mobiliario y mueble a medida",
+            "Color, materiales e iluminación",
+            "Entrega 1: anteproyecto"
+          ]
+        },
+        {
+          "n": 16,
+          "titulo": "Proyecto final",
+          "entrega": "Proyecto final",
+          "clases": [
+            "Ajustes del anteproyecto",
+            "Documentación técnica",
+            "Cómputo y presupuesto",
+            "Presentar a un cliente y armar tu portfolio",
+            "Entrega final"
+          ]
+        }
+      ]
+    }
+  ],
+  "recursos": [
+    {
+      "slug": "herramientas",
+      "titulo": "Caja de herramientas digitales"
+    },
+    {
+      "slug": "proveedores",
+      "titulo": "Directorio de proveedores"
+    }
+  ]
+}

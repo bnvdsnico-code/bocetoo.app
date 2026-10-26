@@ -1,0 +1,254 @@
+{
+  "slug": "grafico",
+  "titulo": "Diseño Gráfico: de la idea a la identidad",
+  "carrera": "Diseño Gráfico",
+  "bajada": "Un cuatrimestre para aprender composición, tipografía, color e imagen, y construir la identidad visual completa de un emprendimiento, del brief al manual de marca.",
+  "duracion": "16 semanas · 80 clases de 1 hora · 5 días por semana",
+  "chip": "¿Cómo aplico esto en mi marca?",
+  "unidades": [
+    {
+      "n": 1,
+      "titulo": "Fundamentos visuales",
+      "semanas": [
+        {
+          "n": 1,
+          "titulo": "Ver como diseñador",
+          "entrega": "Seis composiciones con formas básicas",
+          "clases": [
+            "Bienvenida: qué hace un diseñador gráfico",
+            "Punto, línea y plano",
+            "Figura y fondo",
+            "Cómo agrupa el ojo: la Gestalt",
+            "Taller: seis composiciones con formas básicas"
+          ]
+        },
+        {
+          "n": 2,
+          "titulo": "Composición",
+          "entrega": "Tres composiciones en retícula",
+          "clases": [
+            "Formato y encuadre",
+            "Equilibrio, peso visual y tensión",
+            "Jerarquía y recorrido visual",
+            "Retículas: márgenes, columnas y módulos",
+            "Taller: tres composiciones en retícula"
+          ]
+        }
+      ]
+    },
+    {
+      "n": 2,
+      "titulo": "Tipografía",
+      "semanas": [
+        {
+          "n": 3,
+          "titulo": "La letra",
+          "entrega": "Lámina de especímenes tipográficos",
+          "clases": [
+            "Anatomía de la letra",
+            "Clasificación tipográfica",
+            "Familias, pesos y variantes",
+            "Cómo elegir una tipografía",
+            "Taller: especímenes tipográficos"
+          ]
+        },
+        {
+          "n": 4,
+          "titulo": "Texto y jerarquía",
+          "entrega": "Afiche tipográfico de un evento",
+          "clases": [
+            "Tamaño, interlineado y largo de línea",
+            "Espaciado entre letras y kerning",
+            "Combinar tipografías",
+            "Jerarquía tipográfica",
+            "Taller: afiche tipográfico de un evento"
+          ]
+        }
+      ]
+    },
+    {
+      "n": 3,
+      "titulo": "Color e imagen",
+      "semanas": [
+        {
+          "n": 5,
+          "titulo": "Color",
+          "entrega": "Tres paletas aplicadas",
+          "clases": [
+            "Luz y pigmento: RGB y CMYK",
+            "Tono, saturación y valor",
+            "Armonías y contrastes",
+            "Color accesible",
+            "Taller: tres paletas aplicadas"
+          ]
+        },
+        {
+          "n": 6,
+          "titulo": "Imagen",
+          "entrega": "Set de íconos y una pieza con fotografía",
+          "clases": [
+            "La fotografía en el diseño",
+            "Ilustración e iconografía",
+            "Vectores, píxeles y resolución",
+            "Derechos de imagen y bancos",
+            "Taller: íconos y pieza con fotografía"
+          ]
+        }
+      ]
+    },
+    {
+      "n": 4,
+      "titulo": "Identidad visual",
+      "semanas": [
+        {
+          "n": 7,
+          "titulo": "Investigar la marca",
+          "entrega": "Brief y moodboard de la marca",
+          "clases": [
+            "Marca e identidad visual",
+            "El brief de identidad",
+            "Competencia y referentes",
+            "Palabras clave y moodboard",
+            "Taller: brief y moodboard"
+          ]
+        },
+        {
+          "n": 8,
+          "titulo": "El isologo",
+          "entrega": "Isologo y sus versiones",
+          "clases": [
+            "Tipos de marca gráfica",
+            "Bocetar treinta ideas",
+            "Construcción y ajustes ópticos",
+            "Vectorizar y armar las versiones",
+            "Taller: isologo y versiones"
+          ]
+        }
+      ]
+    },
+    {
+      "n": 5,
+      "titulo": "Sistema de identidad",
+      "semanas": [
+        {
+          "n": 9,
+          "titulo": "El sistema visual",
+          "entrega": "Hoja de sistema de identidad",
+          "clases": [
+            "Tipografía de marca",
+            "Paleta de marca",
+            "Elementos gráficos y patrones",
+            "Fotografía y tono de voz",
+            "Taller: hoja de sistema de identidad"
+          ]
+        },
+        {
+          "n": 10,
+          "titulo": "Aplicaciones",
+          "entrega": "Cinco aplicaciones de la marca",
+          "clases": [
+            "Papelería y documentos",
+            "Packaging y etiquetas",
+            "Cartelería y señalética",
+            "Mostrar sin engañar: mockups",
+            "Taller: cinco aplicaciones"
+          ]
+        }
+      ]
+    },
+    {
+      "n": 6,
+      "titulo": "Editorial e impresión",
+      "semanas": [
+        {
+          "n": 11,
+          "titulo": "Diseño editorial",
+          "entrega": "Folleto de cuatro páginas",
+          "clases": [
+            "Las partes de una publicación",
+            "Retícula editorial y estilos",
+            "Portada e interiores",
+            "Leer en papel y en pantalla",
+            "Taller: folleto de cuatro páginas"
+          ]
+        },
+        {
+          "n": 12,
+          "titulo": "Preimpresión e imprenta",
+          "entrega": "Folleto listo para imprimir",
+          "clases": [
+            "Preparar un archivo para imprenta",
+            "Papeles y gramajes",
+            "Sistemas de impresión",
+            "Presupuestos y pruebas de color",
+            "Taller: folleto listo para imprimir"
+          ]
+        }
+      ]
+    },
+    {
+      "n": 7,
+      "titulo": "Digital, movimiento e IA",
+      "semanas": [
+        {
+          "n": 13,
+          "titulo": "Diseño para pantallas",
+          "entrega": "Kit de piezas para redes",
+          "clases": [
+            "Redes sociales: formatos y plantillas",
+            "Diseño web e interfaces",
+            "Accesibilidad digital",
+            "Movimiento básico",
+            "Taller: kit de piezas para redes"
+          ]
+        },
+        {
+          "n": 14,
+          "titulo": "Herramientas digitales e IA",
+          "entrega": "Tu flujo de trabajo digital documentado",
+          "clases": [
+            "Mapa del software del diseñador gráfico",
+            "IA para investigar, escribir e idear",
+            "IA para generar y editar imágenes",
+            "Derechos, ética y límites de la IA",
+            "Taller: tu flujo de trabajo con IA"
+          ]
+        }
+      ]
+    },
+    {
+      "n": 8,
+      "titulo": "Proyecto final",
+      "semanas": [
+        {
+          "n": 15,
+          "titulo": "Manual de marca",
+          "entrega": "Manual de marca",
+          "clases": [
+            "Estructura de un manual de marca",
+            "Normas de uso y usos incorrectos",
+            "Presupuestar un trabajo de diseño",
+            "Registrar la marca",
+            "Taller: manual de marca"
+          ]
+        },
+        {
+          "n": 16,
+          "titulo": "Proyecto final",
+          "entrega": "Proyecto final completo",
+          "clases": [
+            "Presentar la identidad al cliente",
+            "El caso para tu portfolio",
+            "Presentar en video",
+            "Autoevaluación con la rúbrica",
+            "Entrega del proyecto final"
+          ]
+        }
+      ]
+    }
+  ],
+  "recursos": [
+    { "slug": "herramientas", "titulo": "Software y herramientas con IA" },
+    { "slug": "proveedores", "titulo": "Imprentas, papeles y recursos" }
+  ]
+}

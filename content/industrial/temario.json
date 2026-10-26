@@ -1,0 +1,254 @@
+{
+  "slug": "industrial",
+  "titulo": "Diseño Industrial: del boceto al prototipo",
+  "carrera": "Diseño Industrial",
+  "bajada": "Un cuatrimestre para aprender a bocetar, entender al usuario, elegir materiales y procesos, modelar, prototipar y presentar un producto completo.",
+  "duracion": "16 semanas · 80 clases de 1 hora · 5 días por semana",
+  "chip": "¿Cómo aplico esto en mi lámpara?",
+  "unidades": [
+    {
+      "n": 1,
+      "titulo": "Bocetar para pensar",
+      "semanas": [
+        {
+          "n": 1,
+          "titulo": "Línea, trazo y perspectiva",
+          "entrega": "Planilla de trazos y cajas en perspectiva",
+          "clases": [
+            "Bienvenida: cómo trabaja un diseñador industrial",
+            "Postura, herramientas y soltura de trazo",
+            "Perspectiva de uno y dos puntos de fuga",
+            "Elipses y cilindros",
+            "Taller: planilla de trazos y cajas"
+          ]
+        },
+        {
+          "n": 2,
+          "titulo": "Volumen, luz y sombra",
+          "entrega": "Lámina de un objeto cotidiano con sombras",
+          "clases": [
+            "Volúmenes básicos: sumar y restar",
+            "Radios, encuentros y líneas de sección",
+            "Luz, sombra propia y proyectada",
+            "Marcadores, brillos y materiales",
+            "Taller: un objeto cotidiano en tres vistas"
+          ]
+        }
+      ]
+    },
+    {
+      "n": 2,
+      "titulo": "El usuario y el problema",
+      "semanas": [
+        {
+          "n": 3,
+          "titulo": "Ergonomía y uso",
+          "entrega": "Análisis de uso de un objeto de tu casa",
+          "clases": [
+            "Antropometría aplicada al producto",
+            "La mano: agarres y fuerzas",
+            "Interfaces: botones, perillas y señales",
+            "Observar el uso",
+            "Taller: análisis de uso de un objeto"
+          ]
+        },
+        {
+          "n": 4,
+          "titulo": "Del problema al brief",
+          "entrega": "Brief del proyecto",
+          "clases": [
+            "Investigar al usuario: entrevistas",
+            "Analizar productos existentes",
+            "Requisitos y especificaciones",
+            "El brief de diseño",
+            "Taller: el brief de tu proyecto"
+          ]
+        }
+      ]
+    },
+    {
+      "n": 3,
+      "titulo": "Idear",
+      "semanas": [
+        {
+          "n": 5,
+          "titulo": "Generar ideas",
+          "entrega": "Lámina de exploración: 30 ideas",
+          "clases": [
+            "Divergir: cantidad antes que calidad",
+            "Técnicas de ideación",
+            "Bocetos de exploración",
+            "Evaluar y elegir ideas",
+            "Taller: 30 ideas y tres elegidas"
+          ]
+        },
+        {
+          "n": 6,
+          "titulo": "Forma y función",
+          "entrega": "Tres conceptos desarrollados",
+          "clases": [
+            "Forma, función y significado",
+            "Lenguaje formal y familias de producto",
+            "Proporción y composición del objeto",
+            "Color, material y terminación",
+            "Taller: tres conceptos desarrollados"
+          ]
+        }
+      ]
+    },
+    {
+      "n": 4,
+      "titulo": "Materiales y procesos",
+      "semanas": [
+        {
+          "n": 7,
+          "titulo": "Materiales",
+          "entrega": "Selección de materiales justificada",
+          "clases": [
+            "Cómo elegir un material",
+            "Plásticos",
+            "Metales",
+            "Maderas y tableros",
+            "Taller: materiales de tu concepto"
+          ]
+        },
+        {
+          "n": 8,
+          "titulo": "Procesos de fabricación",
+          "entrega": "Plan de fabricación de tu concepto",
+          "clases": [
+            "Escala de producción: de una pieza a miles",
+            "Inyección y moldeo de plásticos",
+            "Chapa: corte, plegado y unión",
+            "CNC, láser e impresión 3D",
+            "Taller: diseñar para fabricar"
+          ]
+        }
+      ]
+    },
+    {
+      "n": 5,
+      "titulo": "Representación técnica",
+      "semanas": [
+        {
+          "n": 9,
+          "titulo": "Dibujo técnico",
+          "entrega": "Plano acotado de una pieza",
+          "clases": [
+            "Vistas normalizadas",
+            "Líneas, escalas y rótulo",
+            "Acotación",
+            "Cortes y secciones",
+            "Taller: plano de una pieza"
+          ]
+        },
+        {
+          "n": 10,
+          "titulo": "Uniones, conjuntos y despiece",
+          "entrega": "Plano de conjunto con despiece",
+          "clases": [
+            "Uniones fijas y desmontables",
+            "Encastres y clips en plástico",
+            "Plano de conjunto y lista de piezas",
+            "Vista explotada",
+            "Taller: despiece de tu producto"
+          ]
+        }
+      ]
+    },
+    {
+      "n": 6,
+      "titulo": "Modelado y prototipado",
+      "semanas": [
+        {
+          "n": 11,
+          "titulo": "Modelado 3D",
+          "entrega": "Modelo 3D de tu producto",
+          "clases": [
+            "Cómo piensa un modelador paramétrico",
+            "Croquis, restricciones y extrusiones",
+            "Revoluciones, vaciados y redondeos",
+            "Ensambles",
+            "Taller: el modelo 3D de tu producto"
+          ]
+        },
+        {
+          "n": 12,
+          "titulo": "Prototipos y pruebas",
+          "entrega": "Prototipo y registro de prueba",
+          "clases": [
+            "Para qué sirve cada tipo de modelo",
+            "Maquetas rápidas: cartón, espuma y plastilina",
+            "Impresión 3D para prototipos",
+            "Probar con usuarios",
+            "Taller: prototipo y prueba"
+          ]
+        }
+      ]
+    },
+    {
+      "n": 7,
+      "titulo": "Presentación y herramientas digitales",
+      "semanas": [
+        {
+          "n": 13,
+          "titulo": "Render y presentación",
+          "entrega": "Lámina de presentación",
+          "clases": [
+            "Render: luz, material y cámara",
+            "Fotografiar productos y prototipos",
+            "Lámina de presentación",
+            "Contar el producto",
+            "Taller: lámina de presentación"
+          ]
+        },
+        {
+          "n": 14,
+          "titulo": "Herramientas digitales e IA",
+          "entrega": "Tu flujo de trabajo digital documentado",
+          "clases": [
+            "Mapa del software del diseñador industrial",
+            "IA para investigar e idear",
+            "IA para imagen, render y modelado",
+            "Del archivo a la fábrica: proveedores",
+            "Taller: tu flujo de trabajo con IA"
+          ]
+        }
+      ]
+    },
+    {
+      "n": 8,
+      "titulo": "Proyecto final",
+      "semanas": [
+        {
+          "n": 15,
+          "titulo": "Desarrollo del producto",
+          "entrega": "Ficha técnica del producto",
+          "clases": [
+            "Revisar el concepto contra el brief",
+            "Detalles, uniones y terminaciones",
+            "Costo de producción",
+            "Ciclo de vida y sustentabilidad",
+            "Taller: ficha técnica completa"
+          ]
+        },
+        {
+          "n": 16,
+          "titulo": "Proyecto final",
+          "entrega": "Proyecto final completo",
+          "clases": [
+            "La carpeta del proyecto",
+            "Lámina final y modelo",
+            "Presentar en video",
+            "Autoevaluación con la rúbrica",
+            "Entrega del proyecto final"
+          ]
+        }
+      ]
+    }
+  ],
+  "recursos": [
+    { "slug": "herramientas", "titulo": "Software y herramientas con IA" },
+    { "slug": "proveedores", "titulo": "Proveedores y talleres" }
+  ]
+}

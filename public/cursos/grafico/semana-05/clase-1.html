@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Luz y pigmento: RGB y CMYK · Semana 5 · boceto</title>
+<meta name="description" content="Entender la diferencia entre el color luz (RGB) y el color pigmento (CMYK), y cuándo usar cada uno.">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="stylesheet" href="/assets/curso.css">
+</head>
+<body data-curso="grafico" data-total="80" data-clase="s05d1">
+<header class="c-header">
+<div class="left">
+<a class="c-brand" href="/" aria-label="boceto, inicio"><span class="marks" aria-hidden="true"><i></i><i></i><i></i><i></i></span><b>boceto</b></a>
+<a class="back" href="/cursos/grafico/programa.html">← Diseño Gráfico</a>
+</div>
+<div class="right">
+<span class="c-progress">Tu progreso <span class="bar" aria-hidden="true"><span data-progress-bar></span></span><b data-progress-text>0%</b></span>
+<a class="panel-link" href="/panel.html">Mi panel</a>
+</div>
+</header>
+<div class="c-layout">
+<aside class="c-side" aria-label="Contenido de la diplomatura">
+<h2>Contenido de la diplomatura</h2>
+<div class="c-unit"><a href="/cursos/grafico/programa.html#unidad-1">1 · Fundamentos visuales</a></div>
+<div class="c-unit"><a href="/cursos/grafico/programa.html#unidad-2">2 · Tipografía</a></div>
+<div class="c-unit current"><span>3 · Color e imagen</span>
+<div class="c-week"><p>Semana 5 · Color</p>
+<a href="/cursos/grafico/semana-05/clase-1.html" data-cid="s05d1" aria-current="page"><span class="dot" aria-hidden="true"></span>1. Luz y pigmento: RGB y CMYK</a>
+<a href="/cursos/grafico/semana-05/clase-2.html" data-cid="s05d2"><span class="dot" aria-hidden="true"></span>2. Tono, saturación y valor</a>
+<a href="/cursos/grafico/semana-05/clase-3.html" data-cid="s05d3"><span class="dot" aria-hidden="true"></span>3. Armonías y contrastes</a>
+<a href="/cursos/grafico/semana-05/clase-4.html" data-cid="s05d4"><span class="dot" aria-hidden="true"></span>4. Color accesible</a>
+<a href="/cursos/grafico/semana-05/clase-5.html" data-cid="s05d5"><span class="dot" aria-hidden="true"></span>5. Taller: tres paletas aplicadas</a>
+</div>
+<div class="c-week"><p>Semana 6 · Imagen</p>
+<a href="/cursos/grafico/semana-06/clase-1.html" data-cid="s06d1"><span class="dot" aria-hidden="true"></span>1. La fotografía en el diseño</a>
+<a href="/cursos/grafico/semana-06/clase-2.html" data-cid="s06d2"><span class="dot" aria-hidden="true"></span>2. Ilustración e iconografía</a>
+<a href="/cursos/grafico/semana-06/clase-3.html" data-cid="s06d3"><span class="dot" aria-hidden="true"></span>3. Vectores, píxeles y resolución</a>
+<a href="/cursos/grafico/semana-06/clase-4.html" data-cid="s06d4"><span class="dot" aria-hidden="true"></span>4. Derechos de imagen y bancos</a>
+<a href="/cursos/grafico/semana-06/clase-5.html" data-cid="s06d5"><span class="dot" aria-hidden="true"></span>5. Taller: íconos y pieza con fotografía</a>
+</div>
+</div>
+<div class="c-unit"><a href="/cursos/grafico/programa.html#unidad-4">4 · Identidad visual</a></div>
+<div class="c-unit"><a href="/cursos/grafico/programa.html#unidad-5">5 · Sistema de identidad</a></div>
+<div class="c-unit"><a href="/cursos/grafico/programa.html#unidad-6">6 · Editorial e impresión</a></div>
+<div class="c-unit"><a href="/cursos/grafico/programa.html#unidad-7">7 · Digital, movimiento e IA</a></div>
+<div class="c-unit"><a href="/cursos/grafico/programa.html#unidad-8">8 · Proyecto final</a></div>
+<h2 style="margin-top:10px">Recursos</h2><div class="c-week">
+<a href="/cursos/grafico/herramientas.html"><span aria-hidden="true">→</span>Software y herramientas con IA</a>
+<a href="/cursos/grafico/proveedores.html"><span aria-hidden="true">→</span>Imprentas, papeles y recursos</a>
+</div>
+</aside>
+<main class="c-main" id="clase">
+<article class="c-article">
+<p class="eyebrow">Unidad 3 · Semana 5 · Clase 1 de 5</p>
+<h1>Luz y pigmento: RGB y CMYK</h1>
+<p class="objetivo">Entender la diferencia entre el color luz (RGB) y el color pigmento (CMYK), y cuándo usar cada uno.</p>
+<ul class="tiempos" aria-label="Tiempos de la clase"><li>Lectura <b>15 min</b></li><li>Práctica <b>35 min</b></li><li>Repaso <b>10 min</b></li></ul>
+<section class="lectura" aria-label="Lectura">
+<h2>Dos mundos de color</h2>
+<p>El mismo violeta se construye de manera distinta en una pantalla y en un papel impreso. Si no entendés esa diferencia, tus colores van a salir distintos de lo que esperabas.</p>
+<h2>RGB: color luz</h2>
+<p>Las pantallas emiten luz con tres colores: <strong>rojo, verde y azul</strong> (en inglés, <em>red, green, blue</em>). Sumando luz se obtienen los demás colores; los tres al máximo dan <strong>blanco</strong>. Por eso se llama <strong>síntesis aditiva</strong>.</p>
+<ul>
+<li>Se usa para todo lo que se ve en <strong>pantalla</strong>: redes, web, apps, video.</li>
+<li>Se escribe con valores de 0 a 255 por canal, o en <strong>hexadecimal</strong>: <code>#6D28D9</code> es un violeta.</li>
+</ul>
+<h2>CMYK: color pigmento</h2>
+<p>La imprenta usa tintas: <strong>cian, magenta, amarillo y negro</strong> (la K viene de <em>key</em>, la plancha clave). Cada tinta <strong>absorbe</strong> parte de la luz que rebota en el papel; superponiendo tintas el color se oscurece. Por eso se llama <strong>síntesis sustractiva</strong>.</p>
+<ul>
+<li>Se usa para <strong>impresión</strong>: folletos, packaging, afiches.</li>
+<li>Se escribe en porcentajes de cada tinta: C 70 M 85 Y 0 K 0.</li>
+</ul>
+<figure>
+<svg viewBox="0 0 640 230" role="img" aria-label="A la izquierda tres círculos de luz roja, verde y azul que se suman en blanco; a la derecha tres círculos de tinta cian, magenta y amarilla que se superponen en un tono oscuro">
+<rect x="20" y="10" width="290" height="190" fill="#111"/>
+<g style="mix-blend-mode:screen"><circle cx="135" cy="85" r="50" fill="#FF0000"/><circle cx="195" cy="85" r="50" fill="#00FF00"/><circle cx="165" cy="135" r="50" fill="#0000FF"/></g>
+<rect x="330" y="10" width="290" height="190" fill="#FFFFFF" stroke="#E2E2E2"/>
+<g style="mix-blend-mode:multiply"><circle cx="445" cy="85" r="50" fill="#00AEEF"/><circle cx="505" cy="85" r="50" fill="#EC008C"/><circle cx="475" cy="135" r="50" fill="#FFF200"/></g>
+<g font-family="Inter, sans-serif" font-size="14" font-weight="600" fill="#4C1D95" text-anchor="middle"><text x="165" y="222">RGB: la luz se suma</text><text x="475" y="222">CMYK: la tinta resta</text></g>
+</svg>
+<figcaption>En pantalla, la luz suma hasta el blanco; en el papel, las tintas restan luz y oscurecen.</figcaption>
+</figure>
+
+<h2>El problema del rango de color</h2>
+<p>El RGB puede mostrar colores <strong>más brillantes y saturados</strong> que los que se pueden imprimir en CMYK. Un verde fluo o un azul eléctrico de pantalla salen apagados en la imprenta. Por eso:</p>
+<ul>
+<li>Si la pieza se va a <strong>imprimir</strong>, trabajá o revisá en <strong>CMYK</strong> desde temprano.</li>
+<li>Si es <strong>solo pantalla</strong>, trabajá en <strong>RGB</strong>.</li>
+<li>Para la identidad de una marca, se definen <strong>las dos versiones</strong> de cada color (lo vemos en la semana 9).</li>
+</ul>
+<h2>Colores especiales</h2>
+<p>Cuando hace falta un color exacto que el CMYK no logra (un naranja muy vivo, un dorado, un color de marca que tiene que ser idéntico en todos los impresos), se usan <strong>tintas directas</strong> de sistemas como <strong>Pantone</strong>: tintas ya mezcladas con una fórmula fija.</p>
+<blockquote>
+<p>Tu pantalla no muestra el color impreso real. Para decisiones importantes, pedí una <strong>prueba de color</strong> o mirá una guía impresa de colores.</p>
+</blockquote>
+
+</section>
+<section class="bloque practica" aria-labelledby="practica-t">
+<h2 id="practica-t">Práctica · 35 min</h2>
+<div class="lectura"><ol>
+<li>Elegí un violeta, un verde fluo y un naranja muy saturados en tu programa, en modo RGB.</li>
+<li>Convertí el documento a CMYK y anotá cómo cambia cada color.</li>
+<li>Si tenés impresora, imprimí los tres y compará con la pantalla.</li>
+<li>Anotá el código hexadecimal y los valores CMYK de un color que te guste.</li>
+</ol></div>
+<a class="cta-suave" href="/bocetador/?carrera=grafico&amp;clase=s05d1">Hacer la práctica en el Bocetador →</a><p class="entregado" data-entrega="s05d1" hidden></p>
+</section>
+
+<section class="repaso" aria-labelledby="repaso-t">
+<h2 id="repaso-t">Repaso · 10 min</h2>
+<div class="quiz" data-quiz>
+<p class="q">1. ¿Qué modo de color se usa para piezas que se ven en pantalla?</p>
+<div class="opts" role="group" aria-label="Opciones de la pregunta 1">
+<button type="button" class="opt" data-ok="1">RGB.</button>
+<button type="button" class="opt" data-ok="0">CMYK.</button>
+<button type="button" class="opt" data-ok="0">Pantone.</button>
+</div>
+<p class="fb ok" role="status" hidden><strong>¡Bien!</strong> Las pantallas emiten luz roja, verde y azul.</p>
+<p class="fb no" role="status" hidden><strong>Todavía no.</strong> Probá otra opción.</p>
+</div>
+<div class="quiz" data-quiz>
+<p class="q">2. ¿Por qué un verde fluo de pantalla sale apagado al imprimirse?</p>
+<div class="opts" role="group" aria-label="Opciones de la pregunta 2">
+<button type="button" class="opt" data-ok="1">Porque el CMYK tiene un rango de colores más reducido que el RGB.</button>
+<button type="button" class="opt" data-ok="0">Porque la impresora está rota.</button>
+<button type="button" class="opt" data-ok="0">Porque el papel es blanco.</button>
+</div>
+<p class="fb ok" role="status" hidden><strong>¡Bien!</strong> Muchos colores de pantalla no se pueden lograr con las cuatro tintas.</p>
+<p class="fb no" role="status" hidden><strong>Todavía no.</strong> Probá otra opción.</p>
+</div>
+<div class="quiz" data-quiz>
+<p class="q">3. ¿Qué es una tinta directa como Pantone?</p>
+<div class="opts" role="group" aria-label="Opciones de la pregunta 3">
+<button type="button" class="opt" data-ok="1">Una tinta ya mezclada con una fórmula fija para lograr un color exacto.</button>
+<button type="button" class="opt" data-ok="0">Un modo de color de pantalla.</button>
+<button type="button" class="opt" data-ok="0">Un tipo de papel.</button>
+</div>
+<p class="fb ok" role="status" hidden><strong>¡Bien!</strong> Se usa cuando el CMYK no alcanza o se necesita un color idéntico siempre.</p>
+<p class="fb no" role="status" hidden><strong>Todavía no.</strong> Probá otra opción.</p>
+</div>
+</section>
+<section class="asistente" aria-labelledby="asistente-titulo">
+<div class="head"><span class="ico" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FDBA8C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg></span><div><h2 id="asistente-titulo">Preguntale al asistente</h2><p class="sub">Conoce esta clase y toda la diplomatura. Responde a cualquier hora.</p></div></div>
+<div id="chat" style="display:flex;flex-direction:column;gap:10px;font-size:15px;line-height:1.55"></div>
+<div class="chips"><button type="button">Explicámelo con otro ejemplo</button><button type="button">Haceme una pregunta de práctica</button><button type="button">¿Cómo aplico esto en mi marca?</button></div>
+<form data-chat="form"><label class="sr" for="pregunta">Tu pregunta</label><button type="button" aria-label="Adjuntar imagen" style="width:48px;height:48px;flex:none;border-radius:14px;border:1.5px solid #CFCFCF;background:#FFF;display:grid;place-items:center;cursor:pointer;padding:0"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M21 16l-5-5-9 8"/></svg></button><input id="pregunta" type="text" placeholder="Escribí tu duda sobre esta clase…" autocomplete="off"><button type="submit">Enviar</button></form>
+<p class="nota">El asistente puede equivocarse. Ante una duda importante, contrastá con la lectura.</p>
+</section>
+<div class="cierre">
+<button type="button" class="completar" data-complete="s05d1" aria-pressed="false">Marcar clase como completada</button>
+<nav class="pager" aria-label="Clases"><a href="/cursos/grafico/semana-04/clase-5.html"><span>← Anterior</span><b>Taller: afiche tipográfico de un evento</b></a><a class="next" href="/cursos/grafico/semana-05/clase-2.html"><span>Siguiente →</span><b>Tono, saturación y valor</b></a></nav>
+</div>
+</article>
+</main>
+</div>
+<script src="/assets/site.js" defer></script>
+</body>
+</html>

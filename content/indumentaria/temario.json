@@ -1,0 +1,254 @@
+{
+  "slug": "indumentaria",
+  "titulo": "Diseño de Indumentaria: del figurín a la colección",
+  "carrera": "Diseño de Indumentaria",
+  "bajada": "Un cuatrimestre para aprender a dibujar moda, conocer el cuerpo y los textiles, hacer moldería y confección, y diseñar una colección cápsula con su prototipo.",
+  "duracion": "16 semanas · 80 clases de 1 hora · 5 días por semana",
+  "chip": "¿Cómo aplico esto en mi colección?",
+  "unidades": [
+    {
+      "n": 1,
+      "titulo": "Dibujo de moda",
+      "semanas": [
+        {
+          "n": 1,
+          "titulo": "El figurín",
+          "entrega": "Planilla de figurines en tres poses",
+          "clases": [
+            "Bienvenida: cómo trabaja un diseñador de indumentaria",
+            "Proporciones del figurín",
+            "Poses y línea de equilibrio",
+            "Cabeza, manos y pies simplificados",
+            "Taller: figurines en tres poses"
+          ]
+        },
+        {
+          "n": 2,
+          "titulo": "La prenda sobre el cuerpo",
+          "entrega": "Tres looks ilustrados",
+          "clases": [
+            "Cómo cae la tela: pliegues y volumen",
+            "Dibujar prendas básicas",
+            "Texturas y estampados en el dibujo",
+            "Color y render rápido",
+            "Taller: tres looks ilustrados"
+          ]
+        }
+      ]
+    },
+    {
+      "n": 2,
+      "titulo": "Cuerpo, talles y textiles",
+      "semanas": [
+        {
+          "n": 3,
+          "titulo": "El cuerpo y los talles",
+          "entrega": "Tabla de medidas y análisis de calce",
+          "clases": [
+            "Tomar medidas del cuerpo",
+            "Tablas de talles y Ley de Talles",
+            "Holgura, movimiento y calce",
+            "Qué es la moldería",
+            "Taller: tabla de medidas y análisis de calce"
+          ]
+        },
+        {
+          "n": 4,
+          "titulo": "Textiles y avíos",
+          "entrega": "Muestrario textil comentado",
+          "clases": [
+            "Fibras naturales, artificiales y sintéticas",
+            "Tejidos planos y de punto",
+            "Elegir la tela para cada prenda",
+            "Avíos: cierres, botones y entretelas",
+            "Taller: muestrario textil comentado"
+          ]
+        }
+      ]
+    },
+    {
+      "n": 3,
+      "titulo": "Investigar y diseñar una colección",
+      "semanas": [
+        {
+          "n": 5,
+          "titulo": "Investigación y concepto",
+          "entrega": "Concepto y moodboard de la colección",
+          "clases": [
+            "Leer tendencias con criterio",
+            "Usuario, ocasión de uso y contexto",
+            "Referentes e historia de la moda",
+            "Concepto de colección y moodboard",
+            "Taller: concepto y moodboard"
+          ]
+        },
+        {
+          "n": 6,
+          "titulo": "Diseñar la colección",
+          "entrega": "Line-up de la colección cápsula",
+          "clases": [
+            "Qué es una colección cápsula",
+            "Paleta y materiales de la colección",
+            "Siluetas, líneas y detalles",
+            "Bocetar, variar y seleccionar",
+            "Taller: line-up de la colección"
+          ]
+        }
+      ]
+    },
+    {
+      "n": 4,
+      "titulo": "Moldería",
+      "semanas": [
+        {
+          "n": 7,
+          "titulo": "Moldería básica",
+          "entrega": "Molde base de falda",
+          "clases": [
+            "Herramientas y vocabulario de moldería",
+            "Base de falda",
+            "Base de cuerpo",
+            "Transformaciones: pinzas, cortes y pliegues",
+            "Taller: molde base de falda"
+          ]
+        },
+        {
+          "n": 8,
+          "titulo": "Del molde a la ficha técnica",
+          "entrega": "Ficha técnica de una prenda",
+          "clases": [
+            "Márgenes, piquetes e hilo",
+            "Progresión de talles",
+            "Tizada y consumo de tela",
+            "El geometral",
+            "Taller: ficha técnica de una prenda"
+          ]
+        }
+      ]
+    },
+    {
+      "n": 5,
+      "titulo": "Confección",
+      "semanas": [
+        {
+          "n": 9,
+          "titulo": "Costura",
+          "entrega": "Muestrario de costuras y terminaciones",
+          "clases": [
+            "Las máquinas: recta, overlock y collareta",
+            "Costuras básicas",
+            "Terminaciones: dobladillos, vistas y ribetes",
+            "Planchar mientras se cose",
+            "Taller: muestrario de costuras"
+          ]
+        },
+        {
+          "n": 10,
+          "titulo": "El prototipo",
+          "entrega": "Prototipo de una prenda",
+          "clases": [
+            "La prueba en tela económica",
+            "Probar y corregir",
+            "Orden de armado",
+            "Control de calidad",
+            "Taller: prototipo de una prenda"
+          ]
+        }
+      ]
+    },
+    {
+      "n": 6,
+      "titulo": "Producción y sustentabilidad",
+      "semanas": [
+        {
+          "n": 11,
+          "titulo": "Producir indumentaria",
+          "entrega": "Plan de producción y costo de una prenda",
+          "clases": [
+            "La cadena textil y de indumentaria",
+            "Talleres y producción responsable",
+            "Costo de una prenda",
+            "Etiquetas obligatorias",
+            "Taller: plan de producción y costos"
+          ]
+        },
+        {
+          "n": 12,
+          "titulo": "Moda y sustentabilidad",
+          "entrega": "Plan circular de la colección",
+          "clases": [
+            "El impacto de la moda",
+            "Materiales y procesos de menor impacto",
+            "Diseño circular: durar, reparar, reutilizar",
+            "Comunicar sin lavado verde",
+            "Taller: plan circular de la colección"
+          ]
+        }
+      ]
+    },
+    {
+      "n": 7,
+      "titulo": "Presentación, digital e IA",
+      "semanas": [
+        {
+          "n": 13,
+          "titulo": "Presentar la colección",
+          "entrega": "Lookbook de la colección",
+          "clases": [
+            "Ilustración de presentación",
+            "Fotografía de producto y lookbook",
+            "Styling y puesta en escena",
+            "Tienda en línea y redes",
+            "Taller: lookbook"
+          ]
+        },
+        {
+          "n": 14,
+          "titulo": "Herramientas digitales e IA",
+          "entrega": "Tu flujo de trabajo digital documentado",
+          "clases": [
+            "Mapa del software de indumentaria",
+            "IA para investigar e idear",
+            "IA para imagen, estampas y presentación",
+            "Moldería digital y prendas en 3D",
+            "Taller: tu flujo de trabajo con IA"
+          ]
+        }
+      ]
+    },
+    {
+      "n": 8,
+      "titulo": "Proyecto final",
+      "semanas": [
+        {
+          "n": 15,
+          "titulo": "Carpeta técnica de la colección",
+          "entrega": "Carpeta técnica",
+          "clases": [
+            "Revisar la colección",
+            "Fichas técnicas de la colección",
+            "Costos, precio y cantidades",
+            "Plan de marca y lanzamiento",
+            "Taller: carpeta técnica"
+          ]
+        },
+        {
+          "n": 16,
+          "titulo": "Proyecto final",
+          "entrega": "Proyecto final completo",
+          "clases": [
+            "El portfolio de moda",
+            "Presentar la colección",
+            "Presentar en video",
+            "Autoevaluación con la rúbrica",
+            "Entrega del proyecto final"
+          ]
+        }
+      ]
+    }
+  ],
+  "recursos": [
+    { "slug": "herramientas", "titulo": "Software y herramientas con IA" },
+    { "slug": "proveedores", "titulo": "Textiles, avíos y talleres" }
+  ]
+}
