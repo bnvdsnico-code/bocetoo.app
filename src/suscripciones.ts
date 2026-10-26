@@ -43,11 +43,18 @@ const appUrl = (env: MpEnv, req: Request) => (env.APP_URL || new URL(req.url).or
 const randomId = () => [...crypto.getRandomValues(new Uint8Array(16))].map((b) => b.toString(16).padStart(2, "0")).join("");
 const mpHeaders = (env: MpEnv) => ({ Authorization: `Bearer ${env.MP_ACCESS_TOKEN}`, "Content-Type": "application/json" });
 
+// Huella corta de la credencial: los planes guardados quedan atados a la cuenta que los creó.
+async function planKey(env: MpEnv, base: string) {
+  const raw = new TextEncoder().encode(env.MP_ACCESS_TOKEN || "");
+  const hash = [...new Uint8Array(await crypto.subtle.digest("SHA-256", raw))].slice(0, 6).map((b) => b.toString(16).padStart(2, "0")).join("");
+  return `${base}:${hash}`;
+}
+
 async function resolveOffer(env: MpEnv, plan: unknown, carrera: unknown) {
   if (typeof plan !== "string" || !(plan in SUBSCRIPTION_OFFERS)) return null;
   const offer = SUBSCRIPTION_OFFERS[plan as OfferKey];
   if (offer.needsCarrera && (typeof carrera !== "string" || !CARRERAS[carrera])) return null;
-  const planId = env[offer.planEnv] || (env.SUSCRIPCIONES ? await env.SUSCRIPCIONES.get(offer.kvKey) : null);
+  const planId = env[offer.planEnv] || (env.SUSCRIPCIONES ? await env.SUSCRIPCIONES.get(await planKey(env, offer.kvKey)) : null);
   const trustedOffer = { key: plan as OfferKey, ...offer, carrera: offer.needsCarrera ? (carrera as string) : null, planId };
   return trustedOffer;
 }
@@ -119,9 +126,14 @@ export async function createSubscription(req: Request, env: MpEnv) {
   if (!res.ok || !data?.id) {
     await env.SUSCRIPCIONES.delete(lockKey); // se puede reintentar enseguida con otra tarjeta
     console.error("suscripciones: alta rechazada", res.status, data?.status ?? "", String(data?.message ?? "").slice(0, 160));
-    const msg = res.status === 400 || res.status === 422
-      ? "Mercado Pago rechazó la tarjeta. Probá con otra tarjeta o revisá los datos."
-      : "No se pudo crear la suscripción. Intentá nuevamente en unos minutos.";
+    const detalle = String(data?.message ?? "");
+    const msg = /payer and collector must be real or test users/i.test(detalle)
+      ? "Este es un entorno de prueba: usá el email de un usuario de prueba de Mercado Pago."
+      : /payer and collector cannot be the same/i.test(detalle)
+        ? "No podés suscribirte con el mismo email de la cuenta que cobra. Usá otro email."
+        : res.status === 400 || res.status === 422
+          ? "Mercado Pago rechazó la tarjeta. Probá con otra tarjeta o revisá los datos."
+          : "No se pudo crear la suscripción. Intentá nuevamente en unos minutos.";
     return fail("mp_rejected", msg, res.status >= 500 ? 502 : 402);
   }
 
@@ -179,7 +191,8 @@ export async function ensurePlans(env: MpEnv) {
   if (!env.MP_ACCESS_TOKEN || !env.SUSCRIPCIONES) return { listo: false, motivo: "falta la credencial de Mercado Pago" };
   const backUrl = `${(env.APP_URL || "").replace(/\/+$/, "")}/inscripcion.html?estado=volver`;
   for (const [k, offer] of Object.entries(SUBSCRIPTION_OFFERS)) {
-    const existing = env[offer.planEnv] || await env.SUSCRIPCIONES.get(offer.kvKey);
+    const kvPlan = await planKey(env, offer.kvKey);
+    const existing = env[offer.planEnv] || await env.SUSCRIPCIONES.get(kvPlan);
     if (existing) { result[k] = "existente"; continue; }
     const auto_recurring: Record<string, unknown> = { frequency: 1, frequency_type: "months", transaction_amount: offer.amount, currency_id: "ARS" };
     if (offer.repetitions) auto_recurring.repetitions = offer.repetitions;
@@ -190,11 +203,11 @@ export async function ensurePlans(env: MpEnv) {
     if (!res || !res.ok || !data?.id) {
       console.error("suscripciones: no se pudo crear el plan", k, res?.status ?? 0, String(data?.message ?? "").slice(0, 160));
       const detalle = { status: res?.status ?? 0, message: String(data?.message ?? "").slice(0, 200), cause: JSON.stringify(data?.cause ?? data?.error ?? "").slice(0, 300), fecha: new Date().toISOString() };
-      await env.SUSCRIPCIONES.put(`${offer.kvKey}:error`, JSON.stringify(detalle));
+      await env.SUSCRIPCIONES.put(`${kvPlan}:error`, JSON.stringify(detalle));
       result[k] = "error";
       continue;
     }
-    await env.SUSCRIPCIONES.put(offer.kvKey, String(data.id));
+    await env.SUSCRIPCIONES.put(kvPlan, String(data.id));
     result[k] = "creado";
   }
   return { listo: Object.values(result).every((v) => v !== "error"), planes: result };
@@ -205,9 +218,9 @@ export async function paymentsStatus(env: MpEnv) {
   const planes: Record<string, boolean> = {};
   const errores: Record<string, unknown> = {};
   for (const [k, offer] of Object.entries(SUBSCRIPTION_OFFERS)) {
-    planes[k] = !!(env[offer.planEnv] || (env.SUSCRIPCIONES ? await env.SUSCRIPCIONES.get(offer.kvKey) : null));
+    planes[k] = !!(env[offer.planEnv] || (env.SUSCRIPCIONES ? await env.SUSCRIPCIONES.get(await planKey(env, offer.kvKey)) : null));
     if (!planes[k] && env.SUSCRIPCIONES) {
-      const e = await env.SUSCRIPCIONES.get(`${offer.kvKey}:error`);
+      const e = await env.SUSCRIPCIONES.get(`${await planKey(env, offer.kvKey)}:error`);
       if (e) errores[k] = JSON.parse(e);
     }
   }
