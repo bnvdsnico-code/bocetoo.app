@@ -1,6 +1,7 @@
 // Entrada para Cloudflare Workers: el asistente, las suscripciones de Mercado Pago y el resto del sitio como archivos estáticos (carpeta public).
 import { onRequestPost } from "../functions/api/asistente";
 import { mpWebhook } from "./webhook";
+import { createEnrollmentFee, confirmEnrollmentFee } from "./matricula";
 import { mpConfig, ofertas, createSubscription, getSubscription, changeSubscription, ensurePlans, paymentsStatus, type MpEnv } from "./suscripciones";
 
 interface Env extends MpEnv { ASSETS: { fetch: (req: Request) => Promise<Response> }; [k: string]: any }
@@ -20,6 +21,8 @@ export default {
     if (pathname === "/api/ofertas") return method === "GET" ? ofertas() : notAllowed();
     if (pathname === "/api/estado-pagos") return method === "GET" ? paymentsStatus(env) : notAllowed();
     if (pathname === "/api/mp/webhook") return method === "POST" ? mpWebhook(request, env, ctx) : notAllowed();
+    if (pathname === "/api/matricula") return method === "POST" ? createEnrollmentFee(request, env) : notAllowed();
+    if (pathname === "/api/matricula/confirmar") return method === "POST" ? confirmEnrollmentFee(request, env) : notAllowed();
     if (pathname === "/api/subscriptions") return method === "POST" ? createSubscription(request, env) : notAllowed();
 
     // GET /api/subscriptions/:id  → estado

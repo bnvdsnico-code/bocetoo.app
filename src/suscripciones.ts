@@ -161,7 +161,7 @@ export async function getSubscription(req: Request, env: MpEnv, id: string) {
     rec.proximoCobro = data.next_payment_date || null;
     await env.SUSCRIPCIONES.put(`sub:${id}`, JSON.stringify(rec));
   }
-  return json({ id: rec.id, status: rec.status, plan: rec.plan, carrera: rec.carrera, proximoCobro: rec.proximoCobro || null, alDia: rec.alDia ?? null, actualizado: !!data });
+  return json({ id: rec.id, status: rec.status, plan: rec.plan, carrera: rec.carrera, proximoCobro: rec.proximoCobro || null, alDia: rec.alDia ?? null, matricula: rec.matricula || null, actualizado: !!data });
 }
 
 /* POST /api/subscriptions/:id/:accion: solo pause, reactivate o cancel */

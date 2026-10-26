@@ -67,3 +67,8 @@ y vuelve a Workers AI si Claude no está disponible.
 - Receptor: `POST /api/mp/webhook` (`src/webhook.ts`). Valida la firma `x-signature` con el secreto de webhooks, responde 200 y procesa después.
 - Temas: `subscription_preapproval` (estado de la suscripción), `subscription_authorized_payment` (cobro de cada cuota) y `payment`.
 - En Mercado Pago: Tus integraciones → bocetoo app → Webhooks → URL `https://bocetoo-app.bnvds-nico.workers.dev/api/mp/webhook`.
+
+### Matrícula (Checkout Pro)
+
+- Después de suscribirse, el alumno ve "Pagar matrícula con Mercado Pago" en `/inscripcion.html` ($45.000, pago único con cualquier medio).
+- Servidor: `src/matricula.ts` (`POST /api/matricula` crea la preferencia; `POST /api/matricula/confirmar` verifica el pago al volver). El webhook `payment` también la marca como paga.

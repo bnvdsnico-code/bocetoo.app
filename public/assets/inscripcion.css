@@ -43,3 +43,6 @@ body { margin: 0; background: #F7F6F4; color: #111; font-family: Inter, system-u
 .i-actions button.danger { border-color: #B91C1C; color: #B91C1C; }
 .i-actions button[hidden] { display: none; }
 @media (max-width: 480px) { .i-row { grid-template-columns: 1fr; } .i-card { padding: 20px 16px; } }
+.i-matricula { display: flex; flex-direction: column; gap: 10px; padding: 16px; border-radius: 16px; background: #FFF7ED; }
+.i-matricula[hidden] { display: none; }
+.i-matricula p { margin: 0; font-size: 15px; line-height: 1.5; }

@@ -4,6 +4,7 @@
 // 3) Es idempotente: vuelve a consultar el estado actual en Mercado Pago, así repetir un aviso no cambia nada.
 
 import type { MpEnv } from "./suscripciones";
+import { applyEnrollmentPayment } from "./matricula";
 
 interface WebhookEnv extends MpEnv { MP_WEBHOOK_SECRET?: string; MP_WEBHOOK_SECRET_TEST?: string }
 
@@ -73,6 +74,7 @@ async function processEvent(env: WebhookEnv, type: string, dataId: string) {
   } else if (type === "payment") {
     const pago = await mpGet(env, `/v1/payments/${encodeURIComponent(dataId)}`);
     if (!pago) return;
+    await applyEnrollmentPayment(env, pago);
     await env.SUSCRIPCIONES!.put(`pago:${pago.id}`, JSON.stringify({ estado: pago.status, detalle: pago.status_detail, monto: pago.transaction_amount, ref: pago.external_reference || null, fecha: pago.date_last_updated || null }), { expirationTtl: 60 * 60 * 24 * 400 });
   }
 }

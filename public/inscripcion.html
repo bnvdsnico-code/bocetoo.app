@@ -47,7 +47,7 @@
       </select>
     </label>
     <p class="i-total" aria-live="polite">Total: <strong id="total">ARS 63.000 por mes · 4 cuotas</strong></p>
-    <p class="i-note">La matrícula única de $45.000 se abona aparte, una sola vez.</p>
+    <p class="i-note">Después de suscribirte, abonás una sola vez la matrícula de $45.000 con Mercado Pago.</p>
   </section>
 
   <!-- Formulario de tarjeta: los campos de número, vencimiento y código son seguros de Mercado Pago -->
@@ -101,8 +101,25 @@
       <button type="button" data-accion="cancel" class="danger">Cancelar suscripción</button>
       <button type="button" data-accion="refresh">Actualizar estado</button>
     </div>
+    <div class="i-matricula" id="matriculaBox" hidden>
+      <p id="matriculaTxt">Falta abonar la matrícula única de <b>$45.000</b>. Se paga una sola vez, con cualquier medio de Mercado Pago (tarjeta, dinero en cuenta, transferencia o efectivo).</p>
+      <button type="button" id="pagarMatricula" class="i-cta" data-mp-checkout-cta="checkout-pro">Pagar matrícula con Mercado Pago</button>
+    </div>
     <p><a href="/panel.html">Ir a mi panel</a></p>
   </section>
 </main>
+<script>
+  // Matrícula con Checkout Pro: el servidor crea la preferencia y el navegador va a init_point.
+  (() => {
+    const boton = document.querySelector("#pagarMatricula");
+    const opciones = () => {
+      let s = null; try { s = JSON.parse(localStorage.getItem("boceto-suscripcion") || "null"); } catch (e) {}
+      boton.disabled = true; boton.textContent = "Abriendo Mercado Pago…";
+      return { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ id: s && s.id, llave: s && s.llave }) };
+    };
+    const falla = (d) => { document.getElementById("matriculaTxt").textContent = (d && d.message) || "No se pudo iniciar el pago. Intentá nuevamente."; boton.disabled = false; boton.textContent = "Pagar matrícula con Mercado Pago"; };
+    document.querySelector("#pagarMatricula").addEventListener("click", () => fetch("/api/matricula", opciones()).then((r) => r.json()).then((d) => d.init_point ? location.assign(d.init_point) : falla(d)).catch(falla));
+  })();
+</script>
 </body>
 </html>

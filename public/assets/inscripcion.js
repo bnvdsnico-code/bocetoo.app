@@ -47,6 +47,23 @@
     box.querySelector('[data-accion="pause"]').hidden = s.status !== "authorized";
     box.querySelector('[data-accion="reactivate"]').hidden = s.status !== "paused";
     box.querySelector('[data-accion="cancel"]').hidden = s.status === "canceled";
+    // Matrícula: se muestra hasta que el pago queda aprobado
+    const mb = $("matriculaBox"), mt = $("matriculaTxt");
+    mb.hidden = s.status === "canceled" || s.matricula === "approved";
+    if (s.matricula === "approved") return;
+    if (s.matricula === "pending" || s.matricula === "in_process") { mt.textContent = "Tu pago de la matrícula está pendiente: Mercado Pago lo acredita apenas se confirme."; $("pagarMatricula").hidden = true; }
+    else if (s.matricula === "rejected") { mt.textContent = "El pago de la matrícula no pasó. Probá de nuevo con otro medio de pago."; $("pagarMatricula").hidden = false; }
+  }
+  // Al volver de Mercado Pago: se confirma el pago del lado del servidor
+  async function confirmarMatricula() {
+    const saved = readSaved(), pid = qs.get("payment_id") || qs.get("collection_id");
+    if (!saved || !qs.get("matricula")) return;
+    try {
+      const r = await fetch("/api/matricula/confirmar", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ id: saved.id, llave: saved.llave, paymentId: pid }) });
+      const d = await r.json().catch(() => ({}));
+      if (d.matricula) { saved.matricula = d.matricula; save(saved); pintarSuscripcion(saved); }
+    } catch (e) { /* el webhook lo actualiza igual */ }
+    history.replaceState(null, "", location.pathname);
   }
   async function consultar() {
     const saved = readSaved(); if (!saved) return;
@@ -155,7 +172,7 @@
   }
 
   form.addEventListener("submit", (e) => e.preventDefault());
-  consultar();
+  consultar().then(confirmarMatricula);
   const saved = readSaved();
   if (saved && saved.status && saved.status !== "canceled") $("pagoCard").hidden = true;
   else iniciarPago();
