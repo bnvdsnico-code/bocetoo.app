@@ -72,3 +72,9 @@ y vuelve a Workers AI si Claude no está disponible.
 
 - Después de suscribirse, el alumno ve "Pagar matrícula con Mercado Pago" en `/inscripcion.html` ($45.000, pago único con cualquier medio).
 - Servidor: `src/matricula.ts` (`POST /api/matricula` crea la preferencia; `POST /api/matricula/confirmar` verifica el pago al volver). El webhook `payment` también la marca como paga.
+
+### Botón de arrepentimiento y Botón de baja de servicio
+
+- Páginas `/arrepentimiento.html` y `/baja.html` (generadas por `tools/consumidor.py`), con enlaces visibles arriba de la portada, fichas, inscripción y panel.
+- Sin registro: el consumidor completa nombre y email y recibe en pantalla un código de identificación (`ARR-…` / `BAJ-…`).
+- Las solicitudes quedan en Cloudflare → Workers KV → `bocetoo-suscripciones`, claves `solicitud:…`. Hay que darles curso dentro de las 24 horas.
