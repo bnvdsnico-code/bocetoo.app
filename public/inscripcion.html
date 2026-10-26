@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Inscripción · boceto</title>
+<meta name="description" content="Inscribite a una diplomatura de boceto: cuota mensual con débito automático por Mercado Pago.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="stylesheet" href="/assets/inscripcion.css">
+<script src="https://sdk.mercadopago.com/js/v2" defer></script>
+<script src="/assets/inscripcion.js" defer></script>
+</head>
+<body>
+<header class="i-top">
+  <a class="i-brand" href="/">
+    <span class="marks" aria-hidden="true"><i></i><i></i><i></i><i></i></span><b>boceto</b>
+  </a>
+  <a href="/#planes">Ver planes</a>
+</header>
+
+<main class="i-main" data-mp-subscriptions-page="with-plan">
+  <section class="i-intro">
+    <p class="i-kick">Inscripción</p>
+    <h1>Empezá tu diplomatura</h1>
+    <p>La cuota se debita sola cada mes con Mercado Pago. Podés pausar o cancelar cuando quieras desde esta página.</p>
+  </section>
+
+  <!-- Elegir oferta: los precios se muestran desde el catálogo del servidor -->
+  <section class="i-card" aria-labelledby="oferta-t">
+    <h2 id="oferta-t">1 · Elegí tu plan</h2>
+    <div class="i-plans" role="radiogroup" aria-label="Plan">
+      <label class="i-plan"><input type="radio" name="plan" value="diplomatura" checked>
+        <span><b>Tu diplomatura</b><small>Una carrera · 4 cuotas mensuales</small></span><em data-precio="diplomatura">$63.000 / mes</em></label>
+      <label class="i-plan"><input type="radio" name="plan" value="todas">
+        <span><b>Todas las diplomaturas</b><small>Las cuatro carreras · mes a mes</small></span><em data-precio="todas">$83.000 / mes</em></label>
+    </div>
+    <label class="i-field" id="carreraWrap" for="carrera">Diplomatura
+      <select id="carrera" name="carrera">
+        <option value="interiores">Interiores y Mobiliario</option>
+        <option value="industrial">Industrial</option>
+        <option value="grafico">Gráfico</option>
+        <option value="indumentaria">Indumentaria</option>
+      </select>
+    </label>
+    <p class="i-total" aria-live="polite">Total: <strong id="total">ARS 63.000 por mes · 4 cuotas</strong></p>
+    <p class="i-note">La matrícula única de $45.000 se abona aparte, una sola vez.</p>
+  </section>
+
+  <!-- Formulario de tarjeta: los campos de número, vencimiento y código son seguros de Mercado Pago -->
+  <section class="i-card" id="pagoCard" aria-labelledby="pago-t">
+    <h2 id="pago-t">2 · Tus datos y tu tarjeta</h2>
+    <p id="estadoInit" class="i-status">Preparando el formulario seguro de Mercado Pago…</p>
+    <form id="subscription-card-form" novalidate>
+      <div class="i-field" data-mp-field="cardholderEmail">
+        <label for="subscription__payerEmail">Email</label>
+        <input id="subscription__payerEmail" type="email" autocomplete="email" required>
+      </div>
+      <div class="i-field" role="group" aria-labelledby="card-number-label" data-mp-field="cardNumber">
+        <span id="card-number-label">Número de tarjeta</span>
+        <div id="subscription__cardNumber" class="secure-input" data-mp-secure-field="cardNumber"></div>
+      </div>
+      <div class="i-row">
+        <div class="i-field" role="group" aria-labelledby="expiration-label" data-mp-field="expirationDate">
+          <span id="expiration-label">Vencimiento (MM/AA)</span>
+          <div id="subscription__expirationDate" class="secure-input" data-mp-secure-field="expirationDate"></div>
+        </div>
+        <div class="i-field" role="group" aria-labelledby="security-label" data-mp-field="securityCode">
+          <span id="security-label">Código de seguridad</span>
+          <div id="subscription__securityCode" class="secure-input" data-mp-secure-field="securityCode"></div>
+        </div>
+      </div>
+      <div class="i-field" data-mp-field="cardholderName">
+        <label for="subscription__cardholderName">Nombre como figura en la tarjeta</label>
+        <input id="subscription__cardholderName" autocomplete="cc-name" required>
+      </div>
+      <div class="i-field" data-mp-field="identificationNumber">
+        <label for="subscription__identificationNumber">DNI del titular</label>
+        <input id="subscription__identificationNumber" inputmode="numeric" autocomplete="off" required>
+      </div>
+      <select hidden aria-hidden="true" tabindex="-1" id="subscription__issuer" data-mp-sdk-required-field="issuer"></select>
+      <select hidden aria-hidden="true" tabindex="-1" id="subscription__installments" data-mp-sdk-required-field="installments"></select>
+      <select hidden aria-hidden="true" tabindex="-1" id="subscription__identificationType" data-mp-sdk-required-field="identificationType"></select>
+      <button type="submit" id="suscribirme" class="i-cta" data-mp-subscription-cta="with-plan">Suscribirme</button>
+      <p class="i-legal">Al suscribirte autorizás el débito mensual de la cuota. No guardamos los datos de tu tarjeta: los procesa Mercado Pago.</p>
+    </form>
+    <p id="estadoProceso" class="i-status" hidden>Procesando tu suscripción… no cierres esta página.</p>
+    <div id="estadoError" class="i-alert error" role="alert" hidden></div>
+  </section>
+
+  <!-- Estado de la suscripción guardada en este navegador -->
+  <section class="i-card" id="miSuscripcion" aria-labelledby="mia-t" hidden>
+    <h2 id="mia-t">Tu suscripción</h2>
+    <div id="estadoSub" class="i-alert" role="status"></div>
+    <div class="i-actions">
+      <button type="button" data-accion="pause">Pausar</button>
+      <button type="button" data-accion="reactivate">Reactivar</button>
+      <button type="button" data-accion="cancel" class="danger">Cancelar suscripción</button>
+      <button type="button" data-accion="refresh">Actualizar estado</button>
+    </div>
+    <p><a href="/panel.html">Ir a mi panel</a></p>
+  </section>
+</main>
+</body>
+</html>

@@ -54,3 +54,10 @@ Conectar el repositorio de GitHub en Cloudflare: Workers y Pages → Crear → P
 El asistente usa Workers AI (incluido en el plan gratis, sin tarjeta), a través del binding `AI` de `wrangler.toml`.
 Si más adelante se carga la variable `ANTHROPIC_API_KEY` en Cloudflare (Settings → Variables and Secrets), pasa a responder con Claude
 y vuelve a Workers AI si Claude no está disponible.
+
+## Suscripciones con Mercado Pago
+
+- Página de inscripción: `/inscripcion.html` (los botones "Inscribirme" de las fichas y los planes del inicio llevan ahí).
+- Servidor: `src/suscripciones.ts` (rutas `/api/mp-config`, `/api/subscriptions`, `/api/subscriptions/:id`, `/api/subscriptions/:id/{pause|reactivate|cancel}`).
+- Planes: se crean una sola vez desde `/admin/planes.html` con la clave `ADMIN_KEY`; sus IDs quedan en el KV `SUSCRIPCIONES`.
+- Secretos en Cloudflare (Worker → Settings → Variables and Secrets): `MP_ACCESS_TOKEN`, `MP_PUBLIC_KEY`, `ADMIN_KEY` y, después, `MP_WEBHOOK_SECRET`. Plantilla en `.env.example`.

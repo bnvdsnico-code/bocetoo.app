@@ -4,3 +4,7 @@ __pycache__/
 node_modules/
 .wrangler/
 .DS_Store
+.mp-integrate-progress.md
+.env
+.env.*.local
+.dev.vars
