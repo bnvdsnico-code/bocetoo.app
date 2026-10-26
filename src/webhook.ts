@@ -5,7 +5,7 @@
 
 import type { MpEnv } from "./suscripciones";
 
-interface WebhookEnv extends MpEnv { MP_WEBHOOK_SECRET?: string }
+interface WebhookEnv extends MpEnv { MP_WEBHOOK_SECRET?: string; MP_WEBHOOK_SECRET_TEST?: string }
 
 const MP_API = "https://api.mercadopago.com";
 const KNOWN = new Set(["pending", "authorized", "paused", "canceled"]);
@@ -78,7 +78,7 @@ async function processEvent(env: WebhookEnv, type: string, dataId: string) {
 }
 
 export async function mpWebhook(req: Request, env: WebhookEnv, ctx: { waitUntil: (p: Promise<unknown>) => void }) {
-  if (!env.MP_WEBHOOK_SECRET || !env.MP_ACCESS_TOKEN || !env.SUSCRIPCIONES) return new Response("not configured", { status: 503 });
+  if (!(env.MP_WEBHOOK_SECRET || env.MP_WEBHOOK_SECRET_TEST) || !env.MP_ACCESS_TOKEN || !env.SUSCRIPCIONES) return new Response("not configured", { status: 503 });
   const url = new URL(req.url);
   let body: any = {};
   try { body = await req.json(); } catch { /* algunos avisos llegan sin cuerpo */ }
@@ -88,7 +88,10 @@ export async function mpWebhook(req: Request, env: WebhookEnv, ctx: { waitUntil:
   const rawId = queryId || bodyId;
   const type = String(url.searchParams.get("type") || url.searchParams.get("topic") || body?.type || body?.topic || "");
   if (!rawId) return new Response("missing id", { status: 400 });
-  if (!(await validSignature(req, env.MP_WEBHOOK_SECRET, [queryId, bodyId]))) return new Response("invalid signature", { status: 401 });
+  // Mercado Pago puede firmar con la clave del modo productivo o con la del modo de prueba: se aceptan ambas si están cargadas.
+  let firmaOk = false;
+  for (const clave of [env.MP_WEBHOOK_SECRET, env.MP_WEBHOOK_SECRET_TEST]) if (clave && !firmaOk) firmaOk = await validSignature(req, clave, [queryId, bodyId]);
+  if (!firmaOk) return new Response("invalid signature", { status: 401 });
 
   ctx.waitUntil(processEvent(env, type, rawId).catch((e) => console.error("webhook: error al procesar", type, String(e).slice(0, 160))));
   return new Response("ok", { status: 200 });
