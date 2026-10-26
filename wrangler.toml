@@ -1,7 +1,13 @@
-# Configuración de Cloudflare Pages
-name = "boceto"
-pages_build_output_dir = "public"
+# Cloudflare Workers con archivos estáticos (sirve public/ y el asistente en /api/asistente).
+# Si el proyecto es de Cloudflare Pages, Pages ignora este archivo y usa la carpeta functions/.
+name = "bocetoo-app"
+main = "src/worker.ts"
 compatibility_date = "2026-10-01"
+
+[assets]
+directory = "./public"
+binding = "ASSETS"
+run_worker_first = ["/api/*"]
 
 # Workers AI para el asistente (plan gratis, sin tarjeta)
 [ai]
