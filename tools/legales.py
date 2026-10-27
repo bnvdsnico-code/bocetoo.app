@@ -43,11 +43,11 @@ PRIVACIDAD = '''    <p>boceto es una escuela de diseño online. Esta política e
     <h2>Cuánto tiempo los guardamos</h2>
     <p>Mientras tengas una cuenta o una suscripción, y después el tiempo que exijan las normas contables y de defensa del consumidor.</p>
     <h2>Tus derechos</h2>
-    <p>Podés pedir acceso, rectificación o supresión de tus datos escribiéndonos por el formulario de <a href="/baja.html">baja</a> o por los canales de contacto del sitio. La Agencia de Acceso a la Información Pública, órgano de control de la Ley 25.326, atiende las denuncias y reclamos de quienes vean afectados sus derechos.</p>
+    <p>Podés pedir acceso, rectificación o supresión de tus datos escribiéndonos por el formulario de <a href="/baja.html">baja</a> o a <a href="mailto:hola@bocetoo.app">hola@bocetoo.app</a>. La Agencia de Acceso a la Información Pública, órgano de control de la Ley 25.326, atiende las denuncias y reclamos de quienes vean afectados sus derechos.</p>
     <h2>Cookies</h2>
     <p>Usamos una sola cookie necesaria para mantener tu sesión iniciada. No usamos cookies de publicidad.</p>'''
 
-TERMINOS = '''    <p>Al inscribirte en boceto aceptás estas condiciones.</p>
+TERMINOS = '''    <p>Al inscribirte en boceto aceptás estas condiciones. Por cualquier consulta escribinos a <a href="mailto:hola@bocetoo.app">hola@bocetoo.app</a>.</p>
     <h2>El servicio</h2>
     <p>boceto ofrece diplomaturas online de Diseño de Interiores y Mobiliario, Industrial, Gráfico e Indumentaria, con clases, ejercicios, un asistente de IA y un bocetador. Las diplomaturas son cursos libres y no otorgan un título oficial.</p>
     <h2>Precios y pagos</h2>
