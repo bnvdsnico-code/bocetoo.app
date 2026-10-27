@@ -54,6 +54,7 @@ def new_page(browser, w, h, mobile=False):
     ctx.route(f"{BASE}/api/asistente", fake_api)
     ctx.route(f"{BASE}/api/yo", lambda r: r.fulfill(status=200, content_type="application/json",
         body=json.dumps({"ingresado": True, "email": "ana@example.com", "nombre": "Ana Pérez", "carreras": ["grafico"], "suscripciones": []})))
+    ctx.route(f"{BASE}/api/progreso", lambda r: r.fulfill(status=200, content_type="application/json", body="{}" if r.request.method == "PUT" else json.dumps({"progreso": {}, "entregas": {}, "ultima": None})))
     p = ctx.new_page()
     errs = []
     p.on("pageerror", lambda e: errs.append(f"pageerror: {e}"))
@@ -132,9 +133,10 @@ with sync_playwright() as pw:
     # 5) Panel: calendario y chat
     ctx, p, errs = new_page(br, 1440, 900)
     p.goto(BASE + "/panel.html")
+    p.wait_for_selector("#semanaGrid a")
     p.click("text=Agregar a Google Calendar")
     links = p.eval_on_selector_all("#calLinks a", "els => els.map(e => e.href)")
-    check(len(links) == 5 and all("calendar.google.com/calendar/render?action=TEMPLATE" in l and "dates=" in l for l in links), f"panel: 5 enlaces a Google Calendar ({len(links)})")
+    check(len(links) == 6 and all("calendar.google.com/calendar/render?action=TEMPLATE" in l and "dates=" in l for l in links), f"panel: 6 enlaces (5 clases + repaso) a Google Calendar ({len(links)})")
     p.click("text=Ocultar")
     check(p.locator('[data-if="notConnected"]').first.evaluate("e => !e.hidden"), "panel: se puede ocultar el calendario")
     n0 = len(api_calls)

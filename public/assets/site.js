@@ -37,7 +37,7 @@
   /* ---------- Plan semanal y Google Calendar ---------- */
   const calLinks = document.getElementById("calLinks");
   if (calLinks) {
-    const SESSIONS = [
+    const SESSIONS = window.BOCETO_SESIONES || [
       { day: 1, h: 19, m: 0, dur: 15, title: "Lección: Zonas de estar, lectura y paso", url: "/aprender/recorridos-y-pasos-libres.html" },
       { day: 3, h: 19, m: 0, dur: 30, title: "Entrega: Diagrama de zonas, versión 2", url: "/aprender/devolucion-diagrama-de-zonas.html" },
       { day: 4, h: 19, m: 0, dur: 15, title: "Lección: El brief, preguntas clave", url: "/cursos/grafico.html" },
@@ -58,7 +58,7 @@
     };
     const render = () => {
       calLinks.innerHTML = "";
-      SESSIONS.forEach((s) => {
+      (window.BOCETO_SESIONES || SESSIONS).forEach((s) => {
         const start = nextDate(s), end = new Date(start.getTime() + s.dur * 60000);
         const q = new URLSearchParams({
           action: "TEMPLATE", text: `boceto · ${s.title}`, dates: `${stamp(start)}/${stamp(end)}`,
@@ -120,56 +120,27 @@
       const done = load(), id = b.dataset.complete;
       done.has(id) ? done.delete(id) : done.add(id);
       store(done); paint();
+      if (window.bocetoSync) window.bocetoSync.push();
     }));
     paint();
+    if (window.bocetoSync) window.bocetoSync.ready.then(paint);
   }
 
-  /* ---------- Entregas hechas en el Bocetador (en este navegador) ---------- */
-  const entregas = (() => { try { return JSON.parse(localStorage.getItem("boceto-entregas") || "{}") || {}; } catch (e) { return {}; } })();
+  /* ---------- Entregas hechas en el Bocetador (aviso dentro de la clase) ---------- */
   const fechaCorta = (iso) => { try { return new Date(iso).toLocaleDateString("es-AR", { day: "numeric", month: "numeric" }); } catch (e) { return ""; } };
-  const BOC = "/bocetador/";
-  const NOMBRES = { interiores: "Interiores", industrial: "Industrial", grafico: "Gráfico", indumentaria: "Indumentaria" };
-  const el = (tag, css, text) => { const n = document.createElement(tag); if (css) n.style.cssText = css; if (text != null) n.textContent = text; return n; };
-  // En la clase: aviso de "ya entregada" y el botón cambia a "ver o mejorar"
-  $$("[data-entrega]").forEach((p) => {
-    const e = entregas[p.dataset.entrega]; if (!e) return;
-    p.hidden = false;
-    p.textContent = `✓ ${e.e ? "Entregada" : "Guardada"} el ${fechaCorta(e.fecha)}` + (e.corregir ? ` · ${e.corregir} ${e.corregir === 1 ? "punto" : "puntos"} para corregir` : e.corregir === 0 ? " · sin correcciones" : "");
-    const a = p.previousElementSibling;
-    if (a && a.tagName === "A") a.textContent = e.e ? "Ver o mejorar la entrega →" : "Seguir la práctica en el Bocetador →";
-  });
-  // En el panel: las entregas reales van primero y se suman al portfolio
-  const lista = Object.values(entregas).filter((e) => e && e.clase).sort((a, b) => String(b.fecha).localeCompare(String(a.fecha)));
-  const secEnt = document.getElementById("entregas"), secPort = document.getElementById("portfolio");
-  if (lista.length && secEnt) {
-    const h = secEnt.querySelector("h2");
-    $$("a", secEnt).forEach((a) => a.remove());   // fuera los ejemplos: se ven las entregas reales
-    lista.slice(0, 4).reverse().forEach((e) => {
-      const pend = e.corregir > 0, sin = e.corregir == null;
-      const [tag, bg, ink] = pend ? ["! PARA CORREGIR", "#FFF1E6", "#9A3412"] : sin ? ["● ENTREGADA · SIN CORRECCIÓN", "#F3F3F1", "#3A3A3A"] : ["✓ CORREGIDA", "#E7F0FF", "#1E3A8A"];
-      const a = el("a", `text-decoration: none; display: flex; flex-direction: column; gap: 6px; padding: 16px; border-radius: 18px; background: ${bg}`);
-      a.href = `${BOC}?carrera=${e.carrera}&clase=${e.clase}`;
-      a.append(el("span", `font-size: 12px; font-weight: 700; letter-spacing: 0.06em; color: ${ink}`, e.e ? tag : "○ PRÁCTICA GUARDADA"),
-               el("span", "font-size: 16px; font-weight: 600", e.t),
-               el("span", "font-size: 14px; color: #3A3A3A", `${NOMBRES[e.carrera] || e.carrera} · ${e.k}` + (pend ? ` · ${e.corregir} ${e.corregir === 1 ? "ajuste" : "ajustes"}` : sin && e.e ? " · pedí la corrección" : "")));
-      h.after(a);
+  const paintEntregas = () => {
+    const entregas = (() => { try { return JSON.parse(localStorage.getItem("boceto-entregas") || "{}") || {}; } catch (e) { return {}; } })();
+    $$("[data-entrega]").forEach((p) => {
+      const e = entregas[p.dataset.entrega];
+      if (!e || (curso && e.carrera && e.carrera !== curso)) return;
+      p.hidden = false;
+      p.textContent = `✓ ${e.e ? "Entregada" : "Guardada"} el ${fechaCorta(e.fecha)}` + (e.corregir ? ` · ${e.corregir} ${e.corregir === 1 ? "punto" : "puntos"} para corregir` : e.corregir === 0 ? " · sin correcciones" : "");
+      const a = p.previousElementSibling;
+      if (a && a.tagName === "A") a.textContent = e.e ? "Ver o mejorar la entrega →" : "Seguir la práctica en el Bocetador →";
     });
-  }
-  const conImg = lista.filter((e) => e.img);
-  const grid = secPort && secPort.querySelector("div[style*='grid']");
-  if (conImg.length && grid) {
-    [...grid.children].forEach((f) => f.remove());
-    conImg.slice(0, 6).reverse().forEach((e) => {
-      const f = el("figure", "margin: 0; display: flex; flex-direction: column; gap: 10px");
-      const a = el("a", "display: block; aspect-ratio: 4 / 3; border-radius: 18px; background: #FFFFFF; border: 1px solid #E2E2E2; overflow: hidden");
-      a.href = `${BOC}?carrera=${e.carrera}&clase=${e.clase}`;
-      const img = el("img", "display: block; width: 100%; height: 100%; object-fit: contain");
-      img.src = e.img; img.alt = `Tu trabajo: ${e.t}`; a.append(img);
-      const cap = el("figcaption", "display: flex; flex-direction: column; gap: 2px");
-      cap.append(el("span", "font-size: 15px; font-weight: 600", e.t), el("span", "font-size: 13px; color: #555555", `${NOMBRES[e.carrera] || e.carrera} · ${e.k}`));
-      f.append(a, cap); grid.prepend(f);
-    });
-  }
+  };
+  paintEntregas();
+  if (window.bocetoSync) window.bocetoSync.ready.then(paintEntregas);
 
   /* ---------- Chat con el asistente ---------- */
   const ERRORS = {

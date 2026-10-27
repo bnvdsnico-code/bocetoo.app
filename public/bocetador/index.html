@@ -332,6 +332,7 @@ input[type=range]{width:100%;accent-color:var(--carrera)}
   </aside>
 </div>
 
+<script src="/assets/sync.js"></script>
 <script>
 (() => {
 "use strict";
@@ -1764,6 +1765,7 @@ $("cgSend").onclick = async () => {
   try { // la clase queda marcada como completada en el progreso de la diplomatura
     const pk = "boceto-progreso-" + c.carrera, done = new Set(JSON.parse(localStorage.getItem(pk) || "[]")); done.add(c.id); localStorage.setItem(pk, JSON.stringify([...done]));
   } catch (e) {}
+  if (window.bocetoSync) window.bocetoSync.pushImg(c.carrera, c.id, cc.toDataURL("image/jpeg", 0.78));
   paintEntregado();
   flash(c.e ? (rv ? "¡Entregada! La vas a ver en tu panel." : "¡Entregada! Si querés, pedí la corrección para mejorarla.") : "Práctica guardada en tu panel.");
 };

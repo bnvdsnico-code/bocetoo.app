@@ -3,6 +3,7 @@ import { onRequestPost } from "../functions/api/asistente";
 import { mpWebhook } from "./webhook";
 import { createRequest } from "./solicitudes";
 import { authStart, authCallback, authLogout, me, guardClass } from "./auth";
+import { progreso } from "./progreso";
 import { createEnrollmentFee, confirmEnrollmentFee } from "./matricula";
 import { mpConfig, ofertas, createSubscription, getSubscription, changeSubscription, ensurePlans, paymentsStatus, type MpEnv } from "./suscripciones";
 
@@ -23,6 +24,7 @@ export default {
     if (pathname === "/auth/callback") return authCallback(request, env);
     if (pathname === "/auth/salir") return authLogout(request, env);
     if (pathname === "/api/yo") return method === "GET" ? me(request, env) : notAllowed();
+    if (pathname === "/api/progreso" || pathname.startsWith("/api/progreso/")) return progreso(request, env, pathname.slice("/api/progreso".length));
     if (pathname === "/api/mp-config") return method === "GET" ? mpConfig(env) : notAllowed();
     if (pathname === "/api/ofertas") return method === "GET" ? ofertas() : notAllowed();
     if (pathname === "/api/estado-pagos") return method === "GET" ? paymentsStatus(env) : notAllowed();

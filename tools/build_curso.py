@@ -143,6 +143,7 @@ def page(title, desc, body, extra_attrs=""):
 </head>
 <body data-curso="{CURSO}" data-total="{TOTAL}"{extra_attrs}>
 {body}
+<script src="/assets/sync.js" defer></script>
 <script src="/assets/site.js" defer></script>
 </body>
 </html>
