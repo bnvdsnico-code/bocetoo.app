@@ -9,6 +9,7 @@ type KV = {
   get: (k: string) => Promise<string | null>;
   put: (k: string, v: string, o?: { expirationTtl?: number }) => Promise<void>;
   delete: (k: string) => Promise<void>;
+  list?: (o: { prefix: string; cursor?: string; limit?: number }) => Promise<{ keys: { name: string }[]; list_complete: boolean; cursor?: string }>;
 };
 
 export interface MpEnv {

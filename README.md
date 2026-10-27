@@ -90,3 +90,6 @@ y vuelve a Workers AI si Claude no está disponible.
 ## SEO
 - `python3 tools/seo.py` agrega canonical, Open Graph, datos estructurados y noindex, y regenera `sitemap.xml` y `robots.txt`. Correrlo después de cualquier `build_curso.py` o `legales.py`.
 - `python3 tools/og.py <carpeta @fontsource>` regenera las imágenes para compartir (`public/assets/og/`).
+
+## Administración
+- https://bocetoo.app/admin: solo para las cuentas de Google en la variable `ADMINS` (por defecto bnvds.nico@gmail.com). Muestra alumnos, suscripciones, cuotas, matrícula, avance, certificados y los pedidos de baja/arrepentimiento (se marcan como atendidos).

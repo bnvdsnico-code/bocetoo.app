@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Administración · boceto</title>
+<meta name="description" content="Panel de administración de boceto.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/admin.css">
+<!-- seo -->
+<!-- /seo -->
+</head>
+<body>
+<header class="a-top">
+  <a class="a-brand" href="/"><span class="marks" aria-hidden="true"><i></i><i></i><i></i><i></i></span>boceto <span class="a-tag">Administración</span></a>
+  <div class="a-top-r"><span id="quien"></span><button type="button" id="actualizar">Actualizar</button></div>
+</header>
+<main class="a-main">
+  <div id="estado" class="a-msg" role="status">Cargando…</div>
+
+  <section id="kpis" class="a-kpis" aria-label="Resumen" hidden></section>
+
+  <section id="secSolicitudes" class="a-sec" hidden>
+    <div class="a-sec-h"><h2>Pedidos de baja y arrepentimiento</h2><p>Hay que responder dentro de las 24 horas. Cancelá la suscripción o devolvé el pago en Mercado Pago, escribile al alumno y marcalo como atendido.</p></div>
+    <div id="pendientes" class="a-cards"></div>
+    <details id="atendidasBox"><summary>Atendidos (<span id="nAtendidas">0</span>)</summary><div id="atendidas" class="a-cards"></div></details>
+  </section>
+
+  <section id="secAlumnos" class="a-sec" hidden>
+    <div class="a-sec-h"><h2>Alumnos</h2><p>Todas las cuentas que ingresaron con Google o se suscribieron, con su pago y su avance.</p></div>
+    <div class="a-filtros">
+      <label class="a-buscar"><span class="sr">Buscar</span><input id="buscar" type="search" placeholder="Buscar por nombre o email" autocomplete="off"></label>
+      <label><span class="sr">Filtrar</span><select id="filtro">
+        <option value="todos">Todos</option>
+        <option value="activos">Con suscripción activa</option>
+        <option value="problema">Con problema de pago</option>
+        <option value="sin">Sin suscripción</option>
+        <option value="bajas">Pausados o cancelados</option>
+      </select></label>
+      <span id="cuenta" class="a-count"></span>
+    </div>
+    <div class="a-tabla-wrap"><table class="a-tabla">
+      <thead><tr><th>Alumno</th><th>Plan</th><th>Estado</th><th>Cuotas</th><th>Matrícula</th><th>Avance</th><th>Entregas</th><th>Última actividad</th></tr></thead>
+      <tbody id="filas"></tbody>
+    </table></div>
+  </section>
+</main>
+<script src="/assets/admin.js" defer></script>
+</body>
+</html>

@@ -4,6 +4,7 @@ import { mpWebhook } from "./webhook";
 import { createRequest } from "./solicitudes";
 import { authStart, authCallback, authLogout, me, guardClass } from "./auth";
 import { progreso } from "./progreso";
+import { admin } from "./admin";
 import { certificados, paginaCertificado } from "./certificados";
 import { createEnrollmentFee, confirmEnrollmentFee } from "./matricula";
 import { mpConfig, ofertas, createSubscription, getSubscription, changeSubscription, ensurePlans, paymentsStatus, type MpEnv } from "./suscripciones";
@@ -35,6 +36,7 @@ export default {
     if (pathname === "/auth/callback") return authCallback(request, env);
     if (pathname === "/auth/salir") return authLogout(request, env);
     if (pathname === "/api/yo") return method === "GET" ? me(request, env) : notAllowed();
+    if (pathname.startsWith("/api/admin/")) return admin(request, env, pathname.slice("/api/admin".length));
     if (pathname === "/api/certificados" || pathname.startsWith("/api/certificados/")) return certificados(request, env, pathname.slice("/api/certificados".length));
     const mc = pathname.match(/^\/certificado\/([A-Za-z0-9-]{1,20})\/?$/);
     if (mc) return method === "GET" ? paginaCertificado(env, mc[1].toUpperCase()) : notAllowed();

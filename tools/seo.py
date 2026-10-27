@@ -16,7 +16,7 @@ CARRERAS = {
     "grafico": "Diseño Gráfico",
     "indumentaria": "Diseño de Indumentaria",
 }
-NOINDEX = {"panel.html", "acceso.html", "inscripcion.html", "404.html", "bocetador/index.html"}
+NOINDEX = {"admin.html", "panel.html", "acceso.html", "inscripcion.html", "404.html", "bocetador/index.html"}
 ORG = {"@type": "EducationalOrganization", "name": "boceto", "url": SITE + "/", "logo": SITE + "/assets/favicon.svg", "email": "hola@bocetoo.app",
        "description": "Escuela de diseño online con diplomaturas de Interiores y Mobiliario, Industrial, Gráfico e Indumentaria."}
 
@@ -103,7 +103,7 @@ def prioridad(rel):
 (PUB / "sitemap.xml").write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
     "".join(f"  <url><loc>{url_de(r)}</loc><lastmod>{HOY}</lastmod><priority>{prioridad(r)}</priority></url>\n" for r in indexables) + "</urlset>\n", encoding="utf-8")
 (PUB / "robots.txt").write_text(
-    "User-agent: *\nAllow: /\nDisallow: /api/\nDisallow: /auth/\nDisallow: /panel\nDisallow: /acceso\nDisallow: /bocetador/\n\n"
+    "User-agent: *\nAllow: /\nDisallow: /api/\nDisallow: /auth/\nDisallow: /panel\nDisallow: /admin\nDisallow: /acceso\nDisallow: /bocetador/\n\n"
     f"Sitemap: {SITE}/sitemap.xml\n", encoding="utf-8")
 print(f"páginas modificadas: {cambiadas} · indexables en el sitemap: {len(indexables)}")
 print("\n".join(indexables))

@@ -80,6 +80,9 @@ export async function authCallback(req: Request, env: AuthEnv) {
   const sid = randomId();
   const sesion = { email: String(claims.email).toLowerCase(), nombre: claims.name || "", foto: claims.picture || "", creada: new Date().toISOString() };
   await env.SUSCRIPCIONES.put(`sess:${sid}`, JSON.stringify(sesion), { expirationTtl: SESSION_DAYS * 86400 });
+  // Ficha del alumno para el panel de administración (primer y último ingreso)
+  const previo = JSON.parse((await env.SUSCRIPCIONES.get(`usuario:${sesion.email}`)) || "null");
+  await env.SUSCRIPCIONES.put(`usuario:${sesion.email}`, JSON.stringify({ email: sesion.email, nombre: sesion.nombre, foto: sesion.foto, primerIngreso: previo?.primerIngreso || sesion.creada, ultimoIngreso: sesion.creada }));
   return redirect(volver, [cookie(SESSION_COOKIE, sid, SESSION_DAYS * 86400), cookie(STATE_COOKIE, "", 0)]);
 }
 
