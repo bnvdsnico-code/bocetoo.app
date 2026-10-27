@@ -91,7 +91,8 @@ export async function createSubscription(req: Request, env: MpEnv) {
   if (!env.MP_ACCESS_TOKEN || !env.SUSCRIPCIONES) return fail("mp_not_configured", "Los pagos todavía no están configurados. Probá más tarde.", 503);
   // La suscripción queda asociada a la cuenta con la que el alumno ingresó (Google).
   const sesion = await currentSession(req, env);
-  if (!sesion) return fail("login_required", "Ingresá con Google antes de suscribirte, así la diplomatura queda en tu cuenta.", 401);
+  // Mientras el ingreso con Google no esté configurado, se permite suscribirse sin cuenta (se asocia al email de pago).
+  if (!sesion && (env as any).GOOGLE_CLIENT_ID) return fail("login_required", "Ingresá con Google antes de suscribirte, así la diplomatura queda en tu cuenta.", 401);
   let input: any;
   try { input = await req.json(); } catch { return fail("bad_request", "No pudimos leer el formulario. Recargá la página e intentá nuevamente.", 400); }
 
@@ -146,12 +147,12 @@ export async function createSubscription(req: Request, env: MpEnv) {
 
   const llave = randomId();
   const record = {
-    id: String(data.id), llave, externalReference, plan: trustedOffer.key, carrera: trustedOffer.carrera, email, cuenta: sesion.email,
+    id: String(data.id), llave, externalReference, plan: trustedOffer.key, carrera: trustedOffer.carrera, email, cuenta: sesion ? sesion.email : email,
     status: normalizeStatus(data.status), creada: new Date().toISOString()
   };
   await env.SUSCRIPCIONES.put(`sub:${record.id}`, JSON.stringify(record));
   await env.SUSCRIPCIONES.put(`ref:${externalReference}`, record.id);
-  await linkSubscription(env, sesion.email, record.id);
+  await linkSubscription(env, sesion ? sesion.email : email, record.id);
   return json({ id: record.id, llave, status: record.status, plan: record.plan, carrera: record.carrera, reason: trustedOffer.reason, amount: trustedOffer.amount });
 }
 

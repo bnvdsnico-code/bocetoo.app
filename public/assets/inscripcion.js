@@ -178,6 +178,7 @@
   else {
     // Para suscribirse hay que ingresar con Google: la diplomatura queda asociada a esa cuenta.
     fetch("/api/yo", { cache: "no-store" }).then((r) => r.json()).then((yo) => {
+      if (!yo.ingresado && yo.googleListo === false) { iniciarPago(); return; }
       if (!yo.ingresado) {
         form.hidden = true; elInit.hidden = true;
         const box = $("ingresoBox"); box.hidden = false;
