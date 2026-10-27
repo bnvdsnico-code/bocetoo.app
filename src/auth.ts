@@ -15,6 +15,7 @@ const CARRERAS = new Set(["interiores", "industrial", "grafico", "indumentaria"]
 
 const randomId = (n = 24) => [...crypto.getRandomValues(new Uint8Array(n))].map((b) => b.toString(16).padStart(2, "0")).join("");
 const appUrl = (env: AuthEnv, req: Request) => (env.APP_URL || new URL(req.url).origin).replace(/\/+$/, "");
+export const googleReady = (env: AuthEnv) => !!(env.GOOGLE_CLIENT_ID && env.GOOGLE_CLIENT_SECRET);
 const redirectUri = (env: AuthEnv, req: Request) => `${new URL(req.url).origin}/auth/callback`;
 
 function cookies(req: Request) {
@@ -39,12 +40,12 @@ function redirect(location: string, setCookies: string[] = []) {
 
 /* GET /auth/google?volver=/ruta */
 export async function authStart(req: Request, env: AuthEnv) {
-  if (!env.GOOGLE_CLIENT_ID || !env.SUSCRIPCIONES) return new Response("El ingreso con Google todavía no está configurado.", { status: 503 });
+  if (!googleReady(env) || !env.SUSCRIPCIONES) return new Response("El ingreso con Google todavía no está configurado.", { status: 503 });
   const volver = safePath(new URL(req.url).searchParams.get("volver"));
   const state = randomId(16);
   await env.SUSCRIPCIONES.put(`estado:${state}`, volver, { expirationTtl: 600 });
   const q = new URLSearchParams({
-    client_id: env.GOOGLE_CLIENT_ID, redirect_uri: redirectUri(env, req), response_type: "code",
+    client_id: env.GOOGLE_CLIENT_ID!, redirect_uri: redirectUri(env, req), response_type: "code",
     scope: "openid email profile", state, prompt: "select_account"
   });
   return redirect(`https://accounts.google.com/o/oauth2/v2/auth?${q}`, [cookie(STATE_COOKIE, state, 600)]);
@@ -117,7 +118,7 @@ export async function accessFor(env: AuthEnv, email: string) {
 /* GET /api/yo: sesión y accesos del alumno (sin datos sensibles) */
 export async function me(req: Request, env: AuthEnv) {
   const s = await currentSession(req, env);
-  const body = s ? { ingresado: true, email: s.email, nombre: s.nombre, foto: s.foto, ...(await accessFor(env, s.email)) } : { ingresado: false, googleListo: !!env.GOOGLE_CLIENT_ID };
+  const body = s ? { ingresado: true, email: s.email, nombre: s.nombre, foto: s.foto, ...(await accessFor(env, s.email)) } : { ingresado: false, googleListo: googleReady(env) };
   return new Response(JSON.stringify(body), { headers: { "content-type": "application/json; charset=utf-8", "cache-control": "no-store" } });
 }
 

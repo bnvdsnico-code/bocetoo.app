@@ -2,7 +2,7 @@
 // El navegador solo manda qué oferta elige (plan + carrera), el email y el token de tarjeta de un solo uso.
 // Montos, frecuencia e ID del plan salen siempre del catálogo del servidor.
 
-import { currentSession, linkSubscription } from "./auth";
+import { currentSession, linkSubscription, googleReady } from "./auth";
 
 type KV = {
   get: (k: string) => Promise<string | null>;
@@ -92,7 +92,7 @@ export async function createSubscription(req: Request, env: MpEnv) {
   // La suscripción queda asociada a la cuenta con la que el alumno ingresó (Google).
   const sesion = await currentSession(req, env);
   // Mientras el ingreso con Google no esté configurado, se permite suscribirse sin cuenta (se asocia al email de pago).
-  if (!sesion && (env as any).GOOGLE_CLIENT_ID) return fail("login_required", "Ingresá con Google antes de suscribirte, así la diplomatura queda en tu cuenta.", 401);
+  if (!sesion && googleReady(env as any)) return fail("login_required", "Ingresá con Google antes de suscribirte, así la diplomatura queda en tu cuenta.", 401);
   let input: any;
   try { input = await req.json(); } catch { return fail("bad_request", "No pudimos leer el formulario. Recargá la página e intentá nuevamente.", 400); }
 

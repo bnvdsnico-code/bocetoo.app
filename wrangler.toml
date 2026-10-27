@@ -22,6 +22,8 @@ id = "c9298ba458d14debbf1dcf923f528247"
 
 [vars]
 APP_URL = "https://bocetoo-app.bnvds-nico.workers.dev"
+# ID público del cliente de Google (no es secreto). El secreto va en Cloudflare como GOOGLE_CLIENT_SECRET.
+GOOGLE_CLIENT_ID = "432808498602-6kl6395du57csvs5ma1umggn5pbcanms.apps.googleusercontent.com"
 
 # Crea los planes de suscripción en cuanto está cargada la credencial de Mercado Pago
 [triggers]
