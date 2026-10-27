@@ -9,7 +9,8 @@ keep_vars = true
 [assets]
 directory = "./public"
 binding = "ASSETS"
-run_worker_first = ["/api/*", "/auth/*", "/cursos/*"]
+# Todo pasa primero por el Worker (redirige www y la dirección vieja a bocetoo.app)
+run_worker_first = true
 
 # Workers AI para el asistente (plan gratis, sin tarjeta)
 [ai]
@@ -21,9 +22,18 @@ binding = "SUSCRIPCIONES"
 id = "c9298ba458d14debbf1dcf923f528247"
 
 [vars]
-APP_URL = "https://bocetoo-app.bnvds-nico.workers.dev"
+APP_URL = "https://bocetoo.app"
 # ID público del cliente de Google (no es secreto). El secreto va en Cloudflare como GOOGLE_CLIENT_SECRET.
 GOOGLE_CLIENT_ID = "432808498602-6kl6395du57csvs5ma1umggn5pbcanms.apps.googleusercontent.com"
+
+# Dominio propio (en Cloudflare): bocetoo.app y www.bocetoo.app
+[[routes]]
+pattern = "bocetoo.app"
+custom_domain = true
+
+[[routes]]
+pattern = "www.bocetoo.app"
+custom_domain = true
 
 # Crea los planes de suscripción en cuanto está cargada la credencial de Mercado Pago
 [triggers]

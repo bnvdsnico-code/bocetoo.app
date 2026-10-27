@@ -13,8 +13,15 @@ const notAllowed = () => Response.json({ error: "method_not_allowed" }, { status
 
 export default {
   async fetch(request: Request, env: Env, ctx: any): Promise<Response> {
-    const { pathname } = new URL(request.url);
+    const url = new URL(request.url);
+    const { pathname } = url;
     const method = request.method;
+
+    // www.bocetoo.app → bocetoo.app
+    if (url.hostname === "www.bocetoo.app") {
+      url.hostname = "bocetoo.app";
+      return Response.redirect(url.toString(), 301);
+    }
 
     if (pathname === "/api/asistente") {
       if (method !== "POST") return notAllowed();
