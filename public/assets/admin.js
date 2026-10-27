@@ -141,6 +141,7 @@
     if (!filas.length) { const tr = el("tr"), c = el("td", "mut", datos.alumnos.length ? "Ningún alumno coincide con el filtro." : "Todavía no hay alumnos."); c.colSpan = 8; tr.append(c); filas.push(tr); }
     $("filas").replaceChildren(...filas);
     $("cuenta").textContent = `${lista.length} de ${datos.alumnos.length}`;
+    $("cuenta").textContent += (datos.cuentasDePrueba || []).length ? ` · ${datos.cuentasDePrueba.length} cuenta(s) de prueba de Mercado Pago ocultas` : "";
   }
 
   $("buscar").addEventListener("input", () => datos && pintarAlumnos());

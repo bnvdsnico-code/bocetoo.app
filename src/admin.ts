@@ -54,6 +54,10 @@ export async function admin(req: Request, env: AuthEnv, sub: string): Promise<Re
     }
     for (const { value: c } of certs) alumno(c.email).certificados.push({ id: c.id, carrera: c.carrera, fecha: c.fecha });
 
+    // Usuarios de prueba de Mercado Pago (de la etapa de pruebas): se muestran aparte y no suman en los totales
+    const esPrueba = (a: any) => /@testuser\.com$/i.test(a.email) || a.suscripciones.some((x: any) => /@testuser\.com$/i.test(String(x.emailPago || "")));
+    const pruebas = [...alumnos.values()].filter(esPrueba).map((a) => a.email);
+    pruebas.forEach((e) => alumnos.delete(e));
     const lista = [...alumnos.values()].sort((a, b) => String(b.ultimaActividad || b.ultimoIngreso || "").localeCompare(String(a.ultimaActividad || a.ultimoIngreso || "")));
     const subsTodas = lista.flatMap((a) => a.suscripciones);
     const activas = subsTodas.filter((x) => x.status === "authorized");
@@ -72,6 +76,7 @@ export async function admin(req: Request, env: AuthEnv, sub: string): Promise<Re
         solicitudesPendientes: solicitudes.filter((x) => x.value.estado !== "atendida").length
       },
       alumnos: lista,
+      cuentasDePrueba: pruebas,
       solicitudes: solicitudes.map((x) => x.value).sort((a, b) => String(b.fecha).localeCompare(String(a.fecha)))
     });
   }
