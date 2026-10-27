@@ -192,4 +192,48 @@
   $("resumen").textContent = !principal ? "Probá gratis la primera clase de cualquier diplomatura."
     : !proxima ? `Terminaste ${C[principal].n}.`
     : `Vas por la semana ${semanaDe(proxima)} de ${C[principal].n}` + (pendiente ? " y tenés una entrega por delante." : ".");
+
+  // 9. Certificados
+  const certGrid = $("certGrid");
+  const certCard = (c) => el("div", `border: 1.5px solid #E2E2E2; border-radius: 22px; padding: 22px; display: flex; flex-direction: column; gap: 12px; border-top: 6px solid ${C[c].col}`);
+  const pintarCerts = (data) => {
+    certGrid.replaceChildren();
+    const lista = CARRERAS.filter((c) => data.carreras[c].certificado || data.carreras[c].suscripto || data.carreras[c].hechas > 0);
+    lista.forEach((c) => {
+      const e = data.carreras[c], card = certCard(c);
+      card.append(el("span", "font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 20px; line-height: 1.2", C[c].n));
+      if (e.certificado) {
+        card.append(el("span", "font-size: 14px; font-weight: 700; color: #166534", "✓ Certificado emitido"));
+        const a = el("a", "align-self: flex-start; text-decoration: none; font-size: 15px; font-weight: 600; padding: 12px 20px; min-height: 48px; box-sizing: border-box; display: inline-flex; align-items: center; background: #111111; color: #FFFFFF; border-radius: 999px", "Ver, imprimir o compartir");
+        a.href = `/certificado/${e.certificado.id}`; card.append(a);
+      } else if (e.puede) {
+        card.append(el("span", "font-size: 14px; color: #3A3A3A", "¡Terminaste las 80 clases! Revisá cómo querés que figure tu nombre:"));
+        const lab = el("label", "display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 600", "Nombre en el certificado");
+        const inp = el("input", "font: 16px Inter, system-ui, sans-serif; padding: 12px 14px; min-height: 48px; border-radius: 12px; border: 1.5px solid #CFCFCF");
+        inp.value = data.nombre || ""; inp.maxLength = 80; inp.autocomplete = "name"; lab.append(inp);
+        const btn = el("button", "align-self: flex-start; font: 600 15px Inter, system-ui, sans-serif; padding: 12px 20px; min-height: 48px; border-radius: 999px; border: none; background: #111111; color: #FFFFFF; cursor: pointer", "Obtener mi certificado");
+        btn.type = "button";
+        const msg = el("p", "margin: 0; font-size: 14px; color: #9A3412"); msg.hidden = true;
+        btn.addEventListener("click", async () => {
+          btn.disabled = true; btn.textContent = "Emitiendo…"; msg.hidden = true;
+          try {
+            const r = await fetch(`/api/certificados/${c}`, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ nombre: inp.value }) });
+            const d = await r.json().catch(() => ({}));
+            if (!r.ok || !d.certificado) throw new Error(d.message || "No pudimos emitir el certificado. Probá de nuevo.");
+            data.carreras[c].certificado = d.certificado; data.carreras[c].puede = false; pintarCerts(data);
+          } catch (err) { msg.textContent = err.message; msg.hidden = false; btn.disabled = false; btn.textContent = "Obtener mi certificado"; }
+        });
+        card.append(lab, btn, msg);
+      } else {
+        const bar = el("span", "display: block; height: 8px; border-radius: 4px; background: #E2E2E2; overflow: hidden");
+        bar.append(el("span", `display: block; height: 100%; width: ${Math.round((e.hechas / e.total) * 100)}%; background: ${C[c].col}`));
+        card.append(bar, el("span", "font-size: 14px; color: #555555", `${e.hechas} de ${e.total} clases` + (e.suscripto ? ` · te faltan ${e.total - e.hechas}` : " · el certificado requiere suscripción")));
+      }
+      certGrid.append(card);
+    });
+    if (!lista.length) certGrid.append(el("p", "margin: 0; font-size: 15px; color: #555555", "Cuando empieces una diplomatura, acá vas a ver cuánto te falta para tu certificado."));
+  };
+  if (yo.ingresado) {
+    fetch("/api/certificados", { cache: "no-store" }).then((r) => (r.ok ? r.json() : null)).then((d) => { if (d) pintarCerts(d); else $("certificados").hidden = true; }).catch(() => { $("certificados").hidden = true; });
+  } else $("certificados").hidden = true;
 })();

@@ -54,6 +54,11 @@ def new_page(browser, w, h, mobile=False):
     ctx.route(f"{BASE}/api/asistente", fake_api)
     ctx.route(f"{BASE}/api/yo", lambda r: r.fulfill(status=200, content_type="application/json",
         body=json.dumps({"ingresado": True, "email": "ana@example.com", "nombre": "Ana Pérez", "carreras": ["grafico"], "suscripciones": []})))
+    ctx.route(f"{BASE}/api/certificados", lambda r: r.fulfill(status=200, content_type="application/json", body=json.dumps({"nombre": "Ana Pérez", "carreras": {
+        "interiores": {"hechas": 0, "total": 80, "suscripto": False, "puede": False, "certificado": None},
+        "industrial": {"hechas": 0, "total": 80, "suscripto": False, "puede": False, "certificado": None},
+        "grafico": {"hechas": 12, "total": 80, "suscripto": True, "puede": False, "certificado": None},
+        "indumentaria": {"hechas": 0, "total": 80, "suscripto": False, "puede": False, "certificado": None}}})))
     ctx.route(f"{BASE}/api/progreso", lambda r: r.fulfill(status=200, content_type="application/json", body="{}" if r.request.method == "PUT" else json.dumps({"progreso": {}, "entregas": {}, "ultima": None})))
     p = ctx.new_page()
     errs = []
