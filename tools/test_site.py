@@ -51,6 +51,7 @@ def block_external(route):
 def new_page(browser, w, h, mobile=False):
     ctx = browser.new_context(viewport={"width": w, "height": h}, is_mobile=mobile, has_touch=mobile, accept_downloads=True)
     ctx.route("**/*", block_external)
+    ctx.add_init_script("try { localStorage.setItem('boceto-guia-vista', '1'); } catch (e) {}")
     ctx.route(f"{BASE}/api/asistente", fake_api)
     ctx.route(f"{BASE}/api/yo", lambda r: r.fulfill(status=200, content_type="application/json",
         body=json.dumps({"ingresado": True, "email": "ana@example.com", "nombre": "Ana Pérez", "carreras": ["grafico"], "suscripciones": []})))
@@ -302,7 +303,7 @@ with sync_playwright() as pw:
     p.click("#togglePanel"); p.wait_for_timeout(200)
     check(p.locator("#panel").is_visible(), "celular: el panel de ayudas se abre")
     p.screenshot(path=str(SHOTS / "phone-bocetador-panel.png"))
-    p.click("#closePanel")
+    p.click("#closeSheet")
     box = p.locator("#cv").bounding_box()
     p.locator('.tool[data-tool="pencil"]').click()
     before = p.evaluate("JSON.parse(localStorage.getItem('bocetador-v1')||'{}').sheets?.interiores?.shapes?.length || 0")

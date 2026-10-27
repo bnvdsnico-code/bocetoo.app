@@ -1,0 +1,28 @@
+{
+  "name": "Bocetador · boceto",
+  "short_name": "Bocetador",
+  "description": "Mesa de dibujo para Interiores, Industrial, Gráfico e Indumentaria, con correcciones del asistente.",
+  "id": "/bocetador/",
+  "start_url": "/bocetador/?app=1",
+  "scope": "/bocetador/",
+  "display": "standalone",
+  "display_override": ["window-controls-overlay", "standalone"],
+  "orientation": "any",
+  "lang": "es-AR",
+  "dir": "ltr",
+  "background_color": "#FFFFFF",
+  "theme_color": "#FFFFFF",
+  "categories": ["education", "design", "productivity"],
+  "icons": [
+    { "src": "/bocetador/icons/icono-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/bocetador/icons/icono-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/bocetador/icons/icono-maskable-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "/bocetador/icons/icono-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Interiores", "url": "/bocetador/?carrera=interiores&app=1", "icons": [{ "src": "/bocetador/icons/icono-192.png", "sizes": "192x192" }] },
+    { "name": "Industrial", "url": "/bocetador/?carrera=industrial&app=1", "icons": [{ "src": "/bocetador/icons/icono-192.png", "sizes": "192x192" }] },
+    { "name": "Gráfico", "url": "/bocetador/?carrera=grafico&app=1", "icons": [{ "src": "/bocetador/icons/icono-192.png", "sizes": "192x192" }] },
+    { "name": "Indumentaria", "url": "/bocetador/?carrera=indumentaria&app=1", "icons": [{ "src": "/bocetador/icons/icono-192.png", "sizes": "192x192" }] }
+  ]
+}
