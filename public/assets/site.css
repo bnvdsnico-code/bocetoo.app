@@ -18,8 +18,8 @@ button:disabled { opacity: .55; cursor: default; }
 .bubble { margin: 0; padding: 12px 16px; max-width: 80%; white-space: pre-line; overflow-wrap: anywhere; }
 .bubble.me { align-self: flex-end; border-radius: 18px 18px 4px 18px; }
 .bubble.ai { align-self: flex-start; border-radius: 18px 18px 18px 4px; }
-.light .bubble.me { background: #111111; color: #FFFFFF; }
-.light .bubble.ai { background: #FFFFFF; color: #111111; border: 1px solid #E2E2E2; }
+.light .bubble.me { background: var(--grafito, #1F2328); color: #FFFFFF; }
+.light .bubble.ai { background: var(--papel, #F4F5F3); color: var(--grafito, #1F2328); border: 0; }
 .dark .bubble.me { background: #FFFFFF; color: #111111; }
 .dark .bubble.ai { background: #2A2A2A; color: #FFFFFF; }
 .bubble.wait { opacity: .7; }
@@ -67,6 +67,6 @@ button:disabled { opacity: .55; cursor: default; }
 }
 
 /* Enlaces a Google Calendar */
-.cal-link { display: inline-flex; align-items: center; gap: 8px; min-height: 40px; padding: 8px 14px; border-radius: 999px; border: 1.5px solid #CFCFCF; background: #FFFFFF; color: #111111; text-decoration: none; font-size: 14px; font-weight: 500; }
-.cal-link:hover { border-color: #111111; }
+.cal-link { display: inline-flex; align-items: center; gap: 8px; min-height: 40px; padding: 8px 14px; border-radius: 999px; border: 1px solid var(--linea, #D9DCD8); background: #FFFFFF; color: var(--grafito, #1F2328); text-decoration: none; font-size: 14px; font-weight: 500; }
+.cal-link:hover { border-color: var(--grafito, #1F2328); }
 .cal-link b { font-weight: 700; }

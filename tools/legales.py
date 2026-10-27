@@ -67,12 +67,7 @@ for nombre, titulo, desc, cuerpo in [
     ("privacidad.html", "Política de privacidad", "Cómo trata boceto tus datos personales.", PRIVACIDAD),
     ("terminos.html", "Términos y condiciones", "Condiciones de uso y de contratación de las diplomaturas de boceto.", TERMINOS),
 ]:
-    (PUB / nombre).write_text(BASE.format(titulo=titulo, descripcion=desc, cuerpo=cuerpo), encoding="utf-8")
+    import sys; sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent)); import layout
+    (PUB / nombre).write_text(layout.migrar(BASE.format(titulo=titulo, descripcion=desc, cuerpo=cuerpo).replace('class="i-card legal"', 'class="i-card i-legal-txt"')), encoding="utf-8")
     print("ok", nombre)
 
-p = PUB / "index.html"; s = p.read_text(encoding="utf-8")
-if 'href="/privacidad.html"' not in s:
-    s = s.replace('<a href="/baja.html">Botón de baja de servicio</a>\n',
-                  '<a href="/baja.html">Botón de baja de servicio</a>\n<a href="/privacidad.html">Privacidad</a>\n<a href="/terminos.html">Términos</a>\n', 1)
-    p.write_text(s, encoding="utf-8")
-    print("pie actualizado")

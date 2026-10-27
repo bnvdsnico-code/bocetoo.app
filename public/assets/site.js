@@ -81,6 +81,20 @@
     }));
   }
 
+  /* ---------- Contenido de la diplomatura en celular (panel lateral) ---------- */
+  const tocBtn = document.querySelector("[data-toc]");
+  if (tocBtn) {
+    const velo = document.querySelector(".c-velo");
+    const abrir = (on) => {
+      document.body.classList.toggle("toc-open", on); tocBtn.setAttribute("aria-expanded", String(on));
+      if (velo) velo.hidden = !on;
+      if (on) { const cur = document.querySelector('.c-side [aria-current="page"]'); if (cur) cur.scrollIntoView({ block: "center" }); }
+    };
+    tocBtn.addEventListener("click", () => abrir(!document.body.classList.contains("toc-open")));
+    $$("[data-toc-cerrar]").forEach((x) => x.addEventListener("click", () => { abrir(false); tocBtn.focus(); }));
+    document.addEventListener("keydown", (e) => { if (e.key === "Escape" && document.body.classList.contains("toc-open")) { abrir(false); tocBtn.focus(); } });
+  }
+
   /* ---------- Cuestionarios de las clases ---------- */
   $$("[data-quiz]").forEach((quiz) => {
     const okFb = quiz.querySelector(".fb.ok"), noFb = quiz.querySelector(".fb.no");
@@ -108,7 +122,9 @@
       $$("[data-complete]").forEach((b) => {
         const on = done.has(b.dataset.complete);
         b.setAttribute("aria-pressed", String(on));
-        b.textContent = on ? "✓ Clase completada" : "Marcar clase como completada";
+        b.textContent = on ? "Clase completada" : "Marcar clase como completada";
+        const sig = document.querySelector(".pager .next");
+        if (sig && b.closest(".cierre")) sig.classList.toggle("listo", on);
       });
       const cont = document.querySelector("[data-continue]");
       if (cont && done.size) {
@@ -136,7 +152,7 @@
       p.hidden = false;
       p.textContent = `✓ ${e.e ? "Entregada" : "Guardada"} el ${fechaCorta(e.fecha)}` + (e.corregir ? ` · ${e.corregir} ${e.corregir === 1 ? "punto" : "puntos"} para corregir` : e.corregir === 0 ? " · sin correcciones" : "");
       const a = p.previousElementSibling;
-      if (a && a.tagName === "A") a.textContent = e.e ? "Ver o mejorar la entrega →" : "Seguir la práctica en el Bocetador →";
+      if (a && a.tagName === "A") a.textContent = e.e ? "Ver o mejorar la entrega" : "Seguir la práctica en el Bocetador";
     });
   };
   paintEntregas();

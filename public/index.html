@@ -6,13 +6,9 @@
 <title>boceto · Diplomaturas de diseño online: Interiores, Industrial, Gráfico e Indumentaria</title>
 <meta name="description" content="Escuela de diseño online en Argentina. Diplomaturas de 16 semanas en Interiores y Mobiliario, Industrial, Gráfico e Indumentaria, con asistente de IA y bocetador. Primera clase gratis.">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
-<style>
-body{margin:0;background:#FFFFFF}
-a{color:#111111}a:hover{color:#444444}
-</style>
-<link rel="stylesheet" href="/assets/site.css">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/base.css">
+<link rel="stylesheet" href="/assets/home.css">
 <!-- seo -->
 <link rel="canonical" href="https://bocetoo.app/">
 <meta property="og:site_name" content="boceto">
@@ -31,277 +27,196 @@ a{color:#111111}a:hover{color:#444444}
 <!-- /seo -->
 </head>
 <body>
-<div class="consumidor-bar" style="background:#111111;color:#FFFFFF;font-family:Inter,system-ui,sans-serif;font-size:13px;display:flex;flex-wrap:wrap;justify-content:center;gap:4px 20px;padding:8px 16px"><a href="/arrepentimiento.html" style="color:#FFFFFF;font-weight:600;min-height:28px;display:inline-flex;align-items:center">Botón de arrepentimiento</a><a href="/baja.html" style="color:#FFFFFF;font-weight:600;min-height:28px;display:inline-flex;align-items:center">Botón de baja de servicio</a></div>
-<div style="font-family: Inter, system-ui, sans-serif; color: #111111; background: #FFFFFF; width: 100%; min-height: 100vh">
-
-<header class="site-header" style="max-width: 1240px; margin: 0 auto; padding: 24px 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px">
-<a href="#inicio" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: #111111">
-<span aria-hidden="true" style="display: grid; grid-template-columns: repeat(2, 12px); gap: 3px">
-<span style="width: 12px; height: 12px; background: #C2410C; border-radius: 3px"></span>
-<span style="width: 12px; height: 12px; background: #1D4ED8; border-radius: 50%"></span>
-<span style="width: 12px; height: 12px; background: #6D28D9; border-radius: 50%"></span>
-<span style="width: 12px; height: 12px; background: #BE185D; border-radius: 3px"></span>
-</span>
-<span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 24px; letter-spacing: -0.02em">boceto</span>
-</a>
-<nav aria-label="Principal" style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px 28px; font-size: 15px; font-weight: 500">
-<a href="#disciplinas" style="text-decoration: none">Disciplinas</a>
-<a href="#cursos" style="text-decoration: none">Diplomaturas</a>
-<a href="#como-funciona" style="text-decoration: none">Cómo funciona</a>
-<a href="#planes" style="text-decoration: none">Planes</a>
-<a href="/bocetador/" style="text-decoration: none">Bocetador</a>
-</nav>
-<div style="display: flex; gap: 10px; align-items: center">
-<a href="/acceso.html?volver=/panel.html" style="text-decoration: none; font-size: 15px; font-weight: 500; padding: 12px 16px; min-height: 44px; box-sizing: border-box; display: inline-flex; align-items: center">Ingresar</a>
-<a href="#planes" style="text-decoration: none; font-size: 15px; font-weight: 600; padding: 12px 20px; min-height: 44px; box-sizing: border-box; display: inline-flex; align-items: center; background: #111111; color: #FFFFFF; border-radius: 999px">Empezar gratis</a>
+<!--s-head-->
+<div class="s-util"><div class="wrap"><a href="/arrepentimiento.html">Botón de arrepentimiento</a><a href="/baja.html">Botón de baja de servicio</a></div></div>
+<header class="s-head"><div class="wrap s-head-in">
+<a class="s-logo" href="/" aria-label="boceto, inicio"><span class="marks" aria-hidden="true"><i></i><i></i><i></i><i></i></span>boceto</a>
+<nav class="s-nav" id="s-nav" aria-label="Principal"><a href="/#diplomaturas">Diplomaturas</a><a href="/#como-se-estudia">Cómo se estudia</a><a href="/bocetador/">Bocetador</a><a href="/#planes">Planes</a></nav>
+<div class="s-acc"><a class="btn btn-quiet btn-s" href="/acceso.html?volver=/panel.html" data-anon>Ingresar</a><a class="btn btn-ink btn-s" href="/#diplomaturas" data-anon>Probar gratis</a><a class="s-me" href="/panel.html" data-user hidden><span class="s-av" aria-hidden="true"></span><span class="s-me-t">Mi panel</span></a></div>
+<button class="s-burger" type="button" aria-expanded="false" aria-controls="s-nav"><span></span><span class="sr">Menú</span></button>
+</div></header>
+<!--/s-head-->
+<main id="contenido">
+<section class="hero">
+<div class="wrap hero-in">
+<div class="hero-txt">
+<h1 class="t-display">Aprendé a diseñar espacios, objetos, marcas y ropa.</h1>
+<p class="t-lead">Diplomaturas online de Interiores y Mobiliario, Industrial, Gráfico e Indumentaria. Una hora por día, dibujando desde la primera clase, con un asistente que corrige tu trabajo.</p>
+<div class="hero-acc"><a class="btn btn-ink btn-l" href="#diplomaturas">Probar una clase gratis</a><a class="btn btn-l" href="#planes">Ver planes</a></div>
+<dl class="hero-datos"><div><dt>Duración</dt><dd>16 semanas</dd></div><div><dt>Dedicación</dt><dd>1 hora por día</dd></div><div><dt>Desde</dt><dd>$63.000 por mes</dd></div></dl>
 </div>
-</header>
-
-<section id="inicio" style="max-width: 1240px; margin: 0 auto; padding: 56px 24px 88px; display: flex; flex-wrap: wrap; gap: 56px; align-items: center">
-<div style="flex: 1 1 480px; min-width: 0; display: flex; flex-direction: column; gap: 28px">
-<p style="margin: 0; font-size: 14px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #555555">Escuela de diseño online</p>
-<h1 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(44px, 6vw, 84px); line-height: 0.98; letter-spacing: -0.035em">Aprendé a diseñar espacios, objetos, marcas y ropa.</h1>
-<p style="margin: 0; font-size: 19px; line-height: 1.55; color: #3A3A3A; max-width: 520px">Diplomaturas prácticas de Diseño de Interiores y Mobiliario, Industrial, Gráfico e Indumentaria. Lecciones cortas, ejercicios reales y un asistente de IA que responde tus dudas a cualquier hora.</p>
-<div style="display: flex; flex-wrap: wrap; gap: 12px">
-<a href="#cursos" style="text-decoration: none; font-size: 16px; font-weight: 600; padding: 16px 28px; min-height: 52px; box-sizing: border-box; display: inline-flex; align-items: center; background: #111111; color: #FFFFFF; border-radius: 999px">Ver diplomaturas</a>
-<a href="#como-funciona" style="text-decoration: none; font-size: 16px; font-weight: 600; padding: 16px 28px; min-height: 52px; box-sizing: border-box; display: inline-flex; align-items: center; border: 1.5px solid #111111; border-radius: 999px">Cómo funciona</a>
+<figure class="lamina" aria-labelledby="lamina-cap">
+<div class="lamina-tabs" role="tablist" aria-label="Elegí una disciplina">
+<button role="tab" class="d-interiores" aria-selected="true" data-lamina="interiores">Interiores</button><button role="tab" class="d-industrial" aria-selected="false" data-lamina="industrial">Industrial</button><button role="tab" class="d-grafico" aria-selected="false" data-lamina="grafico">Gráfico</button><button role="tab" class="d-indumentaria" aria-selected="false" data-lamina="indumentaria">Indumentaria</button>
 </div>
-</div>
-<div style="flex: 1 1 440px; min-width: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px">
-<div style="background: #C2410C; color: #FFFFFF; border-radius: 28px; aspect-ratio: 1 / 1; padding: 22px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between">
-<svg aria-hidden="true" viewBox="0 0 64 64" width="72" height="72" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="16" y="8" width="28" height="24" rx="4"></rect><path d="M12 36h40v6H12z"></path><path d="M16 42v14M48 42v14M16 32v4M44 32v4"></path></svg>
-<span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 20px; line-height: 1.1">Interiores y Mobiliario</span>
-</div>
-<div style="background: #1D4ED8; color: #FFFFFF; border-radius: 50% 50% 28px 28px; aspect-ratio: 1 / 1; padding: 22px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between; align-items: flex-start">
-<svg aria-hidden="true" viewBox="0 0 64 64" width="72" height="72" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="20" cy="54" r="0.5"></circle><path d="M10 56h22"></path><path d="M20 56L30 30L44 20"></path><circle cx="30" cy="30" r="3"></circle><path d="M40 12l14 10-8 8-14-10z"></path><path d="M46 30l-3 6"></path></svg>
-<span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 20px; line-height: 1.1">Diseño Industrial</span>
-</div>
-<div style="background: #6D28D9; color: #FFFFFF; border-radius: 28px 28px 50% 28px; aspect-ratio: 1 / 1; padding: 22px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between">
-<svg aria-hidden="true" viewBox="0 0 64 64" width="72" height="72" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 48C20 10 44 54 56 16"></path><rect x="5" y="45" width="6" height="6"></rect><rect x="53" y="13" width="6" height="6"></rect><path d="M8 48L22 22M56 16L42 42"></path><circle cx="22" cy="22" r="2.5"></circle><circle cx="42" cy="42" r="2.5"></circle></svg>
-<span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 20px; line-height: 1.1">Diseño Gráfico</span>
-</div>
-<div style="background: #BE185D; color: #FFFFFF; border-radius: 28px; aspect-ratio: 1 / 1; padding: 22px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between">
-<svg aria-hidden="true" viewBox="0 0 64 64" width="72" height="72" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M32 6a4 4 0 1 1 4 4c-2 0-4 1.5-4 4"></path><path d="M32 14L8 24h48z"></path><path d="M24 24l-6 34h28l-6-34"></path><path d="M24 24c2 6 14 6 16 0"></path></svg>
-<span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 20px; line-height: 1.1">Diseño de Indumentaria</span>
-</div>
-</div>
-</section>
-
-<section id="disciplinas" style="background: #F3F3F1; padding: 88px 24px">
-<div style="max-width: 1240px; margin: 0 auto; display: flex; flex-direction: column; gap: 40px">
-<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 16px">
-<h2 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(34px, 4vw, 52px); letter-spacing: -0.03em; line-height: 1.02; max-width: 640px">Cuatro disciplinas, una misma forma de aprender</h2>
-<p style="margin: 0; font-size: 17px; line-height: 1.55; color: #3A3A3A; max-width: 420px">Cada área tiene su color, su diplomatura y proyectos finales pensados para tu portfolio.</p>
-</div>
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px">
-<article style="background: #FFFFFF; border-radius: 24px; padding: 28px; display: flex; flex-direction: column; gap: 16px; border-top: 8px solid #C2410C">
-<h3 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 24px; line-height: 1.15">Interiores y Mobiliario</h3>
-<p style="margin: 0; font-size: 16px; line-height: 1.55; color: #3A3A3A">Planos, circulación, iluminación, materiales y diseño de muebles a medida.</p>
-<ul style="margin: 0; padding-left: 18px; font-size: 15px; line-height: 1.8; color: #3A3A3A"><li>Dibujo técnico y planta</li><li>Color y materialidad</li><li>Mobiliario: del boceto al despiece</li></ul>
-<a href="/cursos/interiores.html" style="margin-top: auto; font-weight: 600; font-size: 15px; color: #9A3412; min-height: 44px; display: inline-flex; align-items: center">Ver ruta de Interiores →</a>
-</article>
-<article style="background: #FFFFFF; border-radius: 24px; padding: 28px; display: flex; flex-direction: column; gap: 16px; border-top: 8px solid #1D4ED8">
-<h3 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 24px; line-height: 1.15">Diseño Industrial</h3>
-<p style="margin: 0; font-size: 16px; line-height: 1.55; color: #3A3A3A">Productos que se pueden fabricar: ergonomía, procesos productivos y prototipado.</p>
-<ul style="margin: 0; padding-left: 18px; font-size: 15px; line-height: 1.8; color: #3A3A3A"><li>Bocetado de producto</li><li>Modelado 3D y render</li><li>Materiales y procesos</li></ul>
-<a href="/cursos/industrial.html" style="margin-top: auto; font-weight: 600; font-size: 15px; color: #1D4ED8; min-height: 44px; display: inline-flex; align-items: center">Ver ruta de Industrial →</a>
-</article>
-<article style="background: #FFFFFF; border-radius: 24px; padding: 28px; display: flex; flex-direction: column; gap: 16px; border-top: 8px solid #6D28D9">
-<h3 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 24px; line-height: 1.15">Diseño Gráfico</h3>
-<p style="margin: 0; font-size: 16px; line-height: 1.55; color: #3A3A3A">Identidad visual, tipografía, composición y piezas para redes, editorial y packaging.</p>
-<ul style="margin: 0; padding-left: 18px; font-size: 15px; line-height: 1.8; color: #3A3A3A"><li>Fundamentos de composición</li><li>Tipografía aplicada</li><li>Identidad de marca</li></ul>
-<a href="/cursos/grafico.html" style="margin-top: auto; font-weight: 600; font-size: 15px; color: #6D28D9; min-height: 44px; display: inline-flex; align-items: center">Ver ruta de Gráfico →</a>
-</article>
-<article style="background: #FFFFFF; border-radius: 24px; padding: 28px; display: flex; flex-direction: column; gap: 16px; border-top: 8px solid #BE185D">
-<h3 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 24px; line-height: 1.15">Diseño de Indumentaria</h3>
-<p style="margin: 0; font-size: 16px; line-height: 1.55; color: #3A3A3A">Figurín, moldería, textiles y armado de colecciones con identidad propia.</p>
-<ul style="margin: 0; padding-left: 18px; font-size: 15px; line-height: 1.8; color: #3A3A3A"><li>Figurín de moda</li><li>Moldería base</li><li>Colección cápsula</li></ul>
-<a href="/cursos/indumentaria.html" style="margin-top: auto; font-weight: 600; font-size: 15px; color: #BE185D; min-height: 44px; display: inline-flex; align-items: center">Ver ruta de Indumentaria →</a>
-</article>
-</div>
-</div>
-</section>
-
-<section id="cursos" style="max-width: 1240px; margin: 0 auto; padding: 88px 24px; display: flex; flex-direction: column; gap: 40px">
-<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 16px">
-<h2 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(34px, 4vw, 52px); letter-spacing: -0.03em; line-height: 1.02">Diplomaturas destacadas</h2>
-<a href="#cursos" style="font-weight: 600; font-size: 16px; min-height: 44px; display: inline-flex; align-items: center">Ver todo el catálogo →</a>
-</div>
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px">
-<article style="display: flex; flex-direction: column; gap: 14px">
-<figure style="margin: 0; display: flex; flex-direction: column; gap: 6px"><img src="assets/fotos/card-interiores.webp" srcset="assets/fotos/card-interiores-640.webp 640w, assets/fotos/card-interiores.webp 1200w" sizes="(max-width: 700px) 100vw, 300px" width="1200" height="900" loading="lazy" alt="Revista de diseño abierta y una taza sobre una mesa de cajón de madera, frente a un sillón claro con almohadones azules" style="display: block; width: 100%; aspect-ratio: 4 / 3; height: auto; object-fit: cover; border-radius: 20px"><figcaption style="font-size: 12px; color: #6B6B6B">Foto: Karolina Grabowska</figcaption></figure>
-<span style="align-self: flex-start; font-size: 13px; font-weight: 600; color: #FFFFFF; background: #C2410C; padding: 5px 12px; border-radius: 999px">Interiores</span>
-<h3 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 21px; line-height: 1.2"><a href="/cursos/interiores.html" style="text-decoration: none">Interiores y Mobiliario: del plano al proyecto</a></h3>
-<p style="margin: 0; font-size: 15px; color: #555555">16 semanas · 80 clases · Nivel inicial</p>
-</article>
-<article style="display: flex; flex-direction: column; gap: 14px">
-<figure style="margin: 0; display: flex; flex-direction: column; gap: 6px"><img src="assets/fotos/card-industrial.webp" srcset="assets/fotos/card-industrial-640.webp 640w, assets/fotos/card-industrial.webp 1200w" sizes="(max-width: 700px) 100vw, 300px" width="1200" height="900" loading="lazy" alt="Pantalla de computadora con un modelo 3D de muebles de madera, mesas de luz y un rack con patas, en un programa de modelado" style="display: block; width: 100%; aspect-ratio: 4 / 3; height: auto; object-fit: cover; border-radius: 20px"><figcaption style="font-size: 12px; color: #6B6B6B">Foto: cottonbro studio</figcaption></figure>
-<span style="align-self: flex-start; font-size: 13px; font-weight: 600; color: #FFFFFF; background: #1D4ED8; padding: 5px 12px; border-radius: 999px">Industrial</span>
-<h3 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 21px; line-height: 1.2"><a href="/cursos/industrial.html" style="text-decoration: none">Diseño Industrial: del boceto al prototipo</a></h3>
-<p style="margin: 0; font-size: 15px; color: #555555">16 semanas · 80 clases · Nivel inicial</p>
-</article>
-<article style="display: flex; flex-direction: column; gap: 14px">
-<figure style="margin: 0; display: flex; flex-direction: column; gap: 6px"><img src="assets/fotos/card-grafico.webp" srcset="assets/fotos/card-grafico-640.webp 640w, assets/fotos/card-grafico.webp 1200w" sizes="(max-width: 700px) 100vw, 300px" width="1200" height="900" loading="lazy" alt="Manos que eligen muestras de color impresas sobre una mesa blanca: tarjetas verde, terracota, violeta y beige" style="display: block; width: 100%; aspect-ratio: 4 / 3; height: auto; object-fit: cover; border-radius: 20px"><figcaption style="font-size: 12px; color: #6B6B6B">Foto: Noemi Jimenez</figcaption></figure>
-<span style="align-self: flex-start; font-size: 13px; font-weight: 600; color: #FFFFFF; background: #6D28D9; padding: 5px 12px; border-radius: 999px">Gráfico</span>
-<h3 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 21px; line-height: 1.2"><a href="/cursos/grafico.html" style="text-decoration: none">Diseño Gráfico: de la idea a la identidad</a></h3>
-<p style="margin: 0; font-size: 15px; color: #555555">16 semanas · 80 clases · Nivel inicial</p>
-</article>
-<article style="display: flex; flex-direction: column; gap: 14px">
-<figure style="margin: 0; display: flex; flex-direction: column; gap: 6px"><img src="assets/fotos/card-indumentaria.webp" srcset="assets/fotos/card-indumentaria-640.webp 640w, assets/fotos/card-indumentaria.webp 1200w" sizes="(max-width: 700px) 100vw, 300px" width="1200" height="900" loading="lazy" alt="Figurines dibujados a lápiz y coloreados en azul, junto a una cinta métrica, un alfiletero, una tijera y una caja de botones rojos" style="display: block; width: 100%; aspect-ratio: 4 / 3; height: auto; object-fit: cover; border-radius: 20px"><figcaption style="font-size: 12px; color: #6B6B6B">Foto: Jane Blaze</figcaption></figure>
-<span style="align-self: flex-start; font-size: 13px; font-weight: 600; color: #FFFFFF; background: #BE185D; padding: 5px 12px; border-radius: 999px">Indumentaria</span>
-<h3 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 21px; line-height: 1.2"><a href="/cursos/indumentaria.html" style="text-decoration: none">Diseño de Indumentaria: del figurín a la colección</a></h3>
-<p style="margin: 0; font-size: 15px; color: #555555">16 semanas · 80 clases · Nivel inicial</p>
-</article>
-</div>
-</section>
-
-<section id="como-funciona" style="background: #111111; color: #FFFFFF; padding: 88px 24px">
-<div style="max-width: 1240px; margin: 0 auto; display: flex; flex-direction: column; gap: 48px">
-<h2 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(34px, 4vw, 52px); letter-spacing: -0.03em; line-height: 1.02; max-width: 680px">Aprendés haciendo, no mirando</h2>
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 32px">
-<div style="display: flex; flex-direction: column; gap: 14px; border-top: 1px solid #555555; padding-top: 24px">
-<span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 44px; color: #FDBA8C">01</span>
-<h3 style="margin: 0; font-size: 21px; font-weight: 600">Lecciones cortas</h3>
-<p style="margin: 0; font-size: 16px; line-height: 1.6; color: #CFCFCF">Lecturas y videos de 10 a 15 minutos, con láminas, diagramas y ejemplos visuales.</p>
-</div>
-<div style="display: flex; flex-direction: column; gap: 14px; border-top: 1px solid #555555; padding-top: 24px">
-<span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 44px; color: #93B4FA">02</span>
-<h3 style="margin: 0; font-size: 21px; font-weight: 600">Ejercicios con entrega</h3>
-<p style="margin: 0; font-size: 16px; line-height: 1.6; color: #CFCFCF">Cada módulo cierra con una consigna práctica y cuestionarios. Subís tu trabajo y recibís devolución al instante.</p>
-</div>
-<div style="display: flex; flex-direction: column; gap: 14px; border-top: 1px solid #555555; padding-top: 24px">
-<span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 44px; color: #C4A8FA">03</span>
-<h3 style="margin: 0; font-size: 21px; font-weight: 600">Portfolio y certificado</h3>
-<p style="margin: 0; font-size: 16px; line-height: 1.6; color: #CFCFCF">Tus entregas forman un portfolio descargable y al terminar obtenés tu certificado.</p>
-</div>
-<div style="display: flex; flex-direction: column; gap: 14px; border-top: 1px solid #555555; padding-top: 24px">
-<span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 44px; color: #F9A8D4">04</span>
-<h3 style="margin: 0; font-size: 21px; font-weight: 600">Asistente de IA, sin horarios</h3>
-<p style="margin: 0; font-size: 16px; line-height: 1.6; color: #CFCFCF">No hay profesor: un asistente que conoce toda la diplomatura te explica, te da ejemplos y revisa tus ejercicios cuando lo necesites.</p>
-</div>
-</div>
-</div>
-</section>
-
-<section id="bocetador" style="max-width: 1240px; margin: 0 auto; padding: 96px 24px 8px; display: flex; flex-wrap: wrap; gap: 56px; align-items: center">
-<div style="flex: 1 1 420px; min-width: 0; display: flex; flex-direction: column; gap: 22px">
-<p style="margin: 0; font-size: 14px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #555555">Bocetador online</p>
-<h2 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(34px, 4vw, 52px); letter-spacing: -0.03em; line-height: 1.02">Dibujá en la compu, en la tableta o en papel</h2>
-<p style="margin: 0; font-size: 18px; line-height: 1.6; color: #3A3A3A; max-width: 540px">Un programa de dibujo asistido pensado para cada carrera. Funciona en el navegador, sin instalar nada, con mouse, con el dedo o con lápiz.</p>
-<ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 12px; font-size: 16px; line-height: 1.5">
-<li style="display: flex; gap: 12px; align-items: baseline"><span aria-hidden="true" style="width: 10px; height: 10px; border-radius: 3px; background: #C2410C; flex: none"></span><span><strong>Interiores:</strong> cuadrícula a escala y cotas con medidas reales.</span></li>
-<li style="display: flex; gap: 12px; align-items: baseline"><span aria-hidden="true" style="width: 10px; height: 10px; border-radius: 50%; background: #1D4ED8; flex: none"></span><span><strong>Industrial:</strong> perspectiva de dos puntos de fuga que guía cada línea.</span></li>
-<li style="display: flex; gap: 12px; align-items: baseline"><span aria-hidden="true" style="width: 10px; height: 10px; border-radius: 50%; background: #6D28D9; flex: none"></span><span><strong>Gráfico:</strong> hoja A4 con 12 columnas y simetría para construir marcas.</span></li>
-<li style="display: flex; gap: 12px; align-items: baseline"><span aria-hidden="true" style="width: 10px; height: 10px; border-radius: 3px; background: #BE185D; flex: none"></span><span><strong>Indumentaria:</strong> figurín de 9 cabezas para trabajar proporciones.</span></li>
-</ul>
-<div style="display: flex; gap: 14px; align-items: flex-start; background: #F3F3F1; border-radius: 18px; padding: 18px 20px">
-<svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex: none"><path d="M4 8h3l2-3h6l2 3h3v11H4z"></path><circle cx="12" cy="13" r="3.5"></circle></svg>
-<p style="margin: 0; font-size: 16px; line-height: 1.55"><strong>¿Bocetás en papel?</strong> Sacale una foto a tu croquis, subila y el asistente de IA lo corrige con marcas numeradas sobre el dibujo.</p>
-</div>
-<div style="display: flex; flex-wrap: wrap; gap: 12px">
-<a href="/bocetador/" style="text-decoration: none; font-size: 16px; font-weight: 600; padding: 16px 28px; min-height: 52px; box-sizing: border-box; display: inline-flex; align-items: center; background: #111111; color: #FFFFFF; border-radius: 999px">Abrir el Bocetador</a>
-</div>
-</div>
-
-<figure style="flex: 1 1 520px; min-width: 0; margin: 0; border: 1.5px solid #E2E2E2; border-radius: 24px; overflow: hidden; background: #FFFFFF; box-shadow: 0 24px 60px rgba(17, 17, 17, 0.08)">
-<div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; padding: 12px 16px; border-bottom: 1px solid #E2E2E2">
-<span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 17px">boceto <span style="font-family: Inter, sans-serif; font-weight: 500; font-size: 13px; color: #555555">Bocetador</span></span>
-<span style="display: flex; gap: 4px; padding: 3px; background: #F3F3F1; border-radius: 999px; font-size: 12px">
-<span style="padding: 5px 10px; border-radius: 999px; color: #555555">Interiores</span>
-<span style="padding: 5px 10px; border-radius: 999px; background: #FFFFFF; font-weight: 600; box-shadow: 0 1px 3px rgba(0,0,0,0.12)">Industrial</span>
-<span style="padding: 5px 10px; border-radius: 999px; color: #555555">Gráfico</span>
-<span style="padding: 5px 10px; border-radius: 999px; color: #555555">Indumentaria</span>
-</span>
-</div>
-<div style="display: flex">
-<div aria-hidden="true" style="width: 48px; flex: none; border-right: 1px solid #E2E2E2; padding: 12px 0; display: flex; flex-direction: column; align-items: center; gap: 10px">
-<span style="width: 30px; height: 30px; border-radius: 9px; background: #F3F3F1"></span>
-<span style="width: 30px; height: 30px; border-radius: 9px; background: #1D4ED8"></span>
-<span style="width: 30px; height: 30px; border-radius: 9px; background: #F3F3F1"></span>
-<span style="width: 30px; height: 30px; border-radius: 9px; background: #F3F3F1"></span>
-<span style="width: 30px; height: 30px; border-radius: 9px; background: #F3F3F1"></span>
-<span style="width: 18px; height: 18px; border-radius: 50%; background: #1F2328; margin-top: 6px"></span>
-</div>
-<svg role="img" aria-label="Captura del Bocetador: una caja dibujada en perspectiva de dos puntos de fuga, con dos marcas de corrección del asistente" viewBox="0 0 560 360" width="100%" style="display: block; background: #FCFCFA; min-width: 0; flex: 1 1 auto" fill="none" stroke-linecap="round" stroke-linejoin="round">
-<path d="M10 100L560 40M10 100L560 160M10 100L560 280M10 100L560 400M550 100L0 40M550 100L0 160M550 100L0 280M550 100L0 400" stroke="#1D4ED8" stroke-width="0.8" opacity="0.18"></path>
-<path d="M0 100H560" stroke="#1D4ED8" stroke-width="1.4" opacity="0.55"></path>
-<text x="22" y="92" font-family="Inter, sans-serif" font-size="11" font-weight="600" fill="#1D4ED8" opacity="0.8">Línea de horizonte</text>
-<circle cx="10" cy="100" r="6" fill="#FFFFFF" stroke="#1D4ED8" stroke-width="2"></circle>
-<circle cx="550" cy="100" r="6" fill="#FFFFFF" stroke="#1D4ED8" stroke-width="2"></circle>
-<path d="M280 150L10 100M280 150L550 100M280 300L10 100M280 300L550 100" stroke="#1D4ED8" stroke-width="1" opacity="0.4"></path>
-<path d="M280 150V300M170 130V244M410 126V250" stroke="#1F2328" stroke-width="3"></path>
-<path d="M280 150L170 130M280 150L410 126M280 300L170 244M280 300L410 250" stroke="#1F2328" stroke-width="3"></path>
-<path d="M170 130L300 112M410 126L300 112" stroke="#1F2328" stroke-width="2"></path>
-<path d="M292 292C330 280 370 268 402 256" stroke="#8B939C" stroke-width="12" opacity="0.32"></path>
-<circle cx="214" cy="190" r="13" fill="#1D4ED8" stroke="#FFFFFF" stroke-width="3"></circle>
-<text x="214" y="195" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#FFFFFF">1</text>
-<circle cx="410" cy="188" r="22" stroke="#C2410C" stroke-width="2.5"></circle>
-<circle cx="410" cy="188" r="13" fill="#C2410C" stroke="#FFFFFF" stroke-width="3"></circle>
-<text x="410" y="193" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#FFFFFF">2</text>
-<rect x="320" y="300" width="222" height="46" rx="12" fill="#FFFFFF" stroke="#111111" stroke-width="1.5"></rect>
-<text x="334" y="318" font-family="Inter, sans-serif" font-size="10" font-weight="700" letter-spacing="0.6" fill="#9A3412">2 · A CORREGIR</text>
-<text x="334" y="335" font-family="Inter, sans-serif" font-size="12" font-weight="600" fill="#111111">La arista derecha no va a la fuga</text>
+<div class="lamina-hoja grilla">
+<svg class="dib d-interiores" data-dib="interiores" viewBox="0 0 560 420" role="img" aria-label="Planta de un living acotada en 4 por 3,20 metros, con una corrección del asistente sobre el paso entre la mesa y la butaca">
+<g class="trazo" stroke="var(--grafito)" fill="none" stroke-linecap="round" stroke-linejoin="round">
+<path pathLength="1" stroke-width="9" d="M150 372H96V64H470V372H210"/>
+<path pathLength="1" stroke-width="2" d="M210 372V318"/><path pathLength="1" stroke-width="1.6" stroke-dasharray="5 5" d="M210 318A54 54 0 0 0 156 372"/>
+<path pathLength="1" stroke-width="2.4" d="M234 296h184v54H234z M234 338h184 M295 296v42 M357 296v42"/>
+<path pathLength="1" stroke-width="2.4" d="M250 214h112v52H250z"/>
+<path pathLength="1" stroke-width="2.4" d="M404 196h58v62h-58z M404 210h58"/>
+</g>
+<g class="cota" stroke="var(--grafito-2)" stroke-width="1.2" fill="none"><path pathLength="1" d="M96 34H470 M90 40l12-12 M464 40l12-12 M96 26v16 M470 26v16"/><path pathLength="1" d="M58 64V372 M52 70l12-12 M52 378l12-12 M50 64h16 M50 372h16"/></g>
+<text class="cota-t" x="283" y="24" text-anchor="middle">4,00 m</text><text class="cota-t" x="48" y="222" text-anchor="middle" transform="rotate(-90 48 222)">3,20 m</text>
+<path class="circ" d="M186 362C214 300 236 286 300 282C364 278 383 268 383 232" stroke="var(--interiores)" stroke-width="2" stroke-dasharray="1 7" stroke-linecap="round" fill="none"/>
+<g class="marca"><circle cx="383" cy="232" r="22" fill="none" stroke="var(--interiores)" stroke-width="2"/><circle cx="383" cy="232" r="13" fill="var(--interiores)"/><text x="383" y="237" text-anchor="middle" class="marca-n">1</text></g>
 </svg>
+<svg class="dib d-industrial" data-dib="industrial" viewBox="0 0 560 420" role="img" aria-label="Caja dibujada en perspectiva con dos puntos de fuga, con una corrección del asistente sobre una arista" hidden>
+<path class="guia" pathLength="1" d="M20 120H540" stroke="var(--industrial)" stroke-width="1.4" opacity=".55" fill="none"/>
+<text class="guia-t" x="34" y="110">Línea de horizonte</text>
+<g class="guia" stroke="var(--industrial)" stroke-width="1" opacity=".35" fill="none"><path pathLength="1" d="M280 172L20 120M280 172L540 120M280 330L20 120M280 330L540 120"/></g>
+<circle cx="20" cy="120" r="6" fill="#FFF" stroke="var(--industrial)" stroke-width="2"/><circle cx="540" cy="120" r="6" fill="#FFF" stroke="var(--industrial)" stroke-width="2"/>
+<g class="trazo" stroke="var(--grafito)" stroke-linecap="round" fill="none"><path pathLength="1" stroke-width="3" d="M280 172V330 M164 151V268 M410 146V276"/><path pathLength="1" stroke-width="3" d="M280 172L164 151 M280 172L410 146 M280 330L164 268 M280 330L410 276"/><path pathLength="1" stroke-width="2" d="M164 151L298 132 M410 146L298 132"/></g>
+<path class="sombra" d="M292 322C332 308 372 296 404 282" stroke="#8B939C" stroke-width="12" opacity=".3" fill="none" stroke-linecap="round"/>
+<g class="marca"><circle cx="410" cy="214" r="22" fill="none" stroke="var(--industrial)" stroke-width="2"/><circle cx="410" cy="214" r="13" fill="var(--industrial)"/><text x="410" y="219" text-anchor="middle" class="marca-n">1</text></g>
+</svg>
+<svg class="dib d-grafico" data-dib="grafico" viewBox="0 0 560 420" role="img" aria-label="Afiche con retícula de columnas y el isologo de un café, con una corrección del asistente sobre el titular" hidden>
+<rect x="160" y="28" width="240" height="364" fill="#FFF" stroke="var(--grafito-2)" stroke-width="1.2"/>
+<g class="guia" stroke="var(--grafico)" stroke-width="1" opacity=".35" fill="none"><path pathLength="1" d="M184 28V392M224 28V392M264 28V392M296 28V392M336 28V392M376 28V392M160 52H400M160 368H400"/></g>
+<g class="trazo" stroke="var(--grafito)" fill="none" stroke-linecap="round"><ellipse pathLength="1" cx="280" cy="128" rx="30" ry="42" transform="rotate(-28 280 128)" stroke-width="3"/><path pathLength="1" stroke-width="3" d="M291 90c-24 14 4 42-22 76"/></g>
+<g class="guia" stroke="var(--grafico)" stroke-width="1" stroke-dasharray="4 4" fill="none" opacity=".6"><circle pathLength="1" cx="280" cy="128" r="62"/></g>
+<text class="t-cafe" x="190" y="228">Molienda</text>
+<g fill="var(--grafito)" opacity=".2"><rect x="184" y="262" width="192" height="8" rx="2"/><rect x="184" y="280" width="176" height="8" rx="2"/><rect x="184" y="298" width="184" height="8" rx="2"/><rect x="184" y="330" width="72" height="8" rx="2"/></g>
+<g class="marca"><circle cx="146" cy="216" r="22" fill="none" stroke="var(--grafico)" stroke-width="2"/><circle cx="146" cy="216" r="13" fill="var(--grafico)"/><text x="146" y="221" text-anchor="middle" class="marca-n">1</text></g>
+</svg>
+<svg class="dib d-indumentaria" data-dib="indumentaria" viewBox="0 0 560 420" role="img" aria-label="Figurín de nueve cabezas con un vestido, con una corrección del asistente sobre la altura de la cintura" hidden>
+<g class="guia" stroke="var(--indumentaria)" stroke-width="1" opacity=".35" fill="none"><path pathLength="1" d="M180 24H380M180 66H380M180 108H380M180 150H380M180 192H380M180 234H380M180 276H380M180 318H380M180 360H380M180 402H380"/></g>
+<g class="nums"><text x="168" y="50">1</text><text x="168" y="92">2</text><text x="168" y="134">3</text><text x="168" y="176">4</text><text x="168" y="218">5</text><text x="168" y="260">6</text><text x="168" y="302">7</text><text x="168" y="344">8</text><text x="168" y="386">9</text></g>
+<g class="trazo" stroke="var(--grafito)" fill="none" stroke-linecap="round" stroke-linejoin="round"><ellipse pathLength="1" cx="280" cy="45" rx="15" ry="20" stroke-width="2.6"/><path pathLength="1" stroke-width="2.6" d="M274 64v12 M286 64v12 M246 84c10-6 58-6 68 0 M246 84l-12 70 M314 84l12 70"/><path pathLength="1" stroke-width="3" d="M256 88c6 22 6 44 2 66 M304 88c-6 22-6 44-2 66 M258 160C250 220 226 268 214 300H346C334 268 310 220 302 160"/><path pathLength="1" stroke-width="2.6" d="M262 300l-6 96 M298 300l6 96"/></g>
+<path class="cintura" d="M256 164H304" stroke="var(--indumentaria)" stroke-width="2" stroke-dasharray="3 4"/>
+<g class="marca"><circle cx="330" cy="150" r="22" fill="none" stroke="var(--indumentaria)" stroke-width="2"/><circle cx="330" cy="150" r="13" fill="var(--indumentaria)"/><text x="330" y="155" text-anchor="middle" class="marca-n">1</text></g>
+</svg>
+<p class="nota" aria-live="polite"><b>1</b> <span data-nota="interiores">Entre la mesa y la butaca quedan 44 cm. Para un recorrido principal dejá 90.</span><span data-nota="industrial" hidden>La arista derecha no va al punto de fuga: corregila antes de sombrear.</span><span data-nota="grafico" hidden>El titular se sale de la retícula: alinealo con la segunda columna.</span><span data-nota="indumentaria" hidden>La cintura cae en la cabeza 3: subila un poco para alargar la figura.</span></p>
 </div>
+<figcaption id="lamina-cap">Así corrige el asistente: marca el dibujo y explica qué cambiar. Probalo en el Bocetador.</figcaption>
 </figure>
-</section>
-
-<section id="planes" style="max-width: 1240px; margin: 0 auto; padding: 88px 24px; display: flex; flex-direction: column; gap: 40px">
-<h2 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(34px, 4vw, 52px); letter-spacing: -0.03em; line-height: 1.02">Planes</h2>
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px">
-<div style="border: 1.5px solid #DADADA; border-radius: 24px; padding: 32px; display: flex; flex-direction: column; gap: 18px">
-<h3 style="margin: 0; font-size: 20px; font-weight: 600">Tu diplomatura</h3>
-<p style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 44px">$63.000<span style="font-size: 18px; font-weight: 500"> / mes</span></p>
-<p style="margin: 0; font-size: 16px; line-height: 1.55; color: #3A3A3A">Una carrera, en 4 cuotas mensuales por suscripción. Al pagar la última, la diplomatura queda tuya para siempre.</p>
-<a href="/inscripcion.html?plan=diplomatura" style="margin-top: auto; text-decoration: none; text-align: center; font-weight: 600; padding: 14px; min-height: 48px; box-sizing: border-box; border: 1.5px solid #111111; border-radius: 999px">Elegir mi diplomatura</a>
-</div>
-<div style="background: #111111; color: #FFFFFF; border-radius: 24px; padding: 32px; display: flex; flex-direction: column; gap: 18px">
-<h3 style="margin: 0; font-size: 20px; font-weight: 600">Todas las diplomaturas</h3>
-<p style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 44px">$83.000<span style="font-size: 18px; font-weight: 500"> / mes</span></p>
-<p style="margin: 0; font-size: 16px; line-height: 1.55; color: #CFCFCF">Acceso a las cuatro diplomaturas y a las nuevas que se sumen, mientras sigas suscripto.</p>
-<a href="/inscripcion.html?plan=todas" style="margin-top: auto; text-decoration: none; text-align: center; font-weight: 600; padding: 14px; min-height: 48px; box-sizing: border-box; background: #FFFFFF; color: #111111; border-radius: 999px">Suscribirme</a>
-</div>
-<div style="border: 1.5px solid #DADADA; border-radius: 24px; padding: 32px; display: flex; flex-direction: column; gap: 18px">
-<h3 style="margin: 0; font-size: 20px; font-weight: 600">Instituciones</h3>
-<p style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 44px">Desde $175.000</p>
-<p style="margin: 0; font-size: 16px; line-height: 1.55; color: #3A3A3A">Por alumno y por diplomatura, desde 10 personas. Para escuelas, estudios y equipos.</p>
-<a href="#contacto" style="margin-top: auto; text-decoration: none; text-align: center; font-weight: 600; padding: 14px; min-height: 48px; box-sizing: border-box; border: 1.5px solid #111111; border-radius: 999px">Contactanos</a>
-</div>
-</div>
-<p style="margin: 0; font-size: 16px; line-height: 1.55; color: #3A3A3A"><strong>Matrícula única de $45.000.</strong> Se paga una sola vez, cuando te inscribís por primera vez, y vale para todas las diplomaturas y planes. Las cuotas se pagan por suscripción mensual, sin tarjeta de crédito: si se interrumpe el pago, se da de baja la inscripción. Podés probar la primera clase de cada diplomatura gratis: la matrícula se abona recién cuando decidís inscribirte.</p>
-</section>
-
-<section style="padding: 0 24px 88px">
-<div style="max-width: 1240px; margin: 0 auto; border-radius: 32px; padding: 64px 40px; box-sizing: border-box; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); overflow: hidden; position: relative; background: #111111">
-<div aria-hidden="true" style="height: 10px; background: #C2410C; position: absolute; left: 0; right: 75%; top: 0"></div>
-<div aria-hidden="true" style="height: 10px; background: #1D4ED8; position: absolute; left: 25%; right: 50%; top: 0"></div>
-<div aria-hidden="true" style="height: 10px; background: #6D28D9; position: absolute; left: 50%; right: 25%; top: 0"></div>
-<div aria-hidden="true" style="height: 10px; background: #BE185D; position: absolute; left: 75%; right: 0; top: 0"></div>
-<div style="grid-column: 1 / -1; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 24px; color: #FFFFFF">
-<h2 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(32px, 4vw, 56px); letter-spacing: -0.03em; line-height: 1.02; max-width: 760px">Tu próximo proyecto empieza con un boceto.</h2>
-<a href="#planes" style="text-decoration: none; font-size: 16px; font-weight: 600; padding: 16px 32px; min-height: 52px; box-sizing: border-box; display: inline-flex; align-items: center; background: #FFFFFF; color: #111111; border-radius: 999px">Empezar gratis</a>
-</div>
 </div>
 </section>
 
-<footer id="contacto" style="border-top: 1px solid #E2E2E2; padding: 40px 24px">
-<div style="max-width: 1240px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 24px; font-size: 14px; color: #555555">
-<span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 20px; color: #111111">boceto</span>
-<nav aria-label="Pie de página" style="display: flex; flex-wrap: wrap; gap: 8px 24px">
-<a href="#disciplinas">Disciplinas</a>
-<a href="#cursos">Diplomaturas</a>
-<a href="#planes">Planes</a>
-<a href="/bocetador/">Bocetador</a>
-<a href="/arrepentimiento.html">Botón de arrepentimiento</a>
-<a href="/baja.html">Botón de baja de servicio</a>
-<a href="/privacidad.html">Privacidad</a>
-<a href="/terminos.html">Términos</a>
-<a href="mailto:hola@bocetoo.app">hola@bocetoo.app</a>
-</nav>
+<section class="sec" id="diplomaturas" aria-labelledby="dip-t">
+<div class="wrap">
+<div class="sec-h"><h2 class="t-h2" id="dip-t">Cuatro diplomaturas, un proyecto real en cada una</h2><p class="t-lead">Cada una dura 16 semanas, tiene 80 clases y termina con un proyecto para tu portfolio. La primera clase es gratis.</p></div>
+<div class="dips">
+<article class="dip d-interiores">
+<a class="dip-foto" href="/cursos/interiores.html" tabindex="-1" aria-hidden="true"><img src="/assets/fotos/card-interiores.webp" srcset="/assets/fotos/card-interiores-640.webp 640w, /assets/fotos/card-interiores.webp 1200w" sizes="(max-width: 760px) 100vw, 560px" width="1200" height="900" loading="lazy" alt="Revista de diseño abierta y una taza sobre una mesa de cajón de madera, frente a un sillón claro con almohadones azules"></a>
+<div class="dip-txt">
+<span class="d-chip">Interiores</span>
+<h3 class="t-h3"><a href="/cursos/interiores.html">Interiores y Mobiliario: del plano al proyecto</a></h3>
+<p>Planos, recorridos, iluminación, materiales y muebles a medida, con tu propio living como hilo conductor.</p>
+<p class="dip-proy"><span>Proyecto final</span> El proyecto completo de un departamento</p>
+<div class="dip-acc"><a class="btn btn-ink btn-s" href="/cursos/interiores/semana-01/clase-1.html">Probar la clase 1</a><a class="btn btn-s" href="/cursos/interiores.html">Ver la diplomatura</a></div>
 </div>
-</footer>
+<p class="credito">Foto: Karolina Grabowska</p>
+</article>
+<article class="dip d-industrial">
+<a class="dip-foto" href="/cursos/industrial.html" tabindex="-1" aria-hidden="true"><img src="/assets/fotos/card-industrial.webp" srcset="/assets/fotos/card-industrial-640.webp 640w, /assets/fotos/card-industrial.webp 1200w" sizes="(max-width: 760px) 100vw, 560px" width="1200" height="900" loading="lazy" alt="Pantalla de computadora con un modelo 3D de muebles de madera, mesas de luz y un rack con patas, en un programa de modelado"></a>
+<div class="dip-txt">
+<span class="d-chip">Industrial</span>
+<h3 class="t-h3"><a href="/cursos/industrial.html">Diseño Industrial: del boceto al prototipo</a></h3>
+<p>Bocetado, usuarios, materiales y procesos, modelado y prototipo, con una lámpara de escritorio como hilo conductor.</p>
+<p class="dip-proy"><span>Proyecto final</span> Una lámpara de escritorio, del boceto al prototipo</p>
+<div class="dip-acc"><a class="btn btn-ink btn-s" href="/cursos/industrial/semana-01/clase-1.html">Probar la clase 1</a><a class="btn btn-s" href="/cursos/industrial.html">Ver la diplomatura</a></div>
+</div>
+<p class="credito">Foto: cottonbro studio</p>
+</article>
+<article class="dip d-grafico">
+<a class="dip-foto" href="/cursos/grafico.html" tabindex="-1" aria-hidden="true"><img src="/assets/fotos/card-grafico.webp" srcset="/assets/fotos/card-grafico-640.webp 640w, /assets/fotos/card-grafico.webp 1200w" sizes="(max-width: 760px) 100vw, 560px" width="1200" height="900" loading="lazy" alt="Manos que eligen muestras de color impresas sobre una mesa blanca: tarjetas verde, terracota, violeta y beige"></a>
+<div class="dip-txt">
+<span class="d-chip">Gráfico</span>
+<h3 class="t-h3"><a href="/cursos/grafico.html">Diseño Gráfico: de la idea a la identidad</a></h3>
+<p>Composición, tipografía, color e imagen, hasta la identidad visual completa de un emprendimiento.</p>
+<p class="dip-proy"><span>Proyecto final</span> La identidad completa de un emprendimiento</p>
+<div class="dip-acc"><a class="btn btn-ink btn-s" href="/cursos/grafico/semana-01/clase-1.html">Probar la clase 1</a><a class="btn btn-s" href="/cursos/grafico.html">Ver la diplomatura</a></div>
+</div>
+<p class="credito">Foto: Noemi Jimenez</p>
+</article>
+<article class="dip d-indumentaria">
+<a class="dip-foto" href="/cursos/indumentaria.html" tabindex="-1" aria-hidden="true"><img src="/assets/fotos/card-indumentaria.webp" srcset="/assets/fotos/card-indumentaria-640.webp 640w, /assets/fotos/card-indumentaria.webp 1200w" sizes="(max-width: 760px) 100vw, 560px" width="1200" height="900" loading="lazy" alt="Figurines dibujados a lápiz y coloreados en azul, junto a una cinta métrica, un alfiletero, una tijera y una caja de botones rojos"></a>
+<div class="dip-txt">
+<span class="d-chip">Indumentaria</span>
+<h3 class="t-h3"><a href="/cursos/indumentaria.html">Diseño de Indumentaria: del figurín a la colección</a></h3>
+<p>Figurín, cuerpo y textiles, moldería y confección, hasta una colección cápsula con su prototipo.</p>
+<p class="dip-proy"><span>Proyecto final</span> Una colección cápsula con su prototipo</p>
+<div class="dip-acc"><a class="btn btn-ink btn-s" href="/cursos/indumentaria/semana-01/clase-1.html">Probar la clase 1</a><a class="btn btn-s" href="/cursos/indumentaria.html">Ver la diplomatura</a></div>
+</div>
+<p class="credito">Foto: Jane Blaze</p>
+</article>
+</div>
+</div>
+</section>
 
+<section class="sec sec-papel" id="como-se-estudia" aria-labelledby="como-t">
+<div class="wrap">
+<div class="sec-h"><h2 class="t-h2" id="como-t">Una semana en boceto</h2><p class="t-lead">Cuatro clases y una entrega. Lo hacés a tu ritmo, en el horario que te quede cómodo.</p></div>
+<ol class="semana">
+<li><span class="dia">Lunes a jueves</span><h3 class="t-h4">Una clase por día</h3><p>Lectura con láminas y ejemplos, una práctica corta y un repaso de tres preguntas. Alrededor de una hora.</p></li>
+<li><span class="dia">Viernes</span><h3 class="t-h4">Entregás en el Bocetador</h3><p>Dibujás o subís la foto de tu boceto en papel. El asistente marca sobre el dibujo qué corregir y por qué.</p></li>
+<li><span class="dia">Cuando quieras</span><h3 class="t-h4">Corregís y avanzás</h3><p>Tu panel guarda las clases hechas, las entregas y tu portfolio, en la compu o en el celular.</p></li>
+</ol>
+<div class="extras">
+<div><h3 class="t-h4">Un asistente que conoce la diplomatura</h3><p>Le preguntás en cada clase, a cualquier hora. Responde con lo que estás viendo y te da ejemplos.</p></div>
+<div><h3 class="t-h4">Un proyecto para tu portfolio</h3><p>Las 16 entregas arman un proyecto completo: un departamento, una lámpara, una identidad o una colección.</p></div>
+<div><h3 class="t-h4">Certificado verificable</h3><p>Al completar las 80 clases obtenés tu certificado, con un enlace para que cualquiera lo compruebe.</p></div>
 </div>
-<script src="/assets/site.js" defer></script>
+</div>
+</section>
+
+<section class="sec" id="bocetador" aria-labelledby="boc-t">
+<div class="wrap boc">
+<div class="boc-txt">
+<h2 class="t-h2" id="boc-t">El Bocetador: una mesa de dibujo para cada disciplina</h2>
+<p class="t-lead">Funciona en el navegador, con mouse, con el dedo o con lápiz. No hace falta instalar nada ni registrarse para probarlo.</p>
+<a class="btn btn-ink btn-l" href="/bocetador/">Abrir el Bocetador</a>
+</div>
+<ul class="boc-lista">
+<li class="d-interiores"><span class="d-chip">Interiores</span><p>Cuadrícula a escala, muros, aberturas y muebles en medidas reales, y cotas que se miden solas.</p></li><li class="d-industrial"><span class="d-chip">Industrial</span><p>Perspectiva con dos puntos de fuga que guía cada línea, y correcciones sobre el boceto.</p></li><li class="d-grafico"><span class="d-chip">Gráfico</span><p>Hoja A4 con retícula de 12 columnas y simetría para construir marcas.</p></li><li class="d-indumentaria"><span class="d-chip">Indumentaria</span><p>Figurín de 9 cabezas para trabajar proporciones, y correcciones sobre tus geometrales.</p></li>
+<li class="boc-foto"><span class="t-h4">¿Bocetás en papel?</span><p>Sacale una foto, subila y el asistente la corrige con marcas numeradas sobre tu dibujo.</p></li>
+</ul>
+</div>
+</section>
+
+<section class="sec sec-papel" id="planes" aria-labelledby="planes-t">
+<div class="wrap">
+<div class="sec-h"><h2 class="t-h2" id="planes-t">Planes</h2><p class="t-lead">Probá gratis la primera clase de cada diplomatura. Cuando te inscribís, la cuota se debita sola cada mes y podés darte de baja cuando quieras.</p></div>
+<div class="planes">
+<article class="plan"><h3 class="t-h4">Tu diplomatura</h3><p class="precio">$63.000<span> por mes</span></p><p>Una diplomatura, en 4 cuotas mensuales. Al pagar la última, el acceso queda para siempre.</p><a class="btn btn-l" href="/inscripcion.html?plan=diplomatura">Elegir mi diplomatura</a></article>
+<article class="plan plan-dest"><h3 class="t-h4">Todas las diplomaturas</h3><p class="precio">$83.000<span> por mes</span></p><p>Las cuatro diplomaturas y las que se sumen, mientras sigas suscripto.</p><a class="btn btn-ink btn-l" href="/inscripcion.html?plan=todas">Suscribirme a todas</a></article>
+<article class="plan"><h3 class="t-h4">Instituciones</h3><p class="precio">Desde $175.000</p><p>Por persona y por diplomatura, desde 10 personas. Para escuelas, estudios y equipos.</p><a class="btn btn-l" href="mailto:hola@bocetoo.app?subject=Planes%20para%20instituciones">Escribinos</a></article>
+</div>
+<p class="planes-nota"><b>Matrícula única de $45.000.</b> Se abona una sola vez, al inscribirte por primera vez, y vale para todas las diplomaturas. Pagás con tarjeta de crédito o débito por Mercado Pago. Si no se puede cobrar una cuota, el acceso se pausa hasta regularizarla.</p>
+</div>
+</section>
+
+<section class="sec" id="preguntas" aria-labelledby="faq-t">
+<div class="wrap faq-w">
+<h2 class="t-h2" id="faq-t">Preguntas frecuentes</h2>
+<div class="faq">
+<details><summary>¿Necesito saber dibujar?</summary><p>No. Todas las diplomaturas son de nivel inicial: el dibujo se entrena desde el primer trazo, a mano o en el Bocetador.</p></details><details><summary>¿Cuánto tiempo por semana lleva?</summary><p>Una hora por día, cinco días por semana, durante 16 semanas. Cada clase tiene lectura, práctica y repaso, y la hacés cuando quieras.</p></details><details><summary>¿Hay profesor?</summary><p>No hay clases en vivo. En cada clase tenés un asistente de IA que conoce todo el contenido, responde tus dudas a cualquier hora y corrige tus dibujos con marcas sobre el trabajo.</p></details><details><summary>¿Cómo pruebo antes de pagar?</summary><p>La primera clase de cada diplomatura es gratis y no pide tarjeta. Podés usar el Bocetador sin registrarte.</p></details><details><summary>¿Cómo se paga?</summary><p>Con una suscripción mensual de Mercado Pago, con tarjeta de crédito o débito. Al inscribirte por primera vez se abona además una matrícula única.</p></details><details><summary>¿Qué pasa si quiero darme de baja?</summary><p>Te das de baja desde tu página de inscripción o con el Botón de baja de servicio, y no se cobran más cuotas. Tenés 10 días para arrepentirte de la compra.</p></details>
+</div>
+</div>
+</section>
+
+<section class="cierre grilla">
+<div class="wrap cierre-in">
+<h2 class="t-h1">Tu primer proyecto empieza con un boceto.</h2>
+<a class="btn btn-ink btn-l" href="#diplomaturas">Elegir una diplomatura</a>
+</div>
+</section>
+</main>
+<!--s-foot-->
+<footer class="s-foot"><div class="wrap">
+<div class="s-foot-in">
+<div class="s-foot-brand"><a class="s-logo" href="/"><span class="marks" aria-hidden="true"><i></i><i></i><i></i><i></i></span>boceto</a><p>Escuela de diseño online. Diplomaturas de 16 semanas para aprender haciendo, con el Bocetador y un asistente que te corrige.</p></div>
+<div><h2>Diplomaturas</h2><ul><li><a href="/cursos/interiores.html">Interiores y Mobiliario</a></li><li><a href="/cursos/industrial.html">Diseño Industrial</a></li><li><a href="/cursos/grafico.html">Diseño Gráfico</a></li><li><a href="/cursos/indumentaria.html">Diseño de Indumentaria</a></li></ul></div>
+<div><h2>La escuela</h2><ul><li><a href="/bocetador/">Bocetador</a></li><li><a href="/#planes">Planes y precios</a></li><li><a href="/panel.html">Mi panel</a></li><li><a href="mailto:hola@bocetoo.app">hola@bocetoo.app</a></li></ul></div>
+<div><h2>Legales</h2><ul><li><a href="/arrepentimiento.html">Botón de arrepentimiento</a></li><li><a href="/baja.html">Botón de baja de servicio</a></li><li><a href="/terminos.html">Términos y condiciones</a></li><li><a href="/privacidad.html">Privacidad</a></li></ul></div>
+</div>
+<div class="s-foot-legal"><span>boceto · bocetoo.app</span><span>Cursos libres de formación: no otorgan título oficial.</span></div>
+</div></footer>
+<!--/s-foot-->
+<script src="/assets/nav.js" defer></script>
+<script src="/assets/home.js" defer></script>
 </body>
 </html>

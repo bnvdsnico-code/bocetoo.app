@@ -4,7 +4,7 @@
   "use strict";
   const $ = (id) => document.getElementById(id);
   const STORE = "boceto-suscripcion";
-  const PRECIOS = { diplomatura: { amount: 63000, label: "ARS 63.000 por mes · 4 cuotas" }, todas: { amount: 83000, label: "ARS 83.000 por mes" } };
+  const PRECIOS = { diplomatura: { amount: 63000, label: "ARS 63.000 por mes, 4 cuotas" }, todas: { amount: 83000, label: "ARS 83.000 por mes" } };
   const NOMBRES = { interiores: "Interiores y Mobiliario", industrial: "Industrial", grafico: "Gráfico", indumentaria: "Indumentaria" };
   const ESTADOS = {
     authorized: ["ok", "✓ Suscripción activa. Ya podés cursar; la cuota se debita sola cada mes."],
@@ -28,11 +28,18 @@
     const p = planActual();
     $("carreraWrap").hidden = p !== "diplomatura";
     $("total").textContent = PRECIOS[p].label;
+    const r = (id, v) => { const n = $(id); if (n) n.textContent = v; };
+    r("resPlan", p === "todas" ? "Todas las diplomaturas" : "Tu diplomatura");
+    r("resCuota", "$" + PRECIOS[p].amount.toLocaleString("es-AR"));
+    r("resCuotas", p === "todas" ? "Mes a mes" : "4");
+    r("resDisc", ({ interiores: "Interiores y Mobiliario", industrial: "Diseño Industrial", grafico: "Diseño Gráfico", indumentaria: "Diseño de Indumentaria" })[$("carrera").value]);
+    if ($("resDiscW")) $("resDiscW").hidden = p !== "diplomatura";
   }
   const qs = new URLSearchParams(location.search);
   if (qs.get("plan") === "todas") document.querySelector('input[value="todas"]').checked = true;
   if (NOMBRES[qs.get("carrera")]) $("carrera").value = qs.get("carrera");
   document.querySelectorAll('input[name="plan"]').forEach((r) => r.addEventListener("change", pintarOferta));
+  $("carrera").addEventListener("change", pintarOferta);
   pintarOferta();
 
   /* ---------- Estado de una suscripción guardada en este navegador ---------- */

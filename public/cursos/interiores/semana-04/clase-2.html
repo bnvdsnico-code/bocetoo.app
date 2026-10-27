@@ -7,6 +7,7 @@
 <meta name="description" content="Usar la proporción y la escala humana para que los muebles y los espacios se sientan bien dimensionados.">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/base.css">
 <link rel="stylesheet" href="/assets/site.css">
 <link rel="stylesheet" href="/assets/curso.css">
 <!-- seo -->
@@ -16,27 +17,29 @@
 <body data-curso="interiores" data-total="80" data-clase="s04d2">
 <header class="c-header">
 <div class="left">
-<a class="c-brand" href="/" aria-label="boceto, inicio"><span class="marks" aria-hidden="true"><i></i><i></i><i></i><i></i></span><b>boceto</b></a>
-<a class="back" href="/cursos/interiores/programa.html">← Interiores y Mobiliario</a>
+<a class="s-logo c-logo" href="/" aria-label="boceto, inicio"><span class="marks" aria-hidden="true"><i></i><i></i><i></i><i></i></span>boceto</a>
+<a class="back" href="/cursos/interiores/programa.html">Interiores y Mobiliario</a>
 </div>
 <div class="right">
-<span class="c-progress">Tu progreso <span class="bar" aria-hidden="true"><span data-progress-bar></span></span><b data-progress-text>0%</b></span>
-<a class="panel-link" href="/panel.html">Mi panel</a>
+<button type="button" class="c-toc-btn" data-toc aria-expanded="false" aria-controls="c-side"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h10"/></svg>Contenido</button>
+<span class="c-progress"><span class="c-progress-l">Tu progreso</span> <span class="bar" aria-hidden="true"><span data-progress-bar></span></span><b data-progress-text>0%</b></span>
+<a class="btn btn-s panel-link" href="/panel.html">Mi panel</a>
 </div>
 </header>
+<div class="c-velo" data-toc-cerrar hidden></div>
 <div class="c-layout">
-<aside class="c-side" aria-label="Contenido de la diplomatura">
-<h2>Contenido de la diplomatura</h2>
-<div class="c-unit"><a href="/cursos/interiores/programa.html#unidad-1">1 · Representación: el lenguaje del interiorista</a></div>
-<div class="c-unit current"><span>2 · El cuerpo y el espacio</span>
-<div class="c-week"><p>Semana 3 · Antropometría y circulación</p>
+<aside class="c-side" id="c-side" aria-label="Contenido de la diplomatura">
+<div class="c-side-h"><h2>Contenido</h2><button type="button" class="c-toc-x" data-toc-cerrar aria-label="Cerrar el contenido">×</button></div>
+<div class="c-unit"><a href="/cursos/interiores/programa.html#unidad-1"><span class="c-unit-n">1</span>Representación: el lenguaje del interiorista</a></div>
+<div class="c-unit current"><span><span class="c-unit-n">2</span>El cuerpo y el espacio</span>
+<div class="c-week"><p>Semana 3: Antropometría y circulación</p>
 <a href="/cursos/interiores/semana-03/clase-1.html" data-cid="s03d1"><span class="dot" aria-hidden="true"></span>1. Medidas del cuerpo y percentiles</a>
 <a href="/cursos/interiores/semana-03/clase-2.html" data-cid="s03d2"><span class="dot" aria-hidden="true"></span>2. Alcances y posturas</a>
 <a href="/cursos/interiores/semana-03/clase-3.html" data-cid="s03d3"><span class="dot" aria-hidden="true"></span>3. Recorridos y pasos libres</a>
 <a href="/cursos/interiores/semana-03/clase-4.html" data-cid="s03d4"><span class="dot" aria-hidden="true"></span>4. Zonificación: social, privado y servicio</a>
 <a href="/cursos/interiores/semana-03/clase-5.html" data-cid="s03d5"><span class="dot" aria-hidden="true"></span>5. Taller: diagrama de zonas</a>
 </div>
-<div class="c-week"><p>Semana 4 · Organizar el espacio</p>
+<div class="c-week"><p>Semana 4: Organizar el espacio</p>
 <a href="/cursos/interiores/semana-04/clase-1.html" data-cid="s04d1"><span class="dot" aria-hidden="true"></span>1. Diagramas de relaciones</a>
 <a href="/cursos/interiores/semana-04/clase-2.html" data-cid="s04d2" aria-current="page"><span class="dot" aria-hidden="true"></span>2. Proporción y escala humana</a>
 <a href="/cursos/interiores/semana-04/clase-3.html" data-cid="s04d3"><span class="dot" aria-hidden="true"></span>3. Composición: equilibrio, foco y ritmo</a>
@@ -44,20 +47,21 @@
 <a href="/cursos/interiores/semana-04/clase-5.html" data-cid="s04d5"><span class="dot" aria-hidden="true"></span>5. Taller: tres distribuciones de un mismo ambiente</a>
 </div>
 </div>
-<div class="c-unit"><a href="/cursos/interiores/programa.html#unidad-3">3 · Los ambientes de la vivienda</a></div>
-<div class="c-unit"><a href="/cursos/interiores/programa.html#unidad-4">4 · Color, luz natural y materiales</a></div>
-<div class="c-unit"><a href="/cursos/interiores/programa.html#unidad-5">5 · Iluminación e instalaciones</a></div>
-<div class="c-unit"><a href="/cursos/interiores/programa.html#unidad-6">6 · Diseño de mobiliario</a></div>
-<div class="c-unit"><a href="/cursos/interiores/programa.html#unidad-7">7 · Presentación y herramientas digitales</a></div>
-<div class="c-unit"><a href="/cursos/interiores/programa.html#unidad-8">8 · Proyecto integrador</a></div>
-<h2 style="margin-top:10px">Recursos</h2><div class="c-week">
-<a href="/cursos/interiores/herramientas.html"><span aria-hidden="true">→</span>Caja de herramientas digitales</a>
-<a href="/cursos/interiores/proveedores.html"><span aria-hidden="true">→</span>Directorio de proveedores</a>
+<div class="c-unit"><a href="/cursos/interiores/programa.html#unidad-3"><span class="c-unit-n">3</span>Los ambientes de la vivienda</a></div>
+<div class="c-unit"><a href="/cursos/interiores/programa.html#unidad-4"><span class="c-unit-n">4</span>Color, luz natural y materiales</a></div>
+<div class="c-unit"><a href="/cursos/interiores/programa.html#unidad-5"><span class="c-unit-n">5</span>Iluminación e instalaciones</a></div>
+<div class="c-unit"><a href="/cursos/interiores/programa.html#unidad-6"><span class="c-unit-n">6</span>Diseño de mobiliario</a></div>
+<div class="c-unit"><a href="/cursos/interiores/programa.html#unidad-7"><span class="c-unit-n">7</span>Presentación y herramientas digitales</a></div>
+<div class="c-unit"><a href="/cursos/interiores/programa.html#unidad-8"><span class="c-unit-n">8</span>Proyecto integrador</a></div>
+<h2 class="c-side-rec">Recursos</h2><div class="c-week">
+<a href="/cursos/interiores/herramientas.html">Caja de herramientas digitales</a>
+<a href="/cursos/interiores/proveedores.html">Directorio de proveedores</a>
 </div>
 </aside>
 <main class="c-main" id="clase">
 <article class="c-article">
-<p class="eyebrow">Unidad 2 · Semana 4 · Clase 2 de 5</p>
+<div class="c-ubic"><p class="eyebrow">Unidad 2, semana 4: Organizar el espacio</p>
+<nav class="c-pasos" aria-label="Clases de esta semana"><a href="/cursos/interiores/semana-04/clase-1.html" data-cid="s04d1" title="Clase 1: Diagramas de relaciones"><span class="sr">Clase 1: Diagramas de relaciones</span></a><a href="/cursos/interiores/semana-04/clase-2.html" data-cid="s04d2" aria-current="page" title="Clase 2: Proporción y escala humana"><span class="sr">Clase 2: Proporción y escala humana</span></a><a href="/cursos/interiores/semana-04/clase-3.html" data-cid="s04d3" title="Clase 3: Composición: equilibrio, foco y ritmo"><span class="sr">Clase 3: Composición: equilibrio, foco y ritmo</span></a><a href="/cursos/interiores/semana-04/clase-4.html" data-cid="s04d4" title="Clase 4: Alternativas de distribución"><span class="sr">Clase 4: Alternativas de distribución</span></a><a href="/cursos/interiores/semana-04/clase-5.html" data-cid="s04d5" title="Clase 5: Taller: tres distribuciones de un mismo ambiente"><span class="sr">Clase 5: Taller: tres distribuciones de un mismo ambiente</span></a><span class="c-pasos-t">Clase 2 de 5</span></nav></div>
 <h1>Proporción y escala humana</h1>
 <p class="objetivo">Usar la proporción y la escala humana para que los muebles y los espacios se sientan bien dimensionados.</p>
 <ul class="tiempos" aria-label="Tiempos de la clase"><li>Lectura <b>15 min</b></li><li>Práctica <b>35 min</b></li><li>Repaso <b>10 min</b></li></ul>
@@ -101,7 +105,7 @@
 
 </section>
 <section class="bloque practica" aria-labelledby="practica-t">
-<h2 id="practica-t">Práctica · 35 min</h2>
+<h2 id="practica-t">Práctica <span class="min">35 min</span></h2>
 <div class="lectura"><p>Analizá proporción y escala en una pared de tu casa.</p>
 <ol>
 <li>Sacale una foto de frente a una pared de tu living con sus muebles y objetos.</li>
@@ -109,11 +113,11 @@
 <li>Trazá líneas de tercios en horizontal y vertical. ¿Los elementos importantes caen cerca de esas líneas?</li>
 <li>Proponé una mejora de escala o proporción (cambiar el tamaño del cuadro, subir o bajar un estante, agrupar objetos). Dibujá la versión mejorada al lado.</li>
 </ol></div>
-<a class="cta-suave" href="/bocetador/?carrera=interiores&amp;clase=s04d2">Hacer la práctica en el Bocetador →</a><p class="entregado" data-entrega="s04d2" hidden></p>
+<a class="cta-suave" href="/bocetador/?carrera=interiores&amp;clase=s04d2">Hacer la práctica en el Bocetador</a><p class="entregado" data-entrega="s04d2" hidden></p>
 </section>
 
 <section class="repaso" aria-labelledby="repaso-t">
-<h2 id="repaso-t">Repaso · 10 min</h2>
+<h2 id="repaso-t">Repaso <span class="min">10 min</span></h2>
 <div class="quiz" data-quiz>
 <p class="q">1. ¿Qué es la escala en diseño de interiores?</p>
 <div class="opts" role="group" aria-label="Opciones de la pregunta 1">
@@ -147,14 +151,14 @@
 </section>
 <section class="asistente" aria-labelledby="asistente-titulo">
 <div class="head"><span class="ico" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FDBA8C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg></span><div><h2 id="asistente-titulo">Preguntale al asistente</h2><p class="sub">Conoce esta clase y toda la diplomatura. Responde a cualquier hora.</p></div></div>
-<div id="chat" style="display:flex;flex-direction:column;gap:10px;font-size:15px;line-height:1.55"></div>
+<div id="chat" class="c-chat"></div>
 <div class="chips"><button type="button">Explicámelo con otro ejemplo</button><button type="button">Haceme una pregunta de práctica</button><button type="button">¿Cómo aplico esto en mi living?</button></div>
-<form data-chat="form"><label class="sr" for="pregunta">Tu pregunta</label><button type="button" aria-label="Adjuntar imagen" style="width:48px;height:48px;flex:none;border-radius:14px;border:1.5px solid #CFCFCF;background:#FFF;display:grid;place-items:center;cursor:pointer;padding:0"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M21 16l-5-5-9 8"/></svg></button><input id="pregunta" type="text" placeholder="Escribí tu duda sobre esta clase…" autocomplete="off"><button type="submit">Enviar</button></form>
+<form data-chat="form"><label class="sr" for="pregunta">Tu pregunta</label><button type="button" class="c-adj" aria-label="Adjuntar imagen"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M21 16l-5-5-9 8"/></svg></button><input id="pregunta" type="text" placeholder="Escribí tu duda sobre esta clase" autocomplete="off"><button type="submit">Enviar</button></form>
 <p class="nota">El asistente puede equivocarse. Ante una duda importante, contrastá con la lectura.</p>
 </section>
 <div class="cierre">
 <button type="button" class="completar" data-complete="s04d2" aria-pressed="false">Marcar clase como completada</button>
-<nav class="pager" aria-label="Clases"><a href="/cursos/interiores/semana-04/clase-1.html"><span>← Anterior</span><b>Diagramas de relaciones</b></a><a class="next" href="/cursos/interiores/semana-04/clase-3.html"><span>Siguiente →</span><b>Composición: equilibrio, foco y ritmo</b></a></nav>
+<nav class="pager" aria-label="Clases"><a href="/cursos/interiores/semana-04/clase-1.html"><span>Anterior</span><b>Diagramas de relaciones</b></a><a class="next" href="/cursos/interiores/semana-04/clase-3.html"><span>Siguiente</span><b>Composición: equilibrio, foco y ritmo</b></a></nav>
 </div>
 </article>
 </main>

@@ -6,15 +6,9 @@
 <title>Diplomatura en Diseño Gráfico online · 16 semanas · boceto</title>
 <meta name="description" content="Curso online de Diseño Gráfico: un cuatrimestre para aprender composición, tipografía, color e imagen, y construir la identidad visual completa de un emprendimiento, del brief al manual de marca. Primera clase gratis.">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
-<style>
-body{margin:0;background:#FFFFFF}
-a{color:#111111}a:hover{color:#444444}
-summary{cursor:pointer;list-style:none}
-summary::-webkit-details-marker{display:none}
-</style>
-<link rel="stylesheet" href="/assets/site.css">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/base.css">
+<link rel="stylesheet" href="/assets/ficha.css">
 <!-- seo -->
 <link rel="canonical" href="https://bocetoo.app/cursos/grafico">
 <meta property="og:site_name" content="boceto">
@@ -32,157 +26,77 @@ summary::-webkit-details-marker{display:none}
 <!-- /seo -->
 </head>
 <body>
-<div class="consumidor-bar" style="background:#111111;color:#FFFFFF;font-family:Inter,system-ui,sans-serif;font-size:13px;display:flex;flex-wrap:wrap;justify-content:center;gap:4px 20px;padding:8px 16px"><a href="/arrepentimiento.html" style="color:#FFFFFF;font-weight:600;min-height:28px;display:inline-flex;align-items:center">Botón de arrepentimiento</a><a href="/baja.html" style="color:#FFFFFF;font-weight:600;min-height:28px;display:inline-flex;align-items:center">Botón de baja de servicio</a></div>
-<div style="font-family: Inter, system-ui, sans-serif; color: #111111; background: #FFFFFF; width: 100%">
-
-<header class="site-header" style="max-width: 1240px; margin: 0 auto; padding: 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px">
-<a href="/" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: #111111">
-<span aria-hidden="true" style="display: grid; grid-template-columns: repeat(2, 12px); gap: 3px">
-<span style="width: 12px; height: 12px; background: #C2410C; border-radius: 3px"></span>
-<span style="width: 12px; height: 12px; background: #1D4ED8; border-radius: 50%"></span>
-<span style="width: 12px; height: 12px; background: #6D28D9; border-radius: 50%"></span>
-<span style="width: 12px; height: 12px; background: #BE185D; border-radius: 3px"></span>
-</span>
-<span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 24px; letter-spacing: -0.02em">boceto</span>
-</a>
-<nav aria-label="Principal" style="display: flex; flex-wrap: wrap; gap: 8px 28px; font-size: 15px; font-weight: 500">
-<a href="/#disciplinas" style="text-decoration: none">Disciplinas</a>
-<a href="/#cursos" style="text-decoration: none">Diplomaturas</a>
-<a href="/#planes" style="text-decoration: none">Planes</a>
-<a href="/bocetador/?carrera=grafico" style="text-decoration: none">Bocetador</a>
-</nav>
-<a href="#comprar" style="text-decoration: none; font-size: 15px; font-weight: 600; padding: 12px 20px; min-height: 44px; box-sizing: border-box; display: inline-flex; align-items: center; background: #111111; color: #FFFFFF; border-radius: 999px">Empezar gratis</a>
-</header>
-
-<section style="background: #EAE0FB">
-<div style="max-width: 1240px; margin: 0 auto; padding: 32px 24px 72px; display: flex; flex-direction: column; gap: 32px">
-<nav aria-label="Ruta" style="font-size: 14px; color: #4C1D95; display: flex; flex-wrap: wrap; gap: 8px">
-<a href="/" style="color: #4C1D95">Diplomaturas</a><span aria-hidden="true">/</span><a href="/" style="color: #4C1D95">Diseño Gráfico</a><span aria-hidden="true">/</span><span>De la idea a la identidad</span>
-</nav>
-<div style="display: flex; flex-wrap: wrap; gap: 48px; align-items: center">
-<div style="flex: 1 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 22px">
-<span style="align-self: flex-start; font-size: 13px; font-weight: 600; color: #FFFFFF; background: #6D28D9; padding: 6px 14px; border-radius: 999px">Diseño Gráfico</span>
-<h1 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(40px, 5vw, 68px); line-height: 1; letter-spacing: -0.035em">Diseño Gráfico: de la idea a la identidad</h1>
-<p style="margin: 0; font-size: 19px; line-height: 1.55; color: #2E2444; max-width: 560px">Un cuatrimestre para aprender composición, tipografía, color e imagen, y construir la identidad visual completa de un emprendimiento, del brief al manual de marca.</p>
-<ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 10px 24px; font-size: 15px; font-weight: 500; color: #2E2444">
-<li>Nivel inicial</li><li>16 semanas · 1 hora por día</li><li>80 clases y 16 entregas</li><li>Certificado al finalizar</li>
-</ul>
+<!--s-head-->
+<div class="s-util"><div class="wrap"><a href="/arrepentimiento.html">Botón de arrepentimiento</a><a href="/baja.html">Botón de baja de servicio</a></div></div>
+<header class="s-head"><div class="wrap s-head-in">
+<a class="s-logo" href="/" aria-label="boceto, inicio"><span class="marks" aria-hidden="true"><i></i><i></i><i></i><i></i></span>boceto</a>
+<nav class="s-nav" id="s-nav" aria-label="Principal"><a href="/#diplomaturas">Diplomaturas</a><a href="/#como-se-estudia">Cómo se estudia</a><a href="/bocetador/">Bocetador</a><a href="/#planes">Planes</a></nav>
+<div class="s-acc"><a class="btn btn-quiet btn-s" href="/acceso.html?volver=/panel.html" data-anon>Ingresar</a><a class="btn btn-ink btn-s" href="/#diplomaturas" data-anon>Probar gratis</a><a class="s-me" href="/panel.html" data-user hidden><span class="s-av" aria-hidden="true"></span><span class="s-me-t">Mi panel</span></a></div>
+<button class="s-burger" type="button" aria-expanded="false" aria-controls="s-nav"><span></span><span class="sr">Menú</span></button>
+</div></header>
+<!--/s-head-->
+<main id="contenido">
+<div class="d-grafico">
+<section class="f-hero">
+<div class="wrap f-hero-in">
+<div class="f-hero-txt">
+<nav class="migas" aria-label="Ruta"><a href="/#diplomaturas">Diplomaturas</a><span aria-hidden="true">/</span><span aria-current="page">Diseño Gráfico</span></nav>
+<span class="d-chip">Diseño Gráfico</span>
+<h1 class="t-h1">Diseño Gráfico: de la idea a la identidad</h1>
+<p class="t-lead">Un cuatrimestre para aprender composición, tipografía, color e imagen, y construir la identidad visual completa de un emprendimiento, del brief al manual de marca.</p>
+<dl class="f-datos"><div><dt>Duración</dt><dd>16 semanas</dd></div><div><dt>Dedicación</dt><dd>1 hora por día</dd></div><div><dt>Clases</dt><dd>80 y 16 entregas</dd></div><div><dt>Nivel</dt><dd>Inicial</dd></div></dl>
+<div class="f-acc"><a class="btn btn-ink btn-l" href="/cursos/grafico/semana-01/clase-1.html">Probar la clase 1 gratis</a><a class="btn btn-l" href="/inscripcion.html?plan=diplomatura&amp;carrera=grafico">Inscribirme</a></div>
 </div>
-<figure style="flex: 1 1 420px; min-width: 0; margin: 0; border-radius: 28px; overflow: hidden; aspect-ratio: 4 / 3; background: #FFFFFF">
-<img src="../assets/fotos/grafico.webp" srcset="../assets/fotos/grafico-800.webp 800w, ../assets/fotos/grafico.webp 1600w" sizes="(max-width: 900px) 100vw, 560px" width="1600" height="1200" fetchpriority="high" alt="Círculo cromático abierto sobre un cuaderno, junto a un pincel y un lápiz" style="display: block; width: 100%; height: 100%; object-fit: cover">
-</figure>
-</div>
+<figure class="f-foto"><img src="/assets/fotos/card-grafico.webp" srcset="/assets/fotos/card-grafico-640.webp 640w, /assets/fotos/card-grafico.webp 1200w" sizes="(max-width: 900px) 100vw, 560px" width="1200" height="900" fetchpriority="high" alt="Manos que eligen muestras de color impresas sobre una mesa blanca: tarjetas verde, terracota, violeta y beige"><figcaption>Foto: Noemi Jimenez</figcaption></figure>
 </div>
 </section>
 
-<div style="max-width: 1240px; margin: 0 auto; padding: 72px 24px; display: flex; flex-wrap: wrap; gap: 56px; align-items: flex-start">
-<main style="flex: 999 1 640px; min-width: 0; display: flex; flex-direction: column; gap: 64px">
+<div class="wrap f-cuerpo">
+<div class="f-main">
+<section aria-labelledby="apr-t"><h2 class="t-h2" id="apr-t">Qué vas a aprender</h2>
+<ul class="apr"><li><svg aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4 8-9" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Componer con retículas, jerarquía y recorrido visual.</span></li><li><svg aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4 8-9" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Elegir, combinar y componer tipografía con oficio.</span></li><li><svg aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4 8-9" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Usar el color con criterio, para papel y pantalla, y accesible.</span></li><li><svg aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4 8-9" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Investigar una marca y construir su isologo y su sistema visual.</span></li><li><svg aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4 8-9" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Diseñar aplicaciones, folletos y piezas listas para imprenta.</span></li><li><svg aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4 8-9" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Diseñar para redes y web, con IA, y armar el manual de marca.</span></li></ul></section>
 
-<section style="display: flex; flex-direction: column; gap: 24px">
-<h2 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 36px; letter-spacing: -0.025em">Qué vas a aprender</h2>
-<ul style="margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px 32px; font-size: 16px; line-height: 1.5">
-<li style="display: flex; gap: 12px"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#6D28D9" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex: none; margin-top: 1px"><path d="M5 12l5 5 9-10"></path></svg>Componer con retículas, jerarquía y recorrido visual.</li>
-<li style="display: flex; gap: 12px"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#6D28D9" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex: none; margin-top: 1px"><path d="M5 12l5 5 9-10"></path></svg>Elegir, combinar y componer tipografía con oficio.</li>
-<li style="display: flex; gap: 12px"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#6D28D9" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex: none; margin-top: 1px"><path d="M5 12l5 5 9-10"></path></svg>Usar el color con criterio, para papel y pantalla, y accesible.</li>
-<li style="display: flex; gap: 12px"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#6D28D9" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex: none; margin-top: 1px"><path d="M5 12l5 5 9-10"></path></svg>Investigar una marca y construir su isologo y su sistema visual.</li>
-<li style="display: flex; gap: 12px"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#6D28D9" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex: none; margin-top: 1px"><path d="M5 12l5 5 9-10"></path></svg>Diseñar aplicaciones, folletos y piezas listas para imprenta.</li>
-<li style="display: flex; gap: 12px"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#6D28D9" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex: none; margin-top: 1px"><path d="M5 12l5 5 9-10"></path></svg>Diseñar para redes y web, con IA, y armar el manual de marca.</li>
-</ul>
+<section aria-labelledby="prog-t"><div class="f-sec-h"><h2 class="t-h2" id="prog-t">Programa</h2><p class="t-small">8 unidades, 16 semanas, 80 clases. Abrí una unidad para ver sus clases.</p></div>
+<div class="unis"><details class="uni"><summary><span class="uni-n">1</span><span class="uni-t">Fundamentos visuales</span><span class="uni-s">Semanas 1 y 2</span></summary><ol class="sems"><li><span class="sem-n">Semana 1</span><div><b>Ver como diseñador</b><ul><li>Bienvenida: qué hace un diseñador gráfico</li><li>Punto, línea y plano</li><li>Figura y fondo</li><li>Cómo agrupa el ojo: la Gestalt</li><li>Taller: seis composiciones con formas básicas</li></ul><span class="sem-e">Entrega: Seis composiciones con formas básicas</span></div></li><li><span class="sem-n">Semana 2</span><div><b>Composición</b><ul><li>Formato y encuadre</li><li>Equilibrio, peso visual y tensión</li><li>Jerarquía y recorrido visual</li><li>Retículas: márgenes, columnas y módulos</li><li>Taller: tres composiciones en retícula</li></ul><span class="sem-e">Entrega: Tres composiciones en retícula</span></div></li></ol></details><details class="uni"><summary><span class="uni-n">2</span><span class="uni-t">Tipografía</span><span class="uni-s">Semanas 3 y 4</span></summary><ol class="sems"><li><span class="sem-n">Semana 3</span><div><b>La letra</b><ul><li>Anatomía de la letra</li><li>Clasificación tipográfica</li><li>Familias, pesos y variantes</li><li>Cómo elegir una tipografía</li><li>Taller: especímenes tipográficos</li></ul><span class="sem-e">Entrega: Lámina de especímenes tipográficos</span></div></li><li><span class="sem-n">Semana 4</span><div><b>Texto y jerarquía</b><ul><li>Tamaño, interlineado y largo de línea</li><li>Espaciado entre letras y kerning</li><li>Combinar tipografías</li><li>Jerarquía tipográfica</li><li>Taller: afiche tipográfico de un evento</li></ul><span class="sem-e">Entrega: Afiche tipográfico de un evento</span></div></li></ol></details><details class="uni"><summary><span class="uni-n">3</span><span class="uni-t">Color e imagen</span><span class="uni-s">Semanas 5 y 6</span></summary><ol class="sems"><li><span class="sem-n">Semana 5</span><div><b>Color</b><ul><li>Luz y pigmento: RGB y CMYK</li><li>Tono, saturación y valor</li><li>Armonías y contrastes</li><li>Color accesible</li><li>Taller: tres paletas aplicadas</li></ul><span class="sem-e">Entrega: Tres paletas aplicadas</span></div></li><li><span class="sem-n">Semana 6</span><div><b>Imagen</b><ul><li>La fotografía en el diseño</li><li>Ilustración e iconografía</li><li>Vectores, píxeles y resolución</li><li>Derechos de imagen y bancos</li><li>Taller: íconos y pieza con fotografía</li></ul><span class="sem-e">Entrega: Set de íconos y una pieza con fotografía</span></div></li></ol></details><details class="uni"><summary><span class="uni-n">4</span><span class="uni-t">Identidad visual</span><span class="uni-s">Semanas 7 y 8</span></summary><ol class="sems"><li><span class="sem-n">Semana 7</span><div><b>Investigar la marca</b><ul><li>Marca e identidad visual</li><li>El brief de identidad</li><li>Competencia y referentes</li><li>Palabras clave y moodboard</li><li>Taller: brief y moodboard</li></ul><span class="sem-e">Entrega: Brief y moodboard de la marca</span></div></li><li><span class="sem-n">Semana 8</span><div><b>El isologo</b><ul><li>Tipos de marca gráfica</li><li>Bocetar treinta ideas</li><li>Construcción y ajustes ópticos</li><li>Vectorizar y armar las versiones</li><li>Taller: isologo y versiones</li></ul><span class="sem-e">Entrega: Isologo y sus versiones</span></div></li></ol></details><details class="uni"><summary><span class="uni-n">5</span><span class="uni-t">Sistema de identidad</span><span class="uni-s">Semanas 9 y 10</span></summary><ol class="sems"><li><span class="sem-n">Semana 9</span><div><b>El sistema visual</b><ul><li>Tipografía de marca</li><li>Paleta de marca</li><li>Elementos gráficos y patrones</li><li>Fotografía y tono de voz</li><li>Taller: hoja de sistema de identidad</li></ul><span class="sem-e">Entrega: Hoja de sistema de identidad</span></div></li><li><span class="sem-n">Semana 10</span><div><b>Aplicaciones</b><ul><li>Papelería y documentos</li><li>Packaging y etiquetas</li><li>Cartelería y señalética</li><li>Mostrar sin engañar: mockups</li><li>Taller: cinco aplicaciones</li></ul><span class="sem-e">Entrega: Cinco aplicaciones de la marca</span></div></li></ol></details><details class="uni"><summary><span class="uni-n">6</span><span class="uni-t">Editorial e impresión</span><span class="uni-s">Semanas 11 y 12</span></summary><ol class="sems"><li><span class="sem-n">Semana 11</span><div><b>Diseño editorial</b><ul><li>Las partes de una publicación</li><li>Retícula editorial y estilos</li><li>Portada e interiores</li><li>Leer en papel y en pantalla</li><li>Taller: folleto de cuatro páginas</li></ul><span class="sem-e">Entrega: Folleto de cuatro páginas</span></div></li><li><span class="sem-n">Semana 12</span><div><b>Preimpresión e imprenta</b><ul><li>Preparar un archivo para imprenta</li><li>Papeles y gramajes</li><li>Sistemas de impresión</li><li>Presupuestos y pruebas de color</li><li>Taller: folleto listo para imprimir</li></ul><span class="sem-e">Entrega: Folleto listo para imprimir</span></div></li></ol></details><details class="uni"><summary><span class="uni-n">7</span><span class="uni-t">Digital, movimiento e IA</span><span class="uni-s">Semanas 13 y 14</span></summary><ol class="sems"><li><span class="sem-n">Semana 13</span><div><b>Diseño para pantallas</b><ul><li>Redes sociales: formatos y plantillas</li><li>Diseño web e interfaces</li><li>Accesibilidad digital</li><li>Movimiento básico</li><li>Taller: kit de piezas para redes</li></ul><span class="sem-e">Entrega: Kit de piezas para redes</span></div></li><li><span class="sem-n">Semana 14</span><div><b>Herramientas digitales e IA</b><ul><li>Mapa del software del diseñador gráfico</li><li>IA para investigar, escribir e idear</li><li>IA para generar y editar imágenes</li><li>Derechos, ética y límites de la IA</li><li>Taller: tu flujo de trabajo con IA</li></ul><span class="sem-e">Entrega: Tu flujo de trabajo digital documentado</span></div></li></ol></details><details class="uni"><summary><span class="uni-n">8</span><span class="uni-t">Proyecto final</span><span class="uni-s">Semanas 15 y 16</span></summary><ol class="sems"><li><span class="sem-n">Semana 15</span><div><b>Manual de marca</b><ul><li>Estructura de un manual de marca</li><li>Normas de uso y usos incorrectos</li><li>Presupuestar un trabajo de diseño</li><li>Registrar la marca</li><li>Taller: manual de marca</li></ul><span class="sem-e">Entrega: Manual de marca</span></div></li><li><span class="sem-n">Semana 16</span><div><b>Proyecto final</b><ul><li>Presentar la identidad al cliente</li><li>El caso para tu portfolio</li><li>Presentar en video</li><li>Autoevaluación con la rúbrica</li><li>Entrega del proyecto final</li></ul><span class="sem-e">Entrega: Proyecto final completo</span></div></li></ol></details></div>
+<a class="btn" href="/cursos/grafico/programa.html">Ver el programa completo</a></section>
+
+<section class="proy" aria-labelledby="proy-t"><span class="proy-k">Proyecto final</span><h2 class="t-h2" id="proy-t">La identidad completa de un emprendimiento</h2><p>Construís la identidad de un emprendimiento real o del brief de práctica: investigación, isologo, sistema visual, aplicaciones, folleto para imprenta, kit de redes y manual de marca.</p></section>
+
+<section class="f-dos" aria-label="Cómo se estudia">
+<div><h2 class="t-h3">Cómo es cada clase</h2><p>Una lectura con láminas y diagramas, una práctica para hacer a mano o en el Bocetador, y un repaso corto. Los viernes, una entrega que el asistente corrige sobre tu dibujo.</p></div>
+<div class="chat" aria-label="Ejemplo de consulta al asistente"><h2 class="t-h3">Preguntale al asistente</h2><p class="chat-me">¿Mi isologo funciona en tamaño chico?</p><p class="chat-ai">Subilo y lo probamos juntos: a 16 px, en una sola tinta y en negativo. Si pierde detalle, vemos una versión reducida.</p></div>
 </section>
 
-<section style="display: flex; flex-direction: column; gap: 24px">
-<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px">
-<h2 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 36px; letter-spacing: -0.025em">Programa</h2>
-<span style="font-size: 15px; color: #555555">8 unidades · 16 semanas · 80 clases</span>
-</div>
-<div style="display: flex; flex-direction: column; border-top: 1.5px solid #111111">
-<details open="" style="border-bottom: 1px solid #DADADA; padding: 20px 0">
-<summary style="display: flex; gap: 20px; align-items: baseline; min-height: 44px"><span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 22px; color: #6D28D9">01</span><span style="font-size: 19px; font-weight: 600">Fundamentos visuales</span></summary>
-<p style="margin: 8px 0 0 50px; font-size: 15px; line-height: 1.6; color: #3A3A3A">Semanas 1 y 2: Punto, línea, plano, figura y fondo, Gestalt · Formato, equilibrio, jerarquía y retículas.</p>
-</details>
-<details style="border-bottom: 1px solid #DADADA; padding: 20px 0">
-<summary style="display: flex; gap: 20px; align-items: baseline; min-height: 44px"><span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 22px; color: #6D28D9">02</span><span style="font-size: 19px; font-weight: 600">Tipografía</span></summary>
-<p style="margin: 8px 0 0 50px; font-size: 15px; line-height: 1.6; color: #3A3A3A">Semanas 3 y 4: Anatomía, clasificación, familias y licencias · Interlineado, kerning, combinaciones y jerarquía.</p>
-</details>
-<details style="border-bottom: 1px solid #DADADA; padding: 20px 0">
-<summary style="display: flex; gap: 20px; align-items: baseline; min-height: 44px"><span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 22px; color: #6D28D9">03</span><span style="font-size: 19px; font-weight: 600">Color e imagen</span></summary>
-<p style="margin: 8px 0 0 50px; font-size: 15px; line-height: 1.6; color: #3A3A3A">Semanas 5 y 6: RGB y CMYK, armonías y contraste accesible · Fotografía, íconos, resolución y derechos.</p>
-</details>
-<details style="border-bottom: 1px solid #DADADA; padding: 20px 0">
-<summary style="display: flex; gap: 20px; align-items: baseline; min-height: 44px"><span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 22px; color: #6D28D9">04</span><span style="font-size: 19px; font-weight: 600">Identidad visual</span></summary>
-<p style="margin: 8px 0 0 50px; font-size: 15px; line-height: 1.6; color: #3A3A3A">Semanas 7 y 8: Brief, competencia y moodboard · Isologo: bocetos, construcción y versiones.</p>
-</details>
-<details style="border-bottom: 1px solid #DADADA; padding: 20px 0">
-<summary style="display: flex; gap: 20px; align-items: baseline; min-height: 44px"><span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 22px; color: #6D28D9">05</span><span style="font-size: 19px; font-weight: 600">Sistema de identidad</span></summary>
-<p style="margin: 8px 0 0 50px; font-size: 15px; line-height: 1.6; color: #3A3A3A">Semanas 9 y 10: Tipografía, paleta, patrones y tono de voz · Papelería, packaging, cartelería y mockups.</p>
-</details>
-<details style="border-bottom: 1px solid #DADADA; padding: 20px 0">
-<summary style="display: flex; gap: 20px; align-items: baseline; min-height: 44px"><span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 22px; color: #6D28D9">06</span><span style="font-size: 19px; font-weight: 600">Editorial e impresión</span></summary>
-<p style="margin: 8px 0 0 50px; font-size: 15px; line-height: 1.6; color: #3A3A3A">Semanas 11 y 12: Retícula editorial y folleto · Preimpresión, papeles, sistemas de impresión y presupuestos.</p>
-</details>
-<details style="border-bottom: 1px solid #DADADA; padding: 20px 0">
-<summary style="display: flex; gap: 20px; align-items: baseline; min-height: 44px"><span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 22px; color: #6D28D9">07</span><span style="font-size: 19px; font-weight: 600">Digital, movimiento e IA</span></summary>
-<p style="margin: 8px 0 0 50px; font-size: 15px; line-height: 1.6; color: #3A3A3A">Semanas 13 y 14: Redes, web, accesibilidad y animación · Software e inteligencia artificial.</p>
-</details>
-<details style="border-bottom: 1px solid #DADADA; padding: 20px 0">
-<summary style="display: flex; gap: 20px; align-items: baseline; min-height: 44px"><span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 22px; color: #6D28D9">08</span><span style="font-size: 19px; font-weight: 600">Proyecto final</span></summary>
-<p style="margin: 8px 0 0 50px; font-size: 15px; line-height: 1.6; color: #3A3A3A">Semanas 15 y 16: Manual de marca, honorarios y registro · Presentación, portfolio y entrega.</p>
-</details>
-</div>
-<a href="/cursos/grafico/programa.html" style="align-self: flex-start; font-size: 16px; font-weight: 600; color: #4C1D95; min-height: 44px; display: inline-flex; align-items: center">Ver el programa completo, clase por clase →</a>
-</section>
+<section aria-labelledby="mat-t"><h2 class="t-h3" id="mat-t">Materiales</h2><ul class="mat"><li>Cuaderno, lápiz y fibra para bocetar</li><li>Papeles de colores y tijera para las primeras semanas</li><li>Computadora desde la semana 3 (hay programas gratuitos)</li></ul></section>
 
-<section style="background: #6D28D9; color: #FFFFFF; border-radius: 28px; padding: 40px; display: flex; flex-wrap: wrap; gap: 32px; align-items: center">
-<div style="flex: 1 1 320px; min-width: 0; display: flex; flex-direction: column; gap: 14px">
-<p style="margin: 0; font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase">Proyecto final</p>
-<h2 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 32px; line-height: 1.1; letter-spacing: -0.02em">La identidad completa de un emprendimiento</h2>
-<p style="margin: 0; font-size: 16px; line-height: 1.6">Construís la identidad de un emprendimiento real o del brief de práctica: investigación, isologo, sistema visual, aplicaciones, folleto para imprenta, kit de redes y manual de marca. Queda listo para tu portfolio.</p>
+<section aria-labelledby="faq-t"><h2 class="t-h2" id="faq-t">Preguntas frecuentes</h2>
+<div class="faq"><details><summary>¿Qué programa necesito?</summary><p>Para empezar, ninguno: las dos primeras semanas son a mano o en el Bocetador. Después podés usar Adobe o alternativas gratuitas como Affinity, Inkscape y Figma.</p></details><details><summary>¿Puedo trabajar con una marca propia?</summary><p>Sí, es lo ideal. Si no tenés una, trabajás con el brief de práctica de la diplomatura: Molienda, un café de barrio.</p></details><details><summary>¿Recibo un certificado?</summary><p>Sí. Al completar las 80 clases obtenés un certificado de finalización con un enlace para que cualquiera lo verifique. Es un curso libre: no otorga título oficial.</p></details><details><summary>¿Cómo me doy de baja?</summary><p>Desde tu página de inscripción, con un clic, o con el Botón de baja de servicio. Desde la baja no se cobran nuevas cuotas.</p></details></div></section>
 </div>
-<div style="flex: 1 1 260px; min-width: 0; aspect-ratio: 4 / 3; border-radius: 20px; background: #4C1D95; display: flex; align-items: center; justify-content: center"><svg role="img" aria-label="Ícono de una pluma vectorial dibujando una curva con nodos" viewBox="0 0 200 150" width="58%" fill="none" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M34 112C60 60 92 132 116 98"/><rect x="28" y="106" width="12" height="12" rx="2"/><path d="M34 112L70 72"/><circle cx="70" cy="72" r="4"/><g transform="translate(118 96) rotate(40)"><path d="M0 0L-15 -32L-11 -50H11L15 -32Z"/><path d="M0 0V-26"/><circle cx="0" cy="-30" r="3.5"/><path d="M-11 -50V-60H11V-50"/></g></svg></div>
-</section>
 
-<section style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px">
-<div style="display: flex; flex-direction: column; gap: 14px">
-<h2 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 28px; letter-spacing: -0.02em">Materiales</h2>
-<ul style="margin: 0; padding-left: 20px; font-size: 16px; line-height: 1.8; color: #3A3A3A"><li>Cuaderno, lápiz y fibra para bocetar</li><li>Papeles de colores y tijera para las primeras semanas</li><li>Computadora desde la semana 3 (hay programas gratuitos)</li></ul>
+<aside class="f-precio" aria-label="Precio e inscripción">
+<div class="f-precio-in">
+<p class="precio">$63.000<span> por mes</span></p>
+<p class="t-small">4 cuotas mensuales. Matrícula única de $45.000. Al pagar la última cuota, el acceso queda para siempre.</p>
+<a class="btn btn-ink btn-l" href="/inscripcion.html?plan=diplomatura&amp;carrera=grafico">Inscribirme</a>
+<a class="btn btn-l" href="/cursos/grafico/semana-01/clase-1.html">Probar la clase 1 gratis</a>
+<ul class="incl"><li><svg aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4 8-9" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>80 clases cortas con láminas y diagramas</span></li><li><svg aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4 8-9" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Bocetador y asistente de IA en cada clase</span></li><li><svg aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4 8-9" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Correcciones sobre tus entregas</span></li><li><svg aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4 8-9" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Certificado verificable al terminar</span></li></ul>
+<p class="t-small">¿Querés las cuatro? <a href="/inscripcion.html?plan=todas">Todas las diplomaturas por $83.000 por mes</a>.</p>
 </div>
-<div style="display: flex; flex-direction: column; gap: 14px">
-<h2 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 28px; letter-spacing: -0.02em">Asistente de IA</h2>
-<p style="margin: 0; font-size: 16px; line-height: 1.6; color: #3A3A3A">Sin profesor y sin horarios: en cada lección tenés un asistente que conoce todo el contenido de la diplomatura, responde tus dudas y revisa tus piezas.</p>
-<div style="display: flex; flex-direction: column; gap: 8px; font-size: 14px; line-height: 1.5">
-<p style="margin: 0; align-self: flex-end; background: #111111; color: #FFFFFF; padding: 10px 14px; border-radius: 16px 16px 4px 16px; max-width: 85%">¿Mi isologo funciona en tamaño chico?</p>
-<p style="margin: 0; align-self: flex-start; background: #EAE0FB; padding: 10px 14px; border-radius: 16px 16px 16px 4px; max-width: 85%">Subilo y lo probamos juntos: a 16 px, en una sola tinta y en negativo. Si pierde detalle, vemos una versión reducida.</p>
-</div>
-</div>
-</section>
-
-<section style="display: flex; flex-direction: column; gap: 16px">
-<h2 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 36px; letter-spacing: -0.025em">Preguntas frecuentes</h2>
-<details style="border-bottom: 1px solid #DADADA; padding: 18px 0"><summary style="font-size: 17px; font-weight: 600; min-height: 44px; display: flex; align-items: center">¿Qué programa necesito?</summary><p style="margin: 8px 0 0; font-size: 16px; line-height: 1.6; color: #3A3A3A">Para empezar, ninguno: las dos primeras semanas son a mano o en el Bocetador. Después podés usar Adobe o alternativas gratuitas como Affinity, Inkscape y Figma.</p></details>
-<details style="border-bottom: 1px solid #DADADA; padding: 18px 0"><summary style="font-size: 17px; font-weight: 600; min-height: 44px; display: flex; align-items: center">¿Puedo trabajar con una marca propia?</summary><p style="margin: 8px 0 0; font-size: 16px; line-height: 1.6; color: #3A3A3A">Sí, es lo ideal. Si no tenés una, trabajás con el brief de práctica de la diplomatura: Molienda, un café de barrio.</p></details>
-<details style="border-bottom: 1px solid #DADADA; padding: 18px 0"><summary style="font-size: 17px; font-weight: 600; min-height: 44px; display: flex; align-items: center">¿Recibo un certificado?</summary><p style="margin: 8px 0 0; font-size: 16px; line-height: 1.6; color: #3A3A3A">Sí, al completar los módulos y entregar el proyecto final.</p></details>
-</section>
-</main>
-
-<aside id="comprar" style="flex: 1 1 320px; min-width: 0; border: 1.5px solid #111111; border-radius: 28px; padding: 32px; box-sizing: border-box; display: flex; flex-direction: column; gap: 20px">
-<p style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 44px">$63.000<span style="font-size: 18px; font-weight: 500"> / mes</span></p>
-<p style="margin: 0; font-size: 15px; color: #555555">4 cuotas mensuales por suscripción · Matrícula única de $45.000 · Si se interrumpe el pago, se da de baja la inscripción</p>
-<a href="/inscripcion.html?plan=diplomatura&amp;carrera=grafico" style="text-decoration: none; text-align: center; font-weight: 600; font-size: 16px; padding: 16px; min-height: 52px; box-sizing: border-box; background: #6D28D9; color: #FFFFFF; border-radius: 999px">Inscribirme</a>
-<a href="/#planes" style="text-decoration: none; text-align: center; font-weight: 600; font-size: 16px; padding: 16px; min-height: 52px; box-sizing: border-box; border: 1.5px solid #111111; border-radius: 999px">Ver todas las diplomaturas</a>
-<ul style="margin: 0; padding: 20px 0 0; border-top: 1px solid #DADADA; list-style: none; display: flex; flex-direction: column; gap: 12px; font-size: 15px; color: #3A3A3A">
-<li>Tuyo para siempre al pagar la última cuota</li><li>Lecciones cortas con láminas y diagramas</li><li>Asistente de IA en cada lección</li><li>Ejercicios con devolución inmediata</li><li>Certificado al finalizar</li>
-</ul>
-<a href="/cursos/grafico/semana-01/clase-1.html" style="font-size: 15px; font-weight: 600; color: #6D28D9; min-height: 44px; display: inline-flex; align-items: center">Probar la primera clase gratis →</a>
 </aside>
 </div>
-
-<footer style="border-top: 1px solid #E2E2E2; padding: 40px 24px">
-<div style="max-width: 1240px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 24px; font-size: 14px; color: #555555">
-<span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 20px; color: #111111">boceto</span>
-<nav aria-label="Pie de página" style="display: flex; flex-wrap: wrap; gap: 8px 24px"><a href="/">Inicio</a><a href="/#cursos">Diplomaturas</a><a href="/#planes">Planes</a><a href="/bocetador/">Bocetador</a></nav>
 </div>
-</footer>
+</main>
+<!--s-foot-->
+<footer class="s-foot"><div class="wrap">
+<div class="s-foot-in">
+<div class="s-foot-brand"><a class="s-logo" href="/"><span class="marks" aria-hidden="true"><i></i><i></i><i></i><i></i></span>boceto</a><p>Escuela de diseño online. Diplomaturas de 16 semanas para aprender haciendo, con el Bocetador y un asistente que te corrige.</p></div>
+<div><h2>Diplomaturas</h2><ul><li><a href="/cursos/interiores.html">Interiores y Mobiliario</a></li><li><a href="/cursos/industrial.html">Diseño Industrial</a></li><li><a href="/cursos/grafico.html">Diseño Gráfico</a></li><li><a href="/cursos/indumentaria.html">Diseño de Indumentaria</a></li></ul></div>
+<div><h2>La escuela</h2><ul><li><a href="/bocetador/">Bocetador</a></li><li><a href="/#planes">Planes y precios</a></li><li><a href="/panel.html">Mi panel</a></li><li><a href="mailto:hola@bocetoo.app">hola@bocetoo.app</a></li></ul></div>
+<div><h2>Legales</h2><ul><li><a href="/arrepentimiento.html">Botón de arrepentimiento</a></li><li><a href="/baja.html">Botón de baja de servicio</a></li><li><a href="/terminos.html">Términos y condiciones</a></li><li><a href="/privacidad.html">Privacidad</a></li></ul></div>
 </div>
-<script src="/assets/site.js" defer></script>
+<div class="s-foot-legal"><span>boceto · bocetoo.app</span><span>Cursos libres de formación: no otorgan título oficial.</span></div>
+</div></footer>
+<!--/s-foot-->
+<script src="/assets/nav.js" defer></script>
 </body>
 </html>

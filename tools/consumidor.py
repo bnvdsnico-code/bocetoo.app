@@ -80,29 +80,9 @@ PAGINAS = {
         confirmacion="en las próximas 24 horas hacemos efectiva la baja y te escribimos al email que dejaste."),
 }
 
+import sys; sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent)); import layout
 for nombre, d in PAGINAS.items():
-    (PUB / nombre).write_text(PAGINA.format(**d), encoding="utf-8")
+    (PUB / nombre).write_text(layout.migrar(PAGINA.format(**d)), encoding="utf-8")
     print("ok", nombre)
 
-# Barra visible arriba de cada página de entrada
-BARRA = ('<div class="consumidor-bar" style="background:#111111;color:#FFFFFF;font-family:Inter,system-ui,sans-serif;font-size:13px;'
-         'display:flex;flex-wrap:wrap;justify-content:center;gap:4px 20px;padding:8px 16px">'
-         '<a href="/arrepentimiento.html" style="color:#FFFFFF;font-weight:600;min-height:28px;display:inline-flex;align-items:center">Botón de arrepentimiento</a>'
-         '<a href="/baja.html" style="color:#FFFFFF;font-weight:600;min-height:28px;display:inline-flex;align-items:center">Botón de baja de servicio</a></div>')
-for rel in ["index.html", "panel.html", "inscripcion.html", "cursos/interiores.html", "cursos/industrial.html", "cursos/grafico.html", "cursos/indumentaria.html"]:
-    p = PUB / rel
-    s = p.read_text(encoding="utf-8")
-    if 'class="consumidor-bar"' in s:
-        print("ya estaba", rel); continue
-    i = s.index("<body")
-    j = s.index(">", i) + 1
-    s = s[:j] + "\n" + BARRA + s[j:]
-    p.write_text(s, encoding="utf-8")
-    print("barra", rel)
-
-# Pie de la portada: los mismos enlaces
-p = PUB / "index.html"; s = p.read_text(encoding="utf-8")
-if 'href="/arrepentimiento.html">Botón de arrepentimiento</a>\n' not in s:
-    s = s.replace('<a href="/bocetador/">Bocetador</a>\n',
-                  '<a href="/bocetador/">Bocetador</a>\n<a href="/arrepentimiento.html">Botón de arrepentimiento</a>\n<a href="/baja.html">Botón de baja de servicio</a>\n', 1)
-    p.write_text(s, encoding="utf-8")
+# La franja con los botones ya está en el encabezado común (tools/layout.py).

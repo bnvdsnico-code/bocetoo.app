@@ -96,24 +96,24 @@
   // 4. Entregas
   const lista = $("entregasLista");
   const tarjeta = (href, tag, tagCol, bg, titulo, sub) => {
-    const a = el("a", `text-decoration: none; display: flex; flex-direction: column; gap: 6px; padding: 16px; border-radius: 18px; background: ${bg}`);
+    const a = el("a", `text-decoration: none; display: flex; flex-direction: column; gap: 6px; padding: 16px; border-radius: 12px; background: ${bg}`);
     a.href = href;
-    a.append(el("span", `font-size: 12px; font-weight: 700; letter-spacing: 0.06em; color: ${tagCol}`, tag), el("span", "font-size: 16px; font-weight: 600", titulo), el("span", "font-size: 14px; color: #3A3A3A", sub));
+    a.append(el("span", `font-size: 12px; font-weight: 700; letter-spacing: 0.06em; color: ${tagCol}`, tag), el("span", "font-size: 16px; font-weight: 600", titulo), el("span", "font-size: 14px; color: var(--grafito-2)", sub));
     return a;
   };
   let pendiente = null;
   if (principal && proxima) pendiente = orden(principal).find((k) => clases[principal][k].e && !entregada(principal, k) && !hechas[principal].has(k)) || null;
   if (pendiente) {
     const it = clases[principal][pendiente];
-    lista.append(tarjeta(urlClase(principal, pendiente), "○ PRÓXIMA ENTREGA", "#3A3A3A", "#F3F3F1", it.t, `${C[principal].corto} · ${it.k}`));
+    lista.append(tarjeta(urlClase(principal, pendiente), "○ PRÓXIMA ENTREGA", "var(--grafito-2)", "var(--papel)", it.t, `${C[principal].corto} · ${it.k}`));
   }
   entregas.slice().sort((a, b) => String(b.fecha).localeCompare(String(a.fecha))).slice(0, pendiente ? 3 : 4).forEach((e) => {
     const pend = e.corregir > 0, sin = e.corregir == null;
-    const [tag, bg, ink] = !e.e ? ["○ PRÁCTICA GUARDADA", "#F3F3F1", "#3A3A3A"] : pend ? ["! PARA CORREGIR", "#FFF1E6", "#9A3412"] : sin ? ["● ENTREGADA · SIN CORRECCIÓN", "#F3F3F1", "#3A3A3A"] : ["✓ CORREGIDA", "#E7F0FF", "#1E3A8A"];
+    const [tag, bg, ink] = !e.e ? ["○ PRÁCTICA GUARDADA", "var(--papel)", "var(--grafito-2)"] : pend ? ["! PARA CORREGIR", "#FFF1E6", "#9A3412"] : sin ? ["● ENTREGADA · SIN CORRECCIÓN", "var(--papel)", "var(--grafito-2)"] : ["✓ CORREGIDA", "#E7F0FF", "#1E3A8A"];
     const sub = `${C[e.carrera].corto} · ${e.k}` + (e.e && pend ? ` · ${e.corregir} ${e.corregir === 1 ? "ajuste" : "ajustes"}` : e.e && sin ? " · pedí la corrección" : "");
     lista.append(tarjeta(`/bocetador/?carrera=${e.carrera}&clase=${e.clase}`, tag, ink, bg, e.t, sub));
   });
-  if (!lista.children.length) lista.append(el("p", "margin: 0; font-size: 15px; line-height: 1.5; color: #555555", "Cuando hagas un ejercicio en el Bocetador y lo entregues, aparece acá con su corrección."));
+  if (!lista.children.length) lista.append(el("p", "margin: 0; font-size: 15px; line-height: 1.5; color: var(--grafito-2)", "Cuando hagas un ejercicio en el Bocetador y lo entregues, aparece acá con su corrección."));
 
   // 5. Tu semana de estudio: las próximas 5 clases, de lunes a viernes a las 19
   const DIAS = ["LUN", "MAR", "MIÉ", "JUE", "VIE", "SÁB", "DOM"];
@@ -121,22 +121,22 @@
   const grid = $("semanaGrid");
   const sesiones = [];
   DIAS.forEach((d, i) => {
-    const col = el("div", "border-radius: 16px; background: #F7F6F4; padding: 14px; display: flex; flex-direction: column; gap: 10px; min-height: 150px");
+    const col = el("div", "border-radius: 12px; background: var(--papel); padding: 14px; display: flex; flex-direction: column; gap: 10px; min-height: 150px");
     col.append(el("span", "font-size: 13px; font-weight: 700", d));
     const k = plan[i];
     if (i < 5 && k) {
       const it = clases[principal][k];
       const box = el("a", `text-decoration: none; background: ${it.e ? "#FFF1E6" : "#FFFFFF"}; border-left: 4px solid ${C[principal].col}; border-radius: 8px; padding: 10px; display: flex; flex-direction: column; gap: 4px`);
       box.href = urlClase(principal, k);
-      box.append(el("span", `font-size: 12px; ${it.e ? "font-weight: 700; color: #9A3412" : "color: #555555"}`, it.e ? "19:00 · CON ENTREGA" : "19:00 · 1 hora"), el("span", "font-size: 13px; font-weight: 600; line-height: 1.3", it.t));
+      box.append(el("span", `font-size: 12px; ${it.e ? "font-weight: 700; color: #9A3412" : "color: var(--grafito-2)"}`, it.e ? "19:00 · CON ENTREGA" : "19:00 · 1 hora"), el("span", "font-size: 13px; font-weight: 600; line-height: 1.3", it.t));
       col.append(box);
       sesiones.push({ day: i + 1, h: 19, m: 0, dur: 60, title: `${it.t} (${C[principal].corto} · ${it.k})`, url: urlClase(principal, k) });
     } else if (i === 5 && plan.length) {
-      const box = el("div", "background: #FFFFFF; border-left: 4px solid #111111; border-radius: 8px; padding: 10px; display: flex; flex-direction: column; gap: 4px");
-      box.append(el("span", "font-size: 12px; color: #555555", "10:00 · 20 min"), el("span", "font-size: 13px; font-weight: 600; line-height: 1.3", "Repaso de la semana con el asistente"));
+      const box = el("div", "background: #FFFFFF; border-left: 4px solid var(--grafito); border-radius: 8px; padding: 10px; display: flex; flex-direction: column; gap: 4px");
+      box.append(el("span", "font-size: 12px; color: var(--grafito-2)", "10:00 · 20 min"), el("span", "font-size: 13px; font-weight: 600; line-height: 1.3", "Repaso de la semana con el asistente"));
       col.append(box);
       sesiones.push({ day: 6, h: 10, m: 0, dur: 20, title: "Repaso de la semana con el asistente", url: "/panel.html#asistente" });
-    } else col.append(el("span", "font-size: 13px; color: #555555", "Libre"));
+    } else col.append(el("span", "font-size: 13px; color: var(--grafito-2)", "Libre"));
     grid.append(col);
   });
   window.BOCETO_SESIONES = sesiones;
@@ -150,22 +150,22 @@
   CARRERAS.forEach((c) => {
     const mia = mias.includes(c), activa = activas.includes(c);
     if (mia) {
-      const a = el("a", "text-decoration: none; border: 1.5px solid #E2E2E2; border-radius: 22px; padding: 22px; display: flex; flex-direction: column; gap: 14px");
+      const a = el("a", "text-decoration: none; border: 1.5px solid var(--linea); border-radius: 20px; padding: 22px; display: flex; flex-direction: column; gap: 14px");
       a.href = `/cursos/${c}/programa.html`;
       const k = siguiente(c);
       const bar = el("span", "display: grid; grid-template-columns: repeat(16, minmax(0, 1fr)); gap: 3px"); bar.setAttribute("aria-hidden", "true");
-      bar.append(...conBarra(c, 6, C[c].col, C[c].soft, "#E2E2E2"));
+      bar.append(...conBarra(c, 6, C[c].col, C[c].soft, "var(--linea)"));
       a.append(el("span", `align-self: flex-start; font-size: 12px; font-weight: 600; color: #FFFFFF; background: ${C[c].col}; padding: 5px 12px; border-radius: 999px`, C[c].corto),
-               el("span", "font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 20px; line-height: 1.2", (indice[c] && indice[c].titulo) || C[c].n), bar,
-               el("span", "font-size: 14px; color: #555555", (k ? `Semana ${semanaDe(k)} de 16` : "Terminada") + ` · ${pct(c)}%` + (yo.ingresado && !activa ? " · sin suscripción activa" : "")));
+               el("span", "font-family: var(--display); font-weight: 700; font-size: 20px; line-height: 1.2", (indice[c] && indice[c].titulo) || C[c].n), bar,
+               el("span", "font-size: 14px; color: var(--grafito-2)", (k ? `Semana ${semanaDe(k)} de 16` : "Terminada") + ` · ${pct(c)}%` + (yo.ingresado && !activa ? " · sin suscripción activa" : "")));
       cursos.append(a);
     } else {
-      const a = el("a", "text-decoration: none; border: 1.5px dashed #CFCFCF; border-radius: 22px; padding: 22px; display: flex; flex-direction: column; gap: 14px; background: #FAFAFA");
+      const a = el("a", "text-decoration: none; border: 1.5px dashed var(--linea); border-radius: 20px; padding: 22px; display: flex; flex-direction: column; gap: 14px; background: var(--papel)");
       const sumar = activas.length > 0;
       a.href = sumar ? `/inscripcion.html?plan=diplomatura&carrera=${c}` : `/cursos/${c}/semana-01/clase-1.html`;
       a.append(el("span", `font-size: 13px; font-weight: 600; color: ${C[c].col}`, sumar ? "Sumala a tu plan" : "Primera clase gratis"),
-               el("span", "font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 20px; line-height: 1.2", (indice[c] && indice[c].titulo) || C[c].n),
-               el("span", "font-size: 14px; line-height: 1.5; color: #3A3A3A", sumar ? "Con el plan Todas las diplomaturas tenés las cuatro." : "Probala sin suscribirte."));
+               el("span", "font-family: var(--display); font-weight: 700; font-size: 20px; line-height: 1.2", (indice[c] && indice[c].titulo) || C[c].n),
+               el("span", "font-size: 14px; line-height: 1.5; color: var(--grafito-2)", sumar ? "Con el plan Todas las diplomaturas tenés las cuatro." : "Probala sin suscribirte."));
       cursos.append(a);
     }
   });
@@ -174,16 +174,16 @@
   const port = $("portfolioGrid");
   entregas.filter((e) => e.img).sort((a, b) => String(b.fecha).localeCompare(String(a.fecha))).slice(0, 6).forEach((e) => {
     const f = el("figure", "margin: 0; display: flex; flex-direction: column; gap: 10px");
-    const a = el("a", "display: block; aspect-ratio: 4 / 3; border-radius: 18px; background: #FFFFFF; border: 1px solid #E2E2E2; overflow: hidden");
+    const a = el("a", "display: block; aspect-ratio: 4 / 3; border-radius: 12px; background: #FFFFFF; border: 1px solid var(--linea); overflow: hidden");
     a.href = `/bocetador/?carrera=${e.carrera}&clase=${e.clase}`;
     const img = el("img", "display: block; width: 100%; height: 100%; object-fit: contain"); img.src = e.img; img.alt = `Tu trabajo: ${e.t}`; img.loading = "lazy";
     a.append(img);
     const cap = el("figcaption", "display: flex; flex-direction: column; gap: 2px");
-    cap.append(el("span", "font-size: 15px; font-weight: 600", e.t), el("span", "font-size: 13px; color: #555555", `${C[e.carrera].corto} · ${e.k}`));
+    cap.append(el("span", "font-size: 15px; font-weight: 600", e.t), el("span", "font-size: 13px; color: var(--grafito-2)", `${C[e.carrera].corto} · ${e.k}`));
     f.append(a, cap); port.append(f);
   });
   if (!port.children.length) {
-    const f = el("a", "aspect-ratio: 4 / 3; border-radius: 18px; border: 1.5px dashed #CFCFCF; display: flex; align-items: center; justify-content: center; text-align: center; padding: 14px; box-sizing: border-box; font-size: 14px; color: #555555; text-decoration: none", "Tu primera entrega del Bocetador aparece acá");
+    const f = el("a", "aspect-ratio: 4 / 3; border-radius: 12px; border: 1.5px dashed var(--linea); display: flex; align-items: center; justify-content: center; text-align: center; padding: 14px; box-sizing: border-box; font-size: 14px; color: var(--grafito-2); text-decoration: none", "Tu primera entrega del Bocetador aparece acá");
     f.href = principal ? `/bocetador/?carrera=${principal}` : "/bocetador/";
     port.append(f);
   }
@@ -195,23 +195,23 @@
 
   // 9. Certificados
   const certGrid = $("certGrid");
-  const certCard = (c) => el("div", `border: 1.5px solid #E2E2E2; border-radius: 22px; padding: 22px; display: flex; flex-direction: column; gap: 12px; border-top: 6px solid ${C[c].col}`);
+  const certCard = (c) => el("div", `border: 1.5px solid var(--linea); border-radius: 20px; padding: 22px; display: flex; flex-direction: column; gap: 12px; border-top: 6px solid ${C[c].col}`);
   const pintarCerts = (data) => {
     certGrid.replaceChildren();
     const lista = CARRERAS.filter((c) => data.carreras[c].certificado || data.carreras[c].suscripto || data.carreras[c].hechas > 0);
     lista.forEach((c) => {
       const e = data.carreras[c], card = certCard(c);
-      card.append(el("span", "font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 20px; line-height: 1.2", C[c].n));
+      card.append(el("span", "font-family: var(--display); font-weight: 700; font-size: 20px; line-height: 1.2", C[c].n));
       if (e.certificado) {
         card.append(el("span", "font-size: 14px; font-weight: 700; color: #166534", "✓ Certificado emitido"));
-        const a = el("a", "align-self: flex-start; text-decoration: none; font-size: 15px; font-weight: 600; padding: 12px 20px; min-height: 48px; box-sizing: border-box; display: inline-flex; align-items: center; background: #111111; color: #FFFFFF; border-radius: 999px", "Ver, imprimir o compartir");
+        const a = el("a", "align-self: flex-start; text-decoration: none; font-size: 15px; font-weight: 600; padding: 12px 20px; min-height: 48px; box-sizing: border-box; display: inline-flex; align-items: center; background: var(--grafito); color: #FFFFFF; border-radius: 999px", "Ver, imprimir o compartir");
         a.href = `/certificado/${e.certificado.id}`; card.append(a);
       } else if (e.puede) {
-        card.append(el("span", "font-size: 14px; color: #3A3A3A", "¡Terminaste las 80 clases! Revisá cómo querés que figure tu nombre:"));
+        card.append(el("span", "font-size: 14px; color: var(--grafito-2)", "¡Terminaste las 80 clases! Revisá cómo querés que figure tu nombre:"));
         const lab = el("label", "display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 600", "Nombre en el certificado");
-        const inp = el("input", "font: 16px Inter, system-ui, sans-serif; padding: 12px 14px; min-height: 48px; border-radius: 12px; border: 1.5px solid #CFCFCF");
+        const inp = el("input", "font: 16px Inter, system-ui, sans-serif; padding: 12px 14px; min-height: 48px; border-radius: 12px; border: 1.5px solid var(--linea)");
         inp.value = data.nombre || ""; inp.maxLength = 80; inp.autocomplete = "name"; lab.append(inp);
-        const btn = el("button", "align-self: flex-start; font: 600 15px Inter, system-ui, sans-serif; padding: 12px 20px; min-height: 48px; border-radius: 999px; border: none; background: #111111; color: #FFFFFF; cursor: pointer", "Obtener mi certificado");
+        const btn = el("button", "align-self: flex-start; font: 600 15px Inter, system-ui, sans-serif; padding: 12px 20px; min-height: 48px; border-radius: 999px; border: none; background: var(--grafito); color: #FFFFFF; cursor: pointer", "Obtener mi certificado");
         btn.type = "button";
         const msg = el("p", "margin: 0; font-size: 14px; color: #9A3412"); msg.hidden = true;
         btn.addEventListener("click", async () => {
@@ -225,13 +225,13 @@
         });
         card.append(lab, btn, msg);
       } else {
-        const bar = el("span", "display: block; height: 8px; border-radius: 4px; background: #E2E2E2; overflow: hidden");
+        const bar = el("span", "display: block; height: 8px; border-radius: 4px; background: var(--linea); overflow: hidden");
         bar.append(el("span", `display: block; height: 100%; width: ${Math.round((e.hechas / e.total) * 100)}%; background: ${C[c].col}`));
-        card.append(bar, el("span", "font-size: 14px; color: #555555", `${e.hechas} de ${e.total} clases` + (e.suscripto ? ` · te faltan ${e.total - e.hechas}` : " · el certificado requiere suscripción")));
+        card.append(bar, el("span", "font-size: 14px; color: var(--grafito-2)", `${e.hechas} de ${e.total} clases` + (e.suscripto ? ` · te faltan ${e.total - e.hechas}` : " · el certificado requiere suscripción")));
       }
       certGrid.append(card);
     });
-    if (!lista.length) certGrid.append(el("p", "margin: 0; font-size: 15px; color: #555555", "Cuando empieces una diplomatura, acá vas a ver cuánto te falta para tu certificado."));
+    if (!lista.length) certGrid.append(el("p", "margin: 0; font-size: 15px; color: var(--grafito-2)", "Cuando empieces una diplomatura, acá vas a ver cuánto te falta para tu certificado."));
   };
   if (yo.ingresado) {
     fetch("/api/certificados", { cache: "no-store" }).then((r) => (r.ok ? r.json() : null)).then((d) => { if (d) pintarCerts(d); else $("certificados").hidden = true; }).catch(() => { $("certificados").hidden = true; });

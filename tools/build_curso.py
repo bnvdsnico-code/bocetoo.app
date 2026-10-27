@@ -116,15 +116,18 @@ def figura_extra(cid_):
     return f'<figure>\n{svg_}\n<figcaption>{esc(cap)}</figcaption>\n</figure>'
 
 
-def header(back_href, back_text):
+def header(back_href, back_text, toc=False):
+    boton = ('<button type="button" class="c-toc-btn" data-toc aria-expanded="false" aria-controls="c-side">'
+             '<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h10"/></svg>Contenido</button>') if toc else ""
     return f'''<header class="c-header">
 <div class="left">
-<a class="c-brand" href="/" aria-label="boceto, inicio"><span class="marks" aria-hidden="true"><i></i><i></i><i></i><i></i></span><b>boceto</b></a>
-<a class="back" href="{back_href}">← {esc(back_text)}</a>
+<a class="s-logo c-logo" href="/" aria-label="boceto, inicio"><span class="marks" aria-hidden="true"><i></i><i></i><i></i><i></i></span>boceto</a>
+<a class="back" href="{back_href}">{esc(back_text)}</a>
 </div>
 <div class="right">
-<span class="c-progress">Tu progreso <span class="bar" aria-hidden="true"><span data-progress-bar></span></span><b data-progress-text>0%</b></span>
-<a class="panel-link" href="/panel.html">Mi panel</a>
+{boton}
+<span class="c-progress"><span class="c-progress-l">Tu progreso</span> <span class="bar" aria-hidden="true"><span data-progress-bar></span></span><b data-progress-text>0%</b></span>
+<a class="btn btn-s panel-link" href="/panel.html">Mi panel</a>
 </div>
 </header>'''
 
@@ -138,6 +141,7 @@ def page(title, desc, body, extra_attrs=""):
 <meta name="description" content="{esc(desc)}">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 {FONTS}
+<link rel="stylesheet" href="/assets/base.css">
 <link rel="stylesheet" href="/assets/site.css">
 <link rel="stylesheet" href="/assets/curso.css">
 </head>
@@ -150,15 +154,15 @@ def page(title, desc, body, extra_attrs=""):
 '''
 
 def sidebar(cur):
-    parts = ['<aside class="c-side" aria-label="Contenido de la diplomatura">', "<h2>Contenido de la diplomatura</h2>"]
+    parts = ['<aside class="c-side" id="c-side" aria-label="Contenido de la diplomatura">', '<div class="c-side-h"><h2>Contenido</h2><button type="button" class="c-toc-x" data-toc-cerrar aria-label="Cerrar el contenido">×</button></div>']
     for u in T["unidades"]:
         here = any(w["n"] == cur["w"]["n"] for w in u["semanas"])
         if not here:
-            parts.append(f'<div class="c-unit"><a href="/cursos/{CURSO}/programa.html#unidad-{u["n"]}">{u["n"]} · {esc(u["titulo"])}</a></div>')
+            parts.append(f'<div class="c-unit"><a href="/cursos/{CURSO}/programa.html#unidad-{u["n"]}"><span class="c-unit-n">{u["n"]}</span>{esc(u["titulo"])}</a></div>')
             continue
-        parts.append(f'<div class="c-unit current"><span>{u["n"]} · {esc(u["titulo"])}</span>')
+        parts.append(f'<div class="c-unit current"><span><span class="c-unit-n">{u["n"]}</span>{esc(u["titulo"])}</span>')
         for w in u["semanas"]:
-            parts.append(f'<div class="c-week"><p>Semana {w["n"]} · {esc(w["titulo"])}</p>')
+            parts.append(f'<div class="c-week"><p>Semana {w["n"]}: {esc(w["titulo"])}</p>')
             for d, t in enumerate(w["clases"], 1):
                 if WEEKS.get(w["n"]) and d in WEEKS[w["n"]]:
                     curr = ' aria-current="page"' if (w["n"] == cur["w"]["n"] and d == cur["d"]) else ""
@@ -168,9 +172,9 @@ def sidebar(cur):
             parts.append("</div>")
         parts.append("</div>")
     if T.get("recursos"):
-        parts.append('<h2 style="margin-top:10px">Recursos</h2><div class="c-week">')
+        parts.append('<h2 class="c-side-rec">Recursos</h2><div class="c-week">')
         for r in T["recursos"]:
-            parts.append(f'<a href="/cursos/{CURSO}/{r["slug"]}.html"><span aria-hidden="true">→</span>{esc(r["titulo"])}</a>')
+            parts.append(f'<a href="/cursos/{CURSO}/{r["slug"]}.html">{esc(r["titulo"])}</a>')
         parts.append("</div>")
     parts.append("</aside>")
     return "\n".join(parts)
@@ -180,16 +184,17 @@ def recurso(r):
     m = re.match(r"^# (.+)\n+(.+?)\n", text)
     titulo, bajada = (m.group(1), m.group(2)) if m else (r["titulo"], "")
     body_md = text[m.end():] if m else text
-    body = f'''{header(f"/cursos/{CURSO}/programa.html", T["carrera"])}
-<main class="c-main" style="padding-top:40px">
-<article class="c-article" style="max-width:900px">
-<p class="eyebrow">Recursos de la diplomatura · {esc(T["carrera"])}</p>
+    body = f'''<!--s-head--><!--/s-head-->
+<main class="c-main c-main-sola">
+<article class="c-article c-article-ancho">
+<nav class="c-migas" aria-label="Ruta"><a href="/cursos/{CURSO}.html">{esc(T["carrera"])}</a><span aria-hidden="true">/</span><a href="/cursos/{CURSO}/programa.html">Programa</a><span aria-hidden="true">/</span><span>Recursos</span></nav>
 <h1>{esc(titulo)}</h1>
 <p class="objetivo">{esc(bajada)}</p>
 <section class="lectura">{md(body_md)}</section>
-<nav class="pager" aria-label="Volver"><a href="/cursos/{CURSO}/programa.html"><span>← Volver</span><b>Programa de la diplomatura</b></a></nav>
+<nav class="pager" aria-label="Volver"><a href="/cursos/{CURSO}/programa.html"><span>Volver</span><b>Programa de la diplomatura</b></a></nav>
 </article>
-</main>'''
+</main>
+<!--s-foot--><!--/s-foot-->'''
     return page(f'{titulo} · boceto', bajada, body)
 
 def lesson(idx):
@@ -203,25 +208,28 @@ def lesson(idx):
     entrega = ""
     if "entrega" in s:
         entrega = f'''<section class="bloque entrega" aria-labelledby="entrega-t">
-<h2 id="entrega-t">Entrega de la semana · {esc(w["entrega"])}</h2>
+<h2 id="entrega-t">Entrega de la semana</h2>
+<p class="entrega-n">{esc(w["entrega"])}</p>
 <div class="lectura">{md(s["entrega"])}</div>
-<a class="cta" href="/bocetador/?carrera={CURSO}&amp;clase={it["id"]}">Hacer la entrega en el Bocetador →</a>
+<a class="cta" href="/bocetador/?carrera={CURSO}&amp;clase={it["id"]}">Hacer la entrega en el Bocetador</a>
 <p class="entregado" data-entrega="{it["id"]}" hidden></p>
 </section>'''
     pager = ['<nav class="pager" aria-label="Clases">']
     if avail(prev_):
-        pager.append(f'<a href="{url(prev_["w"]["n"], prev_["d"])}"><span>← Anterior</span><b>{esc(prev_["titulo"])}</b></a>')
+        pager.append(f'<a href="{url(prev_["w"]["n"], prev_["d"])}"><span>Anterior</span><b>{esc(prev_["titulo"])}</b></a>')
     if avail(next_):
-        pager.append(f'<a class="next" href="{url(next_["w"]["n"], next_["d"])}"><span>Siguiente →</span><b>{esc(next_["titulo"])}</b></a>')
+        pager.append(f'<a class="next" href="{url(next_["w"]["n"], next_["d"])}"><span>Siguiente</span><b>{esc(next_["titulo"])}</b></a>')
     elif next_:
         pager.append(f'<a class="next" href="/cursos/{CURSO}/programa.html"><span>Próxima clase en preparación</span><b>Ver el programa</b></a>')
     pager.append("</nav>")
-    body = f'''{header(f"/cursos/{CURSO}/programa.html", T["carrera"])}
+    body = f'''{header(f"/cursos/{CURSO}/programa.html", T["carrera"], toc=True)}
+<div class="c-velo" data-toc-cerrar hidden></div>
 <div class="c-layout">
 {sidebar(it)}
 <main class="c-main" id="clase">
 <article class="c-article">
-<p class="eyebrow">Unidad {u["n"]} · Semana {w["n"]} · Clase {d} de 5</p>
+<div class="c-ubic"><p class="eyebrow">Unidad {u["n"]}, semana {w["n"]}: {esc(w["titulo"])}</p>
+<nav class="c-pasos" aria-label="Clases de esta semana">{"".join((f'<a href="{url(w["n"], k)}" data-cid="{cid(w["n"], k)}"' + (' aria-current="page"' if k == d else '') + f' title="Clase {k}: {esc(w["clases"][k-1])}"><span class="sr">Clase {k}: {esc(w["clases"][k-1])}</span></a>') if (WEEKS.get(w["n"]) and k in WEEKS[w["n"]]) else f'<span class="c-paso-off"></span>' for k in range(1, 6))}<span class="c-pasos-t">Clase {d} de 5</span></nav></div>
 <h1>{esc(it["titulo"])}</h1>
 <p class="objetivo">{esc(c["objetivo"])}</p>
 <ul class="tiempos" aria-label="Tiempos de la clase"><li>Lectura <b>{t1} min</b></li><li>Práctica <b>{t2} min</b></li><li>Repaso <b>{t3} min</b></li></ul>
@@ -230,20 +238,20 @@ def lesson(idx):
 {figura_extra(it["id"])}
 </section>
 <section class="bloque practica" aria-labelledby="practica-t">
-<h2 id="practica-t">Práctica · {t2} min</h2>
+<h2 id="practica-t">Práctica <span class="min">{t2} min</span></h2>
 <div class="lectura">{md(s["práctica"])}</div>
-{"" if "entrega" in s else f'<a class="cta-suave" href="/bocetador/?carrera={CURSO}&amp;clase={it["id"]}">Hacer la práctica en el Bocetador →</a><p class="entregado" data-entrega="{it["id"]}" hidden></p>'}
+{"" if "entrega" in s else f'<a class="cta-suave" href="/bocetador/?carrera={CURSO}&amp;clase={it["id"]}">Hacer la práctica en el Bocetador</a><p class="entregado" data-entrega="{it["id"]}" hidden></p>'}
 </section>
 {entrega}
 <section class="repaso" aria-labelledby="repaso-t">
-<h2 id="repaso-t">Repaso · {t3} min</h2>
+<h2 id="repaso-t">Repaso <span class="min">{t3} min</span></h2>
 {render_quiz(parse_quiz(s["repaso"]))}
 </section>
 <section class="asistente" aria-labelledby="asistente-titulo">
 <div class="head"><span class="ico" aria-hidden="true">{SPARK}</span><div><h2 id="asistente-titulo">Preguntale al asistente</h2><p class="sub">Conoce esta clase y toda la diplomatura. Responde a cualquier hora.</p></div></div>
-<div id="chat" style="display:flex;flex-direction:column;gap:10px;font-size:15px;line-height:1.55"></div>
+<div id="chat" class="c-chat"></div>
 <div class="chips"><button type="button">Explicámelo con otro ejemplo</button><button type="button">Haceme una pregunta de práctica</button><button type="button">{esc(T.get("chip", "¿Cómo aplico esto en mi living?"))}</button></div>
-<form data-chat="form"><label class="sr" for="pregunta">Tu pregunta</label><button type="button" aria-label="Adjuntar imagen" style="width:48px;height:48px;flex:none;border-radius:14px;border:1.5px solid #CFCFCF;background:#FFF;display:grid;place-items:center;cursor:pointer;padding:0"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M21 16l-5-5-9 8"/></svg></button><input id="pregunta" type="text" placeholder="Escribí tu duda sobre esta clase…" autocomplete="off"><button type="submit">Enviar</button></form>
+<form data-chat="form"><label class="sr" for="pregunta">Tu pregunta</label><button type="button" class="c-adj" aria-label="Adjuntar imagen"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M21 16l-5-5-9 8"/></svg></button><input id="pregunta" type="text" placeholder="Escribí tu duda sobre esta clase" autocomplete="off"><button type="submit">Enviar</button></form>
 <p class="nota">El asistente puede equivocarse. Ante una duda importante, contrastá con la lectura.</p>
 </section>
 <div class="cierre">
@@ -267,29 +275,33 @@ def programa():
                 if WEEKS.get(w["n"]) and d in WEEKS[w["n"]]:
                     items.append(f'<a href="{url(w["n"], d)}" data-cid="{cid(w["n"], d)}"><span class="dot" aria-hidden="true"></span>{d}. {esc(t)}</a>')
                 else:
-                    items.append(f'<span class="soon"><span class="dot" aria-hidden="true" style="border-style:dashed"></span>{d}. {esc(t)} · próximamente</span>')
+                    items.append(f'<span class="soon"><span class="dot dot-soon" aria-hidden="true"></span>{d}. {esc(t)} · próximamente</span>')
             weeks.append(f'''<div class="p-week"><h3><small>Semana {w["n"]}</small>{esc(w["titulo"])}</h3>
 {"".join(items)}
 <p class="entrega-tag">Entrega: {esc(w["entrega"])}</p></div>''')
         units.append(f'''<section class="p-unit" id="unidad-{u["n"]}"><h2><span>{u["n"]}</span>{esc(u["titulo"])}</h2>
 <div class="p-weeks">{"".join(weeks)}</div></section>''')
     if T.get("recursos"):
-        cards = "".join(f'<a class="p-week" href="/cursos/{CURSO}/{r["slug"]}.html" style="text-decoration:none"><h3><small>Recurso</small>{esc(r["titulo"])}</h3><span style="font-size:15px;color:#4A4A4A">Abrir →</span></a>' for r in T["recursos"])
+        cards = "".join(f'<a class="p-week" href="/cursos/{CURSO}/{r["slug"]}.html" style="text-decoration:none"><h3><small>Recurso</small>{esc(r["titulo"])}</h3><span class="p-rec">Abrir el recurso</span></a>' for r in T["recursos"])
         units.append(f'<section class="p-unit" id="recursos"><h2><span>+</span>Recursos para toda la diplomatura</h2><div class="p-weeks">{cards}</div></section>')
     start = f'<a class="p-start" href="{url(first["w"]["n"], first["d"])}" data-continue>Empezar la diplomatura</a>' if first else ""
-    body = f'''{header(f"/cursos/{CURSO}.html", "Ficha de la diplomatura")}
+    body = f'''<!--s-head--><!--/s-head-->
 <section class="p-hero"><div class="in">
-<p class="eyebrow">Programa · {esc(T["carrera"])}</p>
+<nav class="c-migas" aria-label="Ruta"><a href="/#diplomaturas">Diplomaturas</a><span aria-hidden="true">/</span><a href="/cursos/{CURSO}.html">{esc(T["carrera"])}</a><span aria-hidden="true">/</span><span aria-current="page">Programa</span></nav>
 <h1>{esc(T["titulo"])}</h1>
 <p>{esc(T["bajada"])}</p>
-<div class="p-meta"><span>16 semanas</span><span>80 clases de 1 hora</span><span>5 días por semana</span><span>16 entregas con corrección</span></div>
+<dl class="p-meta"><div><dt>Duración</dt><dd>16 semanas</dd></div><div><dt>Clases</dt><dd>80 de 1 hora</dd></div><div><dt>Ritmo</dt><dd>5 días por semana</dd></div><div><dt>Entregas</dt><dd>16 con corrección</dd></div></dl>
 {start}
 </div></section>
 <main class="p-body">
 {"".join(units)}
-</main>'''
+</main>
+<!--s-foot--><!--/s-foot-->'''
     return page(f'Programa · {T["titulo"]} · boceto', T["bajada"], body)
 
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent)); import layout
+_orig_page = page
+def page(*a, **k): return layout.aplicar(_orig_page(*a, **k))
 OUT.mkdir(parents=True, exist_ok=True)
 (OUT / "programa.html").write_text(programa(), encoding="utf-8")
 for r in T.get("recursos", []):

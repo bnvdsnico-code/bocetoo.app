@@ -4,12 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Inscripción · boceto</title>
+<link rel="stylesheet" href="/assets/base.css">
 <meta name="description" content="Inscribite a una diplomatura de boceto: cuota mensual con débito automático por Mercado Pago.">
 <meta name="robots" content="noindex">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/site.css">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/inscripcion.css">
 <script src="https://sdk.mercadopago.com/js/v2" defer></script>
 <script src="/assets/inscripcion.js" defer></script>
@@ -17,45 +16,45 @@
 <!-- /seo -->
 </head>
 <body>
-<div class="consumidor-bar" style="background:#111111;color:#FFFFFF;font-family:Inter,system-ui,sans-serif;font-size:13px;display:flex;flex-wrap:wrap;justify-content:center;gap:4px 20px;padding:8px 16px"><a href="/arrepentimiento.html" style="color:#FFFFFF;font-weight:600;min-height:28px;display:inline-flex;align-items:center">Botón de arrepentimiento</a><a href="/baja.html" style="color:#FFFFFF;font-weight:600;min-height:28px;display:inline-flex;align-items:center">Botón de baja de servicio</a></div>
-<header class="i-top">
-  <a class="i-brand" href="/">
-    <span class="marks" aria-hidden="true"><i></i><i></i><i></i><i></i></span><b>boceto</b>
-  </a>
-  <a href="/#planes">Ver planes</a>
-</header>
-
-<main class="i-main" data-mp-subscriptions-page="with-plan">
+<!--s-head-->
+<div class="s-util"><div class="wrap"><a href="/arrepentimiento.html">Botón de arrepentimiento</a><a href="/baja.html">Botón de baja de servicio</a></div></div>
+<header class="s-head"><div class="wrap s-head-in">
+<a class="s-logo" href="/" aria-label="boceto, inicio"><span class="marks" aria-hidden="true"><i></i><i></i><i></i><i></i></span>boceto</a>
+<nav class="s-nav" id="s-nav" aria-label="Principal"><a href="/#diplomaturas">Diplomaturas</a><a href="/#como-se-estudia">Cómo se estudia</a><a href="/bocetador/">Bocetador</a><a href="/#planes">Planes</a></nav>
+<div class="s-acc"><a class="btn btn-quiet btn-s" href="/acceso.html?volver=/panel.html" data-anon>Ingresar</a><a class="btn btn-ink btn-s" href="/#diplomaturas" data-anon>Probar gratis</a><a class="s-me" href="/panel.html" data-user hidden><span class="s-av" aria-hidden="true"></span><span class="s-me-t">Mi panel</span></a></div>
+<button class="s-burger" type="button" aria-expanded="false" aria-controls="s-nav"><span></span><span class="sr">Menú</span></button>
+</div></header>
+<!--/s-head-->
+<main class="i-main wrap" data-mp-subscriptions-page="with-plan">
+<div class="i-col">
   <section class="i-intro">
-    <p class="i-kick">Inscripción</p>
-    <h1>Empezá tu diplomatura</h1>
-    <p>La cuota se debita sola cada mes con Mercado Pago. Podés pausar o cancelar cuando quieras desde esta página.</p>
+    <h1 class="t-h1">Inscribite</h1>
+    <p>Elegí tu plan y suscribite con tu tarjeta. La cuota se debita sola cada mes y podés pausar o darte de baja desde esta misma página.</p>
   </section>
 
   <!-- Elegir oferta: los precios se muestran desde el catálogo del servidor -->
   <section class="i-card" aria-labelledby="oferta-t">
-    <h2 id="oferta-t">1 · Elegí tu plan</h2>
+    <h2 id="oferta-t"><span class="paso">1</span>Elegí tu plan</h2>
     <div class="i-plans" role="radiogroup" aria-label="Plan">
       <label class="i-plan"><input type="radio" name="plan" value="diplomatura" checked>
-        <span><b>Tu diplomatura</b><small>Una carrera · 4 cuotas mensuales</small></span><em data-precio="diplomatura">$63.000 / mes</em></label>
+        <span><b>Tu diplomatura</b><small>Una diplomatura, en 4 cuotas mensuales</small></span><em data-precio="diplomatura">$63.000 por mes</em></label>
       <label class="i-plan"><input type="radio" name="plan" value="todas">
-        <span><b>Todas las diplomaturas</b><small>Las cuatro carreras · mes a mes</small></span><em data-precio="todas">$83.000 / mes</em></label>
+        <span><b>Todas las diplomaturas</b><small>Las cuatro, mes a mes, mientras sigas suscripto</small></span><em data-precio="todas">$83.000 por mes</em></label>
     </div>
     <label class="i-field" id="carreraWrap" for="carrera">Diplomatura
       <select id="carrera" name="carrera">
         <option value="interiores">Interiores y Mobiliario</option>
-        <option value="industrial">Industrial</option>
-        <option value="grafico">Gráfico</option>
-        <option value="indumentaria">Indumentaria</option>
+        <option value="industrial">Diseño Industrial</option>
+        <option value="grafico">Diseño Gráfico</option>
+        <option value="indumentaria">Diseño de Indumentaria</option>
       </select>
     </label>
-    <p class="i-total" aria-live="polite">Total: <strong id="total">ARS 63.000 por mes · 4 cuotas</strong></p>
-    <p class="i-note">Después de suscribirte, abonás una sola vez la matrícula de $45.000 con Mercado Pago.</p>
+    <p class="i-total sr" aria-live="polite">Total: <strong id="total">ARS 63.000 por mes, 4 cuotas</strong></p>
   </section>
 
   <!-- Formulario de tarjeta: los campos de número, vencimiento y código son seguros de Mercado Pago -->
   <section class="i-card" id="pagoCard" aria-labelledby="pago-t">
-    <h2 id="pago-t">2 · Tus datos y tu tarjeta</h2>
+    <h2 id="pago-t"><span class="paso">2</span>Tus datos y tu tarjeta</h2>
     <div id="ingresoBox" class="i-matricula" hidden>
       <p>Para suscribirte, primero ingresá con tu cuenta de Google. Con esa cuenta vas a entrar a tus clases desde cualquier dispositivo.</p>
       <a id="ingresoGoogle" class="i-cta" href="/auth/google" style="display:inline-flex;align-items:center;justify-content:center;text-decoration:none">Ingresar con Google</a>
@@ -113,8 +112,28 @@
       <p id="matriculaTxt">Falta abonar la matrícula única de <b>$45.000</b>. Se paga una sola vez, con cualquier medio de Mercado Pago (tarjeta, dinero en cuenta, transferencia o efectivo).</p>
       <button type="button" id="pagarMatricula" class="i-cta" data-mp-checkout-cta="checkout-pro">Pagar matrícula con Mercado Pago</button>
     </div>
-    <p><a href="/panel.html">Ir a mi panel</a></p>
+    <p><a class="btn" href="/panel.html">Ir a mi panel</a></p>
   </section>
+</div>
+<aside class="i-res" aria-label="Resumen de tu inscripción">
+  <div class="i-res-in">
+    <h2 class="t-h4">Resumen</h2>
+    <dl class="i-res-l">
+      <div><dt>Plan</dt><dd id="resPlan">Tu diplomatura</dd></div>
+      <div id="resDiscW"><dt>Diplomatura</dt><dd id="resDisc">Interiores y Mobiliario</dd></div>
+      <div><dt>Cuota mensual</dt><dd id="resCuota">$63.000</dd></div>
+      <div><dt>Cuotas</dt><dd id="resCuotas">4</dd></div>
+      <div><dt>Matrícula única</dt><dd>$45.000</dd></div>
+    </dl>
+    <p class="t-small">La matrícula se abona una sola vez, después de suscribirte, con cualquier medio de Mercado Pago.</p>
+    <ul class="i-conf">
+      <li><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg><span>Pago seguro con Mercado Pago. Nunca vemos ni guardamos tu tarjeta.</span></li>
+      <li><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg><span>Tenés 10 días para arrepentirte y podés darte de baja cuando quieras.</span></li>
+      <li><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h10"/></svg><span>La primera clase de cada diplomatura es gratis: <a href="/#diplomaturas">probala antes</a>.</span></li>
+    </ul>
+    <p class="t-small">¿Dudas? Escribinos a <a href="mailto:hola@bocetoo.app">hola@bocetoo.app</a>.</p>
+  </div>
+</aside>
 </main>
 <script>
   // Matrícula con Checkout Pro: el servidor crea la preferencia y el navegador va a init_point.
@@ -129,5 +148,17 @@
     document.querySelector("#pagarMatricula").addEventListener("click", () => fetch("/api/matricula", opciones()).then((r) => r.json()).then((d) => d.init_point ? location.assign(d.init_point) : falla(d)).catch(falla));
   })();
 </script>
+<!--s-foot-->
+<footer class="s-foot"><div class="wrap">
+<div class="s-foot-in">
+<div class="s-foot-brand"><a class="s-logo" href="/"><span class="marks" aria-hidden="true"><i></i><i></i><i></i><i></i></span>boceto</a><p>Escuela de diseño online. Diplomaturas de 16 semanas para aprender haciendo, con el Bocetador y un asistente que te corrige.</p></div>
+<div><h2>Diplomaturas</h2><ul><li><a href="/cursos/interiores.html">Interiores y Mobiliario</a></li><li><a href="/cursos/industrial.html">Diseño Industrial</a></li><li><a href="/cursos/grafico.html">Diseño Gráfico</a></li><li><a href="/cursos/indumentaria.html">Diseño de Indumentaria</a></li></ul></div>
+<div><h2>La escuela</h2><ul><li><a href="/bocetador/">Bocetador</a></li><li><a href="/#planes">Planes y precios</a></li><li><a href="/panel.html">Mi panel</a></li><li><a href="mailto:hola@bocetoo.app">hola@bocetoo.app</a></li></ul></div>
+<div><h2>Legales</h2><ul><li><a href="/arrepentimiento.html">Botón de arrepentimiento</a></li><li><a href="/baja.html">Botón de baja de servicio</a></li><li><a href="/terminos.html">Términos y condiciones</a></li><li><a href="/privacidad.html">Privacidad</a></li></ul></div>
+</div>
+<div class="s-foot-legal"><span>boceto · bocetoo.app</span><span>Cursos libres de formación: no otorgan título oficial.</span></div>
+</div></footer>
+<!--/s-foot-->
+<script src="/assets/nav.js" defer></script>
 </body>
 </html>
