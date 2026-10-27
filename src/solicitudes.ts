@@ -3,6 +3,7 @@
 // un código de identificación de su solicitud. Las solicitudes quedan guardadas en KV con la clave "solicitud:<código>".
 
 import type { MpEnv } from "./suscripciones";
+import { avisar } from "./avisos";
 
 const json = (data: unknown, status = 200) =>
   new Response(JSON.stringify(data), { status, headers: { "content-type": "application/json; charset=utf-8", "cache-control": "no-store" } });
@@ -29,5 +30,10 @@ export async function createRequest(req: Request, env: MpEnv) {
     codigo, tipo, nombre, email, dni, detalle, fecha: fecha.toISOString(), estado: "recibida"
   }));
   console.log("solicitud recibida", tipo, codigo);
+  await avisar(env, `${tipo === "baja" ? "Pedido de BAJA" : "ARREPENTIMIENTO"} · ${codigo}`,
+    `Llegó una solicitud por el ${tipo === "baja" ? "Botón de baja de servicio" : "Botón de arrepentimiento"}.\n\n` +
+    `Código: ${codigo}\nNombre: ${nombre}\nEmail: ${email}\nDNI: ${dni || "(no indicó)"}\nDetalle: ${detalle || "(sin detalle)"}\nFecha: ${fecha.toLocaleString("es-AR", { timeZone: "America/Argentina/Buenos_Aires" })}\n\n` +
+    `Tenés que darle curso y responderle a ${email} dentro de las 24 horas. ` +
+    (tipo === "baja" ? "Si tiene una suscripción activa, cancelala en Mercado Pago (Suscripciones)." : "Si ya pagó, devolvé el importe desde Mercado Pago (Actividad → el pago → Devolver)."));
   return json({ codigo, fecha: fecha.toISOString() });
 }

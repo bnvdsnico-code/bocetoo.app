@@ -26,6 +26,11 @@ APP_URL = "https://bocetoo.app"
 # ID público del cliente de Google (no es secreto). El secreto va en Cloudflare como GOOGLE_CLIENT_SECRET.
 GOOGLE_CLIENT_ID = "432808498602-6kl6395du57csvs5ma1umggn5pbcanms.apps.googleusercontent.com"
 
+# Avisos por email al dueño (Email Routing): solo puede enviar a esta dirección verificada
+[[send_email]]
+name = "AVISOS"
+destination_address = "bnvds.nico@gmail.com"
+
 # Dominio propio (en Cloudflare): bocetoo.app y www.bocetoo.app
 [[routes]]
 pattern = "bocetoo.app"

@@ -2,6 +2,7 @@
 // El navegador solo manda qué oferta elige (plan + carrera), el email y el token de tarjeta de un solo uso.
 // Montos, frecuencia e ID del plan salen siempre del catálogo del servidor.
 
+import { avisar } from "./avisos";
 import { currentSession, linkSubscription, googleReady } from "./auth";
 
 type KV = {
@@ -153,6 +154,8 @@ export async function createSubscription(req: Request, env: MpEnv) {
   await env.SUSCRIPCIONES.put(`sub:${record.id}`, JSON.stringify(record));
   await env.SUSCRIPCIONES.put(`ref:${externalReference}`, record.id);
   await linkSubscription(env, sesion ? sesion.email : email, record.id);
+  await avisar(env, `Nueva suscripción · ${trustedOffer.reason}`,
+    `Se suscribió ${record.cuenta} (email de pago: ${email}).\n\nPlan: ${trustedOffer.reason}\nCuota: $${trustedOffer.amount.toLocaleString("es-AR")}\nEstado: ${record.status}\nID de Mercado Pago: ${record.id}`);
   return json({ id: record.id, llave, status: record.status, plan: record.plan, carrera: record.carrera, reason: trustedOffer.reason, amount: trustedOffer.amount });
 }
 
@@ -190,6 +193,7 @@ export async function changeSubscription(req: Request, env: MpEnv, id: string, a
   }
   rec.status = normalizeStatus(data.status || status);
   await env.SUSCRIPCIONES.put(`sub:${id}`, JSON.stringify(rec));
+  if (accion === "cancel") await avisar(env, "Suscripción cancelada", `${rec.cuenta || rec.email} canceló su suscripción (${rec.plan}${rec.carrera ? " · " + rec.carrera : ""}).\nID de Mercado Pago: ${id}`);
   return json({ id, status: rec.status });
 }
 
