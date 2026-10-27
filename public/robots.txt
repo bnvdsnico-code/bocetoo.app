@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /auth/
+Disallow: /panel
+Disallow: /acceso
+Disallow: /bocetador/
+
+Sitemap: https://bocetoo.app/sitemap.xml

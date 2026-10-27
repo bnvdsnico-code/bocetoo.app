@@ -86,3 +86,7 @@ y vuelve a Workers AI si Claude no está disponible.
 - Para suscribirse hay que ingresar: la suscripción queda asociada al email de Google (`email:<email>` → ids).
 - Clases: la primera de cada diplomatura es libre; el resto requiere una suscripción `authorized` que la incluya. Si no, se redirige a `/acceso.html`.
 - Configuración: `GOOGLE_CLIENT_ID` (variable) y `GOOGLE_CLIENT_SECRET` (secreto) en Cloudflare. URI de redirección autorizada en Google: `https://<dominio>/auth/callback`.
+
+## SEO
+- `python3 tools/seo.py` agrega canonical, Open Graph, datos estructurados y noindex, y regenera `sitemap.xml` y `robots.txt`. Correrlo después de cualquier `build_curso.py` o `legales.py`.
+- `python3 tools/og.py <carpeta @fontsource>` regenera las imágenes para compartir (`public/assets/og/`).
