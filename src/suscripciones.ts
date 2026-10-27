@@ -198,9 +198,15 @@ export async function ensurePlans(env: MpEnv) {
     if (existing) { result[k] = "existente"; continue; }
     const auto_recurring: Record<string, unknown> = { frequency: 1, frequency_type: "months", transaction_amount: offer.amount, currency_id: "ARS" };
     if (offer.repetitions) auto_recurring.repetitions = offer.repetitions;
-    const res = await fetch(`${MP_API}/preapproval_plan`, {
-      method: "POST", headers: mpHeaders(env), body: JSON.stringify({ reason: offer.reason, auto_recurring, back_url: backUrl })
-    }).catch(() => null);
+    // Si Mercado Pago limita por exceso de pedidos (429), espera unos segundos y reintenta.
+    let res: Response | null = null;
+    for (let intento = 0; intento < 3; intento++) {
+      if (intento) await new Promise((r) => setTimeout(r, 3000 * intento));
+      res = await fetch(`${MP_API}/preapproval_plan`, {
+        method: "POST", headers: mpHeaders(env), body: JSON.stringify({ reason: offer.reason, auto_recurring, back_url: backUrl })
+      }).catch(() => null);
+      if (!res || res.status !== 429) break;
+    }
     const data: any = res ? await res.json().catch(() => ({})) : {};
     if (!res || !res.ok || !data?.id) {
       console.error("suscripciones: no se pudo crear el plan", k, res?.status ?? 0, String(data?.message ?? "").slice(0, 160));
