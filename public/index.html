@@ -50,47 +50,51 @@
 <button role="tab" class="d-interiores" aria-selected="true" data-lamina="interiores">Interiores</button><button role="tab" class="d-industrial" aria-selected="false" data-lamina="industrial">Industrial</button><button role="tab" class="d-grafico" aria-selected="false" data-lamina="grafico">Gráfico</button><button role="tab" class="d-indumentaria" aria-selected="false" data-lamina="indumentaria">Indumentaria</button>
 </div>
 <div class="lamina-hoja grilla">
-<svg class="dib d-interiores" data-dib="interiores" viewBox="0 0 560 420" role="img" aria-label="Planta de un living acotada en 4 por 3,20 metros, con una corrección del asistente sobre el paso entre la mesa y la butaca">
+<svg class="dib d-interiores" data-dib="interiores" viewBox="0 0 560 420" role="group" aria-label="Planta de un living de 4 por 3,20 metros. Arrastrá la mesa ratona para dejar 90 centímetros de paso hasta la butaca.">
 <g class="trazo" stroke="var(--grafito)" fill="none" stroke-linecap="round" stroke-linejoin="round">
 <path pathLength="1" stroke-width="9" d="M150 372H96V64H470V372H210"/>
-<path pathLength="1" stroke-width="2" d="M210 372V318"/><path pathLength="1" stroke-width="1.6" stroke-dasharray="5 5" d="M210 318A54 54 0 0 0 156 372"/>
+<path pathLength="1" stroke-width="2" d="M210 372V318"/><path pathLength="1" stroke-width="1.6" d="M210 318A54 54 0 0 0 156 372"/>
 <path pathLength="1" stroke-width="2.4" d="M234 296h184v54H234z M234 338h184 M295 296v42 M357 296v42"/>
-<path pathLength="1" stroke-width="2.4" d="M250 214h112v52H250z"/>
 <path pathLength="1" stroke-width="2.4" d="M404 196h58v62h-58z M404 210h58"/>
 </g>
 <g class="cota" stroke="var(--grafito-2)" stroke-width="1.2" fill="none"><path pathLength="1" d="M96 34H470 M90 40l12-12 M464 40l12-12 M96 26v16 M470 26v16"/><path pathLength="1" d="M58 64V372 M52 70l12-12 M52 378l12-12 M50 64h16 M50 372h16"/></g>
 <text class="cota-t" x="283" y="24" text-anchor="middle">4,00 m</text><text class="cota-t" x="48" y="222" text-anchor="middle" transform="rotate(-90 48 222)">3,20 m</text>
-<path class="circ" d="M186 362C214 300 236 286 300 282C364 278 383 268 383 232" stroke="var(--interiores)" stroke-width="2" stroke-dasharray="1 7" stroke-linecap="round" fill="none"/>
-<g class="marca"><circle cx="383" cy="232" r="22" fill="none" stroke="var(--interiores)" stroke-width="2"/><circle cx="383" cy="232" r="13" fill="var(--interiores)"/><text x="383" y="237" text-anchor="middle" class="marca-n">1</text></g>
+<g class="medida" data-medida><path data-medida-l d="" stroke="var(--interiores)" stroke-width="1.6" fill="none"/><text data-medida-t x="0" y="232" text-anchor="middle" class="medida-t"></text></g>
+<g class="arr" data-arr tabindex="0" role="slider" aria-label="Posición de la mesa ratona" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><rect class="arr-zona" x="244" y="206" width="124" height="68" rx="8"/><rect class="trazo-1" pathLength="1" x="250" y="214" width="112" height="52" fill="var(--hoja)" stroke="var(--grafito)" stroke-width="2.4"/></g>
+<g data-marca><g class="marca"><circle class="marca-a" r="22" fill="none" stroke-width="2"/><circle class="marca-c" r="13"/><text y="5" text-anchor="middle" class="marca-n" data-marca-n>1</text></g></g>
 </svg>
-<svg class="dib d-industrial" data-dib="industrial" viewBox="0 0 560 420" role="img" aria-label="Caja dibujada en perspectiva con dos puntos de fuga, con una corrección del asistente sobre una arista" hidden>
+<svg class="dib d-industrial" data-dib="industrial" viewBox="0 0 560 420" role="group" aria-label="Caja en perspectiva con dos puntos de fuga. Arrastrá la esquina marcada hasta la línea que va al punto de fuga." hidden>
 <path class="guia" pathLength="1" d="M20 120H540" stroke="var(--industrial)" stroke-width="1.4" opacity=".55" fill="none"/>
 <text class="guia-t" x="34" y="110">Línea de horizonte</text>
-<g class="guia" stroke="var(--industrial)" stroke-width="1" opacity=".35" fill="none"><path pathLength="1" d="M280 172L20 120M280 172L540 120M280 330L20 120M280 330L540 120"/></g>
+<g class="guia" stroke="var(--industrial)" stroke-width="1" opacity=".4" fill="none"><path pathLength="1" d="M280 172L20 120M280 172L540 120M280 330L20 120M280 330L540 120"/></g>
 <circle cx="20" cy="120" r="6" fill="#FFF" stroke="var(--industrial)" stroke-width="2"/><circle cx="540" cy="120" r="6" fill="#FFF" stroke="var(--industrial)" stroke-width="2"/>
-<g class="trazo" stroke="var(--grafito)" stroke-linecap="round" fill="none"><path pathLength="1" stroke-width="3" d="M280 172V330 M164 151V268 M410 146V276"/><path pathLength="1" stroke-width="3" d="M280 172L164 151 M280 172L410 146 M280 330L164 268 M280 330L410 276"/><path pathLength="1" stroke-width="2" d="M164 151L298 132 M410 146L298 132"/></g>
-<path class="sombra" d="M292 322C332 308 372 296 404 282" stroke="#8B939C" stroke-width="12" opacity=".3" fill="none" stroke-linecap="round"/>
-<g class="marca"><circle cx="410" cy="214" r="22" fill="none" stroke="var(--industrial)" stroke-width="2"/><circle cx="410" cy="214" r="13" fill="var(--industrial)"/><text x="410" y="219" text-anchor="middle" class="marca-n">1</text></g>
+<g class="trazo" stroke="var(--grafito)" stroke-linecap="round" fill="none"><path pathLength="1" stroke-width="3" d="M280 172V330 M164 151V236"/><path pathLength="1" stroke-width="3" d="M280 172L164 151 M280 172L410 146 M280 330L164 236"/><path pathLength="1" stroke-width="2" d="M164 151L298 132 M410 146L298 132"/></g>
+<path data-esq-l d="" stroke="var(--grafito)" stroke-width="3" stroke-linecap="round" fill="none"/>
+<g class="arr" data-arr tabindex="0" role="slider" aria-label="Altura de la esquina de la caja" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><circle class="arr-zona" cx="410" cy="276" r="20"/><circle data-esq cx="410" cy="276" r="7" fill="var(--hoja)" stroke="var(--industrial)" stroke-width="2.5"/></g>
+<g data-marca><g class="marca"><circle class="marca-a" r="22" fill="none" stroke-width="2"/><circle class="marca-c" r="13"/><text y="5" text-anchor="middle" class="marca-n" data-marca-n>1</text></g></g>
 </svg>
-<svg class="dib d-grafico" data-dib="grafico" viewBox="0 0 560 420" role="img" aria-label="Afiche con retícula de columnas y el isologo de un café, con una corrección del asistente sobre el titular" hidden>
+<svg class="dib d-grafico" data-dib="grafico" viewBox="0 0 560 420" role="group" aria-label="Afiche con retícula de columnas. Arrastrá el titular hasta alinearlo con la columna." hidden>
 <rect x="160" y="28" width="240" height="364" fill="#FFF" stroke="var(--grafito-2)" stroke-width="1.2"/>
 <g class="guia" stroke="var(--grafico)" stroke-width="1" opacity=".35" fill="none"><path pathLength="1" d="M184 28V392M224 28V392M264 28V392M296 28V392M336 28V392M376 28V392M160 52H400M160 368H400"/></g>
+<path class="col-ok" d="M184 28V392" stroke="var(--grafico)" stroke-width="2" opacity="0"/>
 <g class="trazo" stroke="var(--grafito)" fill="none" stroke-linecap="round"><ellipse pathLength="1" cx="280" cy="128" rx="30" ry="42" transform="rotate(-28 280 128)" stroke-width="3"/><path pathLength="1" stroke-width="3" d="M291 90c-24 14 4 42-22 76"/></g>
 <g class="guia" stroke="var(--grafico)" stroke-width="1" stroke-dasharray="4 4" fill="none" opacity=".6"><circle pathLength="1" cx="280" cy="128" r="62"/></g>
-<text class="t-cafe" x="190" y="228">Molienda</text>
+<g class="arr" data-arr tabindex="0" role="slider" aria-label="Posición del titular" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><rect class="arr-zona" x="176" y="190" width="200" height="50" rx="6"/><text class="t-cafe" x="184" y="228">Molienda</text></g>
 <g fill="var(--grafito)" opacity=".2"><rect x="184" y="262" width="192" height="8" rx="2"/><rect x="184" y="280" width="176" height="8" rx="2"/><rect x="184" y="298" width="184" height="8" rx="2"/><rect x="184" y="330" width="72" height="8" rx="2"/></g>
-<g class="marca"><circle cx="146" cy="216" r="22" fill="none" stroke="var(--grafico)" stroke-width="2"/><circle cx="146" cy="216" r="13" fill="var(--grafico)"/><text x="146" y="221" text-anchor="middle" class="marca-n">1</text></g>
+<g data-marca><g class="marca"><circle class="marca-a" r="22" fill="none" stroke-width="2"/><circle class="marca-c" r="13"/><text y="5" text-anchor="middle" class="marca-n" data-marca-n>1</text></g></g>
 </svg>
-<svg class="dib d-indumentaria" data-dib="indumentaria" viewBox="0 0 560 420" role="img" aria-label="Figurín de nueve cabezas con un vestido, con una corrección del asistente sobre la altura de la cintura" hidden>
+<svg class="dib d-indumentaria" data-dib="indumentaria" viewBox="0 0 560 420" role="group" aria-label="Figurín de nueve cabezas con un vestido. Arrastrá el cinturón hasta el final de la cabeza 3." hidden>
 <g class="guia" stroke="var(--indumentaria)" stroke-width="1" opacity=".35" fill="none"><path pathLength="1" d="M180 24H380M180 66H380M180 108H380M180 150H380M180 192H380M180 234H380M180 276H380M180 318H380M180 360H380M180 402H380"/></g>
+<rect class="cab-ok" x="180" y="108" width="200" height="42" fill="var(--indumentaria)" opacity="0"/>
 <g class="nums"><text x="168" y="50">1</text><text x="168" y="92">2</text><text x="168" y="134">3</text><text x="168" y="176">4</text><text x="168" y="218">5</text><text x="168" y="260">6</text><text x="168" y="302">7</text><text x="168" y="344">8</text><text x="168" y="386">9</text></g>
-<g class="trazo" stroke="var(--grafito)" fill="none" stroke-linecap="round" stroke-linejoin="round"><ellipse pathLength="1" cx="280" cy="45" rx="15" ry="20" stroke-width="2.6"/><path pathLength="1" stroke-width="2.6" d="M274 64v12 M286 64v12 M246 84c10-6 58-6 68 0 M246 84l-12 70 M314 84l12 70"/><path pathLength="1" stroke-width="3" d="M256 88c6 22 6 44 2 66 M304 88c-6 22-6 44-2 66 M258 160C250 220 226 268 214 300H346C334 268 310 220 302 160"/><path pathLength="1" stroke-width="2.6" d="M262 300l-6 96 M298 300l6 96"/></g>
-<path class="cintura" d="M256 164H304" stroke="var(--indumentaria)" stroke-width="2" stroke-dasharray="3 4"/>
-<g class="marca"><circle cx="330" cy="150" r="22" fill="none" stroke="var(--indumentaria)" stroke-width="2"/><circle cx="330" cy="150" r="13" fill="var(--indumentaria)"/><text x="330" y="155" text-anchor="middle" class="marca-n">1</text></g>
+<g class="trazo" stroke="var(--grafito)" fill="none" stroke-linecap="round" stroke-linejoin="round"><ellipse pathLength="1" cx="280" cy="45" rx="15" ry="20" stroke-width="2.6"/><path pathLength="1" stroke-width="2.6" d="M274 64v12 M286 64v12 M246 84c10-6 58-6 68 0 M246 84l-12 70 M314 84l12 70"/><path pathLength="1" stroke-width="2.6" d="M262 300l-6 96 M298 300l6 96"/></g>
+<path data-vestido d="" stroke="var(--grafito)" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<g class="arr" data-arr tabindex="0" role="slider" aria-label="Altura de la cintura" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><rect class="arr-zona" x="236" y="0" width="88" height="28" rx="6" data-cint-z/><rect data-cint x="248" y="0" width="64" height="7" rx="3.5" fill="var(--indumentaria)"/></g>
+<g data-marca><g class="marca"><circle class="marca-a" r="22" fill="none" stroke-width="2"/><circle class="marca-c" r="13"/><text y="5" text-anchor="middle" class="marca-n" data-marca-n>1</text></g></g>
 </svg>
-<p class="nota" aria-live="polite"><b>1</b> <span data-nota="interiores">Entre la mesa y la butaca quedan 44 cm. Para un recorrido principal dejá 90.</span><span data-nota="industrial" hidden>La arista derecha no va al punto de fuga: corregila antes de sombrear.</span><span data-nota="grafico" hidden>El titular se sale de la retícula: alinealo con la segunda columna.</span><span data-nota="indumentaria" hidden>La cintura cae en la cabeza 3: subila un poco para alargar la figura.</span></p>
+<p class="nota" aria-live="polite"><b data-nota-n>1</b><span data-nota-t></span><a class="nota-a" data-nota-a href="/bocetador/" hidden>Seguí en el Bocetador</a></p>
 </div>
-<figcaption id="lamina-cap">Así corrige el asistente: marca el dibujo y explica qué cambiar. Probalo en el Bocetador.</figcaption>
+<figcaption id="lamina-cap">Corregí el dibujo como lo marca el asistente: arrastrá la pieza señalada, con el mouse, el dedo o las flechas del teclado.</figcaption>
 </figure>
 </div>
 </section>

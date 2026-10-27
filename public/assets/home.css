@@ -125,3 +125,29 @@
   .hero-datos dd { font-size: 19px; }
 }
 .hero-in > *, .boc > *, .dip, .f-hero-in > * { min-width: 0; }
+
+/* Lámina interactiva */
+.dib .arr { cursor: grab; touch-action: none; outline: none; }
+.dib .arr.arrastrando { cursor: grabbing; }
+.dib .arr-zona { fill: transparent; stroke: var(--d); stroke-width: 1.5; stroke-dasharray: 5 5; opacity: .7; }
+.dib:not(.tocado) .arr-zona { animation: invitar 1.6s ease-in-out 2.4s infinite; }
+.dib .arr:hover .arr-zona, .dib .arr:focus-visible .arr-zona, .dib .arr.arrastrando .arr-zona { opacity: 1; stroke-width: 2.2; fill: color-mix(in srgb, var(--d) 8%, transparent); }
+.dib .arr:focus-visible .arr-zona { stroke-dasharray: none; }
+.dib.ok .arr-zona { stroke: #15803D; animation: none; }
+.medida-t { font: 700 14px var(--texto); fill: var(--interiores); }
+.dib.ok .medida-t { fill: #15803D; }
+.dib.ok [data-medida-l] { stroke: #15803D; }
+.marca-a { stroke: var(--d); }
+.marca-c { fill: var(--d); }
+.dib.ok .marca-a { stroke: #15803D; }
+.dib.ok .marca-c { fill: #15803D; }
+.dib .col-ok, .dib .cab-ok { transition: opacity .3s; }
+.dib.ok .col-ok { opacity: .9; }
+.dib.ok .cab-ok { opacity: .12; }
+.nota.ok b { background: #15803D; }
+.nota { flex-wrap: wrap; }
+.nota span { flex: 1 1 14em; }
+.nota-a { flex: none; align-self: center; font-weight: 600; font-size: 14px; color: #FFFFFF; background: var(--grafito); padding: 8px 14px; border-radius: 999px; text-decoration: none; }
+.nota-a:hover { background: #000000; }
+@keyframes invitar { 0%, 100% { opacity: .35; } 50% { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .dib:not(.tocado) .arr-zona { animation: none; } }

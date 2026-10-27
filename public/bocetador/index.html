@@ -57,6 +57,27 @@ button{cursor:pointer}
 .marks i:nth-child(3){background:#6D28D9;border-radius:50%}.marks i:nth-child(4){background:#BE185D;border-radius:2px}
 .brand b{font-family:var(--f-display);font-weight:800;font-size:19px;letter-spacing:-.02em}
 .brand span{color:var(--muted);font-size:13px}
+.estado-w{position:relative;flex:none}
+.estado{display:inline-flex;align-items:center;gap:7px;height:30px;padding:0 11px 0 10px;border:1px solid var(--line);border-radius:999px;background:var(--surface);color:var(--ink);font:600 12.5px var(--f-text,inherit);cursor:pointer;white-space:nowrap}
+.estado:hover{background:var(--hover,rgba(127,127,127,.08))}
+.estado i,.ep-est i{width:8px;height:8px;border-radius:50%;background:#16A34A;box-shadow:0 0 0 0 rgba(22,163,74,.5);flex:none}
+.estado:not(.off) i{animation:latido 2.4s ease-out infinite}
+.estado .est-v{color:var(--muted);font-weight:500;padding-left:7px;border-left:1px solid var(--line)}
+.estado.off i,.estado-pop.off .ep-est i{background:#D97706}
+.estado.nuevo .est-v{color:#16A34A}
+@keyframes latido{0%{box-shadow:0 0 0 0 rgba(22,163,74,.45)}70%{box-shadow:0 0 0 6px rgba(22,163,74,0)}100%{box-shadow:0 0 0 0 rgba(22,163,74,0)}}
+@media (prefers-reduced-motion: reduce){.estado i{animation:none!important}}
+.estado-pop{position:absolute;top:calc(100% + 8px);left:0;z-index:60;width:260px;padding:14px;background:var(--surface);border:1px solid var(--line);border-radius:12px;box-shadow:0 12px 32px rgba(0,0,0,.16);font-size:13.5px;line-height:1.45}
+.estado-pop p{margin:0}
+.ep-tit{display:flex;align-items:baseline;gap:8px;margin-bottom:8px!important}
+.ep-tit b{font-family:var(--f-display);font-size:16px}
+.ep-tit span{color:var(--muted);font-size:12.5px}
+.ep-est{display:flex;align-items:center;gap:8px;font-weight:600}
+.ep-txt{color:var(--muted);margin-top:6px!important}
+#epAct{margin-top:10px;width:100%;justify-content:center}
+@media (max-width: 640px){.estado .est-t{display:none}.estado{padding:0 9px}}
+@media (max-width: 640px){.estado-w{order:4}.top .carreras{width:auto;flex:1 1 0;min-width:0}.estado-pop{left:auto;right:0}}
+@media (max-width: 480px){.estado .est-v{display:none}.estado{width:34px;height:34px;padding:0;justify-content:center}}
 .carreras{display:flex;gap:4px;margin:0 auto;padding:3px;background:var(--bg);border-radius:999px;overflow-x:auto;min-width:0;scrollbar-width:none}
 .carreras button{display:flex;align-items:center;gap:8px;border:0;background:transparent;padding:8px 14px;min-height:38px;border-radius:999px;font-weight:500;white-space:nowrap;color:var(--muted)}
 .carreras button i{width:9px;height:9px;border-radius:50%;flex:none}
@@ -264,6 +285,15 @@ a.textbtn{color:var(--ink)}
 <div class="app" id="app">
   <header class="top">
     <a class="brand" href="/" aria-label="boceto, ir al inicio" style="text-decoration:none;color:inherit"><span class="marks" aria-hidden="true"><i></i><i></i><i></i><i></i></span><b>boceto</b><span>Bocetador</span></a>
+    <div class="estado-w">
+      <button class="estado" id="estado" aria-expanded="false" aria-controls="estadoPop" aria-label="En línea, versión 1.0"><i aria-hidden="true"></i><span class="est-t">En línea</span><span class="est-v">v1.0</span></button>
+      <div class="estado-pop" id="estadoPop" role="dialog" aria-label="Estado del Bocetador" hidden>
+        <p class="ep-tit"><b>Bocetador</b> <span>versión 1.0</span></p>
+        <p class="ep-est"><i aria-hidden="true"></i><span id="epEst">En línea</span></p>
+        <p class="ep-txt" id="epTxt">Tu hoja se guarda en este dispositivo y se sincroniza con tu cuenta.</p>
+        <button class="textbtn" id="epAct" hidden>Recargar para actualizar</button>
+      </div>
+    </div>
     <nav class="carreras" id="carreras" aria-label="Carrera"></nav>
     <div class="actions">
       <button class="iconbtn" id="undo" aria-label="Deshacer" title="Deshacer (Ctrl+Z)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 14L4 9l5-5"/><path d="M4 9h11a5 5 0 0 1 0 10h-3"/></svg></button>
@@ -1563,6 +1593,35 @@ $("tools").addEventListener("pointerleave", ocultarTip); $("tools").addEventList
 /* App instalable (PWA) */
 const enApp = window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone === true;
 if (enApp) document.documentElement.classList.add("app-inst");
+
+// Indicador de estado: en línea / sin conexión y versión del Bocetador
+const BOCETADOR_VERSION = "1.0";
+(() => {
+  const b = document.getElementById("estado"), pop = document.getElementById("estadoPop");
+  const est = document.getElementById("epEst"), txt = document.getElementById("epTxt"), act = document.getElementById("epAct");
+  let nuevo = false;
+  const pintar = () => {
+    const on = navigator.onLine;
+    b.classList.toggle("off", !on); pop.classList.toggle("off", !on); b.classList.toggle("nuevo", nuevo);
+    b.querySelector(".est-t").textContent = on ? "En línea" : "Sin conexión";
+    b.querySelector(".est-v").textContent = nuevo ? "Nueva versión" : "v" + BOCETADOR_VERSION;
+    b.setAttribute("aria-label", (on ? "En línea" : "Sin conexión") + ", versión " + BOCETADOR_VERSION + (nuevo ? ", hay una versión nueva" : ""));
+    est.textContent = on ? "En línea" : "Sin conexión";
+    txt.textContent = on ? "Tu hoja se guarda en este dispositivo y se sincroniza con tu cuenta."
+      : "Podés seguir dibujando: la hoja se guarda en este dispositivo. La corrección del asistente vuelve cuando haya internet.";
+    act.hidden = !nuevo;
+  };
+  const abrir = (si) => { pop.hidden = !si; b.setAttribute("aria-expanded", String(si)); };
+  b.addEventListener("click", (e) => { e.stopPropagation(); abrir(pop.hidden); });
+  document.addEventListener("click", (e) => { if (!pop.hidden && !pop.contains(e.target)) abrir(false); });
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !pop.hidden) { abrir(false); b.focus(); } });
+  act.addEventListener("click", () => location.reload());
+  addEventListener("online", pintar); addEventListener("offline", pintar);
+  if ("serviceWorker" in navigator && navigator.serviceWorker.controller) {
+    navigator.serviceWorker.addEventListener("controllerchange", () => { nuevo = true; pintar(); });
+  }
+  pintar();
+})();
 if ("serviceWorker" in navigator && (location.protocol === "https:" || location.hostname === "127.0.0.1" || location.hostname === "localhost")) navigator.serviceWorker.register("/bocetador/sw.js", { scope: "/bocetador/" }).catch(() => {});
 let promptInst = null;
 const ua = navigator.userAgent;
