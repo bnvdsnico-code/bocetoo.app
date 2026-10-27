@@ -2,6 +2,7 @@
 import { onRequestPost } from "../functions/api/asistente";
 import { mpWebhook } from "./webhook";
 import { createRequest } from "./solicitudes";
+import { authStart, authCallback, authLogout, me, guardClass } from "./auth";
 import { createEnrollmentFee, confirmEnrollmentFee } from "./matricula";
 import { mpConfig, ofertas, createSubscription, getSubscription, changeSubscription, ensurePlans, paymentsStatus, type MpEnv } from "./suscripciones";
 
@@ -18,6 +19,10 @@ export default {
       if (method !== "POST") return notAllowed();
       return (onRequestPost as any)({ request, env, waitUntil: ctx?.waitUntil?.bind(ctx) });
     }
+    if (pathname === "/auth/google") return authStart(request, env);
+    if (pathname === "/auth/callback") return authCallback(request, env);
+    if (pathname === "/auth/salir") return authLogout(request, env);
+    if (pathname === "/api/yo") return method === "GET" ? me(request, env) : notAllowed();
     if (pathname === "/api/mp-config") return method === "GET" ? mpConfig(env) : notAllowed();
     if (pathname === "/api/ofertas") return method === "GET" ? ofertas() : notAllowed();
     if (pathname === "/api/estado-pagos") return method === "GET" ? paymentsStatus(env) : notAllowed();
@@ -35,6 +40,10 @@ export default {
       return method === "POST" ? changeSubscription(request, env, m[1], m[2]) : notAllowed();
     }
     if (pathname.startsWith("/api/")) return Response.json({ error: "not_found" }, { status: 404 });
+
+    // Clases: solo con suscripción activa (la primera de cada diplomatura es libre)
+    const protegida = await guardClass(request, env, () => env.ASSETS.fetch(request));
+    if (protegida) return protegida;
 
     return env.ASSETS.fetch(request);
   },

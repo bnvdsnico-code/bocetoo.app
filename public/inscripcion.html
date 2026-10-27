@@ -54,10 +54,15 @@
   <!-- Formulario de tarjeta: los campos de número, vencimiento y código son seguros de Mercado Pago -->
   <section class="i-card" id="pagoCard" aria-labelledby="pago-t">
     <h2 id="pago-t">2 · Tus datos y tu tarjeta</h2>
+    <div id="ingresoBox" class="i-matricula" hidden>
+      <p>Para suscribirte, primero ingresá con tu cuenta de Google. Con esa cuenta vas a entrar a tus clases desde cualquier dispositivo.</p>
+      <a id="ingresoGoogle" class="i-cta" href="/auth/google" style="display:inline-flex;align-items:center;justify-content:center;text-decoration:none">Ingresar con Google</a>
+    </div>
+    <p id="cuentaTxt" class="i-status" hidden></p>
     <p id="estadoInit" class="i-status">Preparando el formulario seguro de Mercado Pago…</p>
     <form id="subscription-card-form" novalidate>
       <div class="i-field" data-mp-field="cardholderEmail">
-        <label for="subscription__payerEmail">Email</label>
+        <label for="subscription__payerEmail">Email para los avisos de pago</label>
         <input id="subscription__payerEmail" type="email" autocomplete="email" required>
       </div>
       <div class="i-field" role="group" aria-labelledby="card-number-label" data-mp-field="cardNumber">

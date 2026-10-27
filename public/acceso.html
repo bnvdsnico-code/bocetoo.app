@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ingresar · boceto</title>
+<meta name="description" content="Ingresá a boceto con tu cuenta de Google para ver tus clases.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/inscripcion.css">
+</head>
+<body>
+<div class="consumidor-bar" style="background:#111111;color:#FFFFFF;font-family:Inter,system-ui,sans-serif;font-size:13px;display:flex;flex-wrap:wrap;justify-content:center;gap:4px 20px;padding:8px 16px"><a href="/arrepentimiento.html" style="color:#FFFFFF;font-weight:600;min-height:28px;display:inline-flex;align-items:center">Botón de arrepentimiento</a><a href="/baja.html" style="color:#FFFFFF;font-weight:600;min-height:28px;display:inline-flex;align-items:center">Botón de baja de servicio</a></div>
+<header class="i-top">
+  <a class="i-brand" href="/"><span class="marks" aria-hidden="true"><i></i><i></i><i></i><i></i></span><b>boceto</b></a>
+  <a href="/#planes">Ver planes</a>
+</header>
+<main class="i-main">
+  <section class="i-intro">
+    <p class="i-kick">Tus clases</p>
+    <h1 id="titulo">Ingresá para seguir</h1>
+    <p id="bajada">La primera clase de cada diplomatura es gratis. Para ver el resto, ingresá con la cuenta de Google con la que te suscribiste.</p>
+  </section>
+  <section class="i-card" aria-live="polite">
+    <div id="estado" class="i-alert" hidden></div>
+    <a id="google" class="i-cta" href="/auth/google" style="display:inline-flex;align-items:center;justify-content:center;gap:12px;text-decoration:none">
+      <svg aria-hidden="true" width="20" height="20" viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34.1 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34.1 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-8l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg>
+      Ingresar con Google
+    </a>
+    <a id="suscribirme" class="i-cta" href="/inscripcion.html" hidden style="display:inline-flex;align-items:center;justify-content:center;text-decoration:none;background:#FFFFFF;color:#111111;border:1.5px solid #111111">Ver planes e inscribirme</a>
+    <p class="i-legal" id="pie">Usamos tu cuenta de Google solo para identificarte: tu nombre y tu email. No publicamos nada.</p>
+  </section>
+</main>
+<script>
+  (() => {
+    const qs = new URLSearchParams(location.search);
+    const NOMBRES = { interiores: "Interiores y Mobiliario", industrial: "Industrial", grafico: "Gráfico", indumentaria: "Indumentaria" };
+    const carrera = NOMBRES[qs.get("carrera")] ? qs.get("carrera") : "";
+    const volver = qs.get("volver") && qs.get("volver").startsWith("/") && !qs.get("volver").startsWith("//") ? qs.get("volver") : "/panel.html";
+    const $ = (id) => document.getElementById(id);
+    const estado = (tono, texto) => { const e = $("estado"); e.className = "i-alert " + tono; e.textContent = texto; e.hidden = false; };
+    $("google").href = "/auth/google?volver=" + encodeURIComponent(volver);
+    $("suscribirme").href = "/inscripcion.html" + (carrera ? "?plan=diplomatura&carrera=" + carrera : "");
+    const errores = { estado: "El ingreso tardó demasiado o se interrumpió. Probá de nuevo.", google: "Google no confirmó tu cuenta. Probá de nuevo o usá otra cuenta." };
+    if (errores[qs.get("error")]) estado("error", errores[qs.get("error")]);
+    fetch("/api/yo", { cache: "no-store" }).then((r) => r.json()).then((yo) => {
+      if (!yo.ingresado) {
+        if (yo.googleListo === false) { estado("warn", "El ingreso con Google se está configurando. Volvé a intentar en un rato."); $("google").hidden = true; }
+        return;
+      }
+      $("titulo").textContent = "Hola" + (yo.nombre ? ", " + yo.nombre.split(" ")[0] : "");
+      $("google").textContent = "Usar otra cuenta de Google";
+      $("google").href = "/auth/salir";
+      $("suscribirme").hidden = false;
+      if (carrera && !yo.carreras.includes(carrera)) {
+        $("bajada").textContent = "Ingresaste como " + yo.email + ".";
+        estado("warn", "Tu cuenta no tiene una suscripción activa a la diplomatura en " + NOMBRES[carrera] + ". Suscribite para seguir con las clases; si ya te suscribiste con otra cuenta, ingresá con esa.");
+      } else if (!yo.carreras.length) {
+        $("bajada").textContent = "Ingresaste como " + yo.email + ". Todavía no tenés una diplomatura activa.";
+      } else {
+        location.replace(volver);
+      }
+    }).catch(() => {});
+  })();
+</script>
+</body>
+</html>

@@ -78,3 +78,10 @@ y vuelve a Workers AI si Claude no está disponible.
 - Páginas `/arrepentimiento.html` y `/baja.html` (generadas por `tools/consumidor.py`), con enlaces visibles arriba de la portada, fichas, inscripción y panel.
 - Sin registro: el consumidor completa nombre y email y recibe en pantalla un código de identificación (`ARR-…` / `BAJ-…`).
 - Las solicitudes quedan en Cloudflare → Workers KV → `bocetoo-suscripciones`, claves `solicitud:…`. Hay que darles curso dentro de las 24 horas.
+
+### Cuentas de alumno (Google) y acceso a las clases
+
+- Ingreso con Google (`src/auth.ts`): `/auth/google` → Google → `/auth/callback`; sesión en cookie segura y en KV (`sess:…`), 30 días. `/auth/salir` cierra la sesión.
+- Para suscribirse hay que ingresar: la suscripción queda asociada al email de Google (`email:<email>` → ids).
+- Clases: la primera de cada diplomatura es libre; el resto requiere una suscripción `authorized` que la incluya. Si no, se redirige a `/acceso.html`.
+- Configuración: `GOOGLE_CLIENT_ID` (variable) y `GOOGLE_CLIENT_SECRET` (secreto) en Cloudflare. URI de redirección autorizada en Google: `https://<dominio>/auth/callback`.

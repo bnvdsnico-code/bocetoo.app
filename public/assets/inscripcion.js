@@ -175,5 +175,19 @@
   consultar().then(confirmarMatricula);
   const saved = readSaved();
   if (saved && saved.status && saved.status !== "canceled") $("pagoCard").hidden = true;
-  else iniciarPago();
+  else {
+    // Para suscribirse hay que ingresar con Google: la diplomatura queda asociada a esa cuenta.
+    fetch("/api/yo", { cache: "no-store" }).then((r) => r.json()).then((yo) => {
+      if (!yo.ingresado) {
+        form.hidden = true; elInit.hidden = true;
+        const box = $("ingresoBox"); box.hidden = false;
+        $("ingresoGoogle").href = "/auth/google?volver=" + encodeURIComponent(location.pathname + location.search);
+        return;
+      }
+      $("cuentaTxt").textContent = "Ingresaste como " + yo.email + ". La diplomatura queda asociada a esta cuenta.";
+      $("cuentaTxt").hidden = false;
+      if (!$("subscription__payerEmail").value) $("subscription__payerEmail").value = yo.email;
+      iniciarPago();
+    }).catch(() => iniciarPago());
+  }
 })();

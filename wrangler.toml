@@ -9,7 +9,7 @@ keep_vars = true
 [assets]
 directory = "./public"
 binding = "ASSETS"
-run_worker_first = ["/api/*"]
+run_worker_first = ["/api/*", "/auth/*", "/cursos/*"]
 
 # Workers AI para el asistente (plan gratis, sin tarjeta)
 [ai]
