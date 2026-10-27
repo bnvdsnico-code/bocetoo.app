@@ -66,7 +66,7 @@ y vuelve a Workers AI si Claude no está disponible.
 
 - Receptor: `POST /api/mp/webhook` (`src/webhook.ts`). Valida la firma `x-signature` con el secreto de webhooks, responde 200 y procesa después.
 - Temas: `subscription_preapproval` (estado de la suscripción), `subscription_authorized_payment` (cobro de cada cuota) y `payment`.
-- En Mercado Pago: Tus integraciones → bocetoo app → Webhooks → URL `https://bocetoo-app.bnvds-nico.workers.dev/api/mp/webhook`.
+- En Mercado Pago: Tus integraciones → bocetoo app → Webhooks → URL `https://bocetoo-app.bnvds-nico.workers.dev/api/mp/webhook` (también funciona `https://bocetoo.app/api/mp/webhook`). El sitio vive en https://bocetoo.app; la dirección de workers.dev redirige ahí salvo /api.
 
 ### Matrícula (Checkout Pro)
 

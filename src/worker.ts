@@ -17,8 +17,11 @@ export default {
     const { pathname } = url;
     const method = request.method;
 
-    // www.bocetoo.app → bocetoo.app
-    if (url.hostname === "www.bocetoo.app") {
+    // www.bocetoo.app y la dirección vieja (workers.dev) → bocetoo.app.
+    // /api/* queda en las dos (el webhook de Mercado Pago apunta a workers.dev) y también /auth/callback,
+    // para que termine bien un ingreso que empezó en la dirección vieja.
+    const vieja = url.hostname.endsWith(".workers.dev") && method === "GET" && !pathname.startsWith("/api/") && pathname !== "/auth/callback";
+    if (url.hostname === "www.bocetoo.app" || vieja) {
       url.hostname = "bocetoo.app";
       return Response.redirect(url.toString(), 301);
     }
