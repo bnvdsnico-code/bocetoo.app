@@ -270,10 +270,25 @@ with sync_playwright() as pw:
     p.select_option("#grid", "isometrica"); p.wait_for_timeout(200); p.select_option("#grid", "cuadricula")
     p.click("#zoomIn"); p.click("#fit")
     # exportar
+    p.click("#export"); p.wait_for_selector("#expD:not([hidden])")
     with p.expect_download() as dl:
-        p.click("#export")
+        p.click("#expGo")
     path = dl.value.path()
-    check(dl.value.suggested_filename == "boceto-interiores.png" and pathlib.Path(path).stat().st_size > 1000, "bocetador: exporta PNG")
+    check(dl.value.suggested_filename == "boceto-interiores-hoja-1.png" and pathlib.Path(path).stat().st_size > 1000, "bocetador: exporta PNG")
+    for fmt, firma in (("pdf", b"%PDF-1.4"), ("svg", b"<?xml")):
+        p.click("#export"); p.wait_for_selector("#expD:not([hidden])")
+        p.click(f'#expD .exp-fmt input[value="{fmt}"]', force=True)
+        with p.expect_download() as dl:
+            p.click("#expGo")
+        check(dl.value.suggested_filename.endswith("." + fmt) and pathlib.Path(dl.value.path()).read_bytes()[:len(firma)] == firma, f"bocetador: exporta {fmt.upper()}")
+    # hojas y plantillas
+    p.click("#hojasBtn"); p.click("#tabPlant"); p.locator("#plantGrid button").first.click(); p.wait_for_timeout(700)
+    check(p.inner_text("#hojaChipT") == "Living comedor" and len([k for k in p.evaluate("Object.keys(JSON.parse(localStorage.getItem('bocetador-v1')).sheets)") if k.startswith("interiores")]) == 2, "bocetador: abre una plantilla como hoja nueva")
+    p.keyboard.press("Control+s"); p.wait_for_timeout(300)
+    p.click("#hojasBtn"); p.wait_for_timeout(200)
+    p.locator('#hojasGrid .hoja:not([aria-current="true"]) .hoja-abrir').first.click(); p.wait_for_timeout(300)
+    check(p.inner_text("#hojaChipT") == "Hoja 1", "bocetador: cambia entre hojas")
+    p.fill("#libBuscar", "cama"); check(p.locator("#lib button").count() == 2, "bocetador: busca en la biblioteca"); p.fill("#libBuscar", "")
     # foto del croquis + corrección
     p.set_input_files("#photoInput", str(photo)); p.wait_for_timeout(900)
     check(p.locator("#photoCtl").is_visible(), "bocetador: carga la foto del croquis y muestra sus controles")
