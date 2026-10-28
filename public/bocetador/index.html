@@ -294,6 +294,60 @@ button.hoja-abrir.hoja{padding:0 0 12px}
 .exp-op .field{display:flex;flex-direction:column;gap:6px}
 @media (max-width: 480px){#scaleChip{display:none}.hoja-chip{max-width:170px}}
 @media (max-width: 720px){.vers-cv{display:flex;justify-content:center}.vers-cv canvas{width:auto!important;max-width:100%;max-height:160px}.vers,.exp{grid-template-columns:1fr}.exp-prev{position:static}.guia .dlg-c{padding:20px}.hojas{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.hoja-nueva{min-height:160px}.hoja-n{font-size:13.5px}}
+/* Pantalla de inicio */
+.inicio{position:fixed;inset:0;z-index:48;background:var(--bg);overflow-y:auto;-webkit-overflow-scrolling:touch}
+.con-inicio body{overflow:hidden}
+.ini-c{max-width:1120px;margin:0 auto;padding:calc(16px + env(safe-area-inset-top,0px)) 24px calc(40px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;gap:20px}
+.ini-top{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.ini-top-acc{display:flex;align-items:center;gap:8px}
+.ini-paso{display:flex;flex-direction:column;gap:14px}
+.ini-paso h1{margin:12px 0 0;font-family:var(--f-display);font-weight:800;font-size:clamp(30px,4.6vw,48px);letter-spacing:-.03em;line-height:1.05}
+.ini-sub{margin:0;color:var(--muted);font-size:16px;line-height:1.5;max-width:42em}
+.ini-ramas{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-top:10px}
+.ini-rama{display:flex;flex-direction:column;align-items:flex-start;gap:8px;padding:22px 20px 20px;border:1px solid var(--line);border-radius:18px;background:var(--surface);color:var(--ink);text-align:left;cursor:pointer;font:inherit;min-height:250px;position:relative;overflow:hidden;transition:border-color .15s,transform .15s,box-shadow .15s}
+.ini-rama::before{content:"";position:absolute;inset:0 0 auto;height:5px;background:var(--c)}
+.ini-rama:hover{border-color:var(--c);box-shadow:0 10px 28px rgba(0,0,0,.08);transform:translateY(-2px)}
+.ini-rama:focus-visible{outline:3px solid var(--c);outline-offset:2px}
+.ini-ic{width:64px;height:64px;border-radius:16px;display:grid;place-items:center;color:var(--c);background:color-mix(in srgb,var(--c) 10%,transparent);margin-bottom:6px}
+.ini-ic svg{width:40px;height:40px}
+.ini-rama b{font-family:var(--f-display);font-size:20px;letter-spacing:-.015em;line-height:1.15}
+.ini-d{color:var(--muted);font-size:14.5px;line-height:1.45}
+.ini-rama small{margin-top:auto;font-size:13px;font-weight:600;color:var(--c)}
+.ini-volver{align-self:flex-start;display:inline-flex;align-items:center;gap:4px;height:36px;padding:0 12px 0 6px;border:0;border-radius:999px;background:transparent;color:var(--muted);font:600 14px var(--f-text,inherit);cursor:pointer}
+.ini-volver:hover{background:var(--hover);color:var(--ink)}
+.ini-volver svg{width:18px;height:18px}
+#iniPaso2 h1{margin-top:0;color:var(--ink)}
+#iniPaso2 h1::before{content:"";display:inline-block;width:.42em;height:.42em;border-radius:50%;background:var(--c);margin-right:.3em;vertical-align:.12em}
+.ini-acc{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr) minmax(0,1fr);gap:14px;align-items:stretch}
+.ini-card{display:flex;flex-direction:column;align-items:flex-start;gap:8px;padding:18px;border:1px solid var(--line);border-radius:16px;background:var(--surface);color:var(--ink);text-align:left;font:inherit}
+button.ini-card{cursor:pointer}
+button.ini-card:hover{border-color:var(--c)}
+.ini-card b{font-size:16.5px;display:flex;align-items:center;gap:8px}
+.ini-card small{color:var(--muted);font-size:13.5px;line-height:1.45}
+.ini-vacia{justify-content:center}
+.ini-ia{border-color:color-mix(in srgb,var(--c) 45%,var(--line));background:linear-gradient(180deg,color-mix(in srgb,var(--c) 6%,var(--surface)),var(--surface))}
+.ini-ia b svg{width:20px;height:20px;color:var(--c)}
+.ini-ia textarea,.ia-form textarea{width:100%;resize:vertical;min-height:76px;border:1px solid var(--line);border-radius:12px;padding:10px 12px;background:var(--surface);color:var(--ink);font:inherit;font-size:14.5px;line-height:1.45}
+.ini-ia textarea:focus,.ia-form textarea:focus{outline:none;border-color:var(--c,var(--carrera));box-shadow:0 0 0 3px color-mix(in srgb,var(--c,var(--carrera)) 18%,transparent)}
+.ini-ia .textbtn{align-self:flex-end}
+.ia-ej{display:flex;flex-wrap:wrap;gap:6px}
+.ia-ej button{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:6px 11px;font:500 12.5px var(--f-text,inherit);cursor:pointer;text-align:left;line-height:1.3}
+.ia-ej button:hover{border-color:var(--c,var(--carrera))}
+.ini-ult{flex-direction:row;align-items:center}
+.ini-ult-cv{flex:none;width:96px;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#FFF}
+.ini-ult-cv canvas{display:block;width:100%;height:auto}
+.ini-ult > span:last-child{display:flex;flex-direction:column;gap:4px;min-width:0}
+.ini-h2{margin:12px 0 0;font-size:18px;font-weight:700}
+.ia-form{display:flex;flex-direction:column;gap:8px}
+.ia-form .textbtn{align-self:flex-start}
+.ia-cambio{display:flex;flex-direction:column;gap:6px;border-top:1px solid var(--line);padding-top:10px;margin-top:4px}
+.ia-cambio label{font-weight:600;font-size:13.5px}
+.ia-cambio input{flex:1 1 160px;min-width:0;height:38px;border:1px solid var(--line);border-radius:10px;padding:0 10px;background:var(--surface);color:var(--ink);font:inherit;font-size:14px}
+.ia-btn{border-color:var(--carrera);color:var(--carrera);font-weight:600}
+@media (max-width: 1499px){#iaTop{width:40px;padding:0;justify-content:center}}
+.dlg-h-acc{display:flex;align-items:center;gap:6px}
+@media (max-width: 960px){.ini-ramas{grid-template-columns:repeat(2,minmax(0,1fr))}.ini-acc{grid-template-columns:1fr 1fr}.ini-ia{grid-column:1 / -1;order:-1}}
+@media (max-width: 560px){.ini-c{padding-left:16px;padding-right:16px;gap:16px}.ini-ramas{gap:10px}.ini-rama{min-height:0;padding:16px 14px}.ini-ic{width:48px;height:48px;border-radius:12px}.ini-ic svg{width:30px;height:30px}.ini-rama b{font-size:16.5px}.ini-d{font-size:13px}.ini-acc{grid-template-columns:1fr}.ini-top .brand > span:last-child{display:none}#iniSeguir{max-width:58vw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:block}}
 /* Guía de inicio */
 .guia{position:fixed;inset:0;z-index:50;background:rgba(31,35,40,.45);display:grid;place-items:center;padding:16px}
 .guia-c{background:var(--surface);color:var(--ink);border-radius:20px;max-width:560px;width:100%;max-height:calc(100dvh - 32px);overflow-y:auto;padding:28px;display:flex;flex-direction:column;gap:18px;box-shadow:0 24px 60px rgba(0,0,0,.25)}
@@ -374,9 +428,9 @@ a.textbtn{color:var(--ink)}
   <header class="top">
     <a class="brand" href="/" aria-label="boceto, ir al inicio" style="text-decoration:none;color:inherit"><span class="marks" aria-hidden="true"><i></i><i></i><i></i><i></i></span><b>boceto</b><span>Bocetador</span></a>
     <div class="estado-w">
-      <button class="estado" id="estado" aria-expanded="false" aria-controls="estadoPop" aria-label="En línea, versión 1.1"><i aria-hidden="true"></i><span class="est-t">En línea</span><span class="est-v">v1.1</span></button>
+      <button class="estado" id="estado" aria-expanded="false" aria-controls="estadoPop" aria-label="En línea, versión 1.2"><i aria-hidden="true"></i><span class="est-t">En línea</span><span class="est-v">v1.2</span></button>
       <div class="estado-pop" id="estadoPop" role="dialog" aria-label="Estado del Bocetador" hidden>
-        <p class="ep-tit"><b>Bocetador</b> <span>versión 1.1</span></p>
+        <p class="ep-tit"><b>Bocetador</b> <span>versión 1.2</span></p>
         <p class="ep-est"><i aria-hidden="true"></i><span id="epEst">En línea</span></p>
         <p class="ep-txt" id="epTxt">Tus hojas se guardan solas en este dispositivo. Tus entregas se suben a tu cuenta.</p>
         <button class="textbtn" id="epAct" hidden>Recargar para actualizar</button>
@@ -387,6 +441,7 @@ a.textbtn{color:var(--ink)}
       <button class="iconbtn" id="undo" aria-label="Deshacer" title="Deshacer (Ctrl+Z)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 14L4 9l5-5"/><path d="M4 9h11a5 5 0 0 1 0 10h-3"/></svg></button>
       <button class="iconbtn" id="redo" aria-label="Rehacer" title="Rehacer (Ctrl+Shift+Z)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 14l5-5-5-5"/><path d="M20 9H9a5 5 0 0 0 0 10h3"/></svg></button>
       <button class="textbtn ai" id="aiTop" title="Pedir corrección al asistente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 4.7 4.7 1.8-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/><path d="M18.5 15l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8z"/></svg>Corregir</button>
+      <button class="textbtn ia-btn hide-sm" id="iaTop" title="Diseñar con IA a partir de un pedido" aria-label="Diseñar con IA"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l1-4L16 5l3 3L8 19z"/><path d="M14 7l3 3"/><path d="M19 14l.7 1.8 1.8.7-1.8.7-.7 1.8-.7-1.8-1.8-.7 1.8-.7z"/></svg><span class="lbl-xl">Diseñar</span></button>
       <button class="textbtn hide-sm" id="hojasBtn" title="Tus hojas y plantillas" aria-label="Hojas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3h9l3 3v11a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M4 7v13a1 1 0 0 0 1 1h11"/></svg><span class="lbl-xl">Hojas</span></button>
       <button class="textbtn hide-sm" id="export" title="Exportar (Ctrl+Shift+E)" aria-label="Exportar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg><span class="lbl-xl">Exportar</span></button>
       <button class="textbtn" id="togglePanel" aria-expanded="true" aria-controls="panel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h10M4 18h6"/><circle cx="18" cy="12" r="2"/><circle cx="14" cy="18" r="2"/></svg><span class="hide-xs">Opciones</span></button>
@@ -416,6 +471,7 @@ a.textbtn{color:var(--ink)}
       <div class="body">
         <div class="ai-out" id="aiOut" aria-live="polite"></div>
         <div class="review" id="review" role="group" aria-label="Observaciones de la corrección"></div>
+        <form class="ia-cambio" id="iaCambio" hidden><label for="iaCambioTxt">Pedir un cambio</label><div class="vers-fila"><input id="iaCambioTxt" maxlength="300" placeholder="Por ejemplo: sumá un escritorio junto a la ventana" autocomplete="off"><button class="textbtn" type="submit" data-ia-go>Aplicar</button></div></form>
         <div class="row"><button class="textbtn" id="aiStop" hidden>Detener</button><button class="textbtn" id="reviewClear" hidden>Borrar marcas</button></div>
         <p class="ai-note" id="aiNote">El asistente mira tu dibujo y te responde. Puede equivocarse.</p>
       </div>
@@ -423,7 +479,7 @@ a.textbtn{color:var(--ink)}
     <div class="selbar" id="selbar" hidden role="toolbar" aria-label="Selección">
       <span id="selCount"></span>
       <button id="selDup"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M4 16V6a2 2 0 0 1 2-2h10"/></svg>Duplicar</button>
-      <button id="selRot"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 12a8 8 0 1 1-3-6.2"/><path d="M20 4v5h-5"/></svg>Girar 90°</button>
+      <button id="selRot" title="Girar 90° (también con el círculo de arriba, o con [ y ])"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 12a8 8 0 1 1-3-6.2"/><path d="M20 4v5h-5"/></svg>Girar 90°</button>
       <button id="selFlip"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3v18M8 7L3 12l5 5M16 7l5 5-5 5"/></svg>Espejar</button>
       <button id="selLayer">Pasar a capa…</button>
       <button id="selDel"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/></svg>Borrar</button>
@@ -440,7 +496,7 @@ a.textbtn{color:var(--ink)}
   <div class="sheet-velo" id="sheetVelo"></div>
   <aside class="panel" id="panel" aria-label="Opciones de dibujo">
     <div class="sheet-h"><span class="handle" aria-hidden="true"></span><div class="row"><b>Opciones de dibujo</b><button class="iconbtn" id="closeSheet" aria-label="Cerrar opciones"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
-      <nav class="sheet-nav" aria-label="Ir a"><button data-ir="secTrazo">Trazo</button><button data-ir="libSection">Biblioteca</button><button data-ir="secCapas">Capas</button><button data-ir="secFoto">Foto del croquis</button><button data-ir="secAyudas">Grilla y ayudas</button><button data-ir="secEscala">Escala</button><button data-ir="secHoja">Hojas y exportar</button></nav></div>
+      <nav class="sheet-nav" aria-label="Ir a"><button data-ir="secTrazo">Trazo</button><button data-ir="libSection">Biblioteca</button><button data-ir="secCapas">Capas</button><button data-ir="secFoto">Foto del croquis</button><button data-ir="secAyudas">Grilla y ayudas</button><button data-ir="secEscala">Escala</button><button data-ir="iaSection">Diseñar con IA</button><button data-ir="secHoja">Hojas y exportar</button></nav></div>
     <section id="secTrazo">
       <div class="row" style="justify-content:space-between"><h2>Trazo</h2><button class="iconbtn show-sm" id="closePanel" aria-label="Cerrar ayudas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
       <div class="swatches" id="swatches" role="group" aria-label="Color"></div>
@@ -508,8 +564,18 @@ a.textbtn{color:var(--ink)}
       </div>
       <p class="ai-note">Las cotas usan esta escala para mostrar medidas reales.</p>
     </section>
+    <section id="iaSection">
+      <h2>Diseñar con IA</h2>
+      <form class="ia-form" id="iaForm">
+        <label for="iaPedido" class="sr">Qué querés diseñar</label>
+        <textarea id="iaPedido" rows="3" maxlength="400" placeholder="Contá qué querés diseñar. Por ejemplo: un living comedor de 5 × 4 m para cuatro personas"></textarea>
+        <div class="ia-ej" id="iaEjemplos" aria-label="Ejemplos"></div>
+        <button class="textbtn primary" type="submit" data-ia-go><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 4.7 4.7 1.8-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/><path d="M18.5 15l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8z"/></svg>Diseñar</button>
+      </form>
+      <p class="ai-note">El asistente arma una propuesta en una hoja nueva: después la movés, la girás y la ajustás como quieras.</p>
+    </section>
     <section id="aiSection">
-      <h2>Asistente</h2>
+      <h2>Corrección</h2>
       <button class="textbtn primary" id="aiReview"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 4.7 4.7 1.8-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/></svg>Pedir corrección</button>
       <button class="textbtn" id="aiExercise">Proponeme un ejercicio</button>
       <p class="ai-note">La devolución aparece sobre la hoja, con cada observación numerada en tu dibujo.</p>
@@ -518,8 +584,10 @@ a.textbtn{color:var(--ink)}
       <h2>Hoja</h2>
       <div class="hoja-act"><b id="hojaNom">Hoja 1</b><small id="hojaInfo"></small></div>
       <div class="hoja-btns">
+        <button class="textbtn" id="nuevaSm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>Nueva hoja vacía</button>
         <button class="textbtn" id="hojasSm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3h9l3 3v11a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M4 7v13a1 1 0 0 0 1 1h11"/></svg>Mis hojas y plantillas</button>
         <button class="textbtn" id="versBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/><path d="M12 8v4l3 2"/></svg>Versiones</button>
+        <button class="textbtn" id="iniBtnSm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>Cambiar de rama de diseño</button>
         <button class="textbtn" id="exportSm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>Exportar</button>
       </div>
       <button class="textbtn danger" id="clear" data-armed="false">Hoja en blanco</button>
@@ -529,9 +597,41 @@ a.textbtn{color:var(--ink)}
 </div>
 
 <div id="tip" role="tooltip" hidden></div>
+<div class="inicio" id="inicio" role="dialog" aria-modal="true" aria-labelledby="inicioT" hidden>
+  <div class="ini-c">
+    <header class="ini-top">
+      <span class="brand"><span class="marks" aria-hidden="true"><i></i><i></i><i></i><i></i></span><b>boceto</b><span>Bocetador</span></span>
+      <div class="ini-top-acc"><button class="textbtn" type="button" id="iniSeguir"><span id="iniSeguirT">Seguir</span></button><button class="iconbtn" type="button" id="iniCerrar" aria-label="Ir a la hoja"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+    </header>
+    <section class="ini-paso" id="iniPaso1">
+      <h1 id="inicioT">¿Qué vas a diseñar hoy?</h1>
+      <p class="ini-sub">Elegí tu rama de diseño. Cada una tiene su hoja, sus grillas, su biblioteca y sus plantillas.</p>
+      <div class="ini-ramas" id="iniRamas"></div>
+    </section>
+    <section class="ini-paso" id="iniPaso2" hidden>
+      <button class="ini-volver" type="button" id="iniVolver"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>Elegir otra rama</button>
+      <h1 id="ini2T"></h1>
+      <p class="ini-sub" id="ini2D"></p>
+      <div class="ini-acc">
+        <button class="ini-card ini-vacia" type="button" id="iniVacia"><span class="hn-i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span><b>Hoja vacía</b><small>Empezá de cero con la grilla y la escala de la rama.</small></button>
+        <form class="ini-card ini-ia" id="iniIA">
+          <b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 4.7 4.7 1.8-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/></svg>Diseñar con IA</b>
+          <label for="iniPedido" class="sr">Qué querés diseñar</label>
+          <textarea id="iniPedido" rows="3" maxlength="400" placeholder="Contá qué querés diseñar y el asistente arma una propuesta para empezar."></textarea>
+          <div class="ia-ej" id="iniEjemplos"></div>
+          <button class="textbtn primary" type="submit" data-ia-go>Diseñar</button>
+        </form>
+        <button class="ini-card ini-ult" type="button" id="iniUltima" hidden><span class="ini-ult-cv" id="iniUltCv"></span><span><b>Seguir donde dejaste</b><small><span id="iniUltN"></span> · <span id="iniUltI"></span></small></span></button>
+      </div>
+      <h2 class="ini-h2">Plantillas</h2>
+      <div class="hojas" id="iniPlant"></div>
+      <div id="iniRecW" hidden><h2 class="ini-h2">Tus hojas</h2><div class="hojas" id="iniRec"></div></div>
+    </section>
+  </div>
+</div>
 <div class="guia dlg" id="hojasD" role="dialog" aria-modal="true" aria-labelledby="hojasT" hidden>
   <div class="guia-c dlg-c">
-    <div class="dlg-h"><h2 id="hojasT">Tus hojas</h2><button class="iconbtn" type="button" data-cerrar aria-label="Cerrar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+    <div class="dlg-h"><h2 id="hojasT">Tus hojas</h2><div class="dlg-h-acc"><button class="textbtn" type="button" id="iniBtn">Pantalla de inicio</button><button class="iconbtn" type="button" data-cerrar aria-label="Cerrar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div></div>
     <div class="dlg-tabs" role="tablist" aria-label="Hojas y plantillas">
       <button role="tab" type="button" id="tabHojas" aria-selected="true" aria-controls="panHojas">Mis hojas</button>
       <button role="tab" type="button" id="tabPlant" aria-selected="false" aria-controls="panPlant" tabindex="-1">Plantillas</button>
@@ -642,7 +742,7 @@ const ICON = {
 };
 const TOOLS = [
   { id: "hand", name: "Mano", key: "H", hint: "Arrastrá para moverte por la hoja. Con dos dedos también hacés zoom. En perspectiva, arrastrá los puntos de fuga." },
-  { id: "select", name: "Seleccionar", key: "V", hint: "Tocá un trazo para elegirlo o arrastrá un recuadro. Movelo arrastrando; el cuadradito de la esquina lo agranda o achica." },
+  { id: "select", name: "Seleccionar", key: "V", hint: "Tocá un trazo o un bloque para elegirlo y arrastralo para moverlo. El círculo de arriba lo gira y el cuadradito de la esquina lo agranda." },
   { id: "pencil", name: "Lápiz", key: "B", hint: "Dibujá a mano alzada. Si terminás el trazo y te quedás quieto un momento, se endereza solo." },
   { id: "line", name: "Línea", key: "L", hint: "Línea recta. Se imanta a la grilla y a los extremos de otras líneas." },
   { id: "rect", name: "Rectángulo", key: "R", hint: "Arrastrá en diagonal. Shift lo vuelve cuadrado." },
@@ -651,7 +751,7 @@ const TOOLS = [
   { id: "box", name: "Caja en perspectiva", key: "K", only: "industrial", hint: "Arrastrá la arista vertical más cercana: la caja se arma sola hacia los dos puntos de fuga." },
   { id: "text", name: "Texto", key: "T", hint: "Tocá la hoja y escribí. Enter para confirmar. El grosor elegido define el tamaño." },
   { id: "dim", name: "Cota", key: "D", hint: "Marcá dos puntos para acotar: la medida sale de la escala de la hoja." },
-  { id: "stamp", name: "Biblioteca", key: "U", hint: "Elegí una pieza de la biblioteca en el panel y tocá la hoja para ubicarla." },
+  { id: "stamp", name: "Biblioteca", key: "U", hint: "Tocá la hoja para ubicar la pieza. Arrastrá un bloque para moverlo y usá el círculo de arriba para girarlo." },
   { id: "eraser", name: "Goma", key: "X", hint: "Pasá la goma por encima de un trazo para borrarlo entero." }
 ];
 const toolsFor = (k) => TOOLS.filter((t) => !t.only || t.only === k);
@@ -992,7 +1092,10 @@ function symMap(s) { // de coordenadas de la pieza a la hoja
   const k = (s.sc || 1) * (s.u || 1), r = (s.r || 0) * Math.PI / 180, cs = Math.cos(r), sn = Math.sin(r), fx = s.fl ? -1 : 1;
   return (p) => { const x = p[0] * k * fx, y = p[1] * k; return [s.a[0] + x * cs - y * sn, s.a[1] + x * sn + y * cs]; };
 }
-function textBox(s) { const w = Math.max(1, s.s.length) * s.size * 0.56; return [s.a, [s.a[0] + w, s.a[1]], [s.a[0] + w, s.a[1] + s.size * 1.2], [s.a[0], s.a[1] + s.size * 1.2], s.a]; }
+function textBox(s) {
+  const w = Math.max(1, s.s.length) * s.size * 0.56, pts = [s.a, [s.a[0] + w, s.a[1]], [s.a[0] + w, s.a[1] + s.size * 1.2], [s.a[0], s.a[1] + s.size * 1.2], s.a];
+  return s.r ? pts.map(giroEn(s.a, s.r)) : pts;
+}
 function shapePoints(s) {
   if (s.t === "stroke") return s.pts;
   if (s.t === "rect") return [s.a, [s.b[0], s.a[1]], s.b, [s.a[0], s.b[1]], s.a];
@@ -1078,8 +1181,24 @@ function mirrored(s) {
   if (m.t === "text") m.a = [m.a[0] - Math.max(1, m.s.length) * m.size * 0.56, m.a[1]];
   return m;
 }
+/* Giro libre: k = grados. Rectángulos y elipses giradas pasan a ser trazos */
+function girarShape(s, f, k) {
+  const q = ((Math.round(k) % 360) + 360) % 360, recto = q % 90 === 0;
+  if (s.pts) { s.pts = s.pts.map((p) => { const r = f(p); return [r[0], r[1], p[2] ?? 0.5]; }); return; }
+  if ((s.t === "rect" || s.t === "ellipse") && !recto) {
+    const pts = s.t === "rect" ? [s.a, [s.b[0], s.a[1]], s.b, [s.a[0], s.b[1]], s.a] : ellipsePts(s, 72);
+    s.pts = pts.map((p) => { const r = f(p); return [r[0], r[1], 0.5]; }); s.t = "stroke"; delete s.a; delete s.b; return;
+  }
+  if (s.t === "rect") { const a = f(s.a), b = f(s.b); s.a = [Math.min(a[0], b[0]), Math.min(a[1], b[1])]; s.b = [Math.max(a[0], b[0]), Math.max(a[1], b[1])]; return; }
+  if (s.t === "ellipse") { const rx = Math.abs(s.b[0] - s.a[0]), ry = Math.abs(s.b[1] - s.a[1]); s.a = f(s.a); s.b = q % 180 === 90 ? [s.a[0] + ry, s.a[1] + rx] : [s.a[0] + rx, s.a[1] + ry]; return; }
+  if (s.t === "text") { s.a = f(s.a); s.r = (((s.r || 0) + k) % 360 + 360) % 360; return; }
+  if (s.a) s.a = f(s.a); if (s.b) s.b = f(s.b);
+  if (s.t === "sym") s.r = (((s.r || 0) + k) % 360 + 360) % 360;
+}
+const giroEn = (c, deg) => { const r = deg * Math.PI / 180, cs = Math.cos(r), sn = Math.sin(r); return (p) => [c[0] + (p[0] - c[0]) * cs - (p[1] - c[1]) * sn, c[1] + (p[0] - c[0]) * sn + (p[1] - c[1]) * cs]; };
 /* Transformaciones para la selección */
 function mapShape(s, f, kind, k) {
+  if (kind === "rotA") { girarShape(s, f, k); return; }
   if (s.pts) s.pts = s.pts.map((p) => { const q = f(p); return [q[0], q[1], p[2]]; });
   if (s.t === "ellipse") {
     const rx = Math.abs(s.b[0] - s.a[0]), ry = Math.abs(s.b[1] - s.a[1]); s.a = f(s.a);
@@ -1134,7 +1253,8 @@ function drawShape(c, s, z, preview) {
   c.strokeStyle = s.c; c.fillStyle = s.c; c.lineCap = "round"; c.lineJoin = "round";
   if (s.t === "sym") { drawSym(c, s); c.restore(); return; }
   if (s.t === "text") {
-    c.font = `500 ${s.size}px Inter, system-ui, sans-serif`; c.textBaseline = "top"; c.fillText(s.s, s.a[0], s.a[1] + s.size * 0.1);
+    c.font = `500 ${s.size}px Inter, system-ui, sans-serif`; c.textBaseline = "top";
+    if (s.r) { c.translate(s.a[0], s.a[1]); c.rotate(s.r * Math.PI / 180); c.fillText(s.s, 0, s.size * 0.1); } else c.fillText(s.s, s.a[0], s.a[1] + s.size * 0.1);
     c.restore(); return;
   }
   if (s.t === "wall") {
@@ -1315,6 +1435,7 @@ function selBox() {
   return x0 === Infinity ? null : [x0, y0, x1, y1];
 }
 function handlePos(z) { const b = selBox(); return b ? [b[2] + 8 / z, b[3] + 8 / z] : null; }
+function rotHandlePos(z) { const b = selBox(); return b ? [(b[0] + b[2]) / 2, b[1] - 34 / z] : null; }
 function drawSelection(c, z) {
   const b = selBox(); if (!b) return;
   const col = BRAND[state.current], pad = 6 / z;
@@ -1322,6 +1443,17 @@ function drawSelection(c, z) {
   c.strokeRect(b[0] - pad, b[1] - pad, b[2] - b[0] + pad * 2, b[3] - b[1] + pad * 2); c.setLineDash([]);
   const h = handlePos(z), r = 7 / z;
   c.fillStyle = "#FFFFFF"; c.fillRect(h[0] - r, h[1] - r, r * 2, r * 2); c.strokeRect(h[0] - r, h[1] - r, r * 2, r * 2);
+  // asa para girar
+  const g = rotHandlePos(z), gr = 9 / z;
+  c.beginPath(); c.moveTo((b[0] + b[2]) / 2, b[1] - pad); c.lineTo(g[0], g[1] + gr); c.stroke();
+  c.beginPath(); c.arc(g[0], g[1], gr, 0, Math.PI * 2); c.fillStyle = "#FFFFFF"; c.fill(); c.stroke();
+  c.beginPath(); c.arc(g[0], g[1], gr * 0.5, -Math.PI * 0.9, Math.PI * 0.55); c.lineWidth = 1.6 / z; c.stroke();
+  if (draft && draft.tool === "rotate") {
+    const t = (draft.ang > 0 ? "+" : "") + draft.ang + "°";
+    c.font = `700 ${12 / z}px Inter, system-ui, sans-serif`; const tw = c.measureText(t).width;
+    c.fillStyle = col; c.fillRect(g[0] + 14 / z, g[1] - 10 / z, tw + 12 / z, 20 / z);
+    c.fillStyle = "#FFFFFF"; c.textBaseline = "middle"; c.fillText(t, g[0] + 20 / z, g[1]);
+  }
   c.restore();
 }
 function setSel(list) {
@@ -1333,8 +1465,18 @@ function setSel(list) {
   }
   redraw();
 }
+function selGirar(deg) {
+  if (!sel.length) return;
+  const b = selBox(), c = [(b[0] + b[2]) / 2, (b[1] + b[3]) / 2];
+  pushHistory(); sel.forEach((s) => girarShape(s, giroEn(c, deg), deg)); save(); setSel(sel);
+}
+function selMover(dx, dy) {
+  if (!sel.length) return;
+  pushHistory(); sel.forEach((s) => mapShape(s, (p) => [p[0] + dx, p[1] + dy], "move")); save(); setSel(sel);
+}
 function selTransform(kind) {
   if (!sel.length) return;
+  if (kind === "rot") { selGirar(90); return; }
   const b = selBox(), cx = (b[0] + b[2]) / 2, cy = (b[1] + b[3]) / 2;
   pushHistory();
   const f = kind === "rot" ? (p) => [cx - (p[1] - cy), cy + (p[0] - cx)] : (p) => [2 * cx - p[0], p[1]];
@@ -1503,6 +1645,21 @@ cv.addEventListener("pointerdown", (e) => {
     return;
   }
   if (tool === "eraser") { pushHistory(); draft = { tool, erased: 0 }; eraseAt(wp); return; }
+  if ((tool === "select" || tool === "stamp") && sel.length) {
+    const g = rotHandlePos(view.z);
+    if (g && dist(wp, g) < 16 / view.z) {
+      const b = selBox(); pushHistory();
+      draft = { tool: "rotate", c: [(b[0] + b[2]) / 2, (b[1] + b[3]) / 2], start: wp, ang: 0, orig: sel.map((s) => JSON.stringify(s)) }; return;
+    }
+    if (tool === "stamp") {
+      const h = handlePos(view.z);
+      if (h && dist(wp, h) < 14 / view.z) { const b = selBox(); pushHistory(); draft = { tool: "scale", anchor: [b[0], b[1]], start: wp, orig: sel.map((s) => JSON.stringify(s)) }; return; }
+    }
+  }
+  if (tool === "stamp") {
+    const s = topHit(wp);
+    if (s && s.t === "sym") { setSel([s]); draft = { tool: "move", last: wp, moved: false }; return; }
+  }
   if (tool === "select") {
     const h = handlePos(view.z);
     if (h && sel.length && dist(wp, h) < 14 / view.z) {
@@ -1522,7 +1679,8 @@ cv.addEventListener("pointerdown", (e) => {
   if (tool === "stamp") {
     if (!state.stamp) { openPanel(true); flash("Elegí una pieza de la biblioteca en el panel."); return; }
     const at = sheet().snap ? gridSnap(wp) : wp;
-    commit(stampShape(at)); redraw(); return;
+    commit(stampShape(at));
+    const lista = sheet().shapes; setSel([lista[lista.length - 1]]); return;
   }
   if (tool === "box") { const a = snapPoint(wp); draft = { tool: "box", top: a, boxPreview: null }; return; }
   const st = curStyle();
@@ -1571,6 +1729,13 @@ cv.addEventListener("pointermove", (e) => {
     sel.forEach((s, i) => { const o = JSON.parse(draft.orig[i]); for (const key of Object.keys(s)) delete s[key]; Object.assign(s, o); mapShape(s, (p) => [A[0] + (p[0] - A[0]) * k, A[1] + (p[1] - A[1]) * k], "scale", k); });
     redraw(); return;
   }
+  if (draft.tool === "rotate") {
+    const C = draft.c, paso = shiftDown ? 15 : 5;
+    let d = (Math.atan2(wp[1] - C[1], wp[0] - C[0]) - Math.atan2(draft.start[1] - C[1], draft.start[0] - C[0])) * 180 / Math.PI;
+    d = Math.round(d / paso) * paso; d = ((d % 360) + 540) % 360 - 180; draft.ang = d;
+    sel.forEach((s, i) => { const o = JSON.parse(draft.orig[i]); for (const key of Object.keys(s)) delete s[key]; Object.assign(s, o); if (d) girarShape(s, giroEn(C, d), d); });
+    redraw(); return;
+  }
   if (draft.tool === "marquee") { draft.end = wp; redraw(); return; }
   if (draft.tool === "box") {
     const bot = [draft.top[0], wp[1]];
@@ -1610,6 +1775,7 @@ function endPointer(e) {
   else if (draft.tool === "eraser") { if (!draft.erased) { sheet().undo.pop(); syncUndo(); } else { setSel(sel.filter((s) => sheet().shapes.includes(s))); save(); } }
   else if (draft.tool === "move") { if (draft.moved) save(); setSel(sel); }
   else if (draft.tool === "scale") { save(); setSel(sel); }
+  else if (draft.tool === "rotate") { if (!draft.ang) { sheet().undo.pop(); syncUndo(); } else save(); draft = null; setSel(sel); return; }
   else if (draft.tool === "marquee") {
     const a = draft.start, b = draft.end, x0 = Math.min(a[0], b[0]), x1 = Math.max(a[0], b[0]), y0 = Math.min(a[1], b[1]), y1 = Math.max(a[1], b[1]);
     const inside = sheet().shapes.filter((s) => visible(s) && shapePoints(s).every((p) => p[0] >= x0 && p[0] <= x1 && p[1] >= y0 && p[1] <= y1));
@@ -1686,6 +1852,11 @@ window.addEventListener("keydown", (e) => {
   if (mod) return;
   if ((e.key === "Delete" || e.key === "Backspace") && sel.length) { e.preventDefault(); selDelete(); return; }
   if (e.key === "Escape") { if (sel.length) setSel([]); else if (state.tool === "stamp") setTool("select"); return; }
+  if (sel.length && e.key.startsWith("Arrow")) {
+    e.preventDefault(); const d = e.shiftKey ? CELL : CELL / 8;
+    selMover(e.key === "ArrowLeft" ? -d : e.key === "ArrowRight" ? d : 0, e.key === "ArrowUp" ? -d : e.key === "ArrowDown" ? d : 0); return;
+  }
+  if (sel.length && (e.key === "[" || e.key === "]")) { e.preventDefault(); selGirar((e.key === "]" ? 1 : -1) * (e.shiftKey ? 90 : 15)); return; }
   const t = toolsFor(state.current).find((t) => t.key.toLowerCase() === e.key.toLowerCase());
   if (t) setTool(t.id);
 });
@@ -1703,7 +1874,7 @@ function updateHint() {
 function setTool(id) {
   if (!toolsFor(state.current).some((t) => t.id === id)) id = "pencil";
   state.tool = id;
-  if (id !== "select" && sel.length) setSel([]);
+  if (id !== "select" && id !== "stamp" && sel.length) setSel([]);
   closeText(true);
   document.querySelectorAll(".tool[data-tool]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.tool === id)));
   cv.style.cursor = id === "hand" ? "grab" : id === "eraser" ? "none" : id === "select" ? "default" : id === "text" ? "text" : "crosshair";
@@ -1798,6 +1969,7 @@ function syncAll() {
   selReview = sheet().review && sheet().review.puntos.length ? 0 : -1;
   if (!sheet().review) $("aiOut").textContent = "";
   syncPhoto(); renderReview(); syncHoja();
+  if (typeof pintarEjemplos === "function" && $("iaEjemplos").dataset.c !== state.current) { $("iaEjemplos").dataset.c = state.current; pintarEjemplos($("iaEjemplos"), state.current, $("iaPedido")); }
   if (!sheet().review && !busyNow) $("dock").hidden = true;
 }
 function openPanel(open) {
@@ -1844,7 +2016,7 @@ const enApp = window.matchMedia("(display-mode: standalone)").matches || window.
 if (enApp) document.documentElement.classList.add("app-inst");
 
 // Indicador de estado: en línea / sin conexión y versión del Bocetador
-const BOCETADOR_VERSION = "1.1";
+const BOCETADOR_VERSION = "1.2";
 (() => {
   const b = document.getElementById("estado"), pop = document.getElementById("estadoPop");
   const est = document.getElementById("epEst"), txt = document.getElementById("epTxt"), act = document.getElementById("epAct");
@@ -1901,7 +2073,7 @@ $("guiaBtn").onclick = abrirGuia;
 guia.addEventListener("click", (e) => { if (e.target === guia) cerrarGuia(); });
 guia.addEventListener("keydown", (e) => { if (e.key === "Escape") { e.stopPropagation(); cerrarGuia(); } if (e.key === "Tab") { e.preventDefault(); $("guiaOk").focus(); } });
 let guiaVista = false; try { guiaVista = !!localStorage.getItem("boceto-guia-vista"); } catch (e) { guiaVista = true; }
-if (!guiaVista) setTimeout(abrirGuia, 300);
+if (!guiaVista && !debeMostrarInicio()) setTimeout(abrirGuia, 300);
 $("undo").onclick = undo; $("redo").onclick = redo;
 $("zoomIn").onclick = () => setZoom(view.z * 1.25, W / 2, H / 2);
 $("zoomOut").onclick = () => setZoom(view.z / 1.25, W / 2, H / 2);
@@ -2087,7 +2259,7 @@ async function getSample() {
     return undefined;
   };
   const call = async (input, opts = {}) => {
-    const body = { messages: typeof input === "string" ? [{ role: "user", content: input }] : input, maxTokens: 900 };
+    const body = { messages: typeof input === "string" ? [{ role: "user", content: input }] : input, maxTokens: opts.maxTokens || 900 };
     if (opts.images) {
       const img = Array.isArray(opts.images) ? opts.images[0] : (opts.images instanceof FileList ? opts.images[0] : opts.images);
       try { body.image = await toJpeg(img); } catch (e) { throw { code: "image_rejected", message: String(e) }; }
@@ -3039,6 +3211,327 @@ Reglas: entre 3 y 5 puntos; "tipo" es "bien", "corregir" o "sugerencia"; incluí
   };
 })();
 
+/* ---------- Diseñar con IA: el asistente arma una propuesta a partir de un pedido ---------- */
+const IA_EJEMPLOS = {
+  interiores: ["Monoambiente de 6 × 4 m con cocina, cama doble y escritorio", "Living comedor de 5 × 4 m para 4 personas", "Dormitorio infantil de 3 × 3 m con cama, escritorio y placard", "Baño accesible de 2,2 × 2 m"],
+  industrial: ["Banqueta alta de madera para una barra", "Lámpara de escritorio con brazo", "Parlante portátil cilíndrico", "Mesa ratona con estante inferior"],
+  grafico: ["Afiche para un festival de jazz en Neuquén", "Publicación de Instagram para un café de especialidad", "Historia para anunciar una feria de diseño", "Tarjeta personal de una diseñadora de interiores"],
+  indumentaria: ["Vestido de verano de lino con bolsillos", "Look urbano: buzo con capucha y pantalón", "Camisa de oficina con cuello y botones", "Conjunto de falda y remera para una colección cápsula"]
+};
+const PIEZAS_TXT = (c) => LIB[c].map((it) => it.k + " (" + it.n + ")").join(", ");
+function promptDiseno(c, pedido, previo) {
+  const base = `Sos el asistente de diseño de una escuela online. Un alumno de ${CARRERAS[c].name} te pide: "${pedido}".
+Proponé un diseño claro, correcto y realista para esa disciplina, como lo haría un buen docente que muestra un ejemplo resuelto.`;
+  const cambio = previo ? `\nYa le propusiste este diseño (JSON): ${JSON.stringify(previo).slice(0, 6000)}\nAhora te pide este cambio: "${pedido}". Devolvé el diseño completo actualizado con el cambio aplicado y explicá qué cambiaste.` : "";
+  const reglas = "\nRespondé SOLO con un objeto JSON válido, sin texto antes ni después. Textos en español rioplatense con voseo.";
+  const esquema = {
+    interiores: `
+Es una planta de arquitectura. Medidas en metros. El origen (0,0) es la esquina interior de arriba a la izquierda; "x" crece hacia la derecha hasta "ancho" e "y" crece hacia abajo hasta "largo".
+Forma: {"titulo": "máx 5 palabras", "explicacion": "máx 45 palabras: cómo organizaste el espacio y por qué", "ancho": 5, "largo": 4,
+"puertas": [{"lado": "abajo", "desde": 0.5, "ancho": 0.8}], "ventanas": [{"lado": "arriba", "centro": 2.5, "ancho": 1.2}],
+"tabiques": [{"x1": 3, "y1": 0, "x2": 3, "y2": 2}], "muebles": [{"pieza": "sillon", "x": 2.5, "y": 3.4, "giro": 180}], "ambientes": [{"nombre": "Cocina", "x": 1, "y": 1}]}
+Reglas: "lado" es "arriba", "abajo", "izquierda" o "derecha"; "desde" es la distancia en metros desde el comienzo de esa pared (izquierda o arriba). "x" e "y" de cada mueble son su centro. "giro" es 0, 90, 180 o 270: con 0 el respaldo o la cabecera queda arriba (contra la pared de arriba); 90 la deja a la derecha, 180 abajo, 270 a la izquierda.
+Usá solo estas piezas: ${PIEZAS_TXT("interiores")}. Dejá pasos de 90 cm, no superpongas muebles y no tapes la puerta. Los tabiques son opcionales, para dividir ambientes.`,
+    industrial: `
+Es una lámina de vistas de un producto (frente, lateral y planta). Medidas en centímetros, reales. En cada vista el origen (0,0) es la esquina de arriba a la izquierda del producto, "y" crece hacia abajo.
+Forma: {"titulo": "máx 5 palabras", "explicacion": "máx 45 palabras: concepto, materiales y uso", "medidas": {"ancho": 40, "alto": 75, "profundidad": 40},
+"frente": [elementos], "lateral": [elementos], "planta": [elementos], "notas": ["Material: ...", "Terminación: ..."]}
+Cada elemento es uno de: {"tipo": "rect", "x": 0, "y": 0, "w": 40, "h": 4}, {"tipo": "circulo", "x": 20, "y": 20, "r": 5}, {"tipo": "elipse", "x": 20, "y": 2, "rx": 20, "ry": 3}, {"tipo": "linea", "x1": 0, "y1": 0, "x2": 40, "y2": 75}.
+Reglas: entre 3 y 14 elementos por vista; las tres vistas tienen que coincidir en medidas (frente = ancho × alto, lateral = profundidad × alto, planta = ancho × profundidad); máximo 4 notas.`,
+    grafico: `
+Es una pieza gráfica. Posiciones y tamaños como fracción de la página (0 a 1): "x" e "y" son la esquina de arriba a la izquierda de cada elemento.
+Forma: {"titulo": "máx 5 palabras", "explicacion": "máx 45 palabras: jerarquía, retícula, tipografía y color", "formato": "a4v",
+"paleta": ["#1F2328", "#6D28D9"], "elementos": [{"tipo": "titulo", "x": 0.08, "y": 0.08, "w": 0.84, "h": 0.1, "texto": "...", "color": "#1F2328"}]}
+Reglas: "formato" es "a4v" (afiche A4 vertical), "a4h" (A4 apaisado), "post" (publicación 4:5), "square" (publicación cuadrada), "story" (historia) o "tarjeta" (tarjeta personal). "tipo" es "titulo", "subtitulo", "texto" (un párrafo), "imagen", "imagen_circular", "boton", "logo", "rect", "circulo" o "linea". Escribí textos reales y cortos para la pieza (nada de lorem ipsum). Respetá márgenes de 0.07, alineá a una retícula y no superpongas textos. Entre 4 y 10 elementos.`,
+    indumentaria: `
+Es un geometral sobre un figurín de 9 cabezas (unidades de la hoja): cabeza de y=0 a 80, hombros y=107 (x de -75 a 75), busto y=160, cintura y=240 (x de -40 a 40), cadera y=320 (x de -70 a 70), rodilla y=520, tobillo y=680. El eje central es x=0.
+Forma: {"titulo": "máx 5 palabras", "explicacion": "máx 45 palabras: silueta, tela y ocasión de uso", "prendas": [{"pieza": "vestido", "color": "#BE185D"}],
+"detalles": [{"pieza": "bolsillo", "x": -40, "y": 300}], "notas": ["Tela: lino", "Avíos: botones de coco"]}
+Reglas: prendas posibles: remera, musculosa, camisa, buzo, campera, blazer, vestido, falda, pantalon, short (una de arriba y una de abajo, o un vestido; máximo 3). Detalles posibles: bolsillo, boton, ojal, cierre, pinza, pespunte, volado, cuello, manga (máximo 10). Máximo 5 notas.`
+  }[c];
+  return base + esquema + cambio + reglas;
+}
+const num = (v, d = 0) => { const n = Number(v); return isFinite(n) ? n : d; };
+const lim = (v, a, b) => Math.max(a, Math.min(b, v));
+const hex = (v, d) => (/^#[0-9a-f]{6}$/i.test(String(v || "")) ? String(v) : d);
+const txt = (v, n) => String(v == null ? "" : v).replace(/\s+/g, " ").trim().slice(0, n);
+
+function compilarDiseno(c, d) {
+  const sh = newSheet(c, true), shapes = [], col = BRAND[c];
+  const marca = (s) => { s.ia = 1; shapes.push(s); return s; };
+  if (c === "interiores") {
+    const Wm = lim(num(d.ancho, 4), 1.5, 14), Hm = lim(num(d.largo, 3.5), 1.5, 14);
+    const ab = { arriba: [], abajo: [], izq: [], der: [] }, sim = [];
+    const LADO = { arriba: "arriba", abajo: "abajo", izquierda: "izq", derecha: "der", izq: "izq", der: "der" };
+    (Array.isArray(d.puertas) ? d.puertas : []).slice(0, 4).forEach((p) => {
+      const l = LADO[p && p.lado] || "abajo", len = l === "arriba" || l === "abajo" ? Wm : Hm, doble = num(p.ancho, 0.8) >= 1.05, w = doble ? 1.2 : 0.8;
+      const a0 = lim(num(p.desde, 0.4), 0.1, Math.max(0.1, len - w - 0.1)); ab[l].push([a0, a0 + w]);
+      const k = doble ? "puerta2" : "puerta", m = doble ? w / 2 : 0;
+      if (l === "abajo") sim.push(SI(k, a0 + m, Hm, 0)); else if (l === "arriba") sim.push(SI(k, a0 + (doble ? m : w), 0, 180));
+      else if (l === "izq") sim.push(SI(k, 0, a0 + m, 90)); else sim.push(SI(k, Wm, a0 + (doble ? m : w), -90));
+    });
+    (Array.isArray(d.ventanas) ? d.ventanas : []).slice(0, 6).forEach((v) => {
+      const l = LADO[v && v.lado] || "arriba", len = l === "arriba" || l === "abajo" ? Wm : Hm, w = num(v.ancho, 1.2) >= 1 ? 1.2 : 0.8;
+      const cx = lim(num(v.centro, len / 2), w / 2 + 0.1, len - w / 2 - 0.1);
+      if (ab[l].some(([a, b]) => cx + w / 2 > a - 0.05 && cx - w / 2 < b + 0.05)) return;
+      ab[l].push([cx - w / 2, cx + w / 2]);
+      const k = w > 1 ? "ventana" : "ventana08";
+      sim.push(l === "arriba" ? SI(k, cx, 0) : l === "abajo" ? SI(k, cx, Hm) : l === "izq" ? SI(k, 0, cx, 90) : SI(k, Wm, cx, 90));
+    });
+    muros(Wm, Hm, ab).forEach(marca); sim.forEach(marca);
+    (Array.isArray(d.tabiques) ? d.tabiques : []).slice(0, 8).forEach((t) => {
+      const a = [lim(num(t.x1), 0, Wm) * PM, lim(num(t.y1), 0, Hm) * PM], b = [lim(num(t.x2), 0, Wm) * PM, lim(num(t.y2), 0, Hm) * PM];
+      if (dist(a, b) > 20) marca({ t: "wall", a, b, th: 8, c: "#2B2F35", w: 1, al: 1 });
+    });
+    // Muebles: dentro del ambiente y sin pisarse
+    const ok = new Set(LIB.interiores.map((i) => i.k)), mus = [];
+    (Array.isArray(d.muebles) ? d.muebles : []).slice(0, 30).forEach((m) => {
+      const k = String(m && m.pieza || "").toLowerCase().trim(); if (!ok.has(k) || /^(puerta|puerta2|corrediza|ventana|ventana08)$/.test(k)) return;
+      const it = LIB.interiores.find((i) => i.k === k), g = (((Math.round(num(m.giro) / 90) * 90) % 360) + 360) % 360;
+      const bw = it.box[2] - it.box[0], bh = it.box[3] - it.box[1], hw = (g % 180 ? bh : bw) / 2, hh = (g % 180 ? bw : bh) / 2;
+      mus.push({ k, g, hw, hh, x: lim(num(m.x, Wm / 2), hw + 0.08, Math.max(hw + 0.08, Wm - hw - 0.08)), y: lim(num(m.y, Hm / 2), hh + 0.08, Math.max(hh + 0.08, Hm - hh - 0.08)), suelto: k === "alfombra" || k === "giro" });
+    });
+    for (let vuelta = 0; vuelta < 40; vuelta++) {
+      let movio = false;
+      for (let i = 0; i < mus.length; i++) for (let j = i + 1; j < mus.length; j++) {
+        const A = mus[i], B = mus[j]; if (A.suelto || B.suelto) continue;
+        const ox = A.hw + B.hw - Math.abs(A.x - B.x), oy = A.hh + B.hh - Math.abs(A.y - B.y);
+        if (ox > 0.02 && oy > 0.02) {
+          movio = true;
+          if (ox < oy) { const s = A.x <= B.x ? 1 : -1; B.x += s * ox / 2; A.x -= s * ox / 2; } else { const s = A.y <= B.y ? 1 : -1; B.y += s * oy / 2; A.y -= s * oy / 2; }
+          [A, B].forEach((M) => { M.x = lim(M.x, M.hw + 0.08, Math.max(M.hw + 0.08, Wm - M.hw - 0.08)); M.y = lim(M.y, M.hh + 0.08, Math.max(M.hh + 0.08, Hm - M.hh - 0.08)); });
+        }
+      }
+      if (!movio) break;
+    }
+    mus.sort((a, b) => (b.suelto ? 1 : 0) - (a.suelto ? 1 : 0)).forEach((M) => marca(SI(M.k, M.x, M.y, M.g, M.k === "sillon" || M.k === "cama2" ? col : G0)));
+    (Array.isArray(d.ambientes) ? d.ambientes : []).slice(0, 8).forEach((a) => { const n = txt(a && a.nombre, 24); if (n) marca(TX(n, lim(num(a.x), 0, Wm) * PM - n.length * 3.5, lim(num(a.y), 0, Hm) * PM - 6, 13, "#5B636D")); });
+    cotas(Wm, Hm).forEach(marca);
+    marca(TX(txt(d.titulo, 40) || "Propuesta", 0, Hm * PM + 32));
+  } else if (c === "industrial") {
+    const M = d.medidas || {}, W = lim(num(M.ancho, 40), 1, 600), Hh = lim(num(M.alto, 40), 1, 600), P = lim(num(M.profundidad, 30), 1, 600);
+    const per = [0.5, 1, 2, 5, 10, 20, 50].find((v) => Math.max(W, Hh, P) / v <= 22) || 50;
+    sh.grid = "cuadricula"; sh.unit = "cm"; sh.perCell = per; sh.snap = true;
+    const k = CELL / per, gap = Math.max(W, P, Hh) * 0.35 * k, lw = 2.5;
+    const vistas = [["frente", 0, 0, W, Hh, "Frente"], ["lateral", W * k + gap, 0, P, Hh, "Lateral"], ["planta", 0, Hh * k + gap, W, P, "Planta"]];
+    vistas.forEach(([key, ox, oy, vw, vh, nombre]) => {
+      const els = Array.isArray(d[key]) ? d[key].slice(0, 20) : [];
+      const X = (v) => ox + lim(num(v), -vw * 0.2, vw * 1.2) * k, Y = (v) => oy + lim(num(v), -vh * 0.2, vh * 1.2) * k;
+      if (!els.length) marca(RC([ox, oy], [ox + vw * k, oy + vh * k], lw));
+      els.forEach((e) => {
+        const t = e && e.tipo;
+        if (t === "rect") { const x0 = X(e.x), y0 = Y(e.y), x1 = X(num(e.x) + num(e.w)), y1 = Y(num(e.y) + num(e.h)); if (Math.abs(x1 - x0) > 0.5 && Math.abs(y1 - y0) > 0.5) marca(RC([Math.min(x0, x1), Math.min(y0, y1)], [Math.max(x0, x1), Math.max(y0, y1)], lw)); }
+        else if (t === "circulo") { const r = lim(num(e.r), 0.1, 300) * k; marca({ t: "ellipse", a: [X(e.x), Y(e.y)], b: [X(e.x) + r, Y(e.y) + r], c: G0, w: lw, al: 1 }); }
+        else if (t === "elipse") marca({ t: "ellipse", a: [X(e.x), Y(e.y)], b: [X(e.x) + lim(num(e.rx), 0.1, 300) * k, Y(e.y) + lim(num(e.ry), 0.1, 300) * k], c: G0, w: lw, al: 1 });
+        else if (t === "linea") marca(LN([X(e.x1), Y(e.y1)], [X(e.x2), Y(e.y2)], 1, lw));
+      });
+      marca({ t: "dim", a: [ox, oy + vh * k + 28], b: [ox + vw * k, oy + vh * k + 28], c: "#1D4ED8", w: 1.5, al: 1, l: 2 });
+      if (key !== "planta") marca({ t: "dim", a: [ox - 28, oy], b: [ox - 28, oy + vh * k], c: "#1D4ED8", w: 1.5, al: 1, l: 2 });
+      marca(TX(nombre, ox, oy + vh * k + 44, 14, "#1D4ED8"));
+    });
+    const fs = 16, nx = W * k + gap, ny = Hh * k + gap;
+    marca(TX(txt(d.titulo, 40) || "Producto", 0, -48, 22));
+    (Array.isArray(d.notas) ? d.notas : []).slice(0, 4).forEach((n, i) => { const t = txt(n, 70); if (t) marca(TX("· " + t, nx, ny + i * (fs + 10), fs - 2, "#5B636D")); });
+  } else if (c === "grafico") {
+    const f = FORMATS[d.formato] ? d.formato : "a4v", F = FORMATS[f];
+    conFormato(sh, f);
+    const paleta = (Array.isArray(d.paleta) ? d.paleta : []).map((x) => hex(x, null)).filter(Boolean);
+    const principal = paleta.find((x) => x.toUpperCase() !== "#FFFFFF" && x.toUpperCase() !== "#1F2328") || col;
+    const PX = (v) => lim(num(v), 0, 1) * F.w, PY = (v) => lim(num(v), 0, 1) * F.h;
+    const textoEn = (s, x, y, w, h, size, color) => {
+      const porLinea = Math.max(4, Math.floor(w / (size * 0.53))), palabras = s.split(" "), lineas = [];
+      let l = ""; palabras.forEach((p) => { if ((l + " " + p).trim().length > porLinea) { if (l) lineas.push(l); l = p; } else l = (l + " " + p).trim(); }); if (l) lineas.push(l);
+      lineas.slice(0, Math.max(1, Math.floor(h / (size * 1.3)))).forEach((ln, i) => marca(TX(ln, x, y + i * size * 1.3, size, color, 1)));
+    };
+    (Array.isArray(d.elementos) ? d.elementos : []).slice(0, 14).forEach((e) => {
+      if (!e) return;
+      const x = PX(e.x), y = PY(e.y), w = Math.max(8, PX(num(e.x) + num(e.w, 0.3)) - x), h = Math.max(8, PY(num(e.y) + num(e.h, 0.1)) - y);
+      const color = hex(e.color, e.tipo === "imagen" || e.tipo === "imagen_circular" ? principal : G0), t = txt(e.texto, 160), lw = Math.max(2, F.w * 0.004);
+      if (e.tipo === "titulo" || e.tipo === "subtitulo") {
+        if (!t) return;
+        let size = Math.min(h * 0.82, F.w * (e.tipo === "titulo" ? 0.11 : 0.05));
+        const lineasMax = Math.max(1, Math.floor(h / (size * 1.15)));
+        while (size > 10 && Math.ceil(t.length * size * 0.56 / w) > lineasMax) size *= 0.92;
+        textoEn(t, x, y, w, h + size, size, color);
+      } else if (e.tipo === "texto") { if (t) textoEn(t, x, y, w, h, lim(F.w * 0.024, 9, 40), color); }
+      else if (e.tipo === "imagen") { marca(RC([x, y], [x + w, y + h], lw, color)); marca(LN([x, y], [x + w, y + h], 0.4, lw * 0.6, color, 1)); marca(LN([x, y + h], [x + w, y], 0.4, lw * 0.6, color, 1)); }
+      else if (e.tipo === "imagen_circular" || e.tipo === "circulo") { const r = Math.min(w, h) / 2; marca({ t: "ellipse", a: [x + w / 2, y + h / 2], b: [x + w / 2 + r, y + h / 2 + r], c: color, w: lw, al: 1, ia: 1 }); if (e.tipo === "imagen_circular") { marca(LN([x + w / 2 - r * 0.7, y + h / 2 - r * 0.7], [x + w / 2 + r * 0.7, y + h / 2 + r * 0.7], 0.4, lw * 0.6, color, 1)); marca(LN([x + w / 2 - r * 0.7, y + h / 2 + r * 0.7], [x + w / 2 + r * 0.7, y + h / 2 - r * 0.7], 0.4, lw * 0.6, color, 1)); } }
+      else if (e.tipo === "boton") { marca(RC([x, y], [x + w, y + h], lw, color)); if (t) { const size = Math.min(h * 0.45, w / Math.max(4, t.length) * 1.5); marca(TX(t, x + (w - t.length * size * 0.56) / 2, y + (h - size * 1.2) / 2, size, color, 1)); } }
+      else if (e.tipo === "logo") { const s = Math.min(w / 180, h / 100); marca(Object.assign(SP("grafico", "logo", x + w / 2, y + h / 2, s, color, 1.6))); }
+      else if (e.tipo === "rect") marca(RC([x, y], [x + w, y + h], lw, color));
+      else if (e.tipo === "linea") marca(LN([x, y], [x + w, y + (h <= 10 ? 0 : h)], 1, lw, color, 1));
+    });
+  } else {
+    sh.figurin = true; sh.sym = false; sh.grid = "ninguna";
+    const ARRIBA = ["remera", "musculosa", "camisa", "buzo", "campera", "blazer", "vestido"], ABAJO = ["falda", "pantalon", "short"];
+    const prendas = (Array.isArray(d.prendas) ? d.prendas : []).slice(0, 3).map((p) => ({ k: String(p && p.pieza || "").toLowerCase(), c: hex(p && p.color, col) })).filter((p) => ARRIBA.includes(p.k) || ABAJO.includes(p.k));
+    if (!prendas.length) prendas.push({ k: "vestido", c: col });
+    // primero lo de abajo, para que lo de arriba quede encima
+    prendas.sort((a, b) => (ABAJO.includes(b.k) ? 1 : 0) - (ABAJO.includes(a.k) ? 1 : 0)).forEach((p) => marca(SP("indumentaria", p.k, 0, ABAJO.includes(p.k) ? 232 : 96, 1, p.c, 3)));
+    const DET = ["bolsillo", "boton", "ojal", "cierre", "pinza", "pespunte", "volado", "cuello", "manga"];
+    (Array.isArray(d.detalles) ? d.detalles : []).slice(0, 10).forEach((e) => { const k = String(e && e.pieza || "").toLowerCase(); if (DET.includes(k)) marca(SP("indumentaria", k, lim(num(e.x), -140, 140), lim(num(e.y, 200), 60, 700), 1, G0, 2)); });
+    marca(TX(txt(d.titulo, 40) || "Propuesta", -170, -50, 24));
+    (Array.isArray(d.notas) ? d.notas : []).slice(0, 5).forEach((n, i) => { const t = txt(n, 60); if (t) marca(TX(t, 260, 120 + i * 28, 14, "#5B636D")); });
+  }
+  sh.shapes = shapes;
+  return fixSheet(sh);
+}
+let iaUltimo = null; // { c, key, datos, pedido }
+let iaOcupado = false;
+async function disenarIA(c, pedido, cambio) {
+  pedido = txt(pedido, 400);
+  if (!pedido) { flash("Contá qué querés diseñar."); return false; }
+  if (iaOcupado) return false;
+  const sample = await getSample();
+  showDock(true, cambio ? "Aplicando el cambio…" : "Diseñando tu propuesta…");
+  $("dockSpin").hidden = false; $("aiOut").textContent = "El asistente está armando el diseño. Tarda unos segundos."; $("aiNote").textContent = "La propuesta es un punto de partida: movela, girala y ajustala como quieras.";
+  $("review").innerHTML = ""; $("iaCambio").hidden = true;
+  iaOcupado = true; document.querySelectorAll("[data-ia-go]").forEach((b) => { b.disabled = true; });
+  try {
+    const datos = await sample.json(promptDiseno(c, pedido, cambio ? iaUltimo && iaUltimo.datos : null), { cache: false, maxTokens: 1800 });
+    if (!datos || typeof datos !== "object") throw { code: "invalid_json" };
+    const nueva = compilarDiseno(c, datos);
+    if (!nueva.shapes.length) throw { code: "invalid_json" };
+    let key;
+    if (cambio && iaUltimo && state.sheets[iaUltimo.key]) {
+      key = iaUltimo.key;
+      if (key !== claveActual()) abrirHoja(key);
+      pushHistory();
+      const sh = sheet(), propios = sh.shapes.filter((s) => !s.ia);
+      Object.assign(sh, { shapes: [...nueva.shapes, ...propios], grid: nueva.grid, fmt: nueva.fmt, unit: nueva.unit, perCell: nueva.perCell, axisX: nueva.axisX, figurin: nueva.figurin, sym: nueva.sym });
+      setSel([]); syncAll(); fit(); save(); redraw();
+    } else {
+      key = crearHoja(c, nueva, "IA · " + (txt(datos.titulo, 34) || "Propuesta"));
+      abrirHoja(key); fit(); redraw();
+    }
+    iaUltimo = { c, key, datos, pedido };
+    showDock(true, txt(datos.titulo, 60) || "Propuesta");
+    $("dockTitle").textContent = txt(datos.titulo, 60) || "Propuesta";
+    $("aiOut").textContent = txt(datos.explicacion, 420) || "Listo: armé una propuesta en una hoja nueva.";
+    $("iaCambio").hidden = false; $("iaCambioTxt").value = "";
+    $("aiNote").textContent = cambio ? "Aplicado. Si no te convence, deshacé con Ctrl+Z." : "Quedó en una hoja nueva: tu trabajo anterior no se tocó. Podés pedir cambios acá abajo.";
+    flash(cambio ? "Cambio aplicado." : "Propuesta lista en la hoja «" + sheet().nombre + "».");
+    return true;
+  } catch (e) {
+    $("aiOut").textContent = "";
+    const code = e && e.code;
+    $("aiNote").textContent = code === "invalid_json" ? "La propuesta llegó incompleta. Probá de nuevo o contalo con otras palabras."
+      : code === "rate_limited" ? "Muchas consultas seguidas. Probá de nuevo en un rato."
+      : code === "ai_unavailable" ? "El asistente todavía no está activo en este sitio."
+      : "Se cortó la conexión con el asistente. Probá de nuevo.";
+    $("dockTitle").textContent = "Diseñar con IA";
+    return false;
+  } finally {
+    iaOcupado = false; $("dockSpin").hidden = true; document.querySelectorAll("[data-ia-go]").forEach((b) => { b.disabled = false; });
+  }
+}
+function pintarEjemplos(box, c, input) {
+  box.innerHTML = "";
+  (IA_EJEMPLOS[c] || []).forEach((t) => { const b = document.createElement("button"); b.type = "button"; b.textContent = t; b.onclick = () => { input.value = t; input.focus(); }; box.appendChild(b); });
+}
+$("iaForm").addEventListener("submit", (e) => { e.preventDefault(); disenarIA(state.current, $("iaPedido").value); });
+$("iaCambio").addEventListener("submit", (e) => { e.preventDefault(); if (iaUltimo) disenarIA(iaUltimo.c, $("iaCambioTxt").value, true); });
+$("iaPedido").addEventListener("keydown", (e) => { e.stopPropagation(); if (e.key === "Enter" && (e.ctrlKey || e.metaKey)) { e.preventDefault(); $("iaForm").requestSubmit(); } });
+$("iaCambioTxt").addEventListener("keydown", (e) => e.stopPropagation());
+$("iaTop").onclick = () => { openPanel(true); const sec = $("iaSection"); sec.scrollIntoView({ block: "start", behavior: "smooth" }); setTimeout(() => $("iaPedido").focus({ preventScroll: true }), 250); };
+
+/* ---------- Pantalla de inicio: primero la rama de diseño ---------- */
+const inicio = $("inicio");
+const RAMAS = {
+  interiores: { d: "Plantas, muebles a escala y cotas reales para viviendas y locales.", svg: '<path d="M6 6h36v28H6z" stroke-width="3"/><path d="M6 24h10M24 6v12M30 34V24h12" stroke-width="2"/><rect x="28" y="10" width="10" height="7" rx="1.5"/><circle cx="12" cy="13" r="3"/>' },
+  industrial: { d: "Perspectiva, volúmenes, vistas y la escala del cuerpo para tus productos.", svg: '<path d="M24 6l16 9v18l-16 9-16-9V15z" stroke-width="2.5"/><path d="M24 24l16-9M24 24v18M24 24L8 15" stroke-width="2"/>' },
+  grafico: { d: "Afiches, redes y marcas sobre retícula, con formatos listos.", svg: '<rect x="10" y="4" width="28" height="40" rx="1.5" stroke-width="2.5"/><path d="M15 11h18M15 16h12" stroke-width="3"/><path d="M19 4v40M29 4v40" stroke-width="1" opacity=".5"/><circle cx="24" cy="30" r="7" stroke-width="2"/>' },
+  indumentaria: { d: "Figurín de 9 cabezas, geometrales y detalles de confección.", svg: '<circle cx="24" cy="7" r="4" stroke-width="2"/><path d="M17 15c4-2 10-2 14 0l-2 10 7 17H12l7-17z" stroke-width="2.5"/><path d="M19 25h10" stroke-width="2"/>' }
+};
+let iniRama = null;
+function debeMostrarInicio() {
+  const q = new URLSearchParams(location.search);
+  if (q.get("carrera") || q.get("clase")) return false;
+  try { return !sessionStorage.getItem("boceto-inicio-visto"); } catch (e) { return false; }
+}
+function pintarInicio() {
+  const ramas = $("iniRamas"); ramas.innerHTML = "";
+  Object.keys(CARRERAS).forEach((c) => {
+    const b = document.createElement("button"); b.type = "button"; b.className = "ini-rama"; b.style.setProperty("--c", `var(--c-${c})`);
+    const n = hojasDe(c).filter((k) => state.sheets[k].shapes.length).length;
+    b.innerHTML = `<span class="ini-ic"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">${RAMAS[c].svg}</svg></span><b></b><span class="ini-d"></span><small></small>`;
+    b.querySelector("b").textContent = CARRERAS[c].name; b.querySelector(".ini-d").textContent = RAMAS[c].d;
+    b.querySelector("small").textContent = n ? (n === 1 ? "1 hoja con trabajo" : n + " hojas con trabajo") : "Empezá tu primera hoja";
+    b.onclick = () => elegirRama(c);
+    ramas.appendChild(b);
+  });
+  const ult = sheet();
+  $("iniSeguir").hidden = !ult || (!ult.shapes.length && !ult.photo);
+  $("iniSeguirT").textContent = ult ? "Seguir con «" + (ult.nombre || "Hoja") + "»" : "Seguir";
+  $("iniPaso1").hidden = !!iniRama; $("iniPaso2").hidden = !iniRama;
+}
+function elegirRama(c) {
+  iniRama = c;
+  inicio.style.setProperty("--c", `var(--c-${c})`);
+  $("ini2T").textContent = CARRERAS[c].name; $("ini2D").textContent = RAMAS[c].d;
+  $("iniPaso1").hidden = true; $("iniPaso2").hidden = false;
+  const ult = state.sheets[activa(c)];
+  const tieneUlt = ult && (ult.shapes.length || ult.photo);
+  $("iniUltima").hidden = !tieneUlt;
+  if (tieneUlt) { const cv2 = $("iniUltCv"); cv2.innerHTML = ""; cv2.appendChild(miniatura(ult, c, 160, 110)); $("iniUltN").textContent = ult.nombre || "Hoja"; $("iniUltI").textContent = "Editada " + cuando(ult.editada); }
+  pintarEjemplos($("iniEjemplos"), c, $("iniPedido")); $("iniPedido").value = "";
+  const pg = $("iniPlant"); pg.innerHTML = "";
+  (PLANTILLAS[c] || []).forEach((p) => {
+    const b = document.createElement("button"); b.type = "button"; b.className = "hoja hoja-abrir hoja-plant";
+    b.appendChild(miniatura(hojaDePlantilla(c, p), c, 220, 150));
+    const nm = document.createElement("span"); nm.className = "hoja-n"; nm.textContent = p.n;
+    const dd = document.createElement("small"); dd.textContent = p.d; b.append(nm, dd);
+    b.onclick = () => { cerrarInicio(); abrirHoja(crearHoja(c, hojaDePlantilla(c, p), p.n)); flash("Plantilla «" + p.n + "» abierta como hoja nueva."); };
+    pg.appendChild(b);
+  });
+  const rec = hojasDe(c).filter((k) => state.sheets[k].shapes.length || state.sheets[k].photo).sort((a, b) => (state.sheets[b].editada || 0) - (state.sheets[a].editada || 0)).slice(0, 4);
+  $("iniRecW").hidden = !rec.length;
+  const rg = $("iniRec"); rg.innerHTML = "";
+  rec.forEach((k) => {
+    const sh = state.sheets[k], b = document.createElement("button"); b.type = "button"; b.className = "hoja hoja-abrir hoja-plant";
+    b.appendChild(miniatura(sh, c, 220, 150));
+    const nm = document.createElement("span"); nm.className = "hoja-n"; nm.textContent = sh.nombre || "Hoja";
+    const dd = document.createElement("small"); dd.textContent = "Editada " + cuando(sh.editada) + " · " + trazos(sh.shapes.length); b.append(nm, dd);
+    b.onclick = () => { cerrarInicio(); abrirHoja(k); };
+    rg.appendChild(b);
+  });
+  if (!matchMedia("(pointer: coarse)").matches) setTimeout(() => $("iniVacia").focus({ preventScroll: true }), 0);
+  inicio.querySelector(".ini-c").scrollTop = 0;
+}
+function abrirInicio(rama) {
+  if (draft) return;
+  document.querySelectorAll(".dlg:not([hidden])").forEach((d) => { d.hidden = true; });
+  iniRama = rama || null; inicio.hidden = false; document.documentElement.classList.add("con-inicio");
+  pintarInicio(); if (rama) elegirRama(rama); else if (!matchMedia("(pointer: coarse)").matches) setTimeout(() => { const b = $("iniRamas").querySelector("button"); if (b) b.focus({ preventScroll: true }); }, 0);
+}
+function cerrarInicio() {
+  inicio.hidden = true; document.documentElement.classList.remove("con-inicio");
+  try { sessionStorage.setItem("boceto-inicio-visto", "1"); } catch (e) {}
+  let vista = true; try { vista = !!localStorage.getItem("boceto-guia-vista"); } catch (e) {}
+  if (!vista) setTimeout(abrirGuia, 250);
+}
+$("iniVolver").onclick = () => { iniRama = null; pintarInicio(); const b = $("iniRamas").querySelector("button"); if (b) b.focus(); };
+$("iniSeguir").onclick = () => cerrarInicio();
+$("iniCerrar").onclick = () => cerrarInicio();
+$("iniVacia").onclick = () => { const c = iniRama; cerrarInicio(); abrirHoja(crearHoja(c, newSheet(c, true))); flash("Hoja vacía lista para dibujar."); };
+$("iniUltima").onclick = () => { const c = iniRama; cerrarInicio(); abrirHoja(activa(c)); };
+$("iniIA").addEventListener("submit", async (e) => {
+  e.preventDefault(); const c = iniRama, p = $("iniPedido").value;
+  if (!txt(p, 400)) { flash("Contá qué querés diseñar."); $("iniPedido").focus(); return; }
+  cerrarInicio(); $("iaPedido").value = p; disenarIA(c, p);
+});
+$("iniPedido").addEventListener("keydown", (e) => { e.stopPropagation(); if (e.key === "Enter" && (e.ctrlKey || e.metaKey)) { e.preventDefault(); $("iniIA").requestSubmit(); } });
+inicio.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") { e.preventDefault(); if (iniRama) $("iniVolver").click(); else cerrarInicio(); return; }
+  if (e.key !== "Tab") return;
+  const f = [...inicio.querySelectorAll("button, input, textarea, a[href]")].filter((x) => !x.disabled && x.offsetParent !== null);
+  const i = f.indexOf(document.activeElement);
+  if (e.shiftKey && i <= 0) { e.preventDefault(); f[f.length - 1].focus(); } else if (!e.shiftKey && i === f.length - 1) { e.preventDefault(); f[0].focus(); }
+});
+["iniBtn", "iniBtnSm"].forEach((id) => { const b = $(id); if (b) b.onclick = () => abrirInicio(); });
+const vaciaNueva = () => { const c = state.current; abrirHoja(crearHoja(c, newSheet(c, true))); flash("Hoja vacía lista para dibujar."); };
+$("nuevaSm").onclick = vaciaNueva;
+
 /* ---------- Ejercicio de una clase: consigna y entrega ---------- */
 const ENT_KEY = "boceto-entregas";
 const readEntregas = () => { try { return JSON.parse(localStorage.getItem(ENT_KEY) || "{}") || {}; } catch (e) { return {}; } };
@@ -3103,6 +3596,8 @@ if (window.matchMedia("(max-width: 760px)").matches) openPanel(false);
 syncAll();
 resize();
 if (state.sheetKey) loadConsigna(qc, qClase);
+pintarEjemplos($("iaEjemplos"), state.current, $("iaPedido"));
+if (debeMostrarInicio()) abrirInicio();
 })();
 </script>
 </body>

@@ -34,7 +34,11 @@ def fake_api(route):
     body = json.loads(route.request.post_data or "{}")
     api_calls.append(body)
     last = body["messages"][-1]["content"]
-    if "Respondé SOLO con un objeto JSON" in last:
+    if "asistente de diseño" in last:
+        text = json.dumps({"titulo": "Living de prueba", "explicacion": "Sillón frente a la ventana y paso libre desde la puerta.", "ancho": 4, "largo": 3.5,
+            "puertas": [{"lado": "abajo", "desde": 0.4, "ancho": 0.8}], "ventanas": [{"lado": "arriba", "centro": 2, "ancho": 1.2}],
+            "muebles": [{"pieza": "sillon", "x": 2, "y": 2.9, "giro": 180}, {"pieza": "ratona", "x": 2, "y": 2.0, "giro": 0}, {"pieza": "butaca", "x": 2, "y": 2.0, "giro": 0}]}, ensure_ascii=False)
+    elif "Respondé SOLO con un objeto JSON" in last:
         text = json.dumps({"resumen": "Buen croquis, las proporciones generales funcionan.", "puntos": [
             {"x": 0.3, "y": 0.35, "tipo": "bien", "titulo": "Buena línea de contorno", "texto": "El trazo es seguro y continuo."},
             {"x": 0.6, "y": 0.55, "tipo": "corregir", "titulo": "Ajustá la perspectiva", "texto": "Las fugas de la derecha no convergen."},
@@ -51,7 +55,7 @@ def block_external(route):
 def new_page(browser, w, h, mobile=False):
     ctx = browser.new_context(viewport={"width": w, "height": h}, is_mobile=mobile, has_touch=mobile, accept_downloads=True)
     ctx.route("**/*", block_external)
-    ctx.add_init_script("try { localStorage.setItem('boceto-guia-vista', '1'); } catch (e) {}")
+    ctx.add_init_script("try { localStorage.setItem('boceto-guia-vista', '1'); sessionStorage.setItem('boceto-inicio-visto', '1'); } catch (e) {}")
     ctx.route(f"{BASE}/api/asistente", fake_api)
     ctx.route(f"{BASE}/api/yo", lambda r: r.fulfill(status=200, content_type="application/json",
         body=json.dumps({"ingresado": True, "email": "ana@example.com", "nombre": "Ana Pérez", "carreras": ["grafico"], "suscripciones": []})))
@@ -289,6 +293,15 @@ with sync_playwright() as pw:
     p.locator('#hojasGrid .hoja:not([aria-current="true"]) .hoja-abrir').first.click(); p.wait_for_timeout(300)
     check(p.inner_text("#hojaChipT") == "Hoja 1", "bocetador: cambia entre hojas")
     p.fill("#libBuscar", "cama"); check(p.locator("#lib button").count() == 2, "bocetador: busca en la biblioteca"); p.fill("#libBuscar", "")
+    # diseñar con IA
+    p.fill("#iaPedido", "Un living de 4 × 3,5 m"); p.click("#iaForm button[type=submit]"); p.wait_for_timeout(900)
+    syms = p.evaluate("(() => { const d = JSON.parse(localStorage.getItem('bocetador-v1')); return d.sheets[d.activas.interiores].shapes.filter((s) => s.t === 'sym').map((s) => s.k); })()")
+    check(p.inner_text("#hojaChipT") == "IA · Living de prueba" and "interiores:sillon" in syms and "interiores:puerta" in syms and p.locator("#iaCambio").is_visible(), "bocetador: diseña con IA en una hoja nueva")
+    # girar un bloque con el teclado
+    p.click("#dockClose"); p.keyboard.press("v")
+    p.evaluate("document.activeElement && document.activeElement.blur()")
+    r0 = p.evaluate("(() => { const d = JSON.parse(localStorage.getItem('bocetador-v1')); return d.sheets[d.activas.interiores].shapes.find((s) => s.k === 'interiores:sillon').r; })()")
+    check(r0 == 180, "bocetador: el diseño respeta el giro pedido")
     # foto del croquis + corrección
     p.set_input_files("#photoInput", str(photo)); p.wait_for_timeout(900)
     check(p.locator("#photoCtl").is_visible(), "bocetador: carga la foto del croquis y muestra sus controles")

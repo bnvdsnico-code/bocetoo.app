@@ -109,7 +109,7 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
   if (image && (typeof image.data !== "string" || !IMAGE_TYPES.includes(image.mediaType) || image.data.length > MAX_IMAGE_B64)) {
     return fail("too_large", 413);
   }
-  const maxTokens = Math.max(100, Math.min(1200, Number(body?.maxTokens) || 800));
+  const maxTokens = Math.max(100, Math.min(2000, Number(body?.maxTokens) || 800));
 
   if (env.ANTHROPIC_API_KEY) {
     const r = await claude(env, turns, image, maxTokens);
