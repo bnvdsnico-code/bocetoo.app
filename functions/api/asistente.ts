@@ -63,7 +63,14 @@ async function claude(env: Env, turns: Turn[], image: Image, maxTokens: number):
   return null;
 }
 
-async function workersAI(env: Env, turns: Turn[], image: Image, maxTokens: number): Promise<Response> {
+// Workers AI a veces devuelve la respuesta ya convertida en objeto cuando el modelo escribió JSON
+function textoDe(out: any): string {
+  const r = out?.response ?? out?.result?.response ?? out?.choices?.[0]?.message?.content;
+  if (r == null) return "";
+  return (typeof r === "string" ? r : JSON.stringify(r)).trim();
+}
+
+async function workersAI(env: Env, turns: Turn[], image: Image, maxTokens: number, json = false): Promise<Response> {
   if (!env.AI) return fail("ai_unavailable", 503);
   const messages: any[] = [{ role: "system", content: SYSTEM }];
   turns.forEach((t, i) => {
@@ -77,9 +84,15 @@ async function workersAI(env: Env, turns: Turn[], image: Image, maxTokens: numbe
   const models = env.WORKERS_AI_MODEL ? [env.WORKERS_AI_MODEL, ...WORKERS_MODELS] : WORKERS_MODELS;
   for (const model of models) {
     try {
-      const out = await env.AI.run(model, { messages, max_tokens: maxTokens });
-      const text = String(out?.response ?? out?.result?.response ?? "").trim();
+      let out: any;
+      if (json && !image) {
+        try { out = await env.AI.run(model, { messages, max_tokens: maxTokens, response_format: { type: "json_object" } }); }
+        catch (e: any) { console.error(`asistente: ${model} sin modo JSON`, String(e?.message || e).slice(0, 200)); }
+      }
+      if (!textoDe(out)) out = await env.AI.run(model, { messages, max_tokens: maxTokens });
+      const text = textoDe(out);
       if (text) return Response.json({ text, truncated: false, model });
+      console.error(`asistente: ${model} respondió vacío`, JSON.stringify(out).slice(0, 300));
     } catch (e: any) {
       const msg = String(e?.message || e);
       console.error(`asistente: ${model} falló`, msg.slice(0, 400));
@@ -115,7 +128,7 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
     const r = await claude(env, turns, image, maxTokens);
     if (r) return r;
   }
-  return workersAI(env, turns, image, maxTokens);
+  return workersAI(env, turns, image, maxTokens, body?.json === true);
 };
 
 export const onRequest: PagesFunction<Env> = async () => fail("method_not_allowed", 405);
