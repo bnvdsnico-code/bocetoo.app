@@ -1213,7 +1213,6 @@ function mapShape(s, f, kind, k) {
   }
   if (s.a) s.a = f(s.a); if (s.b) s.b = f(s.b);
   if (s.t === "sym") { if (kind === "scale") s.sc = (s.sc || 1) * k; if (kind === "rot") s.r = ((s.r || 0) + 90) % 360; if (kind === "flip") { s.fl = !s.fl; s.r = -(s.r || 0); } }
-  if (s.t === "wall" && kind === "scale") s.th *= k;
 }
 function fmt(n, unit) {
   const dec = unit === "m" ? 2 : unit === "cm" ? (Math.abs(n) < 10 ? 1 : 0) : 0;
@@ -1435,6 +1434,7 @@ function selBox() {
   return x0 === Infinity ? null : [x0, y0, x1, y1];
 }
 function handlePos(z) { const b = selBox(); return b ? [b[2] + 8 / z, b[3] + 8 / z] : null; }
+const estirable = () => sel.length === 1 && ["wall", "line", "dim"].includes(sel[0].t) ? sel[0] : null;
 function rotHandlePos(z) { const b = selBox(); return b ? [(b[0] + b[2]) / 2, b[1] - 34 / z] : null; }
 function drawSelection(c, z) {
   const b = selBox(); if (!b) return;
@@ -1443,6 +1443,18 @@ function drawSelection(c, z) {
   c.strokeRect(b[0] - pad, b[1] - pad, b[2] - b[0] + pad * 2, b[3] - b[1] + pad * 2); c.setLineDash([]);
   const h = handlePos(z), r = 7 / z;
   c.fillStyle = "#FFFFFF"; c.fillRect(h[0] - r, h[1] - r, r * 2, r * 2); c.strokeRect(h[0] - r, h[1] - r, r * 2, r * 2);
+  // puntas para alargar muros, líneas y cotas sin cambiar su espesor
+  const est = estirable();
+  if (est) {
+    [est.a, est.b].forEach((q) => { c.beginPath(); c.arc(q[0], q[1], 7 / z, 0, Math.PI * 2); c.fillStyle = "#FFFFFF"; c.fill(); c.lineWidth = 2 / z; c.stroke(); });
+    if (draft && draft.tool === "stretch") {
+      const t = measure(est.a, est.b), q = draft.end === "a" ? est.a : est.b;
+      c.font = `700 ${12 / z}px Inter, system-ui, sans-serif`; const tw = c.measureText(t).width;
+      c.fillStyle = col; c.fillRect(q[0] + 12 / z, q[1] - 24 / z, tw + 12 / z, 20 / z);
+      c.fillStyle = "#FFFFFF"; c.textBaseline = "middle"; c.fillText(t, q[0] + 18 / z, q[1] - 14 / z);
+    }
+    c.lineWidth = 1.4 / z;
+  }
   // asa para girar
   const g = rotHandlePos(z), gr = 9 / z;
   c.beginPath(); c.moveTo((b[0] + b[2]) / 2, b[1] - pad); c.lineTo(g[0], g[1] + gr); c.stroke();
@@ -1457,11 +1469,13 @@ function drawSelection(c, z) {
   c.restore();
 }
 function setSel(list) {
+  const antes = sel[0], cambio = list.length !== sel.length || list[0] !== antes;
   sel = list;
   $("selbar").hidden = !sel.length;
   if (sel.length) {
     $("selCount").textContent = sel.length === 1 ? "1 elemento" : sel.length + " elementos";
     $("selLayer").textContent = "Capa: " + LAYERS[layerOf(sel[0])];
+    if (cambio && sel.length === 1 && sel[0].t === "wall" && !draft) flash("Arrastrá los puntos de las puntas para alargar el muro. El espesor no cambia.");
   }
   redraw();
 }
@@ -1646,6 +1660,12 @@ cv.addEventListener("pointerdown", (e) => {
   }
   if (tool === "eraser") { pushHistory(); draft = { tool, erased: 0 }; eraseAt(wp); return; }
   if ((tool === "select" || tool === "stamp") && sel.length) {
+    const est = estirable();
+    if (est) for (const end of ["a", "b"]) if (dist(wp, est[end]) < 14 / view.z) {
+      const fijo = end === "a" ? est.b : est.a, L = Math.max(1e-6, dist(fijo, est[end]));
+      pushHistory();
+      draft = { tool: "stretch", s: est, end, fijo: [fijo[0], fijo[1]], dir: [(est[end][0] - fijo[0]) / L, (est[end][1] - fijo[1]) / L] }; return;
+    }
     const g = rotHandlePos(view.z);
     if (g && dist(wp, g) < 16 / view.z) {
       const b = selBox(); pushHistory();
@@ -1729,6 +1749,27 @@ cv.addEventListener("pointermove", (e) => {
     sel.forEach((s, i) => { const o = JSON.parse(draft.orig[i]); for (const key of Object.keys(s)) delete s[key]; Object.assign(s, o); mapShape(s, (p) => [A[0] + (p[0] - A[0]) * k, A[1] + (p[1] - A[1]) * k], "scale", k); });
     redraw(); return;
   }
+  if (draft.tool === "stretch") {
+    const F = draft.fijo, s = draft.s; let q;
+    if (shiftDown) q = snapPoint(wp, s); // con Shift también cambia la dirección
+    else {
+      // se alarga o se acorta en su misma dirección
+      let t = (wp[0] - F[0]) * draft.dir[0] + (wp[1] - F[1]) * draft.dir[1];
+      let pegado = false;
+      if (sheet().snap) {
+        for (const an of anchors(s)) {
+          const ta = (an[0] - F[0]) * draft.dir[0] + (an[1] - F[1]) * draft.dir[1];
+          const off = Math.abs((an[0] - F[0]) * draft.dir[1] - (an[1] - F[1]) * draft.dir[0]);
+          if (off < 12 / view.z && Math.abs(ta - t) < 12 / view.z) { t = ta; pegado = true; break; }
+        }
+        if (!pegado) { const paso = CELL / 10; t = Math.round(t / paso) * paso; }
+      }
+      t = Math.max(CELL / 10, t);
+      q = [F[0] + draft.dir[0] * t, F[1] + draft.dir[1] * t];
+    }
+    s[draft.end] = [q[0], q[1]];
+    redraw(); return;
+  }
   if (draft.tool === "rotate") {
     const C = draft.c, paso = shiftDown ? 15 : 5;
     let d = (Math.atan2(wp[1] - C[1], wp[0] - C[0]) - Math.atan2(draft.start[1] - C[1], draft.start[0] - C[0])) * 180 / Math.PI;
@@ -1775,6 +1816,7 @@ function endPointer(e) {
   else if (draft.tool === "eraser") { if (!draft.erased) { sheet().undo.pop(); syncUndo(); } else { setSel(sel.filter((s) => sheet().shapes.includes(s))); save(); } }
   else if (draft.tool === "move") { if (draft.moved) save(); setSel(sel); }
   else if (draft.tool === "scale") { save(); setSel(sel); }
+  else if (draft.tool === "stretch") { save(); draft = null; setSel(sel); return; }
   else if (draft.tool === "rotate") { if (!draft.ang) { sheet().undo.pop(); syncUndo(); } else save(); draft = null; setSel(sel); return; }
   else if (draft.tool === "marquee") {
     const a = draft.start, b = draft.end, x0 = Math.min(a[0], b[0]), x1 = Math.max(a[0], b[0]), y0 = Math.min(a[1], b[1]), y1 = Math.max(a[1], b[1]);
