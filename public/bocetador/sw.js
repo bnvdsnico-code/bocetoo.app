@@ -1,6 +1,6 @@
 // Service worker del Bocetador: lo deja instalable y usable sin conexión.
 // La hoja se guarda en el navegador; la corrección del asistente y la sincronización necesitan internet.
-const VERSION = "bocetador-1.2"; // igual a BOCETADOR_VERSION en index.html
+const VERSION = "bocetador-1.0-r3"; // versión visible 1.0; el sufijo renueva la caché en cada publicación
 const PRECARGA = [
   "/bocetador/",
   "/assets/sync.js",

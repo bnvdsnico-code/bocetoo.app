@@ -428,9 +428,9 @@ a.textbtn{color:var(--ink)}
   <header class="top">
     <a class="brand" href="/" aria-label="boceto, ir al inicio" style="text-decoration:none;color:inherit"><span class="marks" aria-hidden="true"><i></i><i></i><i></i><i></i></span><b>boceto</b><span>Bocetador</span></a>
     <div class="estado-w">
-      <button class="estado" id="estado" aria-expanded="false" aria-controls="estadoPop" aria-label="En línea, versión 1.2"><i aria-hidden="true"></i><span class="est-t">En línea</span><span class="est-v">v1.2</span></button>
+      <button class="estado" id="estado" aria-expanded="false" aria-controls="estadoPop" aria-label="En línea, versión 1.0"><i aria-hidden="true"></i><span class="est-t">En línea</span><span class="est-v">v1.0</span></button>
       <div class="estado-pop" id="estadoPop" role="dialog" aria-label="Estado del Bocetador" hidden>
-        <p class="ep-tit"><b>Bocetador</b> <span>versión 1.2</span></p>
+        <p class="ep-tit"><b>Bocetador</b> <span>versión 1.0</span></p>
         <p class="ep-est"><i aria-hidden="true"></i><span id="epEst">En línea</span></p>
         <p class="ep-txt" id="epTxt">Tus hojas se guardan solas en este dispositivo. Tus entregas se suben a tu cuenta.</p>
         <button class="textbtn" id="epAct" hidden>Recargar para actualizar</button>
@@ -2016,7 +2016,7 @@ const enApp = window.matchMedia("(display-mode: standalone)").matches || window.
 if (enApp) document.documentElement.classList.add("app-inst");
 
 // Indicador de estado: en línea / sin conexión y versión del Bocetador
-const BOCETADOR_VERSION = "1.2";
+const BOCETADOR_VERSION = "1.0";
 (() => {
   const b = document.getElementById("estado"), pop = document.getElementById("estadoPop");
   const est = document.getElementById("epEst"), txt = document.getElementById("epTxt"), act = document.getElementById("epAct");
