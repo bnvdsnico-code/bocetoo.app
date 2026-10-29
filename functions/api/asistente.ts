@@ -15,7 +15,8 @@ Ayudás con dudas de las diplomaturas, ejercicios, correcciones de bocetos y pla
 Si no estás seguro de un dato técnico, lo aclarás. Nunca inventes precios, fechas ni políticas de la escuela.`;
 
 const CLAUDE_MODELS = ["claude-sonnet-5-5", "claude-haiku-5-5", "claude-sonnet-4-5", "claude-haiku-4-5"];
-const WORKERS_MODELS = ["@cf/meta/llama-4-scout-17b-16e-instruct", "@cf/meta/llama-3.2-11b-vision-instruct"];
+// Gratis dentro del cupo diario de Workers AI. Gemma 4 es el más capaz y el que menos cupo gasta; los otros quedan de respaldo.
+const WORKERS_MODELS = ["@cf/google/gemma-4-26b-a4b-it", "@cf/meta/llama-4-scout-17b-16e-instruct", "@cf/meta/llama-3.2-11b-vision-instruct"];
 const MAX_CHARS = 24000;
 const MAX_IMAGE_B64 = 5_000_000; // ~3,7 MB de imagen
 const IMAGE_TYPES = ["image/jpeg", "image/png", "image/webp"];
