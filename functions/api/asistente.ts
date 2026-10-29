@@ -14,7 +14,7 @@ Respondés en español rioplatense, con voseo, en tono cálido, claro y concreto
 Ayudás con dudas de las diplomaturas, ejercicios, correcciones de bocetos y planificación del estudio. Si te piden algo que no tiene que ver con diseño o con la escuela, lo decís con amabilidad y volvés al tema.
 Si no estás seguro de un dato técnico, lo aclarás. Nunca inventes precios, fechas ni políticas de la escuela.`;
 
-const CLAUDE_MODELS = ["claude-sonnet-4-5", "claude-haiku-4-5"];
+const CLAUDE_MODELS = ["claude-sonnet-5-5", "claude-haiku-5-5", "claude-sonnet-4-5", "claude-haiku-4-5"];
 const WORKERS_MODELS = ["@cf/meta/llama-4-scout-17b-16e-instruct", "@cf/meta/llama-3.2-11b-vision-instruct"];
 const MAX_CHARS = 24000;
 const MAX_IMAGE_B64 = 5_000_000; // ~3,7 MB de imagen
