@@ -198,7 +198,10 @@
     const bg = getComputedStyle(section).backgroundColor;
     const dark = /rgb\(\s*(\d+),\s*(\d+),\s*(\d+)/.exec(bg);
     box.classList.add(dark && (+dark[1] + +dark[2] + +dark[3]) < 150 ? "dark" : "light");
-    const page = (document.querySelector("article") || document.querySelector("main") || document.body).innerText.replace(/\s+\n/g, "\n").slice(0, 5000);
+    const art = document.querySelector("article") || document.querySelector("main") || document.body;
+    // Contexto para el asistente: la clase completa (lectura, imagen, autores, práctica, norma y referencias), sin el cuestionario ni el chat
+    const partes = [...art.querySelectorAll("h1, .objetivo, section.lectura, .imagen, .autores, .practica, .entrega, .norma, .refs")];
+    const page = (partes.length ? partes.map((n) => n.innerText).join("\n\n") : art.innerText).replace(/\s+\n/g, "\n").slice(0, 12000);
     const turns = [];
     const bubble = (cls, text) => { const p = document.createElement("p"); p.className = `bubble ${cls}`; p.textContent = text; box.appendChild(p); return p; };
 

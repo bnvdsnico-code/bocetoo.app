@@ -110,6 +110,43 @@ if _fp.exists():
     _mod = importlib.util.module_from_spec(_spec); _spec.loader.exec_module(_mod)
     FIGS = _mod.FIGS
 
+def imagen_comentada(texto):
+    """### Imagen: primera línea ![alt](src "crédito"); el resto es la lectura de la imagen."""
+    texto = texto.strip()
+    m = re.match(r'!\[([^\]]*)\]\((\S+)(?:\s+"([^"]*)")?\)\s*', texto)
+    if not m: return md(texto)
+    alt, src, credito = m.group(1), m.group(2), m.group(3) or ""
+    resto = texto[m.end():]
+    return f'''<figure class="foto">
+<img src="{esc(src)}" alt="{esc(alt)}" loading="lazy" decoding="async">
+<figcaption>{inline(credito)}</figcaption>
+</figure>
+<div class="lectura">{md(resto)}</div>'''
+
+def secciones_nuevas(s):
+    out = {}
+    if "imagen" in s:
+        out["imagen"] = f'''<section class="bloque imagen" aria-labelledby="imagen-t">
+<h2 id="imagen-t">Mirar con atención</h2>
+{imagen_comentada(s["imagen"])}
+</section>'''
+    if "autores" in s:
+        out["autores"] = f'''<section class="bloque autores" aria-labelledby="autores-t">
+<h2 id="autores-t">Referentes de la región</h2>
+<div class="lectura">{md(s["autores"])}</div>
+</section>'''
+    if "norma" in s:
+        out["norma"] = f'''<section class="bloque norma" aria-labelledby="norma-t">
+<h2 id="norma-t">La norma</h2>
+<div class="lectura">{md(s["norma"])}</div>
+</section>'''
+    if "referencias" in s:
+        out["referencias"] = f'''<section class="refs" aria-labelledby="refs-t">
+<h2 id="refs-t">Referencias</h2>
+<div class="lectura">{md(s["referencias"])}</div>
+</section>'''
+    return out
+
 def figura_extra(cid_):
     if cid_ not in FIGS: return ""
     svg_, cap = FIGS[cid_]
@@ -214,6 +251,7 @@ def lesson(idx):
 <a class="cta" href="/bocetador/?carrera={CURSO}&amp;clase={it["id"]}">Hacer la entrega en el Bocetador</a>
 <p class="entregado" data-entrega="{it["id"]}" hidden></p>
 </section>'''
+    nuevas = secciones_nuevas(s)
     pager = ['<nav class="pager" aria-label="Clases">']
     if avail(prev_):
         pager.append(f'<a href="{url(prev_["w"]["n"], prev_["d"])}"><span>Anterior</span><b>{esc(prev_["titulo"])}</b></a>')
@@ -237,6 +275,8 @@ def lesson(idx):
 {md(s["lectura"])}
 {figura_extra(it["id"])}
 </section>
+{nuevas.get("imagen", "")}
+{nuevas.get("autores", "")}
 <section class="bloque practica" aria-labelledby="practica-t">
 <h2 id="practica-t">Práctica <span class="min">{t2} min</span></h2>
 <div class="lectura">{md(s["práctica"])}</div>
@@ -247,6 +287,8 @@ def lesson(idx):
 <h2 id="repaso-t">Repaso <span class="min">{t3} min</span></h2>
 {render_quiz(parse_quiz(s["repaso"]))}
 </section>
+{nuevas.get("norma", "")}
+{nuevas.get("referencias", "")}
 <section class="asistente" aria-labelledby="asistente-titulo">
 <div class="head"><span class="ico" aria-hidden="true">{SPARK}</span><div><h2 id="asistente-titulo">Preguntale al asistente</h2><p class="sub">Conoce esta clase y toda la diplomatura. Responde a cualquier hora.</p></div></div>
 <div id="chat" class="c-chat"></div>
