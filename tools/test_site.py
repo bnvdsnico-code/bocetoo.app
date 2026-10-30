@@ -94,6 +94,7 @@ with sync_playwright() as pw:
         hrefs = p.eval_on_selector_all("a[href]", "els => els.map(e => e.getAttribute('href'))")
         for href in hrefs:
             if href.startswith(("http", "mailto:", "tel:")): continue
+            if href.startswith(("/auth/", "/api/")): continue  # rutas del servidor, no archivos
             full = urllib.parse.urljoin(BASE + path, href)
             key = (path, href)
             if key in seen: continue

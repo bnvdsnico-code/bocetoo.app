@@ -8,6 +8,9 @@
 .p-cuenta:hover { text-decoration: none; border-color: var(--grafito-3); }
 .p-cuenta > span:last-child { display: flex; flex-direction: column; line-height: 1.25; }
 .p-cuenta-n { font-weight: 600; font-size: 15px; }
+.p-cuenta-w { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
+.p-salir { font-size: 14px; font-weight: 600; color: var(--grafito-2); padding: 4px 8px; border-radius: 8px; }
+.p-salir:hover { color: #B42318; background: var(--papel); }
 .p-cuenta-p { font-size: 13.5px; color: var(--grafito-2); }
 
 .p-sub { position: sticky; top: 72px; z-index: 5; display: flex; gap: 4px; overflow-x: auto; scrollbar-width: none; margin: -8px calc(-1 * var(--gutter)) 0; padding: 8px var(--gutter); background: var(--papel); }

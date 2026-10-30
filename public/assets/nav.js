@@ -39,7 +39,35 @@
       } else av.textContent = nombre.charAt(0).toUpperCase();
     }
     me.title = yo.email || "";
+    armarMenu(me, nombre, yo.email || "");
   };
+  // Menú de la cuenta: Mi panel, Bocetador y Salir de la cuenta
+  const salir = () => { try { sessionStorage.removeItem("boceto-yo"); } catch (e) {} location.href = "/auth/salir"; };
+  function armarMenu(me, nombre, email) {
+    if (me.dataset.menu) return; me.dataset.menu = "1";
+    const caja = me.parentNode; caja.classList.add("s-acc-rel");
+    const menu = document.createElement("div"); menu.className = "s-menu"; menu.id = "menuCuenta"; menu.setAttribute("role", "menu"); menu.hidden = true;
+    const h = document.createElement("div"); h.className = "s-menu-h";
+    const b = document.createElement("b"); b.textContent = nombre; const sm = document.createElement("small"); sm.textContent = email; h.append(b, sm);
+    const item = (txt, href) => { const a = document.createElement(href ? "a" : "button"); a.setAttribute("role", "menuitem"); a.textContent = txt; if (href) a.href = href; else a.type = "button"; a.tabIndex = -1; return a; };
+    const out = item("Salir de la cuenta"); out.classList.add("s-menu-salir"); out.addEventListener("click", salir);
+    menu.append(h, item("Mi panel", "/panel.html"), item("Bocetador", "/bocetador/"), out);
+    caja.appendChild(menu);
+    me.setAttribute("aria-haspopup", "menu"); me.setAttribute("aria-controls", "menuCuenta"); me.setAttribute("aria-expanded", "false");
+    const items = () => [...menu.querySelectorAll("[role=menuitem]")];
+    const abrir = (si, foco) => { menu.hidden = !si; me.setAttribute("aria-expanded", String(si)); if (si && foco) items()[0].focus(); };
+    me.addEventListener("click", (e) => { e.preventDefault(); abrir(menu.hidden, e.detail === 0); });
+    me.addEventListener("keydown", (e) => { if (e.key === "ArrowDown") { e.preventDefault(); abrir(true, true); } });
+    menu.addEventListener("keydown", (e) => {
+      const l = items(), i = l.indexOf(document.activeElement);
+      if (e.key === "Escape") { abrir(false); me.focus(); }
+      else if (e.key === "ArrowDown") { e.preventDefault(); l[(i + 1) % l.length].focus(); }
+      else if (e.key === "ArrowUp") { e.preventDefault(); l[(i - 1 + l.length) % l.length].focus(); }
+      else if (e.key === "Tab") abrir(false);
+    });
+    document.addEventListener("click", (e) => { if (!menu.hidden && !caja.contains(e.target)) abrir(false); });
+  }
+  document.querySelectorAll("[data-salir]").forEach((a) => a.addEventListener("click", (e) => { e.preventDefault(); salir(); }));
   let cache = null;
   try { cache = JSON.parse(sessionStorage.getItem("boceto-yo") || "null"); } catch (e) {}
   if (cache && Date.now() - cache.t < 5 * 60000) { pintar(cache.yo); return; }

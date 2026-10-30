@@ -28,6 +28,7 @@
       + (yo.prueba ? " · prueba hasta el " + new Date(yo.prueba.hasta).toLocaleDateString("es-AR", { day: "numeric", month: "short" }) : "");
     $("cuenta").href = "/acceso.html";
     $("cuenta").title = "Tu cuenta: " + yo.email;
+    $("salir").hidden = false;
   }
 
   // 2. Avance
