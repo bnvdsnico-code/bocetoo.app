@@ -10,9 +10,6 @@
 <link rel="stylesheet" href="/assets/base.css">
 <link rel="stylesheet" href="/assets/site.css">
 <link rel="stylesheet" href="/assets/curso.css">
-<!-- seo -->
-<meta name="robots" content="noindex">
-<!-- /seo -->
 </head>
 <body data-curso="interiores" data-total="80" data-clase="s14d3">
 <header class="c-header">
@@ -66,6 +63,7 @@
 <p class="objetivo">Producir imágenes realistas del proyecto con un motor de render y con herramientas de render por IA, y conocer sus diferencias.</p>
 <ul class="tiempos" aria-label="Tiempos de la clase"><li>Lectura <b>15 min</b></li><li>Práctica <b>35 min</b></li><li>Repaso <b>10 min</b></li></ul>
 <section class="lectura" aria-label="Lectura">
+<p>Un cliente que ve una imagen realista de su futuro living se entusiasma mucho más que con una planta. Pero esa imagen también genera una expectativa: lo que ve es lo que espera recibir. Un render es una promesa, y hay que hacerlo con cuidado.</p>
 <h2>Dos caminos para una imagen realista</h2>
 <div class="tabla"><table>
 <thead>
@@ -123,13 +121,27 @@
 <blockquote>
 <p><strong>Regla de la diplomatura:</strong> la imagen con IA muestra un clima; el render del modelo muestra el proyecto. Si una imagen de IA te gusta, llevá lo que tiene de bueno a tu modelo y renderizalo.</p>
 </blockquote>
+<h2>Render honesto</h2>
+<p>Un render tiene que mostrar el proyecto tal como va a ser: con los muebles reales, los materiales elegidos y una luz creíble. Si exagerás el tamaño del ambiente con un gran angular o ponés una vista que no existe, el cliente se va a desilusionar cuando vea la obra terminada.</p>
 <figure>
 <svg viewBox="0 0 640 240" role="img" aria-label="Materiales: Con textura y escala real; Luz natural: Hora y orientación creíbles; Luces artificiales: Las del plano; Cámara: A la altura de los ojos"><rect x="20.0" y="16" width="293.0" height="96" rx="14" fill="#FFFFFF" stroke="#FDBA8C" stroke-width="1.5"/><rect x="20.0" y="16" width="6" height="96" rx="3" fill="#C2410C"/><text font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="700" fill="#7C2D12" text-anchor="start"><tspan x="38.0" y="42.0">Materiales</tspan></text><text font-family="Inter, system-ui, sans-serif" font-size="12.5" font-weight="400" fill="#3A2A22" text-anchor="start"><tspan x="38.0" y="66.0">Con textura y escala real</tspan></text><rect x="327.0" y="16" width="293.0" height="96" rx="14" fill="#FFFFFF" stroke="#FDBA8C" stroke-width="1.5"/><rect x="327.0" y="16" width="6" height="96" rx="3" fill="#C2410C"/><text font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="700" fill="#7C2D12" text-anchor="start"><tspan x="345.0" y="42.0">Luz natural</tspan></text><text font-family="Inter, system-ui, sans-serif" font-size="12.5" font-weight="400" fill="#3A2A22" text-anchor="start"><tspan x="345.0" y="66.0">Hora y orientación creíbles</tspan></text><rect x="20.0" y="126" width="293.0" height="96" rx="14" fill="#FFFFFF" stroke="#FDBA8C" stroke-width="1.5"/><rect x="20.0" y="126" width="6" height="96" rx="3" fill="#C2410C"/><text font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="700" fill="#7C2D12" text-anchor="start"><tspan x="38.0" y="152.0">Luces artificiales</tspan></text><text font-family="Inter, system-ui, sans-serif" font-size="12.5" font-weight="400" fill="#3A2A22" text-anchor="start"><tspan x="38.0" y="176.0">Las del plano</tspan></text><rect x="327.0" y="126" width="293.0" height="96" rx="14" fill="#FFFFFF" stroke="#FDBA8C" stroke-width="1.5"/><rect x="327.0" y="126" width="6" height="96" rx="3" fill="#C2410C"/><text font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="700" fill="#7C2D12" text-anchor="start"><tspan x="345.0" y="152.0">Cámara</tspan></text><text font-family="Inter, system-ui, sans-serif" font-size="12.5" font-weight="400" fill="#3A2A22" text-anchor="start"><tspan x="345.0" y="176.0">A la altura de los ojos</tspan></text></svg>
 <figcaption>Los cuatro ajustes de un render creíble.</figcaption>
 </figure>
 </section>
-
-
+<section class="bloque imagen" aria-labelledby="imagen-t">
+<h2 id="imagen-t">Mirar con atención</h2>
+<figure class="foto">
+<img src="/img/clases/interiores/s14d3.jpg" alt="Imagen realista de un living comedor en tonos claros, con sillas tapizadas, una mesa de vidrio, plantas, un tabique de madera y luz natural entrando por las ventanas" loading="lazy" decoding="async">
+<figcaption>Imagen: D5 Render, vía Unsplash (licencia Unsplash).</figcaption>
+</figure>
+<div class="lectura"><p>Esta imagen parece una foto, pero es un <strong>render</strong>: fue generada con D5 Render, el programa que se ve en esta clase. Mirá los detalles que la hacen creíble: la luz natural que entra por las ventanas y se refleja en el piso, las texturas de las telas, las sombras suaves debajo de los muebles.</p>
+<p>Fijate también en la cámara: está a la altura de los ojos y con un ángulo moderado, sin deformar el espacio. Esos son los criterios que el asistente va a mirar en tus imágenes.</p></div>
+</section>
+<section class="bloque autores" aria-labelledby="autores-t">
+<h2 id="autores-t">Referentes de la región</h2>
+<div class="lectura"><p>Para <strong>Luis Barragán</strong>, la <strong>luz</strong> era lo que daba vida a un espacio. Sus muros lisos y sus colores cambian por completo según la hora del día y la forma en que entra el sol.</p>
+<p>En un render pasa lo mismo: la luz es lo que lo hace creíble o falso. Un modelo perfecto con una luz plana se ve artificial; un modelo simple con una luz bien pensada puede verse muy real. Antes de ajustar materiales, ajustá la luz.</p></div>
+</section>
 <section class="bloque practica" aria-labelledby="practica-t">
 <h2 id="practica-t">Práctica <span class="min">35 min</span></h2>
 <div class="lectura"><p>Producí dos imágenes de tu ambiente.</p>
@@ -175,8 +187,17 @@
 <p class="fb no" role="status" hidden><strong>Todavía no.</strong> Probá otra opción.</p>
 </div>
 </section>
-
-
+<section class="bloque norma" aria-labelledby="norma-t">
+<h2 id="norma-t">La norma</h2>
+<div class="lectura"><p>Los renders que se muestran para vender un proyecto son, en la práctica, una forma de publicidad. Según la <strong>Ley 24.240 de Defensa del Consumidor</strong> (art. 8), las precisiones que se hacen en la publicidad se consideran parte del contrato. Si tu render muestra un piso, una luminaria o un mueble, el cliente puede esperar exactamente eso. Aclarar en la lámina que se trata de una "imagen ilustrativa" ayuda, pero lo mejor es que el render sea fiel.</p></div>
+</section>
+<section class="refs" aria-labelledby="refs-t">
+<h2 id="refs-t">Referencias</h2>
+<div class="lectura"><ul>
+<li>Luis Barragán y la luz. <a href="https://www.mexicodesconocido.com.mx/luis-barragan-arquitectura.html">México Desconocido</a></li>
+<li>Ley 24.240 de Defensa del Consumidor, art. 8. <a href="https://www.argentina.gob.ar/normativa/nacional/638/texto">argentina.gob.ar</a></li>
+</ul></div>
+</section>
 <section class="asistente" aria-labelledby="asistente-titulo">
 <div class="head"><span class="ico" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FDBA8C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg></span><div><h2 id="asistente-titulo">Preguntale al asistente</h2><p class="sub">Conoce esta clase y toda la diplomatura. Responde a cualquier hora.</p></div></div>
 <div id="chat" class="c-chat"></div>
