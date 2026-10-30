@@ -1,6 +1,8 @@
 // Panel de administración (solo para las cuentas de Google listadas en ADMINS).
 // - GET  /api/admin/resumen                      → alumnos, suscripciones, avance, solicitudes y certificados
 // - POST /api/admin/solicitudes/:codigo          → { estado: "atendida" | "recibida", nota? }
+// - POST /api/admin/pruebas                       → { email, dias, carreras: ["todas"] | [...] } da acceso de prueba
+// - DELETE /api/admin/pruebas/:email              → quita el acceso de prueba
 // Lee todo de KV con list(); pensado para decenas o cientos de alumnos.
 
 import { currentSession, type AuthEnv } from "./auth";
@@ -31,8 +33,8 @@ export async function admin(req: Request, env: AuthEnv, sub: string): Promise<Re
   if (!admins(env).includes(s.email)) return json({ error: "prohibido", email: s.email }, 403);
 
   if (sub === "/resumen" && req.method === "GET") {
-    const [subs, progs, usuarios, solicitudes, certs] = await Promise.all(
-      ["sub:", "prog:", "usuario:", "solicitud:", "cert:"].map((p) => todas(env, p)));
+    const [subs, progs, usuarios, solicitudes, certs, accesosPrueba] = await Promise.all(
+      ["sub:", "prog:", "usuario:", "solicitud:", "cert:", "prueba:"].map((p) => todas(env, p)));
     const alumnos = new Map<string, any>();
     const alumno = (email: string) => {
       if (!alumnos.has(email)) alumnos.set(email, { email, nombre: "", primerIngreso: null, ultimoIngreso: null, ultimaActividad: null, suscripciones: [], avance: {}, entregas: 0, certificados: [] });
@@ -77,6 +79,7 @@ export async function admin(req: Request, env: AuthEnv, sub: string): Promise<Re
       },
       alumnos: lista,
       cuentasDePrueba: pruebas,
+      accesosDePrueba: accesosPrueba.map((x) => x.value).filter((p) => Date.parse(p.hasta) > Date.now()).sort((a, b) => String(a.hasta).localeCompare(String(b.hasta))),
       solicitudes: solicitudes.map((x) => x.value).sort((a, b) => String(b.fecha).localeCompare(String(a.fecha)))
     });
   }
@@ -92,6 +95,27 @@ export async function admin(req: Request, env: AuthEnv, sub: string): Promise<Re
     const sol = { ...JSON.parse(raw), estado, nota: String(body.nota || "").slice(0, 500), atendidaPor: estado === "atendida" ? s.email : null, atendidaEl: estado === "atendida" ? new Date().toISOString() : null };
     await env.SUSCRIPCIONES.put(k, JSON.stringify(sol));
     return json(sol);
+  }
+  if (sub === "/pruebas" && req.method === "POST") {
+    let body: any = {};
+    try { body = await req.json(); } catch { /* vacío */ }
+    const email = String(body.email || "").trim().toLowerCase();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || email.length > 120) return json({ error: "email", message: "Revisá el correo." }, 400);
+    const dias = Math.max(1, Math.min(90, Math.round(Number(body.dias) || 7)));
+    const validas = ["interiores", "industrial", "grafico", "indumentaria"];
+    const pedidas: string[] = Array.isArray(body.carreras) ? body.carreras.map(String) : ["todas"];
+    const carreras = pedidas.includes("todas") ? ["todas"] : pedidas.filter((c) => validas.includes(c));
+    if (!carreras.length) return json({ error: "carreras", message: "Elegí al menos una diplomatura." }, 400);
+    const ahora = new Date(), hasta = new Date(ahora.getTime() + dias * 86400000);
+    const p = { email, carreras, dias, desde: ahora.toISOString(), hasta: hasta.toISOString(), por: s.email };
+    await env.SUSCRIPCIONES.put(`prueba:${email}`, JSON.stringify(p), { expirationTtl: dias * 86400 + 86400 } as any);
+    return json(p);
+  }
+  const q = sub.match(/^\/pruebas\/(.+)$/);
+  if (q && req.method === "DELETE") {
+    const email = decodeURIComponent(q[1]).trim().toLowerCase();
+    await (env.SUSCRIPCIONES as any).delete(`prueba:${email}`);
+    return json({ ok: true, email });
   }
   return json({ error: "not_found" }, 404);
 }

@@ -29,6 +29,18 @@
     <details id="atendidasBox"><summary>Atendidos (<span id="nAtendidas">0</span>)</summary><div id="atendidas" class="a-cards"></div></details>
   </section>
 
+  <section id="secPruebas" class="a-sec" hidden>
+    <div class="a-sec-h"><h2>Accesos de prueba</h2><p>Habilitá las diplomaturas gratis por unos días a cualquier correo de Google. Se vence sola y no incluye el certificado.</p></div>
+    <form id="pruebaForm" class="a-prueba">
+      <label><span>Correo de Google</span><input id="pruebaEmail" type="email" required placeholder="nombre@gmail.com" autocomplete="off"></label>
+      <label><span>Diplomaturas</span><select id="pruebaCarrera"><option value="todas">Todas</option><option value="interiores">Interiores y Mobiliario</option><option value="industrial">Diseño Industrial</option><option value="grafico">Diseño Gráfico</option><option value="indumentaria">Diseño de Indumentaria</option></select></label>
+      <label><span>Duración</span><select id="pruebaDias"><option value="7">7 días</option><option value="14">14 días</option><option value="30" selected>30 días</option><option value="60">60 días</option><option value="90">90 días</option></select></label>
+      <button class="btn btn-dark" type="submit" id="pruebaBtn">Dar acceso</button>
+    </form>
+    <p id="pruebaMsg" class="a-count" role="status"></p>
+    <div id="pruebasLista" class="a-cards"></div>
+  </section>
+
   <section id="secAlumnos" class="a-sec" hidden>
     <div class="a-sec-h"><h2>Alumnos</h2><p>Todas las cuentas que ingresaron con Google o se suscribieron, con su pago y su avance.</p></div>
     <div class="a-filtros">

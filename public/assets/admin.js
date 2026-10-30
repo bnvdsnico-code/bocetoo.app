@@ -36,8 +36,41 @@
     datos = await r.json();
     $("estado").hidden = true;
     $("quien").textContent = "Actualizado " + fecha(datos.generado, true);
-    pintarKpis(); pintarSolicitudes(); pintarAlumnos();
+    pintarKpis(); pintarSolicitudes(); pintarPruebas(); pintarAlumnos();
   }
+
+  const NOMBRE_C = { todas: "Todas las diplomaturas", interiores: "Interiores y Mobiliario", industrial: "Diseño Industrial", grafico: "Diseño Gráfico", indumentaria: "Diseño de Indumentaria" };
+  function pintarPruebas() {
+    $("secPruebas").hidden = false;
+    const box = $("pruebasLista"); box.replaceChildren();
+    const lista = datos.accesosDePrueba || [];
+    if (!lista.length) { box.append(el("p", "mut", "No hay accesos de prueba activos.")); return; }
+    lista.forEach((p) => {
+      const card = el("article", "sol");
+      const t = el("div", "t"); t.append(el("span", null, p.email), el("small", null, (p.carreras || []).map((c) => NOMBRE_C[c] || c).join(", ")));
+      card.append(t, el("span", "mut", `Desde ${fecha(p.desde)} · vence el ${fecha(p.hasta, true)}`));
+      const acc = el("div", "acc"), b = el("button", "btn", "Quitar acceso"); b.type = "button";
+      b.addEventListener("click", async () => {
+        b.disabled = true;
+        const r = await fetch(`/api/admin/pruebas/${encodeURIComponent(p.email)}`, { method: "DELETE" }).catch(() => null);
+        if (r && r.ok) { datos.accesosDePrueba = lista.filter((x) => x !== p); pintarPruebas(); $("pruebaMsg").textContent = "Acceso de " + p.email + " quitado."; }
+        else { b.disabled = false; b.textContent = "No se pudo, probá de nuevo"; }
+      });
+      acc.append(b); card.append(acc); box.append(card);
+    });
+  }
+  $("pruebaForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const b = $("pruebaBtn"), msg = $("pruebaMsg"), c = $("pruebaCarrera").value;
+    b.disabled = true; msg.textContent = "Guardando…";
+    const r = await fetch("/api/admin/pruebas", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ email: $("pruebaEmail").value, dias: Number($("pruebaDias").value), carreras: [c] }) }).catch(() => null);
+    b.disabled = false;
+    if (!r || !r.ok) { const d = r ? await r.json().catch(() => ({})) : {}; msg.textContent = d.message || "No se pudo dar el acceso. Probá de nuevo."; return; }
+    const p = await r.json();
+    datos.accesosDePrueba = (datos.accesosDePrueba || []).filter((x) => x.email !== p.email).concat(p);
+    pintarPruebas(); $("pruebaEmail").value = "";
+    msg.textContent = `Listo: ${p.email} tiene ${NOMBRE_C[p.carreras[0]] ? (p.carreras.length > 1 ? "acceso" : NOMBRE_C[p.carreras[0]]) : "acceso"} hasta el ${fecha(p.hasta)}. Que entre con Google y recargue.`;
+  });
 
   function pintarKpis() {
     const t = datos.totales, box = $("kpis");

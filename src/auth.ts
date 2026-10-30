@@ -115,7 +115,20 @@ export async function accessFor(env: AuthEnv, email: string) {
     if (s.plan === "todas") CARRERAS.forEach((c) => carreras.add(c));
     else if (s.carrera) carreras.add(s.carrera);
   }
-  return { carreras: [...carreras], suscripciones };
+  // Acceso de prueba dado desde el panel de administración (vence solo)
+  let prueba: { hasta: string; carreras: string[] } | null = null;
+  const pr = await kv.get(`prueba:${email.toLowerCase()}`);
+  if (pr) {
+    try {
+      const p = JSON.parse(pr);
+      if (Date.parse(p.hasta) > Date.now()) {
+        const lista: string[] = (p.carreras || []).includes("todas") ? [...CARRERAS] : (p.carreras || []).filter((c: string) => CARRERAS.has(c));
+        lista.forEach((c) => carreras.add(c));
+        prueba = { hasta: p.hasta, carreras: lista };
+      }
+    } catch { /* dato viejo */ }
+  }
+  return { carreras: [...carreras], suscripciones, prueba };
 }
 
 /* GET /api/yo: sesión y accesos del alumno (sin datos sensibles) */

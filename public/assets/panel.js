@@ -24,7 +24,8 @@
     $("saludo").textContent = "Hola, " + nombre.split(" ")[0];
     $("cuentaNombre").textContent = nombre;
     $("cuentaInicial").textContent = nombre.charAt(0).toUpperCase();
-    $("cuentaPlan").textContent = activas.length === 4 ? "Todas las diplomaturas" : activas.length ? activas.map((x) => C[x].corto).join(" · ") : "Sin diplomatura activa";
+    $("cuentaPlan").textContent = (activas.length === 4 ? "Todas las diplomaturas" : activas.length ? activas.map((x) => C[x].corto).join(" · ") : "Sin diplomatura activa")
+      + (yo.prueba ? " · prueba hasta el " + new Date(yo.prueba.hasta).toLocaleDateString("es-AR", { day: "numeric", month: "short" }) : "");
     $("cuenta").href = "/acceso.html";
     $("cuenta").title = "Tu cuenta: " + yo.email;
   }
