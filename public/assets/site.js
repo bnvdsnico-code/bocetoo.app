@@ -182,7 +182,7 @@
     }
     let res;
     try {
-      res = await fetch("/api/asistente", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ messages, maxTokens: 700 }) });
+      res = await fetch("/api/asistente", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ messages, maxTokens: 700, pagina: location.pathname }) });
     } catch (e) { throw new Error("No hay conexión. Revisá internet y probá de nuevo."); }
     const data = await res.json().catch(() => ({}));
     if (!res.ok || !data.text) throw new Error(ERRORS[data.error] || "Se cortó la conexión con el asistente. Probá de nuevo.");

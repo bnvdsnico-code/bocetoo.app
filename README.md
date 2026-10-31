@@ -88,6 +88,7 @@ y vuelve a Workers AI si Claude no está disponible.
 - Configuración: `GOOGLE_CLIENT_ID` (variable) y `GOOGLE_CLIENT_SECRET` (secreto) en Cloudflare. URI de redirección autorizada en Google: `https://<dominio>/auth/callback`.
 
 ## SEO
+- `python3 tools/kb.py` regenera la base de conocimiento del asistente (`src/conocimiento.json`, un índice de las 320 clases) y `content/fuentes/referentes.md`. Correrlo después de cambiar cualquier clase: el asistente busca ahí las clases que responden cada pregunta.
 - `python3 tools/seo.py` agrega canonical, Open Graph, datos estructurados y noindex, y regenera `sitemap.xml` y `robots.txt`. Correrlo después de cualquier `build_curso.py` o `legales.py`.
 - `python3 tools/og.py <carpeta @fontsource>` regenera las imágenes para compartir (`public/assets/og/`).
 

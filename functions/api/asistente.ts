@@ -2,6 +2,8 @@
 // Recibe la conversación (y una imagen opcional del Bocetador) y responde en texto.
 // Con la variable ANTHROPIC_API_KEY usa Claude; si no está, usa Workers AI (gratis, sin tarjeta).
 
+import conocimiento from "../../src/conocimiento.json";
+
 interface Env {
   AI?: { run: (model: string, input: unknown) => Promise<any> };
   ANTHROPIC_API_KEY?: string;
@@ -9,10 +11,67 @@ interface Env {
   WORKERS_AI_MODEL?: string;   // modelo de Workers AI preferido
 }
 
-const SYSTEM = `Sos el asistente de aprendizaje de boceto, una escuela online de diseño sin profesores con cuatro carreras: Diseño de Interiores y Mobiliario, Diseño Industrial, Diseño Gráfico y Diseño de Indumentaria.
+const BASE = `Sos el asistente de aprendizaje de boceto, una escuela online de diseño sin profesores con cuatro carreras: Diseño de Interiores y Mobiliario, Diseño Industrial, Diseño Gráfico y Diseño de Indumentaria.
 Respondés en español rioplatense, con voseo, en tono cálido, claro y concreto, como un buen docente de taller.
 Ayudás con dudas de las diplomaturas, ejercicios, correcciones de bocetos y planificación del estudio. Si te piden algo que no tiene que ver con diseño o con la escuela, lo decís con amabilidad y volvés al tema.
 Si no estás seguro de un dato técnico, lo aclarás. Nunca inventes precios, fechas ni políticas de la escuela.`;
+
+// Base de conocimiento: índice de las 320 clases, generado con tools/kb.py
+type Clase = { c: string; s: number; d: number; t: string; o: string; u: string; h: string[]; l: string; a: string; n: string };
+const KB = conocimiento as { cursos: Record<string, { nombre: string; semanas: string[] }>; clases: Clase[] };
+
+const VACIAS = new Set("para como cual cuál cuando donde dónde esta este esto estos estas tiene tienen sobre entre desde hasta porque pero sino hace hacer puedo puede pueden quiero tengo tenes tenés sus las los del que qué una uno unos unas con por mas más muy ser son era fue hay todo toda todos todas otra otro clase clases semana diplomatura curso boceto".split(" "));
+const norm = (t: string) => t.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
+const palabras = (t: string) => norm(t).match(/[a-z0-9ñ.]{3,}/g)?.map((w) => w.replace(/\.+$/, "")).filter((w) => w.length > 2 && !VACIAS.has(w)) ?? [];
+
+let indice: { fuerte: Set<string>; resto: Set<string> }[] | null = null;
+let idf: Map<string, number> | null = null;
+function preparar() {
+  if (indice) return;
+  indice = KB.clases.map((k) => ({
+    fuerte: new Set(palabras([k.t, k.o, ...k.h].join(" "))),
+    resto: new Set(palabras([k.l, k.a, k.n].join(" ")))
+  }));
+  const df = new Map<string, number>();
+  for (const i of indice) for (const w of new Set([...i.fuerte, ...i.resto])) df.set(w, (df.get(w) || 0) + 1);
+  idf = new Map([...df].map(([w, n]) => [w, Math.log(1 + KB.clases.length / n)]));
+}
+
+// Devuelve el bloque de material para la pregunta: programa resumido + clases relacionadas.
+function material(pregunta: string, pagina: string): string {
+  preparar();
+  const m = /^\/cursos\/([a-z]+)(?:\/semana-(\d+)\/clase-(\d))?/.exec(pagina || "");
+  const curso = m && KB.cursos[m[1]] ? m[1] : "";
+  const actual = m && m[2] ? `/cursos/${m[1]}/semana-${m[2]}/clase-${m[3]}.html` : "";
+  // Las palabras con números (leyes, normas: 27.521, 4504) valen más
+  const q = [...new Set(palabras(pregunta))];
+  const puntajes = KB.clases.map((k, i) => {
+    let p = 0;
+    for (const w of q) {
+      const v = idf!.get(w) || 0;
+      const peso = /\d/.test(w) ? 2 : 1;
+      if (indice![i].fuerte.has(w)) p += 2 * v * peso;
+      else if (indice![i].resto.has(w)) p += v * peso;
+    }
+    if (p > 0 && curso && k.c === curso) p *= 1.3;
+    return { k, p };
+  }).filter((x) => x.p > 0 && x.k.u !== actual).sort((a, b) => b.p - a.p).slice(0, 4);
+
+  const prog = Object.entries(KB.cursos).map(([slug, c]) =>
+    `${c.nombre} (/cursos/${slug}/programa.html): ` + c.semanas.map((t, i) => `${i + 1}. ${t}`).join("; ")).join("\n");
+  const clases = puntajes.map(({ k }) => {
+    const n = KB.cursos[k.c]?.nombre || k.c;
+    return [`• ${n}, semana ${k.s} (${k.t}), clase ${k.d} — ${k.u}`,
+      k.o && `Objetivo: ${k.o}`,
+      k.h.length ? `Temas: ${k.h.join("; ")}` : "",
+      k.l && `Resumen: ${k.l}`,
+      k.a && `Referentes: ${k.a}`,
+      k.n && `Norma: ${k.n}`].filter(Boolean).join("\n");
+  }).join("\n\n");
+  return `\n\nAbajo tenés el MATERIAL DE BOCETO: el programa de las diplomaturas y las clases que más se relacionan con la pregunta. Basate en él antes que en tu conocimiento general. Cuando una clase responda la duda, nombrala (diplomatura, semana y clase) y pasá su enlace tal cual aparece (empieza con /cursos/). Sobre normas y referentes, citá solo lo que figura en el material; si no está, decí que no lo tenés verificado. Las normas pueden cambiar: sugerí confirmar la versión vigente cuando importe.\n\nMATERIAL DE BOCETO\nPrograma (16 semanas por diplomatura):\n${prog}` +
+    (clases ? `\n\nClases relacionadas con la pregunta:\n${clases}` : "") +
+    (actual ? `\n\nEl alumno está mirando la clase ${actual}; su contenido viene en el mensaje.` : "");
+}
 
 const CLAUDE_MODELS = ["claude-sonnet-5-5", "claude-haiku-5-5", "claude-sonnet-4-5", "claude-haiku-4-5"];
 // Gratis dentro del cupo diario de Workers AI. Gemma 4 es el más capaz y el que menos cupo gasta; los otros quedan de respaldo.
@@ -35,7 +94,7 @@ function limited(ip: string) {
   return win.length > 20;
 }
 
-async function claude(env: Env, turns: Turn[], image: Image, maxTokens: number): Promise<Response | null> {
+async function claude(env: Env, turns: Turn[], image: Image, maxTokens: number, system: string): Promise<Response | null> {
   const messages = turns.map((t, i) => i === turns.length - 1 && image
     ? { role: "user", content: [{ type: "image", source: { type: "base64", media_type: image.mediaType, data: image.data } }, { type: "text", text: t.content }] }
     : { role: t.role, content: t.content });
@@ -46,7 +105,7 @@ async function claude(env: Env, turns: Turn[], image: Image, maxTokens: number):
       res = await fetch("https://api.anthropic.com/v1/messages", {
         method: "POST",
         headers: { "content-type": "application/json", "x-api-key": env.ANTHROPIC_API_KEY!, "anthropic-version": "2023-06-01" },
-        body: JSON.stringify({ model, max_tokens: maxTokens, system: SYSTEM, messages })
+        body: JSON.stringify({ model, max_tokens: maxTokens, system, messages })
       });
     } catch (e) { console.error("asistente: sin conexión con Claude", e); return null; }
     if (res.ok) {
@@ -71,9 +130,9 @@ function textoDe(out: any): string {
   return (typeof r === "string" ? r : JSON.stringify(r)).trim();
 }
 
-async function workersAI(env: Env, turns: Turn[], image: Image, maxTokens: number, json = false): Promise<Response> {
+async function workersAI(env: Env, turns: Turn[], image: Image, maxTokens: number, system: string, json = false): Promise<Response> {
   if (!env.AI) return fail("ai_unavailable", 503);
-  const messages: any[] = [{ role: "system", content: SYSTEM }];
+  const messages: any[] = [{ role: "system", content: system }];
   turns.forEach((t, i) => {
     if (i === turns.length - 1 && image) {
       messages.push({ role: "user", content: [
@@ -125,11 +184,16 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
   }
   const maxTokens = Math.max(100, Math.min(2000, Number(body?.maxTokens) || 800));
 
+  // La pregunta del alumno (sin el texto de la página que el sitio agrega al primer mensaje) busca en la base de conocimiento
+  const ultima = turns[turns.length - 1].content;
+  const pregunta = (ultima.split("Pregunta del alumno:").pop() || ultima).slice(-1500);
+  const system = body?.json === true ? BASE : BASE + material(pregunta, typeof body?.pagina === "string" ? body.pagina : "");
+
   if (env.ANTHROPIC_API_KEY) {
-    const r = await claude(env, turns, image, maxTokens);
+    const r = await claude(env, turns, image, maxTokens, system);
     if (r) return r;
   }
-  return workersAI(env, turns, image, maxTokens, body?.json === true);
+  return workersAI(env, turns, image, maxTokens, system, body?.json === true);
 };
 
 export const onRequest: PagesFunction<Env> = async () => fail("method_not_allowed", 405);
