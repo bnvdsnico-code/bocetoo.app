@@ -66,6 +66,7 @@
 <p class="objetivo">Entender cómo funciona un modelador paramétrico y elegir el programa para la diplomatura.</p>
 <ul class="tiempos" aria-label="Tiempos de la clase"><li>Lectura <b>15 min</b></li><li>Práctica <b>35 min</b></li><li>Repaso <b>10 min</b></li></ul>
 <section class="lectura" aria-label="Lectura">
+<p>En un modelador paramétrico, si cambiás el diámetro de la base de tu lámpara de 15 a 18 cm, todo lo que depende de esa medida se ajusta solo: los agujeros, los redondeos, el plano. No dibujás formas: definís reglas. Es una manera distinta de pensar, y vale la pena aprenderla bien.</p>
 <h2>Por qué modelar en 3D</h2>
 <p>El modelo 3D es hoy el <strong>centro del proyecto</strong> de un producto. De un mismo archivo salen:</p>
 <ul>
@@ -120,10 +121,26 @@
 <blockquote>
 <p>Las clases de esta semana explican conceptos comunes a todos estos programas. Los nombres de los comandos cambian un poco, pero la lógica es la misma.</p>
 </blockquote>
+<h2>Modelar con intención</h2>
+<p>Antes de empezar a modelar, pensá qué medidas van a cambiar seguramente (el alto, el diámetro de la base) y construí el modelo para que esos cambios sean fáciles. Un modelo bien pensado se ajusta en segundos; uno mal hecho se rompe con cada cambio.</p>
 <figure>
 <svg viewBox="0 0 640 146" role="img" aria-label="Paramétrico de sólidos: Piezas que se fabrican; Superficies (NURBS): Formas libres y suaves; Mallas y escultura: Formas orgánicas, render"><rect x="20.0" y="16" width="190.7" height="112" rx="14" fill="#FFFFFF" stroke="#7EA2FF" stroke-width="1.5"/><rect x="20.0" y="16" width="6" height="112" rx="3" fill="#1D4ED8"/><text font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="700" fill="#1E3A8A" text-anchor="start"><tspan x="38.0" y="42.0">Paramétrico de</tspan></text><text font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="700" fill="#1E3A8A" text-anchor="start"><tspan x="38.0" y="60.0">sólidos</tspan></text><text font-family="Inter, system-ui, sans-serif" font-size="12.5" font-weight="400" fill="#1F2A44" text-anchor="start"><tspan x="38.0" y="84.0">Piezas que se fabrican</tspan></text><rect x="224.7" y="16" width="190.7" height="112" rx="14" fill="#FFFFFF" stroke="#7EA2FF" stroke-width="1.5"/><rect x="224.7" y="16" width="6" height="112" rx="3" fill="#1D4ED8"/><text font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="700" fill="#1E3A8A" text-anchor="start"><tspan x="242.66666666666666" y="42.0">Superficies (NURBS)</tspan></text><text font-family="Inter, system-ui, sans-serif" font-size="12.5" font-weight="400" fill="#1F2A44" text-anchor="start"><tspan x="242.66666666666666" y="66.0">Formas libres y suaves</tspan></text><rect x="429.3" y="16" width="190.7" height="112" rx="14" fill="#FFFFFF" stroke="#7EA2FF" stroke-width="1.5"/><rect x="429.3" y="16" width="6" height="112" rx="3" fill="#1D4ED8"/><text font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="700" fill="#1E3A8A" text-anchor="start"><tspan x="447.3333333333333" y="42.0">Mallas y escultura</tspan></text><text font-family="Inter, system-ui, sans-serif" font-size="12.5" font-weight="400" fill="#1F2A44" text-anchor="start"><tspan x="447.3333333333333" y="66.0">Formas orgánicas, render</tspan></text></svg>
 <figcaption>Los tres tipos de modelador. En la diplomatura trabajás con uno paramétrico.</figcaption>
 </figure>
+</section>
+<section class="bloque imagen" aria-labelledby="imagen-t">
+<h2 id="imagen-t">Mirar con atención</h2>
+<figure class="foto">
+<img src="/img/clases/industrial/s11d1.jpg" alt="Pantalla de computadora con un modelo 3D de una estructura de estanterías metálicas dentro de un programa de diseño, y una persona trabajando" loading="lazy" decoding="async">
+<figcaption>Foto: ThisisEngineering, vía Unsplash (licencia Unsplash).</figcaption>
+</figure>
+<div class="lectura"><p>En la pantalla se ve un modelo 3D de una estructura de estanterías dentro de un programa de diseño paramétrico. A la izquierda, el árbol de operaciones: la lista de pasos con los que se construyó el modelo, que se pueden editar en cualquier momento.</p>
+<p>Ese árbol es el corazón del modelado paramétrico. Si cambiás la altura de un estante en el primer paso, todos los demás se recalculan.</p></div>
+</section>
+<section class="bloque autores" aria-labelledby="autores-t">
+<h2 id="autores-t">Referentes de la región</h2>
+<div class="lectura"><p>En la Escuela de Ulm, <strong>Tomás Maldonado</strong> promovió una enseñanza del diseño basada en el <strong>pensamiento sistémico</strong>: entender un producto como un conjunto de relaciones, no como una forma aislada. Ulm incorporó al diseño herramientas de la ciencia y la planificación.</p>
+<p>Un modelo paramétrico es, en cierto modo, la herramienta digital de esa idea: un objeto definido por relaciones entre sus partes.</p></div>
 </section>
 <section class="bloque practica" aria-labelledby="practica-t">
 <h2 id="practica-t">Práctica <span class="min">35 min</span></h2>
@@ -168,6 +185,17 @@
 <p class="fb ok" role="status" hidden><strong>¡Bien!</strong> El modelo 3D es el centro de la documentación del producto.</p>
 <p class="fb no" role="status" hidden><strong>Todavía no.</strong> Probá otra opción.</p>
 </div>
+</section>
+<section class="bloque norma" aria-labelledby="norma-t">
+<h2 id="norma-t">La norma</h2>
+<div class="lectura"><p>Los programas de modelado son <strong>software</strong>, protegido en la Argentina por la <strong>Ley 11.723</strong> de propiedad intelectual, que incluye los programas de computación desde su modificación por la Ley 25.036. Usá versiones gratuitas, educativas o con licencia paga: muchos modeladores profesionales ofrecen licencias gratuitas para estudiantes.</p></div>
+</section>
+<section class="refs" aria-labelledby="refs-t">
+<h2 id="refs-t">Referencias</h2>
+<div class="lectura"><ul>
+<li>Tomás Maldonado y la Escuela de Ulm. <a href="https://en.wikipedia.org/wiki/Tom%C3%A1s_Maldonado">Wikipedia</a></li>
+<li>Ley 11.723 de propiedad intelectual. <a href="https://www.argentina.gob.ar/normativa/nacional/42755/texto">argentina.gob.ar</a></li>
+</ul></div>
 </section>
 <section class="asistente" aria-labelledby="asistente-titulo">
 <div class="head"><span class="ico" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FDBA8C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg></span><div><h2 id="asistente-titulo">Preguntale al asistente</h2><p class="sub">Conoce esta clase y toda la diplomatura. Responde a cualquier hora.</p></div></div>

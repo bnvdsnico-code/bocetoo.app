@@ -66,6 +66,7 @@
 <p class="objetivo">Dibujar croquis con restricciones y crear sólidos por extrusión.</p>
 <ul class="tiempos" aria-label="Tiempos de la clase"><li>Lectura <b>15 min</b></li><li>Práctica <b>35 min</b></li><li>Repaso <b>10 min</b></li></ul>
 <section class="lectura" aria-label="Lectura">
+<p>Todo sólido en un modelador paramétrico empieza como un croquis 2D: un rectángulo, un círculo, un perfil. Pero no es un dibujo libre: cada línea tiene medidas y relaciones (paralela, tangente, concéntrica). Si el croquis está bien definido, el sólido que sale de él es preciso.</p>
 <h2>El croquis: la base de todo</h2>
 <p>Casi todo sólido empieza con un <strong>croquis</strong>: un dibujo 2D sobre un plano (frontal, superior o lateral, o sobre la cara de una pieza existente).</p>
 <h2>Restricciones</h2>
@@ -96,10 +97,26 @@
 <li>Nuevo croquis sobre la cara superior: un círculo de ⌀14 mm donde va el brazo.</li>
 <li>Extrusión de corte "a través de todo": el agujero para el brazo.</li>
 </ol>
+<h2>Croquis completamente definidos</h2>
+<p>La mayoría de los programas te indican cuándo un croquis está "completamente definido" (cambian las líneas de color). Acostumbrate a no extruir hasta llegar a ese estado: un croquis a medio definir se deforma cuando menos lo esperás.</p>
 <figure>
 <svg viewBox="0 0 640 114" role="img" aria-label="Secuencia: Croquis en un plano, Restricciones geométricas, Cotas, Totalmente definido, Extrusión"><rect x="20.0" y="20" width="99.2" height="78" rx="16" fill="#E7F0FF" stroke="#1D4ED8" stroke-width="2"/><text font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="700" fill="#1D4ED8" text-anchor="middle"><tspan x="69.6" y="42.0">1</tspan></text><text font-family="Inter, system-ui, sans-serif" font-size="11.5" font-weight="600" fill="#1E3A8A" text-anchor="middle"><tspan x="69.6" y="69.5">Croquis en un</tspan><tspan x="69.6" y="86.5">plano</tspan></text><path d="M122.2 59.0L142.2 59.0" stroke="#1E3A8A" stroke-width="2" fill="none"/><path d="M142.2 59.0L134.1 62.9L134.1 55.1Z" fill="#1E3A8A"/><rect x="145.2" y="20" width="99.2" height="78" rx="16" fill="#E7F0FF" stroke="#1D4ED8" stroke-width="2"/><text font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="700" fill="#1D4ED8" text-anchor="middle"><tspan x="194.79999999999998" y="42.0">2</tspan></text><text font-family="Inter, system-ui, sans-serif" font-size="11.5" font-weight="600" fill="#1E3A8A" text-anchor="middle"><tspan x="194.79999999999998" y="69.5">Restricciones</tspan><tspan x="194.79999999999998" y="86.5">geométricas</tspan></text><path d="M247.4 59.0L267.4 59.0" stroke="#1E3A8A" stroke-width="2" fill="none"/><path d="M267.4 59.0L259.3 62.9L259.3 55.1Z" fill="#1E3A8A"/><rect x="270.4" y="20" width="99.2" height="78" rx="16" fill="#E7F0FF" stroke="#1D4ED8" stroke-width="2"/><text font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="700" fill="#1D4ED8" text-anchor="middle"><tspan x="320.0" y="42.0">3</tspan></text><text font-family="Inter, system-ui, sans-serif" font-size="11.5" font-weight="600" fill="#1E3A8A" text-anchor="middle"><tspan x="320.0" y="78.0">Cotas</tspan></text><path d="M372.6 59.0L392.6 59.0" stroke="#1E3A8A" stroke-width="2" fill="none"/><path d="M392.6 59.0L384.5 62.9L384.5 55.1Z" fill="#1E3A8A"/><rect x="395.6" y="20" width="99.2" height="78" rx="16" fill="#1D4ED8" stroke="#1D4ED8" stroke-width="2"/><text font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="700" fill="#FFFFFF" text-anchor="middle"><tspan x="445.2" y="42.0">4</tspan></text><text font-family="Inter, system-ui, sans-serif" font-size="11.5" font-weight="600" fill="#FFFFFF" text-anchor="middle"><tspan x="445.2" y="69.5">Totalmente</tspan><tspan x="445.2" y="86.5">definido</tspan></text><path d="M497.8 59.0L517.8 59.0" stroke="#1E3A8A" stroke-width="2" fill="none"/><path d="M517.8 59.0L509.7 62.9L509.7 55.1Z" fill="#1E3A8A"/><rect x="520.8" y="20" width="99.2" height="78" rx="16" fill="#E7F0FF" stroke="#1D4ED8" stroke-width="2"/><text font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="700" fill="#1D4ED8" text-anchor="middle"><tspan x="570.4" y="42.0">5</tspan></text><text font-family="Inter, system-ui, sans-serif" font-size="11.5" font-weight="600" fill="#1E3A8A" text-anchor="middle"><tspan x="570.4" y="78.0">Extrusión</tspan></text></svg>
 <figcaption>Del croquis al sólido.</figcaption>
 </figure>
+</section>
+<section class="bloque imagen" aria-labelledby="imagen-t">
+<h2 id="imagen-t">Mirar con atención</h2>
+<figure class="foto">
+<img src="/img/clases/industrial/s11d2.jpg" alt="Pantalla de un programa de dibujo asistido con un plano técnico de líneas de colores sobre fondo oscuro, y una persona mirándolo" loading="lazy" decoding="async">
+<figcaption>Foto: ThisisEngineering, vía Unsplash (licencia Unsplash).</figcaption>
+</figure>
+<div class="lectura"><p>Una persona mira un plano en un programa de dibujo asistido: líneas de colores sobre fondo oscuro, cada color en una capa distinta. Es dibujo 2D de precisión, la base sobre la que se construyen los sólidos.</p>
+<p>En un modelador paramétrico, cada croquis es como uno de estos dibujos, pero con medidas y relaciones que se pueden cambiar en cualquier momento.</p></div>
+</section>
+<section class="bloque autores" aria-labelledby="autores-t">
+<h2 id="autores-t">Referentes de la región</h2>
+<div class="lectura"><p>En el <strong>Proyecto Cybersyn</strong> (Chile, 1971–1973), el equipo de diseño dirigido por <strong>Gui Bonsiepe</strong> creó una sala de operaciones con pantallas que mostraban datos de la producción industrial del país. Fue uno de los primeros proyectos de diseño de América Latina en trabajar con computadoras y con la forma de presentar información en pantalla.</p>
+<p>Las herramientas digitales cambian rápido; lo que permanece es el criterio para usarlas al servicio de un problema concreto.</p></div>
 </section>
 <section class="bloque practica" aria-labelledby="practica-t">
 <h2 id="practica-t">Práctica <span class="min">35 min</span></h2>
@@ -144,6 +161,17 @@
 <p class="fb ok" role="status" hidden><strong>¡Bien!</strong> El origen da una referencia estable a todo el modelo.</p>
 <p class="fb no" role="status" hidden><strong>Todavía no.</strong> Probá otra opción.</p>
 </div>
+</section>
+<section class="bloque norma" aria-labelledby="norma-t">
+<h2 id="norma-t">La norma</h2>
+<div class="lectura"><p>Aunque modeles en 3D, las cotas y las restricciones de tus croquis siguen las convenciones del dibujo técnico: medidas en <strong>milímetros</strong>, según la <strong>IRAM 4513</strong>. Configurá las unidades del programa desde el principio para no tener que convertir después.</p></div>
+</section>
+<section class="refs" aria-labelledby="refs-t">
+<h2 id="refs-t">Referencias</h2>
+<div class="lectura"><ul>
+<li>Proyecto Cybersyn y Gui Bonsiepe. <a href="https://en.wikipedia.org/wiki/Project_Cybersyn">Wikipedia</a></li>
+<li>Norma IRAM 4513, acotación. <a href="https://www.iram.org.ar">IRAM</a></li>
+</ul></div>
 </section>
 <section class="asistente" aria-labelledby="asistente-titulo">
 <div class="head"><span class="ico" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FDBA8C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg></span><div><h2 id="asistente-titulo">Preguntale al asistente</h2><p class="sub">Conoce esta clase y toda la diplomatura. Responde a cualquier hora.</p></div></div>

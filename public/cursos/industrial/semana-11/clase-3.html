@@ -66,6 +66,7 @@
 <p class="objetivo">Modelar piezas de revolución, vaciarlas y redondear aristas.</p>
 <ul class="tiempos" aria-label="Tiempos de la clase"><li>Lectura <b>15 min</b></li><li>Práctica <b>35 min</b></li><li>Repaso <b>10 min</b></li></ul>
 <section class="lectura" aria-label="Lectura">
+<p>Una pantalla de lámpara, una botella, una perilla, un vaso: muchas piezas se generan girando un perfil alrededor de un eje. Después, se vacían para que tengan espesor de pared y se redondean sus aristas. Con esas tres operaciones se modelan muchísimos productos.</p>
 <h2>Revolución</h2>
 <p>La <strong>revolución</strong> gira un croquis alrededor de un eje para crear una pieza con simetría circular: un vaso, una perilla, la pantalla cónica de una lámpara, un pie torneado.</p>
 <p>Se dibuja <strong>el perfil de media pieza</strong> (como un corte) y una línea de eje. El programa la gira 360° (o el ángulo que indiques).</p>
@@ -97,7 +98,23 @@
 <blockquote>
 <p><strong>Consejo:</strong> si un redondeo falla, probá con un radio un poco más chico. Muchas veces el radio no "entra" en la geometría.</p>
 </blockquote>
+<h2>El orden de las operaciones importa</h2>
+<p>En un modelador paramétrico, no es lo mismo redondear y después vaciar que vaciar y después redondear: el resultado puede ser distinto o directamente fallar. Como regla general, dejá los redondeos para el final.</p>
 
+</section>
+<section class="bloque imagen" aria-labelledby="imagen-t">
+<h2 id="imagen-t">Mirar con atención</h2>
+<figure class="foto">
+<img src="/img/clases/industrial/s11d3.jpg" alt="Diseñador frente a un monitor que muestra el modelo 3D de una pieza de revolución, con su vista frontal y su perfil" loading="lazy" decoding="async">
+<figcaption>Foto: Kumpan Electric, vía Unsplash (licencia Unsplash).</figcaption>
+</figure>
+<div class="lectura"><p>En la pantalla se ve el modelo de una pieza de <strong>revolución</strong>: a la izquierda, una vista frontal circular; a la derecha, el perfil que, al girar alrededor de un eje, genera la forma. Un diseñador lo revisa de cerca.</p>
+<p>Es exactamente la operación de esta clase: dibujar medio perfil, girarlo 360° y obtener un sólido. Una pantalla de lámpara se modela así.</p></div>
+</section>
+<section class="bloque autores" aria-labelledby="autores-t">
+<h2 id="autores-t">Referentes de la región</h2>
+<div class="lectura"><p>El asiento de la silla <strong>Bowl</strong> de <strong>Lina Bo Bardi</strong> (1951) es una <strong>media esfera</strong>: una forma de revolución perfecta. Apoyada sobre un aro de acero, puede girarse e inclinarse en cualquier posición, precisamente porque es simétrica alrededor de su eje.</p>
+<p>Las formas de revolución son simples de modelar y de fabricar (torneado, inyección, hilado de chapa), y por eso aparecen en tantos productos.</p></div>
 </section>
 <section class="bloque practica" aria-labelledby="practica-t">
 <h2 id="practica-t">Práctica <span class="min">35 min</span></h2>
@@ -142,6 +159,17 @@
 <p class="fb ok" role="status" hidden><strong>¡Bien!</strong> Así se evitan errores en las operaciones posteriores.</p>
 <p class="fb no" role="status" hidden><strong>Todavía no.</strong> Probá otra opción.</p>
 </div>
+</section>
+<section class="bloque norma" aria-labelledby="norma-t">
+<h2 id="norma-t">La norma</h2>
+<div class="lectura"><p>Cuando una pieza de revolución llega al plano, se acota con su <strong>diámetro</strong> (símbolo ⌀) y se dibuja su <strong>eje</strong> con línea de punto y raya, según las normas <strong>IRAM 4502</strong> y <strong>4513</strong>. Muchas veces alcanza con una sola vista y un corte para describirla completa.</p></div>
+</section>
+<section class="refs" aria-labelledby="refs-t">
+<h2 id="refs-t">Referencias</h2>
+<div class="lectura"><ul>
+<li>Lina Bo Bardi, silla Bowl. <a href="https://www.moma.org/collection/works/198784">MoMA</a></li>
+<li>Normas IRAM 4502 (líneas) y 4513 (acotación). <a href="https://www.iram.org.ar">IRAM</a></li>
+</ul></div>
 </section>
 <section class="asistente" aria-labelledby="asistente-titulo">
 <div class="head"><span class="ico" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FDBA8C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg></span><div><h2 id="asistente-titulo">Preguntale al asistente</h2><p class="sub">Conoce esta clase y toda la diplomatura. Responde a cualquier hora.</p></div></div>

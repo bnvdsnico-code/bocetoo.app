@@ -71,3 +71,9 @@ Fuentes: programas de Sistemas de Representación de la UTN (FRBA 2012 y FR Mar 
 - Ley 26.331 de bosques nativos (argentina.gob.ar/normativa/nacional/136125/texto): regula desmonte y aprovechamiento; preferir maderas de bosques cultivados.
 - Ley 24.240 art. 11 (garantía legal de cosas muebles no consumibles) y art. 21 (presupuesto: materiales, precio, plazos).
 - Código Civil y Comercial art. 1973 (inmisiones: ruido, molestias entre vecinos).
+- Ley 25.675 General del Ambiente (argentina.gob.ar/normativa/nacional/79980/texto).
+- Ley 25.326 datos personales (id 64790).
+- Resolución 16/2025 Secretaría de Industria y Comercio: Reglamento Técnico de Equipamiento Eléctrico; deroga Res. 731/87, 524/98 y 169/18; declaración jurada + evaluación de conformidad; prohíbe clases de aislación 0 y 01.
+- CCyC art. 1264 variaciones del proyecto; art. 1770 vida privada; arts. 1251 y ss. contrato de obra y servicios.
+- Ley 24.481 patentes; Ley 22.362 marcas.
+- Ley 25.916 residuos domiciliarios (argentina.gob.ar/normativa/nacional/norma-98327/texto).
