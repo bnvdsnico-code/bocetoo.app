@@ -77,3 +77,8 @@ Fuentes: programas de Sistemas de Representación de la UTN (FRBA 2012 y FR Mar 
 - CCyC art. 1264 variaciones del proyecto; art. 1770 vida privada; arts. 1251 y ss. contrato de obra y servicios.
 - Ley 24.481 patentes; Ley 22.362 marcas.
 - Ley 25.916 residuos domiciliarios (argentina.gob.ar/normativa/nacional/norma-98327/texto).
+- Ley 26.653 accesibilidad web: argentina.gob.ar/normativa/nacional/175694/texto; Decreto 656/2019 reglamentario.
+- DNU 274/2019 lealtad comercial: argentina.gob.ar/normativa/nacional/decreto-274-2019-322236/texto.
+- Ley 22.362 marcas: argentina.gob.ar/normativa/nacional/18803/texto.
+- Ley 27.642 etiquetado frontal: vigente; en mayo de 2026 el PEN envió al Senado un proyecto para derogarla (Infobae 26/05/2026). Verificar estado.
+- Fileteado porteño: Patrimonio Cultural Inmaterial UNESCO, diciembre 2015; ordenanza 1975 prohibió filete en colectivos (derogada 2006).
