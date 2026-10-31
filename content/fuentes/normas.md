@@ -82,3 +82,11 @@ Fuentes: programas de Sistemas de Representación de la UTN (FRBA 2012 y FR Mar 
 - Ley 22.362 marcas: argentina.gob.ar/normativa/nacional/18803/texto.
 - Ley 27.642 etiquetado frontal: vigente; en mayo de 2026 el PEN envió al Senado un proyecto para derogarla (Infobae 26/05/2026). Verificar estado.
 - Fileteado porteño: Patrimonio Cultural Inmaterial UNESCO, diciembre 2015; ordenanza 1975 prohibió filete en colectivos (derogada 2006).
+
+## Indumentaria (verificadas)
+- Ley 27.521 (talles, SUNITI): https://www.argentina.gob.ar/normativa/nacional/ley-27521-333533/texto — ropa para personas de 12 años o más; art. 6 identificar cada prenda; art. 7 etiqueta de talle con pictograma; art. 8 cartel de tabla de medidas (15 x 21 cm mín.); art. 9 trato digno; art. 11 sanciones por Ley 24.240 y Ley 23.592. Reglamentada por Decreto 375/2021 (norma-350787). Aplicación plena depende de la tabla del estudio antropométrico del INTI (resultados difundidos en nov. 2024; escáneres 3D en 16 provincias).
+- Resolución SCI 549/2021 (norma-350418): adopta Res. GMC 62/18, Reglamento Técnico Mercosur de etiquetado textil; deroga Res. 287/2000. Etiqueta: fabricante/importador con identificación fiscal, país de origen ("Hecho en"), composición en % decreciente con nombres genéricos, cuidados según NM ISO 3758, talle, en castellano.
+- Res. 49/2024 (Min. Economía): aduana/etiquetado de importaciones; deroga Res. 404/2016 (DJCP).
+- Ley 12.713 trabajo a domicilio (ley-12713-48991): art. 3 definición y tallerista; art. 4 responsabilidad solidaria de empresarios, intermediarios y talleristas; art. 6 libro rubricado; art. 8 rótulo de artículos.
+- Resolución SCI 424/2020 (norma-342869): botón de arrepentimiento; Ley 24.240 art. 34 (10 días).
+- Ley 23.592 actos discriminatorios (id 20465).
